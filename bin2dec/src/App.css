@@ -1,0 +1,158 @@
+.main {
+  background-color: #fefefe;
+  display: grid;
+  margin: auto;
+  max-width: 600px;
+  grid-template-columns: 1.5fr 0.5fr 1.5fr;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 2px;
+  margin-top: 10px;
+  justify-content: space-between;
+  align-content: center;
+  min-width: 300px;
+}
+
+.main > .title {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: rgb(245,245,245);
+}
+
+.main .title > h1 {
+  margin: 0;
+  text-align: center;
+  color: #333;
+  visibility: hidden;
+
+}
+
+.main > .title > h1::before {
+  content: "";
+  font-size: 1em;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  visibility: visible;
+  display: block;
+  margin: 0;
+  padding: 0;
+  animation-name: title;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes title {
+  0% {
+    content: "Binary to Decimal Converter";
+    opacity: 0;
+  }
+  5%, 40% {
+    content: "Binary to Decimal Converter";
+    opacity: 1;
+  }
+  45% {
+    content: "Binary to Decimal Converter";
+    opacity: 0;
+  }
+  50% {
+    content: "Decimal to Binary Converter";
+    opacity: 0;
+  }
+  55%, 90% {
+    content: "Decimal to Binary Converter";
+    opacity: 1;
+  }
+  95%, 100% {
+    content: "Decimal to Binary Converter";
+    opacity: 0;
+  }
+}
+
+.converter {
+  display: grid;
+  grid-auto-rows: 0.5fr 1fr 0.75fr 0.5fr;
+}
+
+.converter > .description {
+  color: #333;
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+.converter > input {
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 10px;
+  width: 100%;
+  color: #333;
+}
+
+.converter > label  {
+  border-width: 0 1px 1px 1px;
+  border-color: #ddd;
+  border-style: solid;
+  background-color: rgb(245,245,245);
+  text-align: right;
+  padding: 5px 10px;
+  color: #333;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.converter > input:focus {
+  outline: none;
+}
+
+.converter > .hidden {
+  visibility: hidden;
+}
+
+.converter > .error {
+  color: white;
+  background-color: rgb(190, 58, 58);
+  font-size: 0.75em;
+  border-radius: 2px;
+  display: grid;
+  align-items: center;
+  padding: 0 5px;
+}
+
+
+.equals {
+  align-self: center;
+  justify-self: center;
+  font-size: 3em;
+  color: #555;
+}
+
+.footer {
+  text-align: center;
+  margin: 10px;
+}
+
+.footer a {
+  color: black;
+}
+
+@media (max-width: 620px) {
+  .main {
+    margin: 10px;
+    grid-template-columns: auto;
+    justify-content: unset;
+  }
+  
+  .converter {
+    display: grid;
+    grid-auto-rows: 0.5fr 1fr 0.75fr 0.50fr;
+  }
+
+  .equals {
+    display: none;
+  }
+}
