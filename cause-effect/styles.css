@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin: 10px;
+}
+
+main h2 {
+  color: #333;
+}
+
+section#users {
+  background-color: #ddd;
+  padding: 10px;
+}
+
+section#users ul {
+  padding: 0;
+}
+
+section#users ul li {
+  list-style-type: none;
+  padding: 10px;
+  background-color: #fff;
+  margin: 1px 0;
+  cursor: pointer;
+}
+
+section#users ul li:hover {
+  background-color: #eee;
+  transition: all .2s;
+}
+
+section#users ul li.active {
+  background-color: #ccc;
+  transition: all 0.5s;
+}
+
+section#preview {
+  background-color: #eee;
+  padding: 10px;
+}
+
+section#preview {
+  transition: all 1s;
+}
+
+section#preview > span {
+  transition: .5s;
+  opacity: 1;
+  position: absolute;
+}
+
+section#preview div.info {
+  background-color: #fff;
+  padding: 10px;
+  opacity: 0;
+  transition: .5s;
+}
+
+section#preview div.info > label {
+  font-size: 0.75em;
+  color: #555;
+}
+
+section#preview div.info > div {
+  margin: 5px 0;
+
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+footer p {
+  font-size: 0.75em;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+footer a {
+  color: #333;
+}
