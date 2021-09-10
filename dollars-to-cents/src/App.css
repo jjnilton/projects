@@ -1,0 +1,104 @@
+.App {
+  display: grid;
+  grid-template-rows: 0.25fr 1fr;
+  height: 100vh;
+  background: linear-gradient(#cfc, #efe);
+  min-width: 300px;
+}
+.App .result-container {
+  background-color: green;
+  padding: 10px;
+}
+
+.App .result,
+.App .input {
+  max-width: 600px;
+}
+
+.App .result {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.App .result > div {
+  border: 1px solid #0b0;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  color: #efe;
+  font-size: 0.9em;
+}
+
+.App .result > div > div {
+  font-size: 1.5em;
+  color: white;
+}
+
+.App .input {
+  padding: 10px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.App .input-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: 2px solid green;
+  border-radius: 5px;
+}
+
+.App .input label {
+  margin: 5px 0;
+  display: block;
+  color: #050;
+}
+
+.App .input-container .dollar-sign {
+  font-size: 1.5em;
+  align-self: center;
+  background-color: white;
+  padding: 5px;
+  color: rgb(120, 148, 123);
+  border-radius: 5px;
+}
+
+.App .input-container input {
+  padding: 5px;
+  font-size: 1.5em;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: #050;
+}
+
+.App .input .error {
+  margin: 5px 0;
+  color: #050;
+}
+
+.App .input .error .warning {
+  color: #050;
+  background-color: rgb(173, 238, 182);
+  border-radius: 5px;
+}
+
+.App .input .error span > code {
+  background-color: rgb(173, 238, 182);
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+}
+
+footer a {
+  color: #050;
+}
