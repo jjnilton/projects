@@ -2,11 +2,11 @@
 
 ![Random Number Generator](screencast.gif)
 
+[Live]()
+
 Generate a random number between a range of defined minimum and maximum.
 
 The generator allows the user to use the random property for purposes like games that contains some kind of lottery or for statistics.
-
-[Live]()
 
 ## User Stories
 
