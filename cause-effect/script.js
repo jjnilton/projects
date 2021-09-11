@@ -71,40 +71,47 @@ const DATA = [
   },
 ];
 
-const users = DATA.map(user => `<li id="user-id-${user.id}" tabindex="0">${user.name}</li>`)
-const usersString = users.join("")
+const users = DATA.map(
+  (user) => `<li id="user-id-${user.id}" tabindex="0">${user.name}</li>`
+);
+const usersString = users.join("");
 
 document.querySelector("#users > ul").innerHTML = usersString;
 
 const getUserFromId = (userId) => {
-  const user = DATA.find(user => user.id === userId);
+  const user = DATA.find((user) => user.id === userId);
   return user;
-}
+};
 
 const stack = [];
 document.querySelector("#users > ul").addEventListener("focusin", (event) => {
-  const userId = (+event.target.id.split("-")[2]);
+  const userId = +event.target.id.split("-")[2];
   const selectedUser = getUserFromId(userId);
 
   const clicked = event.target;
   if (stack.length > 0) {
-    document.getElementById(stack[0]).classList.remove("active")
-    stack.shift()
+    document.getElementById(stack[0]).classList.remove("active");
+    stack.shift();
   }
-  stack.push(event.target.id)
-  event.target.classList.add("active")
+  stack.push(event.target.id);
+  event.target.classList.add("active");
 
   setTimeout(() => {
-    document.querySelector("#preview > div.info").style = "opacity: 1;"
-  }, 500)
+    document.querySelector("#preview > div.info").style = "opacity: 1;";
+  }, 750);
 
-  for (const prop in selectedUser) {
-    if (prop !== 'id') {
-      document.querySelector("#preview > span").style = "opacity: 0;";
-      document.querySelector("#preview > div.info").style = "opacity: 0;"
-      document.querySelector(`#preview > div.info > label[for="${prop}"]`).innerText = prop.toUpperCase();
-      document.querySelector(`#preview > div.info > div.${prop}`).innerText = selectedUser[prop];
+  document.querySelector("#preview > span").style = "opacity: 0;";
+  document.querySelector("#preview > div.info").style = "opacity: 0;";
+
+  setTimeout(() => {
+    for (const prop in selectedUser) {
+      if (prop !== "id") {
+        document.querySelector(
+          `#preview > div.info > label[for="${prop}"]`
+        ).innerText = prop.toUpperCase();
+        document.querySelector(`#preview > div.info > div.${prop}`).innerText =
+          selectedUser[prop];
+      }
     }
-  }
-})
-
+  }, 500);
+});
