@@ -2,7 +2,7 @@
 
 ![Dollar to Cents](screencast.gif)
 
-[Live]()
+[Live](https://jjnilton.github.io/projects/dollars-to-cents/build)
 
 Converting dollars to cents would enable you to practice your fundamental knowledge of programming. Loops, if conditions and a simple algorithm will be used.
 Your task is to let the user input a dollar value (float), assuming that it can also accept extra cents (ex. $2.75), and convert it into an integer (in this case, if $2.75 = 275). After this, convert into coins with the sub-type of dollars: penny, nickel, dime and quarter. Use an algorithm that would divide the dollar value to the four coin types, and output few coins as possible.

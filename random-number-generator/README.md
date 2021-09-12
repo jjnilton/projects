@@ -2,7 +2,7 @@
 
 ![Random Number Generator](screencast.gif)
 
-[Live]()
+[Live](https://jjnilton.github.io/projects/random-number-generator/build)
 
 Generate a random number between a range of defined minimum and maximum.
 
