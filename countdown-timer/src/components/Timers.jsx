@@ -6,27 +6,24 @@ const ActiveTimers = (props) => {
   const { timers } = useContext(TimerContext);
   const [actives, setActives] = useState();
 
-  const getTimerFullDate = (timerDate, timerTime) => {
-    return new Date(`${timerDate} ${timerTime}`);
-  };
-
   const getTimeLeft = (timerDate) => {
-    return Math.floor((timerDate - new Date()) / 1000);
+    return Math.floor((new Date(timerDate) - new Date()) / 1000);
   };
 
   const activeTimers = timers.filter(
-    (timer) => getTimeLeft(getTimerFullDate(timer.date, timer.time)) > 0
+    (timer) => getTimeLeft(timer.dateTime) > 0
   );
 
-  // getTimerFullDate(timer.date, timer.time) <= new Date()
+  console.log(activeTimers)
+
   const expiredTimers = timers.filter(
-    (timer) => getTimeLeft(getTimerFullDate(timer.date, timer.time)) < 0
+    (timer) => getTimeLeft(timer.dateTime) < 0
   );
 
   const expiredTimersElements = expiredTimers.map((timer) => {
     return (
       <li>
-        {timer.id} {timer.name} {timer.date} {timer.time}
+        {timer.id} {timer.name} {timer.dateTime}
       </li>
     );
   });
@@ -40,9 +37,8 @@ const ActiveTimers = (props) => {
             key={timer.id}
             id={timer.id}
             name={timer.name}
-            date={timer.date}
-            time={timer.time}
-            timeLeft={getTimeLeft(getTimerFullDate(timer.date, timer.time))}
+            dateTime={timer.dateTime}
+            timeLeft={getTimeLeft(timer.dateTime)}
           ></Timer>
         );
       })
@@ -61,9 +57,8 @@ const ActiveTimers = (props) => {
                 key={timer.id}
                 id={timer.id}
                 name={timer.name}
-                date={timer.date}
-                time={timer.time}
-                timeLeft={getTimeLeft(getTimerFullDate(timer.date, timer.time))}
+                dateTime={timer.dateTime}
+                timeLeft={getTimeLeft((timer.dateTime))}
               ></Timer>
             );
           })

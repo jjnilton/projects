@@ -1,5 +1,5 @@
 import TimerContext from "./timer-context";
-import { useState, useReducer, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const TimerProvider = (props) => {
   const [timers, setTimers] = useState([]);
@@ -11,7 +11,7 @@ const TimerProvider = (props) => {
 
   const handleAddTimer = (timer) => {
     setTimers((prevTimers) => {
-      return [
+      const updatedTimers = [
         ...prevTimers,
         {
           id:
@@ -21,8 +21,15 @@ const TimerProvider = (props) => {
           ...timer,
         },
       ];
+      localStorage.setItem("timers", JSON.stringify(updatedTimers))
+      return updatedTimers
     });
+    
   };
+
+  const handleClearExpiredTimers = () => {
+
+  }
 
   const showAlert = () => {
     setAlert(true);
@@ -60,10 +67,6 @@ const TimerProvider = (props) => {
     setIsLoaded(true);
 
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("timers", JSON.stringify(timers));
-  }, [timers]);
 
   const timerContext = {
     timers,

@@ -31,7 +31,7 @@ const Timer = (props) => {
 
   return (
     <li>
-      {props.id}, {props.name}, {props.date}, {props.time}, {timeLeftString}
+      {props.id}, {props.name}, {props.dateTime}, {timeLeftString}
     </li>
   );
 };

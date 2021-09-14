@@ -1,26 +1,60 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import TimerContext from "../store/timer-context";
 
 const NewTimer = () => {
   const { addTimer } = useContext(TimerContext);
+  const [hasError, setHasError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [dateError, setDateError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const name = formData.get("name");
-    const date = formData.get("date");
+    const date = formData.get("date").replace(/-/g, "/");
     const time = formData.get("time");
 
-    const eventObject = {
-      name,
-      date,
-      time,
-    };
+    let validName = false;
+    if (name.trim().length > 0) {
+      validName = true;
+      console.log("name is valid");
+    } else {
+      setNameError(true);
+    }
 
-    console.log(eventObject);
+    const dateTime = `${date} ${time}`.trim();
 
-    addTimer({ name, date, time });
+    let validDate = false;
+    if (!isNaN(new Date(dateTime)) && new Date(dateTime) > new Date()) {
+      // date ok
+      validDate = true;
+    } else {
+      setDateError(true);
+    }
+
+    if (validName && validDate) {
+      // continue
+      const eventObject = {
+        name,
+        dateTime,
+      };
+
+      console.log(eventObject);
+      console.log("adding timer");
+      // addTimer({ name, datetime, time });
+      addTimer({name, dateTime})
+    } else {
+      setHasError(true);
+
+      console.log("something is invalid");
+    }
+  };
+
+  const handleInputFocus = () => {
+    setHasError(false);
+    setNameError(false)
+    setDateError(false);
   };
 
   return (
@@ -28,12 +62,19 @@ const NewTimer = () => {
       <h2>Create New Event Timer</h2>
       <form name="new-timer" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
-        <input id="name" name="name" type="text" />
+        <input id="name" name="name" type="text" onFocus={handleInputFocus} />
         <label htmlFor="date">Date</label>
-        <input id="date" name="date" type="date" />
+        <input id="date" name="date" type="date" onFocus={handleInputFocus} />
         <label htmlFor="time">Time</label>
-        <input id="time" name="time" type="time" />
+        <input id="time" name="time" type="time" onFocus={handleInputFocus} />
         <button>Start</button>
+        {hasError && (
+          <div className="error-messages">
+            Errors:
+            {nameError && <div>Name can't be empty.</div>}
+            {dateError && <div>Date has to be a future date.</div>}
+          </div>
+        )}
       </form>
     </div>
   );
