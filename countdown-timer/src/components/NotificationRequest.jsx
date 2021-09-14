@@ -4,8 +4,8 @@ import Modal from "./UI/Modal";
 
 const NotificationRequest = () => {
   const timerContext = useContext(TimerContext);
-  
-  console.log(timerContext.notificationEnabled)
+
+  console.log(timerContext.notificationEnabled);
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
@@ -14,12 +14,12 @@ const NotificationRequest = () => {
   };
 
   const handleBackDropClick = () => {
-    console.log("can't dismiss")
-  }
+    console.log("can't dismiss");
+  };
 
   const handleHideNotificationRequest = () => {
     timerContext.hideNotificationRequest();
-  }
+  };
 
   return (
     <Modal backDropClick={handleBackDropClick}>
@@ -29,7 +29,11 @@ const NotificationRequest = () => {
           complete.
         </p>
         <p>Do you want to enable this feature?</p>
-        {timerContext.notificationEnabled ? <div>Enabled</div> : <button onClick={handleAllowNotification}>Allow notification</button>}
+        {timerContext.notificationEnabled ? (
+          <div>Enabled</div>
+        ) : (
+          <button onClick={handleAllowNotification}>Allow notification</button>
+        )}
         <button onClick={handleHideNotificationRequest}>Dismiss</button>
       </div>
     </Modal>

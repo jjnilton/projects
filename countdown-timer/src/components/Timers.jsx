@@ -56,7 +56,7 @@ const ActiveTimers = (props) => {
                 id={timer.id}
                 name={timer.name}
                 dateTime={timer.dateTime}
-                timeLeft={getTimeLeft((timer.dateTime))}
+                timeLeft={getTimeLeft(timer.dateTime)}
               ></Timer>
             );
           })
@@ -70,7 +70,7 @@ const ActiveTimers = (props) => {
 
   const handleClearExpiredTimers = () => {
     clearExpired();
-  }
+  };
 
   return (
     <div>

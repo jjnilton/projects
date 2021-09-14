@@ -3,7 +3,8 @@ import TimerContext from "../store/timer-context";
 
 const NotificationStatus = () => {
   const timerContext = useContext(TimerContext);
-  const [notificationStatusIsShown, setNotificationStatusIsShown] = useState(true);
+  const [notificationStatusIsShown, setNotificationStatusIsShown] =
+    useState(true);
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
@@ -11,22 +12,23 @@ const NotificationStatus = () => {
         timerContext.enableNotification();
       }
       if (permission === "denied") {
-        alert("You can enable in your browser settings.")
+        alert("You can enable in your browser settings.");
       }
     });
   };
 
   const handleDisplayNotificationStatus = () => {
     setNotificationStatusIsShown(false);
-  }
+  };
 
   return (
-    notificationStatusIsShown &&
-    <div>
-      <div>Notifications are disabled.</div>
-      <button onClick={handleAllowNotification}>Enable</button>
-      <button onClick={handleDisplayNotificationStatus}>Dismiss</button>
-    </div>
+    notificationStatusIsShown && (
+      <div>
+        <div>Notifications are disabled.</div>
+        <button onClick={handleAllowNotification}>Enable</button>
+        <button onClick={handleDisplayNotificationStatus}>Dismiss</button>
+      </div>
+    )
   );
 };
 

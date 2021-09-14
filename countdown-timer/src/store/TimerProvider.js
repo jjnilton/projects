@@ -21,27 +21,28 @@ const TimerProvider = (props) => {
           ...timer,
         },
       ];
-      localStorage.setItem("timers", JSON.stringify(updatedTimers))
-      return updatedTimers
+      localStorage.setItem("timers", JSON.stringify(updatedTimers));
+      return updatedTimers;
     });
-    
   };
 
   const handleDeleteTimer = (timerId) => {
-    setTimers(prevTimers => {
-      const updatedTimers = prevTimers.filter(timer => timer.id !== timerId);
-      localStorage.setItem("timers", JSON.stringify(updatedTimers))
-      return updatedTimers
-    })
-  }
+    setTimers((prevTimers) => {
+      const updatedTimers = prevTimers.filter((timer) => timer.id !== timerId);
+      localStorage.setItem("timers", JSON.stringify(updatedTimers));
+      return updatedTimers;
+    });
+  };
 
   const handleClearExpiredTimers = () => {
-    setTimers(prevTimers => {
-      const updatedTimers = prevTimers.filter(timer => new Date(timer.dateTime) > new Date());
-      localStorage.setItem("timers", JSON.stringify(updatedTimers))
+    setTimers((prevTimers) => {
+      const updatedTimers = prevTimers.filter(
+        (timer) => new Date(timer.dateTime) > new Date()
+      );
+      localStorage.setItem("timers", JSON.stringify(updatedTimers));
       return updatedTimers;
-    })
-  }
+    });
+  };
 
   const showAlert = () => {
     setAlert(true);
@@ -53,11 +54,11 @@ const TimerProvider = (props) => {
 
   const hideNotificationRequest = () => {
     setNotifyRequest(false);
-  }
+  };
 
   const enableNotification = () => {
     setNotificationEnabled(true);
-  }
+  };
 
   const handleLastEvent = (eventId) => {
     setLastEvent(eventId);
@@ -73,11 +74,10 @@ const TimerProvider = (props) => {
     }
 
     if (Notification.permission === "granted") {
-      setNotificationEnabled(true)
+      setNotificationEnabled(true);
     }
 
     setIsLoaded(true);
-
   }, []);
 
   const timerContext = {
@@ -94,7 +94,7 @@ const TimerProvider = (props) => {
     enableNotification,
     isLoaded,
     clearExpired: handleClearExpiredTimers,
-    deleteTimer: handleDeleteTimer
+    deleteTimer: handleDeleteTimer,
   };
 
   return (

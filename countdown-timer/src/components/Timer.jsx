@@ -21,14 +21,14 @@ const Timer = (props) => {
   if (timeLeft < 1) {
     let timeout = setTimeout(() => {
       clearTimeout(timeout);
-      timerContext.handleLastEvent(props.id)
+      timerContext.handleLastEvent(props.id);
       timerContext.showAlert();
-    }, 1000)
+    }, 1000);
   }
 
   const handleDeleteTimer = () => {
-    timerContext.deleteTimer(props.id)
-  }
+    timerContext.deleteTimer(props.id);
+  };
 
   return (
     <li>

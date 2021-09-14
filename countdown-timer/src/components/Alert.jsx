@@ -6,20 +6,17 @@ const audio = new Audio("/beep-06.mp3");
 
 const Alert = () => {
   const { hideAlert, lastEvent } = useContext(TimerContext);
-
   audio.play();
 
-  console.log("rendering alert");
-
   if (Notification.permission === "granted") {
-    new Notification("Event Countdown Timer", { body: `Event ${lastEvent} completed.`});
+    new Notification("Event Countdown Timer", {
+      body: `Event ${lastEvent} completed.`,
+    });
   }
-
-  console.log("testt")
 
   const handleDismissAlert = () => {
     hideAlert();
-  }
+  };
 
   return (
     <Modal backDropClick={handleDismissAlert}>
