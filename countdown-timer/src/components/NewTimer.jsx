@@ -13,25 +13,29 @@ const NewTimer = () => {
     const time = formData.get("time");
 
     const eventObject = {
-      name, date, time
-    }
+      name,
+      date,
+      time,
+    };
 
-    console.log( eventObject )
+    console.log(eventObject);
 
     addTimer({ name, date, time });
   };
 
   return (
-    <form name="new-timer" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input id="name" name="name" type="text" />
-      <label htmlFor="date">Date</label>
-      <input id="date" name="date" type="date" />
-      <label htmlFor="time">Time</label>
-      <input id="time" name="time" type="time"/>
-      <button>Start</button>
-    </form>
-    
+    <div>
+      <h2>Create New Event Timer</h2>
+      <form name="new-timer" onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
+        <input id="name" name="name" type="text" />
+        <label htmlFor="date">Date</label>
+        <input id="date" name="date" type="date" />
+        <label htmlFor="time">Time</label>
+        <input id="time" name="time" type="time" />
+        <button>Start</button>
+      </form>
+    </div>
   );
 };
 

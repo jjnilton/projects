@@ -1,47 +1,12 @@
-import { useEffect, useState } from "react";
-
-const initialState = {
-  id: "timerId",
-  name: "timerName",
-  date: "a date",
-  time: "hh:mm:ss",
-  status: "?",
-};
+import { useContext } from "react";
+import TimerContext from "../store/timer-context";
 
 const Timer = (props) => {
-  const [countdown, setCountdown] = useState();
-  const [intervalId, setIntervalId] = useState();
-
-  useEffect(() => {
-    const enteredDate = props.date;
-    const enteredTime = props.time;
-
-    const enteredFullDate = `${enteredDate} ${enteredTime}`;
-
-    const timerDate = new Date(enteredFullDate);
-
-    const timeLeft = Math.floor((timerDate - Date.now()) / 1000);
-
-    setCountdown(timeLeft);
-    setIntervalId(
-      setInterval(() => {
-        setCountdown((prevCountdown) => {
-          return (prevCountdown -= 1);
-        });
-      }, 1000)
-    );
-  }, []);
-
-  useEffect(() => {
-    if (countdown < 0) {
-      console.log("cleaning interval", props.id);
-      props.forceUpdate();
-      clearInterval(intervalId);
-    }
-  });
+  const timeLeft = props.timeLeft;
+  const timerContext = useContext(TimerContext);
 
   // maybe replace with dayjs or momentjs
-  let remainingTime = countdown;
+  let remainingTime = timeLeft;
   let seconds = Math.floor(remainingTime % 60);
   remainingTime = remainingTime / 60;
   let minutes = Math.floor(remainingTime % 60);
@@ -51,7 +16,18 @@ const Timer = (props) => {
   let days = Math.floor(remainingTime % 24);
 
   // have to prepend zero
-  const timeLeftString = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds ${countdown}`;
+  const timeLeftString = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds |  ${props.timeLeft}`;
+
+  if (timeLeft < 1) {
+    let timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      timerContext.handleLastEvent(props.id)
+      timerContext.showAlert();
+      // timerContext.showModal();
+    }, 1000)
+  }
+
+  console.log("render timer")
 
   return (
     <li>

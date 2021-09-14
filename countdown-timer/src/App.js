@@ -1,21 +1,23 @@
+import { useContext } from "react";
 import "./App.css";
+import Alert from "./components/Alert";
 import NewTimer from "./components/NewTimer";
-import TimerProvider from "./store/TimerProvider";
-import ActiveTimers from "./components/ActiveTimers";
-import ExpiredTimers from "./components/ExpiredTimers";
-import {useReducer} from "react";
-import TimerList from "./components/TimerList";
+import NotificationRequest from "./components/NotificationRequest";
+import NotificationStatus from "./components/NotificationStatus";
+import Timers from "./components/Timers";
+import TimerContext from "./store/timer-context";
 
 function App() {
+  const timerContext = useContext(TimerContext);
 
   return (
-    <TimerProvider>
       <div className="App">
-        <h2>Create New Timer</h2>
+        {timerContext.notifyRequest && <NotificationRequest></NotificationRequest>}
+        {timerContext.alert && <Alert></Alert>}
+        {!timerContext.notificationEnabled && !timerContext.notifyRequest && timerContext.isLoaded ? <NotificationStatus></NotificationStatus> : ""}
         <NewTimer></NewTimer>
-        <TimerList></TimerList>
+        <Timers></Timers>
       </div>
-    </TimerProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 {
-  "short_name": "Countdown Timer",
-  "name": "Countdown Timer",
+  "short_name": "Event Countdown Timer",
+  "name": "Event Countdown Timer",
   "icons": [
     {
       "src": "favicon.ico",
