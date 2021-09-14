@@ -27,33 +27,21 @@ const NewTimer = () => {
 
     let validDate = false;
     if (!isNaN(new Date(dateTime)) && new Date(dateTime) > new Date()) {
-      // date ok
       validDate = true;
     } else {
       setDateError(true);
     }
 
     if (validName && validDate) {
-      // continue
-      const eventObject = {
-        name,
-        dateTime,
-      };
-
-      console.log(eventObject);
-      console.log("adding timer");
-      // addTimer({ name, datetime, time });
-      addTimer({name, dateTime})
+      addTimer({ name, dateTime });
     } else {
       setHasError(true);
-
-      console.log("something is invalid");
     }
   };
 
   const handleInputFocus = () => {
     setHasError(false);
-    setNameError(false)
+    setNameError(false);
     setDateError(false);
   };
 
@@ -72,7 +60,7 @@ const NewTimer = () => {
           <div className="error-messages">
             Errors:
             {nameError && <div>Name can't be empty.</div>}
-            {dateError && <div>Date has to be a future date.</div>}
+            {dateError && <div>Date has to be set to the future.</div>}
           </div>
         )}
       </form>

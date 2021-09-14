@@ -3,7 +3,7 @@ import TimerContext from "../store/timer-context";
 import Timer from "./Timer";
 
 const ActiveTimers = (props) => {
-  const { timers } = useContext(TimerContext);
+  const { timers, clearExpired } = useContext(TimerContext);
   const [actives, setActives] = useState();
 
   const getTimeLeft = (timerDate) => {
@@ -13,8 +13,6 @@ const ActiveTimers = (props) => {
   const activeTimers = timers.filter(
     (timer) => getTimeLeft(timer.dateTime) > 0
   );
-
-  console.log(activeTimers)
 
   const expiredTimers = timers.filter(
     (timer) => getTimeLeft(timer.dateTime) < 0
@@ -70,7 +68,9 @@ const ActiveTimers = (props) => {
     };
   }, [actives]);
 
-  console.log("render timers")
+  const handleClearExpiredTimers = () => {
+    clearExpired();
+  }
 
   return (
     <div>
@@ -78,7 +78,7 @@ const ActiveTimers = (props) => {
       <ul>{actives}</ul>
       <h2>Expired Timers</h2>
       <ul>{expiredTimersElements}</ul>
-      <button>Clear expired timers</button>
+      <button onClick={handleClearExpiredTimers}>Clear expired timers</button>
     </div>
   );
 };

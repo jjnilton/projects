@@ -27,8 +27,20 @@ const TimerProvider = (props) => {
     
   };
 
-  const handleClearExpiredTimers = () => {
+  const handleDeleteTimer = (timerId) => {
+    setTimers(prevTimers => {
+      const updatedTimers = prevTimers.filter(timer => timer.id !== timerId);
+      localStorage.setItem("timers", JSON.stringify(updatedTimers))
+      return updatedTimers
+    })
+  }
 
+  const handleClearExpiredTimers = () => {
+    setTimers(prevTimers => {
+      const updatedTimers = prevTimers.filter(timer => new Date(timer.dateTime) > new Date());
+      localStorage.setItem("timers", JSON.stringify(updatedTimers))
+      return updatedTimers;
+    })
   }
 
   const showAlert = () => {
@@ -80,7 +92,9 @@ const TimerProvider = (props) => {
     hideNotificationRequest,
     notificationEnabled,
     enableNotification,
-    isLoaded
+    isLoaded,
+    clearExpired: handleClearExpiredTimers,
+    deleteTimer: handleDeleteTimer
   };
 
   return (

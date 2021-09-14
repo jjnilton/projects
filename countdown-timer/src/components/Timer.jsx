@@ -23,15 +23,17 @@ const Timer = (props) => {
       clearTimeout(timeout);
       timerContext.handleLastEvent(props.id)
       timerContext.showAlert();
-      // timerContext.showModal();
     }, 1000)
   }
 
-  console.log("render timer")
+  const handleDeleteTimer = () => {
+    timerContext.deleteTimer(props.id)
+  }
 
   return (
     <li>
       {props.id}, {props.name}, {props.dateTime}, {timeLeftString}
+      <button onClick={handleDeleteTimer}>Delete</button>
     </li>
   );
 };
