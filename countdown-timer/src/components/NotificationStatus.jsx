@@ -6,25 +6,38 @@ const NotificationStatus = () => {
   const { enableNotification } = useContext(TimerContext);
   const [notificationStatusIsShown, setNotificationStatusIsShown] =
     useState(true);
+  const [visible, setVisible] = useState(true);
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
-        enableNotification();
+        setVisible(false);
+        setTimeout(() => {
+          enableNotification();
+        }, 250);
       }
       if (permission === "denied") {
-        alert("Notifications are disabled. You can enable in your browser settings.");
+        alert(
+          "Notifications are disabled. You can enable in your browser settings."
+        );
       }
     });
   };
 
   const handleDisplayNotificationStatus = () => {
-    setNotificationStatusIsShown(false);
+    setVisible(false);
+    setTimeout(() => {
+      setNotificationStatusIsShown(false);
+    }, 250);
   };
 
   return (
     notificationStatusIsShown && (
-      <div className={classes["notification-status"]}>
+      <div
+        className={`${classes["notification-status"]} ${
+          !visible ? classes.disappear : undefined
+        }`}
+      >
         <div>Notifications are disabled.</div>
         <button onClick={handleAllowNotification}>Enable</button>
         <button onClick={handleDisplayNotificationStatus}>Dismiss</button>

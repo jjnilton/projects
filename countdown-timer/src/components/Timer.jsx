@@ -4,7 +4,7 @@ import classes from "./Timers.module.css";
 
 const Timer = (props) => {
   const timeLeft = props.timeLeft;
-  const { handleLastEvent, showAlert, deleteTimer} = useContext(TimerContext);
+  const { handleLastEvent, showAlert, deleteTimer } = useContext(TimerContext);
 
   const [visible, setVisible] = useState(true);
 
@@ -25,9 +25,38 @@ const Timer = (props) => {
     return number;
   };
 
-  const timeLeftString = `${pz(days)} days, ${pz(hours)} hours, ${pz(
-    minutes
-  )} minutes, ${pz(seconds)} seconds`;
+  const timeLeftString = (
+    <>
+      {days > 0 ? (
+        <>
+          <span>{pz(days)}</span> days,{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {hours > 0 ? (
+        <>
+          <span>{pz(hours)}</span> hours,{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {minutes > 0 ? (
+        <>
+          <span>{pz(minutes)}</span> minutes,{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {seconds > 0 ? (
+        <>
+          <span>{pz(seconds)}</span> seconds
+        </>
+      ) : (
+        ""
+      )}
+    </>
+  );
 
   if (timeLeft < 1) {
     let timeout = setTimeout(() => {
@@ -37,13 +66,11 @@ const Timer = (props) => {
     }, 1000);
   }
 
-
   const handleDeleteTimer = () => {
-    setVisible(false)
+    setVisible(false);
     setTimeout(() => {
       deleteTimer(props.id);
-    }, 500)
-    
+    }, 500);
   };
 
   return (
@@ -61,9 +88,9 @@ const Timer = (props) => {
             })}
           </div>
         </div>
+        <button onClick={handleDeleteTimer}>Delete</button>
         <div className={classes.countdown}>{timeLeftString}</div>
       </div>
-      <button onClick={handleDeleteTimer}>Delete</button>
     </li>
   );
 };

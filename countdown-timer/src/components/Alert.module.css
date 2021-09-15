@@ -7,8 +7,14 @@
   margin: 5px;
 }
 
+.alert p {
+  overflow: auto;
+  
+}
+
 .alert span {
   font-weight: bold;
+  overflow-wrap: anywhere;
 }
 
 .alert button {

@@ -16,7 +16,7 @@ const NewTimer = () => {
     let time = formData.get("time");
 
     let validName = false;
-    if (name.trim().length > 0) {
+    if (name.trim().length > 0 && name.trim().length < 50) {
       validName = true;
       console.log("name is valid");
     } else {
@@ -58,7 +58,7 @@ const NewTimer = () => {
           placeholder="Name of the event"
           onFocus={handleInputFocus}
         />
-        {nameError && <div className={classes.error}>Name can't be empty.</div>}
+        {nameError && <div className={classes.error}>Name can't be empty nor too long.</div>}
         <div>
           <label htmlFor="date">Date</label>
           <input id="date" name="date" type="date" onFocus={handleInputFocus} />

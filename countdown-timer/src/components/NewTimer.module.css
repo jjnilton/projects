@@ -55,6 +55,7 @@
   justify-self: center;
   grid-column: 1 / -1;
   width: 100px;
+  transition: transform .2s;
 }
 
 .new-timer form button:hover {

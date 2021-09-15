@@ -6,6 +6,7 @@ import classes from "./Timers.module.css";
 const ActiveTimers = () => {
   const { timers, clearExpired } = useContext(TimerContext);
   const [activeTimers, setActiveTimers] = useState();
+  const [visible, setVisible] = useState(true);
 
   const getTimeLeft = (timerDate) => {
     return Math.floor((new Date(timerDate) - new Date()) / 1000);
@@ -22,7 +23,7 @@ const ActiveTimers = () => {
   const expiredTimers = expiredTimersArray.map((timer) => {
     return (
       <li key={timer.id}>
-        <div className={classes.name}>{timer.name}</div> <div className={classes.date}>{new Date(timer.dateTime).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"})}</div>
+        <div className={classes.name}>{timer.name}</div><div className={classes.date}>{new Date(timer.dateTime).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"})}</div>
       </li>
     );
   });
@@ -70,7 +71,12 @@ const ActiveTimers = () => {
   }, [activeTimers]);
 
   const handleClearExpiredTimers = () => {
-    clearExpired();
+    setVisible(false);
+    setTimeout(() => {
+      clearExpired();
+      setVisible(true);
+    }, 250)
+    
   };
 
   return (
@@ -81,7 +87,7 @@ const ActiveTimers = () => {
       </div>
       <div className={classes.expired}>
         <h2>Expired Timers</h2>
-        {expiredTimers.length === 0 ? <p>Expired timers will appear here.</p> : <ul>{expiredTimers}</ul>}
+        {expiredTimers.length === 0 ? <p>Expired timers will appear here.</p> : <ul className={!visible ? classes.disappear : undefined}>{expiredTimers}</ul>}
         <button onClick={handleClearExpiredTimers}>Clear expired timers</button>
       </div>
     </div>

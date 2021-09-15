@@ -6,10 +6,13 @@
   width: 100%;
   position: fixed;
   opacity: 0.5;
+  z-index: 1;
+  animation: backdrop 0.5s;
+  transition: opacity 0.5s;
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   background-color: white;
   top: 50%;
   left: 50%;
@@ -19,4 +22,33 @@
   min-width: 300px;
   padding: 20px;
   border-radius: 5px;
+  z-index: 2;
+  transition: opacity 0.5s;
+  animation: modal 0.5s;
+  opacity: 1;
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}
+
+.modal.disappear,
+.backdrop.disappear {
+  opacity: 0;
 }
