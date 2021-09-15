@@ -11,9 +11,9 @@ const Timer = (props) => {
   remainingTime = remainingTime / 60;
   let minutes = Math.floor(remainingTime % 60);
   remainingTime = remainingTime / 60;
-  let hours = Math.floor(remainingTime % 60);
-  remainingTime = remainingTime / 60;
-  let days = Math.floor(remainingTime % 24);
+  let hours = Math.floor(remainingTime % 24);
+  remainingTime = remainingTime / 24;
+  let days = Math.floor(remainingTime);
 
   // prepend zero
   const pz = (number) => {
