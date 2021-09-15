@@ -9,7 +9,6 @@
 
 .alert p {
   overflow: auto;
-  
 }
 
 .alert span {
@@ -31,4 +30,3 @@
 .alert button:hover {
   transform: scale(1.1);
 }
-

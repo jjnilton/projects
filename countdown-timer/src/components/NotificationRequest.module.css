@@ -17,6 +17,7 @@
   cursor: pointer;
   margin: 5px;
   width: 100px;
+  transition: transform .2s;
 }
 
 .notification-request button:last-of-type {

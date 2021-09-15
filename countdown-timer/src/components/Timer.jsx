@@ -48,7 +48,7 @@ const Timer = (props) => {
       ) : (
         ""
       )}
-      {seconds > 0 ? (
+      {seconds >= 0 ? (
         <>
           <span>{pz(seconds)}</span> seconds
         </>

@@ -4,9 +4,12 @@
   display: flex;
   padding: 10px;
   align-items: center;
-  animation: appear .25s;
-  transition: transform .25s;
+  animation: appear 0.25s;
+  transition: transform 0.25s;
   transform-origin: top;
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 5px 5px rgba(30, 67, 104, 0.5);
 }
 
 .notification-status > div {
@@ -24,6 +27,10 @@
   cursor: pointer;
 }
 
+.notification-status button:hover {
+  transform: translateY(-5%)
+}
+
 .notification-status button:nth-of-type(2) {
   background-color: #ddd;
   color: rgb(67, 118, 168);
@@ -35,7 +42,7 @@
   }
 
   to {
-    transform: scaleY(1)
+    transform: scaleY(1);
   }
 }
 

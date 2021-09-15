@@ -6,7 +6,7 @@ import classes from "./NotificationRequest.module.css";
 const NotificationRequest = () => {
   const { notificationEnabled, hideNotificationRequest, enableNotification } =
     useContext(TimerContext);
-  
+
   const [visible, setVisible] = useState(true);
 
   const handleAllowNotification = () => {
@@ -18,10 +18,10 @@ const NotificationRequest = () => {
   };
 
   const handleHideNotificationRequest = () => {
-    setVisible(false)
+    setVisible(false);
     setTimeout(() => {
       hideNotificationRequest();
-    }, 250);
+    }, 500);
   };
 
   return (

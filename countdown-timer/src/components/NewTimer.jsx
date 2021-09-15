@@ -58,7 +58,9 @@ const NewTimer = () => {
           placeholder="Name of the event"
           onFocus={handleInputFocus}
         />
-        {nameError && <div className={classes.error}>Name can't be empty nor too long.</div>}
+        {nameError && (
+          <div className={classes.error}>Name can't be empty nor too long.</div>
+        )}
         <div>
           <label htmlFor="date">Date</label>
           <input id="date" name="date" type="date" onFocus={handleInputFocus} />

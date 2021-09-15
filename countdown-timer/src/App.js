@@ -11,11 +11,7 @@ function App() {
   const timerContext = useContext(TimerContext);
 
   return (
-    <div className="App">
-      {timerContext.notifyRequest && (
-        <NotificationRequest></NotificationRequest>
-      )}
-      {timerContext.alert && <Alert></Alert>}
+    <>
       {!timerContext.notificationEnabled &&
       !timerContext.notifyRequest &&
       timerContext.isLoaded ? (
@@ -23,10 +19,19 @@ function App() {
       ) : (
         ""
       )}
-      <NewTimer></NewTimer>
-      <Timers></Timers>
-      <footer><a href="">Source</a></footer>
-    </div>
+
+      <div className="App">
+        {timerContext.notifyRequest && (
+          <NotificationRequest></NotificationRequest>
+        )}
+        {timerContext.alert && <Alert></Alert>}
+        <NewTimer></NewTimer>
+        <Timers></Timers>
+        <footer>
+          <a href="">Source</a>
+        </footer>
+      </div>
+    </>
   );
 }
 

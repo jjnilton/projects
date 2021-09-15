@@ -14,7 +14,7 @@ const NotificationStatus = () => {
         setVisible(false);
         setTimeout(() => {
           enableNotification();
-        }, 250);
+        }, 500);
       }
       if (permission === "denied") {
         alert(
@@ -28,7 +28,7 @@ const NotificationStatus = () => {
     setVisible(false);
     setTimeout(() => {
       setNotificationStatusIsShown(false);
-    }, 250);
+    }, 500);
   };
 
   return (

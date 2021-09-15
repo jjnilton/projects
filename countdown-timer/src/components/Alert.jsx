@@ -23,7 +23,7 @@ const Alert = () => {
     setVisible(false);
     setTimeout(() => {
       hideAlert();
-    }, 250);
+    }, 500);
   };
 
   return (
