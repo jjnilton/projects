@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import TimerContext from "../store/timer-context";
 import classes from "./Timers.module.css";
 
 const Timer = (props) => {
   const timeLeft = props.timeLeft;
   const { handleLastEvent, showAlert, deleteTimer} = useContext(TimerContext);
+
+  const [visible, setVisible] = useState(true);
 
   let remainingTime = timeLeft;
   let seconds = Math.floor(remainingTime % 60);
@@ -35,12 +37,17 @@ const Timer = (props) => {
     }, 1000);
   }
 
+
   const handleDeleteTimer = () => {
-    deleteTimer(props.id);
+    setVisible(false)
+    setTimeout(() => {
+      deleteTimer(props.id);
+    }, 500)
+    
   };
 
   return (
-    <li>
+    <li className={!visible && classes.disappear}>
       <div className={classes.event}>
         <div className={classes.info}>
           <div className={classes.name}>{props.name}</div>
