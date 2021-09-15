@@ -1,0 +1,27 @@
+.notification-status {
+  background-color: dodgerblue;
+  color: white;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.notification-status > div {
+  flex: 1 1 100%;
+  text-align: left;
+}
+
+.notification-status button {
+  background-color: white;
+  color: dodgerblue;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.notification-status button:nth-of-type(2) {
+  background-color: #ddd;
+  color: rgb(67, 118, 168);
+}

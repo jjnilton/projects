@@ -1,18 +1,19 @@
 import { useContext, useState } from "react";
 import TimerContext from "../store/timer-context";
+import classes from "./NotificationStatus.module.css";
 
 const NotificationStatus = () => {
-  const timerContext = useContext(TimerContext);
+  const { enableNotification } = useContext(TimerContext);
   const [notificationStatusIsShown, setNotificationStatusIsShown] =
     useState(true);
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
-        timerContext.enableNotification();
+        enableNotification();
       }
       if (permission === "denied") {
-        alert("You can enable in your browser settings.");
+        alert("Notifications are disabled. You can enable in your browser settings.");
       }
     });
   };
@@ -23,7 +24,7 @@ const NotificationStatus = () => {
 
   return (
     notificationStatusIsShown && (
-      <div>
+      <div className={classes["notification-status"]}>
         <div>Notifications are disabled.</div>
         <button onClick={handleAllowNotification}>Enable</button>
         <button onClick={handleDisplayNotificationStatus}>Dismiss</button>

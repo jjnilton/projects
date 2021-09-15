@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import TimerContext from "../store/timer-context";
+import classes from "./Timers.module.css";
 
 const Timer = (props) => {
   const timeLeft = props.timeLeft;
-  const timerContext = useContext(TimerContext);
+  const { handleLastEvent, showAlert, deleteTimer} = useContext(TimerContext);
 
-  // maybe replace with dayjs or momentjs
   let remainingTime = timeLeft;
   let seconds = Math.floor(remainingTime % 60);
   remainingTime = remainingTime / 60;
@@ -15,24 +15,47 @@ const Timer = (props) => {
   remainingTime = remainingTime / 60;
   let days = Math.floor(remainingTime % 24);
 
-  // have to prepend zero
-  const timeLeftString = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds |  ${props.timeLeft}`;
+  // prepend zero
+  const pz = (number) => {
+    if (number < 10) {
+      return `0${number}`;
+    }
+    return number;
+  };
+
+  const timeLeftString = `${pz(days)} days, ${pz(hours)} hours, ${pz(
+    minutes
+  )} minutes, ${pz(seconds)} seconds`;
 
   if (timeLeft < 1) {
     let timeout = setTimeout(() => {
       clearTimeout(timeout);
-      timerContext.handleLastEvent(props.id);
-      timerContext.showAlert();
+      handleLastEvent(props);
+      showAlert();
     }, 1000);
   }
 
   const handleDeleteTimer = () => {
-    timerContext.deleteTimer(props.id);
+    deleteTimer(props.id);
   };
 
   return (
     <li>
-      {props.id}, {props.name}, {props.dateTime}, {timeLeftString}
+      <div className={classes.event}>
+        <div className={classes.info}>
+          <div className={classes.name}>{props.name}</div>
+          <div className={classes.date}>
+            {new Date(props.dateTime).toLocaleString(undefined, {
+              month: "short",
+              year: "numeric",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </div>
+        </div>
+        <div className={classes.countdown}>{timeLeftString}</div>
+      </div>
       <button onClick={handleDeleteTimer}>Delete</button>
     </li>
   );

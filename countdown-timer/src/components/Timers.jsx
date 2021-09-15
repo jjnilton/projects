@@ -1,35 +1,36 @@
 import { useContext, useEffect, useState } from "react";
 import TimerContext from "../store/timer-context";
 import Timer from "./Timer";
+import classes from "./Timers.module.css";
 
-const ActiveTimers = (props) => {
+const ActiveTimers = () => {
   const { timers, clearExpired } = useContext(TimerContext);
-  const [actives, setActives] = useState();
+  const [activeTimers, setActiveTimers] = useState();
 
   const getTimeLeft = (timerDate) => {
     return Math.floor((new Date(timerDate) - new Date()) / 1000);
   };
 
-  const activeTimers = timers.filter(
+  const activeTimersArray = timers.filter(
     (timer) => getTimeLeft(timer.dateTime) > 0
   );
 
-  const expiredTimers = timers.filter(
+  const expiredTimersArray = timers.filter(
     (timer) => getTimeLeft(timer.dateTime) < 0
   );
 
-  const expiredTimersElements = expiredTimers.map((timer) => {
+  const expiredTimers = expiredTimersArray.map((timer) => {
     return (
-      <li>
-        {timer.id} {timer.name} {timer.dateTime}
+      <li key={timer.id}>
+        <div className={classes.name}>{timer.name}</div> <div className={classes.date}>{new Date(timer.dateTime).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"})}</div>
       </li>
     );
   });
 
   // add timer instantly
   useEffect(() => {
-    setActives(
-      activeTimers.map((timer) => {
+    setActiveTimers(
+      activeTimersArray.map((timer) => {
         return (
           <Timer
             key={timer.id}
@@ -46,10 +47,10 @@ const ActiveTimers = (props) => {
   // update timers each 1s
   useEffect(() => {
     let timer;
-    if (!!actives && actives.length > 0) {
+    if (!!activeTimers && activeTimers.length > 0) {
       timer = setInterval(() => {
-        setActives(
-          activeTimers.map((timer) => {
+        setActiveTimers(
+          activeTimersArray.map((timer) => {
             return (
               <Timer
                 key={timer.id}
@@ -66,19 +67,23 @@ const ActiveTimers = (props) => {
     return () => {
       clearInterval(timer);
     };
-  }, [actives]);
+  }, [activeTimers]);
 
   const handleClearExpiredTimers = () => {
     clearExpired();
   };
 
   return (
-    <div>
-      <h2>Active Timers</h2>
-      <ul>{actives}</ul>
-      <h2>Expired Timers</h2>
-      <ul>{expiredTimersElements}</ul>
-      <button onClick={handleClearExpiredTimers}>Clear expired timers</button>
+    <div className={classes.timers}>
+      <div className={classes.active}>
+        <h2>Active Timers</h2>
+        {activeTimers?.length === 0 ? <p>Go ahead an add a timer for your event!</p> : <ul>{activeTimers}</ul>}        
+      </div>
+      <div className={classes.expired}>
+        <h2>Expired Timers</h2>
+        {expiredTimers.length === 0 ? <p>Expired timers will appear here.</p> : <ul>{expiredTimers}</ul>}
+        <button onClick={handleClearExpiredTimers}>Clear expired timers</button>
+      </div>
     </div>
   );
 };

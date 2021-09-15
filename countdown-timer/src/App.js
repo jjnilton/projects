@@ -25,6 +25,7 @@ function App() {
       )}
       <NewTimer></NewTimer>
       <Timers></Timers>
+      <footer><a href="">Source</a></footer>
     </div>
   );
 }

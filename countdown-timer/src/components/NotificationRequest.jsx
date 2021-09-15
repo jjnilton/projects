@@ -1,39 +1,29 @@
 import { useContext } from "react";
 import TimerContext from "../store/timer-context";
 import Modal from "./UI/Modal";
+import classes from "./NotificationRequest.module.css"
 
 const NotificationRequest = () => {
-  const timerContext = useContext(TimerContext);
-
-  console.log(timerContext.notificationEnabled);
+  const {notificationEnabled, hideNotificationRequest, enableNotification} = useContext(TimerContext);
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
-      timerContext.enableNotification();
+      enableNotification();
     });
   };
 
-  const handleBackDropClick = () => {
-    console.log("can't dismiss");
-  };
-
   const handleHideNotificationRequest = () => {
-    timerContext.hideNotificationRequest();
+    hideNotificationRequest();
   };
 
   return (
-    <Modal backDropClick={handleBackDropClick}>
-      <div>
-        <p>
-          This app uses browser notifications to notify when an timer is
-          complete.
-        </p>
-        <p>Do you want to enable this feature?</p>
-        {timerContext.notificationEnabled ? (
-          <div>Enabled</div>
-        ) : (
-          <button onClick={handleAllowNotification}>Allow notification</button>
-        )}
+    <Modal>
+      <div className={classes["notification-request"]}>
+        {!notificationEnabled ? <h3>Enable Notifications</h3> : <h3>Notifications Enabled!</h3>}
+        {!notificationEnabled ? <><p>This app uses browser notifications to notify when an timer is complete.</p><p>Do you want to enable this feature?</p></> : <p>Enjoy your notifications!</p>}
+        {!notificationEnabled &&
+          <button onClick={handleAllowNotification}>Enable</button>
+        }
         <button onClick={handleHideNotificationRequest}>Dismiss</button>
       </div>
     </Modal>
