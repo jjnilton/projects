@@ -11,13 +11,12 @@ const Alert = () => {
 
   useEffect(() => {
     audio.play();
+    if (Notification.permission === "granted") {
+      new Notification("Event Countdown Timer", {
+        body: `Event ${lastEvent.name} completed.`,
+      });
+    }
   }, []);
-
-  if (Notification.permission === "granted") {
-    new Notification("Event Countdown Timer", {
-      body: `Event ${lastEvent} completed.`,
-    });
-  }
 
   const handleDismissAlert = () => {
     setVisible(false);

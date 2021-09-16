@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import classes from "./App.module.css";
 import Alert from "./components/Alert";
 import NewTimer from "./components/NewTimer";
@@ -28,7 +28,6 @@ function App() {
       ) : (
         ""
       )}
-
       <main className={classes.app}>
         {timerContext.notifyRequest && (
           <NotificationRequest></NotificationRequest>

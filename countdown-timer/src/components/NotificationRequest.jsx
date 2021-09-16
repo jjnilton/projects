@@ -8,11 +8,15 @@ const NotificationRequest = () => {
     useContext(TimerContext);
 
   const [visible, setVisible] = useState(true);
+  const [notificationDenied, setNotificationDenied] = useState(false);
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         enableNotification();
+      }
+      if (permission === "denied") {
+        setNotificationDenied(true);
       }
     });
   };
@@ -27,12 +31,8 @@ const NotificationRequest = () => {
   return (
     <Modal visible={visible}>
       <div className={classes["notification-request"]}>
-        {!notificationEnabled ? (
-          <h3>Enable Notifications</h3>
-        ) : (
-          <h3>Notifications Enabled!</h3>
-        )}
-        {!notificationEnabled ? (
+        <h3>Notification Control</h3>
+        {!notificationEnabled && !notificationDenied ? (
           <>
             <p>
               This app uses browser notifications to notify when an timer is
@@ -41,10 +41,31 @@ const NotificationRequest = () => {
             <p>Do you want to enable this feature?</p>
           </>
         ) : (
-          <p>Enjoy your notifications!</p>
+          ""
         )}
-        {!notificationEnabled && (
+        {!notificationEnabled && notificationDenied ? (
+          <>
+            <p>Ok! You won't receive browser notifications.</p>{" "}
+            <p>
+              If you change your mind, you can change the notification
+              permission in your browser settings.
+            </p>
+          </>
+        ) : (
+          ""
+        )}
+        {notificationEnabled && (
+          <>
+            <p>Notifications permissions were granted!</p>
+            <p>
+              You will receive a notification when an event timer is complete.
+            </p>
+          </>
+        )}
+        {!notificationEnabled && !notificationDenied ? (
           <button onClick={handleAllowNotification}>Enable</button>
+        ) : (
+          ""
         )}
         <button onClick={handleHideNotificationRequest}>Dismiss</button>
       </div>

@@ -103,7 +103,7 @@ const ActiveTimers = () => {
             {expiredTimers}
           </ul>
         )}
-        <button onClick={handleClearExpiredTimers}>Clear expired timers</button>
+        {expiredTimers.length > 0 && <button onClick={handleClearExpiredTimers}>Clear expired timers</button> }
       </div>
     </div>
   );
