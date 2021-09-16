@@ -10,6 +10,7 @@
   position: fixed;
   width: 100%;
   box-shadow: 0 5px 5px rgba(30, 67, 104, 0.5);
+  z-index: 1;
 }
 
 .notification-status > div {
