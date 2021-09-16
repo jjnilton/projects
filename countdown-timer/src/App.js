@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import "./App.css";
+import { useContext, useEffect, useState } from "react";
+import classes from "./App.module.css";
 import Alert from "./components/Alert";
 import NewTimer from "./components/NewTimer";
 import NotificationRequest from "./components/NotificationRequest";
@@ -9,6 +9,15 @@ import TimerContext from "./store/timer-context";
 
 function App() {
   const timerContext = useContext(TimerContext);
+
+  // attemp to prevent rendering an empty element
+  useEffect(() => {
+    if (timerContext.alert || timerContext.notifyRequest) {
+      document.getElementById("modal").style = "display: block";
+    } else {
+      document.getElementById("modal").style = "display: none";
+    }
+  }, [timerContext]);
 
   return (
     <>
@@ -20,7 +29,7 @@ function App() {
         ""
       )}
 
-      <div className="App">
+      <main className={classes.app}>
         {timerContext.notifyRequest && (
           <NotificationRequest></NotificationRequest>
         )}
@@ -30,7 +39,7 @@ function App() {
         <footer>
           <a href="">Source</a>
         </footer>
-      </div>
+      </main>
     </>
   );
 }
