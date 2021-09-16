@@ -5,6 +5,11 @@
   width: 100%;
   background-color: dodgerblue;
   border-radius: 5px;
+  transition: filter .5s;
+}
+
+.new-timer.success {
+  filter: brightness(1.25);
 }
 
 .new-timer h2 {
@@ -32,12 +37,18 @@
 
 .new-timer form div.error {
   grid-column: 1 / -1;
-  background-color: rgba(255, 228, 225, 0.5);
+  background-color: rgba(255, 228, 225, 0.6);
   border-radius: 5px;
   padding: 3px;
-  color: firebrick;
+  color: rgb(116, 12, 12);
   font-size: 0.8em;
   margin: 5px 0;
+  transition: background-color .5s, color .5s;
+}
+
+.new-timer form div.error.attention {
+  background-color: crimson;
+  color: white;
 }
 
 .new-timer form input {

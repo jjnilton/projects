@@ -3,9 +3,8 @@ import TimerContext from "../store/timer-context";
 import classes from "./NotificationStatus.module.css";
 
 const NotificationStatus = () => {
-  const { enableNotification } = useContext(TimerContext);
-  const [notificationStatusIsShown, setNotificationStatusIsShown] =
-    useState(true);
+  const { enableNotification, hideStatusBar, showStatusBar } =
+    useContext(TimerContext);
   const [visible, setVisible] = useState(true);
 
   const handleAllowNotification = () => {
@@ -27,12 +26,12 @@ const NotificationStatus = () => {
   const handleDisplayNotificationStatus = () => {
     setVisible(false);
     setTimeout(() => {
-      setNotificationStatusIsShown(false);
+      hideStatusBar();
     }, 500);
   };
 
   return (
-    notificationStatusIsShown && (
+    showStatusBar && (
       <div
         className={`${classes["notification-status"]} ${
           !visible ? classes.disappear : undefined

@@ -125,11 +125,12 @@
   margin-left: 5px;
   padding: 10px;
   margin-bottom: 10px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;;
 }
 
 .timers > .expired button:disabled {
   background-color: rgb(188, 196, 209);
+  color: rgb(102, 102, 102);
   pointer-events: none;
   cursor: auto;
 }

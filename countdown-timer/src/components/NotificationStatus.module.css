@@ -25,6 +25,7 @@
   padding: 10px;
   margin: 0 5px;
   cursor: pointer;
+  transition: transform .2s;
 }
 
 .notification-status button:hover {
@@ -32,8 +33,8 @@
 }
 
 .notification-status button:nth-of-type(2) {
-  background-color: #ddd;
-  color: rgb(67, 118, 168);
+  background-color: rgb(238, 238, 238);
+  color: rgb(51, 102, 153);
 }
 
 @keyframes appear {

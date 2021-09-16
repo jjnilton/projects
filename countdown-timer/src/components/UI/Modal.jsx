@@ -28,6 +28,10 @@ const Modal = (props) => {
       )}
       {ReactDOM.createPortal(
         <div
+          role="dialog"
+          id="modal"
+          aria-labelledby="modal_label"
+          aria-modal="true"
           className={
             !props.visible
               ? `${classes.modal} ${classes.disappear}`

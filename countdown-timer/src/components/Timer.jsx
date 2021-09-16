@@ -4,7 +4,7 @@ import classes from "./Timers.module.css";
 
 const Timer = (props) => {
   const timeLeft = props.timeLeft;
-  const { handleLastEvent, showAlert, deleteTimer } = useContext(TimerContext);
+  const { handleLastEvent, showAlert, deleteTimer, notificationModal, alert } = useContext(TimerContext);
 
   const [visible, setVisible] = useState(true);
 
@@ -88,7 +88,7 @@ const Timer = (props) => {
             })}
           </div>
         </div>
-        <button onClick={handleDeleteTimer}>Delete</button>
+        <button onClick={handleDeleteTimer} tabIndex={alert || notificationModal ? "-1" : "0"}>Delete</button>
         <div className={classes.countdown}>{timeLeftString}</div>
       </div>
     </li>

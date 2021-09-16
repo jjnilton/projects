@@ -4,7 +4,7 @@ import Timer from "./Timer";
 import classes from "./Timers.module.css";
 
 const ActiveTimers = () => {
-  const { timers, clearExpired } = useContext(TimerContext);
+  const { timers, clearExpired, notificationModal, alert } = useContext(TimerContext);
   const [activeTimers, setActiveTimers] = useState();
   const [visible, setVisible] = useState(true);
 
@@ -12,9 +12,9 @@ const ActiveTimers = () => {
     return Math.floor((new Date(timerDate) - new Date()) / 1000);
   };
 
-  const activeTimersArray = timers.filter(
-    (timer) => getTimeLeft(timer.dateTime) > 0
-  );
+  const activeTimersArray = [...timers]
+    .sort((a, b) => (new Date(a.dateTime) < new Date(b.dateTime) ? -1 : 1))
+    .filter((timer) => getTimeLeft(timer.dateTime) > 0);
 
   const expiredTimersArray = timers.filter(
     (timer) => getTimeLeft(timer.dateTime) < 0
@@ -37,7 +37,7 @@ const ActiveTimers = () => {
   // add timer instantly
   useEffect(() => {
     setActiveTimers(
-      activeTimersArray.sort((a, b) => new Date(a.dateTime) < new Date(b.dateTime ? -1 : 1 )).map((timer) => {
+      activeTimersArray.map((timer) => {
         return (
           <Timer
             key={timer.id}
@@ -58,7 +58,7 @@ const ActiveTimers = () => {
     if (!!activeTimers && activeTimers.length > 0) {
       timer = setInterval(() => {
         setActiveTimers(
-          activeTimersArray.sort((a, b) => new Date(a.dateTime) < new Date(b.dateTime ? -1 : 1 )).map((timer) => {
+          activeTimersArray.map((timer) => {
             return (
               <Timer
                 key={timer.id}
@@ -105,7 +105,13 @@ const ActiveTimers = () => {
             {expiredTimers}
           </ul>
         )}
-        <button disabled={expiredTimers.length < 1} onClick={handleClearExpiredTimers}>Clear expired timers</button>
+        <button
+          disabled={expiredTimers.length < 1}
+          onClick={handleClearExpiredTimers}
+          tabIndex={alert || notificationModal ? "-1" : "0"}
+        >
+          Clear expired timers
+        </button>
       </div>
     </div>
   );

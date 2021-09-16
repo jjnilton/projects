@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import TimerContext from "../store/timer-context";
 import Modal from "./UI/Modal";
 import classes from "./Alert.module.css";
@@ -8,22 +14,37 @@ const audio = new Audio("/beep-06.mp3");
 const Alert = () => {
   const { hideAlert, lastEvent } = useContext(TimerContext);
   const [visible, setVisible] = useState(true);
+  const notification = useRef();
+  const dismissRef = useRef();
+
+  const handleDismissAlert = useCallback(() => {
+    if (Notification.permission === "granted") {
+      notification.current.close();
+    }
+    setVisible(false);
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      hideAlert();
+    }, 500);
+  }, [hideAlert]);
 
   useEffect(() => {
     audio.play();
     if (Notification.permission === "granted") {
-      new Notification("Event Countdown Timer", {
+      notification.current = new Notification("Event Countdown Timer", {
         body: `Event ${lastEvent.name} completed.`,
       });
+      notification.current.onclose = () => {
+        handleDismissAlert();
+      };
     }
-  }, [lastEvent.name]);
+  }, [lastEvent, handleDismissAlert]);
 
-  const handleDismissAlert = () => {
-    setVisible(false);
+  useEffect(() => {
     setTimeout(() => {
-      hideAlert();
-    }, 500);
-  };
+      dismissRef.current.focus()
+    }, 1)
+  })
 
   return (
     <Modal backDropClick={handleDismissAlert} visible={visible}>
@@ -39,7 +60,7 @@ const Alert = () => {
           </span>
           .
         </p>
-        <button onClick={handleDismissAlert}>Dismiss</button>
+        <button onClick={handleDismissAlert} ref={dismissRef}>Dismiss</button>
       </div>
     </Modal>
   );

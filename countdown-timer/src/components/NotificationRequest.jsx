@@ -1,14 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TimerContext from "../store/timer-context";
 import Modal from "./UI/Modal";
 import classes from "./NotificationRequest.module.css";
 
 const NotificationRequest = () => {
-  const { notificationEnabled, hideNotificationRequest, enableNotification } =
+  const { notificationEnabled, hideNotificationModal, enableNotification } =
     useContext(TimerContext);
 
   const [visible, setVisible] = useState(true);
   const [notificationDenied, setNotificationDenied] = useState(false);
+
+  const dismissRef = useRef();
 
   const handleAllowNotification = () => {
     Notification.requestPermission().then((permission) => {
@@ -24,9 +26,15 @@ const NotificationRequest = () => {
   const handleHideNotificationRequest = () => {
     setVisible(false);
     setTimeout(() => {
-      hideNotificationRequest();
+      hideNotificationModal();
     }, 500);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      dismissRef.current.focus();
+    }, 1);
+  });
 
   return (
     <Modal visible={visible}>
@@ -67,7 +75,9 @@ const NotificationRequest = () => {
         ) : (
           ""
         )}
-        <button onClick={handleHideNotificationRequest}>Dismiss</button>
+        <button onClick={handleHideNotificationRequest} ref={dismissRef}>
+          Dismiss
+        </button>
       </div>
     </Modal>
   );

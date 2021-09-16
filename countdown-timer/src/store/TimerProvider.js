@@ -5,9 +5,10 @@ const TimerProvider = (props) => {
   const [timers, setTimers] = useState([]);
   const [alert, setAlert] = useState(false);
   const [lastEvent, setLastEvent] = useState();
-  const [notifyRequest, setNotifyRequest] = useState(false);
+  const [notificationModal, setNotificationModal] = useState(false);
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [statusBar, setStatusBar] = useState(false);
 
 
   const handleAddTimer = (timer) => {
@@ -53,8 +54,8 @@ const TimerProvider = (props) => {
     setAlert(false);
   };
 
-  const hideNotificationRequest = () => {
-    setNotifyRequest(false);
+  const hideNotificationModal = () => {
+    setNotificationModal(false);
   };
 
   const enableNotification = () => {
@@ -65,13 +66,21 @@ const TimerProvider = (props) => {
     setLastEvent(eventId);
   };
 
+  const showStatusBar = () => {
+    setStatusBar(true)
+  }
+
+  const hideStatusBar = () => {
+    setStatusBar(false);
+  }
+
   useEffect(() => {
     if (!!localStorage.getItem("timers")) {
       setTimers(JSON.parse(localStorage.getItem("timers")));
     }
 
     if (Notification.permission === "default") {
-      setNotifyRequest(true);
+      setNotificationModal(true);
     }
 
     if (Notification.permission === "granted") {
@@ -79,6 +88,7 @@ const TimerProvider = (props) => {
     }
 
     setIsLoaded(true);
+
   }, []);
 
   const timerContext = {
@@ -89,13 +99,16 @@ const TimerProvider = (props) => {
     hideAlert,
     lastEvent,
     handleLastEvent,
-    notifyRequest,
-    hideNotificationRequest,
+    notificationModal,
+    hideNotificationModal,
     notificationEnabled,
     enableNotification,
     isLoaded,
     clearExpired: handleClearExpiredTimers,
     deleteTimer: handleDeleteTimer,
+    statusBar,
+    hideStatusBar,
+    showStatusBar
   };
 
   return (

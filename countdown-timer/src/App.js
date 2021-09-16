@@ -8,30 +8,34 @@ import Timers from "./components/Timers";
 import TimerContext from "./store/timer-context";
 
 function App() {
-  const {notificationEnabled, notifyRequest, isLoaded, alert} = useContext(TimerContext);
+  const { notificationModal, alert, notificationEnabled, isLoaded, showStatusBar, statusBar } =
+    useContext(TimerContext);
 
-  // attemp to prevent rendering an empty element
+  // attempt to prevent rendering an empty element
   useEffect(() => {
-    if (alert || notifyRequest) {
+    if (alert || notificationModal) {
       document.getElementById("modal").style = "display: block";
     } else {
       document.getElementById("modal").style = "display: none";
     }
-  }, [alert, notifyRequest]);
+  }, [alert, notificationModal]);
+
+  useEffect(() => {
+    if (!notificationEnabled && !notificationModal && isLoaded) {
+      showStatusBar();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notificationEnabled, notificationModal, isLoaded])
 
   return (
     <>
-      {!notificationEnabled &&
-      !notifyRequest &&
-      isLoaded ? (
+      {statusBar ? (
         <NotificationStatus></NotificationStatus>
       ) : (
         ""
       )}
       <main className={classes.app}>
-        {notifyRequest && (
-          <NotificationRequest></NotificationRequest>
-        )}
+        {notificationModal && <NotificationRequest></NotificationRequest>}
         {alert && <Alert></Alert>}
         <NewTimer></NewTimer>
         <Timers></Timers>
