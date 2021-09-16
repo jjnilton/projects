@@ -49,7 +49,7 @@ const ActiveTimers = () => {
         );
       })
     );
-  }, [timers]);
+  }, [timers, activeTimersArray]);
 
   // update timers each 1s
   useEffect(() => {
@@ -74,7 +74,7 @@ const ActiveTimers = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [activeTimers]);
+  }, [activeTimers, activeTimersArray]);
 
   const handleClearExpiredTimers = () => {
     setVisible(false);
@@ -103,7 +103,7 @@ const ActiveTimers = () => {
             {expiredTimers}
           </ul>
         )}
-        {expiredTimers.length > 0 && <button onClick={handleClearExpiredTimers}>Clear expired timers</button> }
+        <button disabled={expiredTimers.length < 1} onClick={handleClearExpiredTimers}>Clear expired timers</button>
       </div>
     </div>
   );

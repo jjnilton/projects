@@ -36,7 +36,7 @@ function App() {
         <NewTimer></NewTimer>
         <Timers></Timers>
         <footer>
-          <a href="">Source</a>
+          <a href="http://">Source</a>
         </footer>
       </main>
     </>
