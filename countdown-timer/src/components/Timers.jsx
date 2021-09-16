@@ -37,7 +37,7 @@ const ActiveTimers = () => {
   // add timer instantly
   useEffect(() => {
     setActiveTimers(
-      activeTimersArray.sort((a, b) => new Date(a.dateTime) > new Date(b.dateTime ? -1 : 1 )).map((timer) => {
+      activeTimersArray.sort((a, b) => new Date(a.dateTime) < new Date(b.dateTime ? -1 : 1 )).map((timer) => {
         return (
           <Timer
             key={timer.id}
@@ -49,7 +49,7 @@ const ActiveTimers = () => {
         );
       })
     );
-  }, [timers, activeTimersArray]);
+  }, [timers]);
 
   // update timers each 1s
   useEffect(() => {
@@ -57,7 +57,7 @@ const ActiveTimers = () => {
     if (!!activeTimers && activeTimers.length > 0) {
       timer = setInterval(() => {
         setActiveTimers(
-          activeTimersArray.sort((a, b) => new Date(a.dateTime) > new Date(b.dateTime ? -1 : 1 )).map((timer) => {
+          activeTimersArray.sort((a, b) => new Date(a.dateTime) < new Date(b.dateTime ? -1 : 1 )).map((timer) => {
             return (
               <Timer
                 key={timer.id}
@@ -74,7 +74,7 @@ const ActiveTimers = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [activeTimers, activeTimersArray]);
+  }, [activeTimers]);
 
   const handleClearExpiredTimers = () => {
     setVisible(false);

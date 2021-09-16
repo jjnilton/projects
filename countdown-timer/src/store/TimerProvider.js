@@ -9,6 +9,7 @@ const TimerProvider = (props) => {
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+
   const handleAddTimer = (timer) => {
     setTimers((prevTimers) => {
       const updatedTimers = [

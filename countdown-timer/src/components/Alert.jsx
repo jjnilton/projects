@@ -16,7 +16,7 @@ const Alert = () => {
         body: `Event ${lastEvent.name} completed.`,
       });
     }
-  }, [lastEvent.name]);
+  }, []);
 
   const handleDismissAlert = () => {
     setVisible(false);

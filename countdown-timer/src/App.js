@@ -8,31 +8,31 @@ import Timers from "./components/Timers";
 import TimerContext from "./store/timer-context";
 
 function App() {
-  const timerContext = useContext(TimerContext);
+  const {notificationEnabled, notifyRequest, isLoaded, alert} = useContext(TimerContext);
 
   // attemp to prevent rendering an empty element
   useEffect(() => {
-    if (timerContext.alert || timerContext.notifyRequest) {
+    if (alert || notifyRequest) {
       document.getElementById("modal").style = "display: block";
     } else {
       document.getElementById("modal").style = "display: none";
     }
-  }, [timerContext]);
+  }, [alert, notifyRequest]);
 
   return (
     <>
-      {!timerContext.notificationEnabled &&
-      !timerContext.notifyRequest &&
-      timerContext.isLoaded ? (
+      {!notificationEnabled &&
+      !notifyRequest &&
+      isLoaded ? (
         <NotificationStatus></NotificationStatus>
       ) : (
         ""
       )}
       <main className={classes.app}>
-        {timerContext.notifyRequest && (
+        {notifyRequest && (
           <NotificationRequest></NotificationRequest>
         )}
-        {timerContext.alert && <Alert></Alert>}
+        {alert && <Alert></Alert>}
         <NewTimer></NewTimer>
         <Timers></Timers>
         <footer>
