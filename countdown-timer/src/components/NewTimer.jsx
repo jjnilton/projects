@@ -11,6 +11,7 @@ const NewTimer = () => {
   const [bringAttention, setBringAttention] = useState(false);
   const [success, setSuccess] = useState(false);
   const nameRef = useRef();
+  const hasTried = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -59,10 +60,14 @@ const NewTimer = () => {
         setSuccess(false);
       }, 1000);
     } else {
-      setBringAttention(true);
-      setTimeout(() => {
-        setBringAttention(false);
-      }, 1000);
+      if (!hasTried.current) {
+        hasTried.current = true;
+      } else {
+        setBringAttention(true);
+        setTimeout(() => {
+          setBringAttention(false);
+        }, 500);
+      }
     }
   };
 
@@ -81,7 +86,12 @@ const NewTimer = () => {
   }, [alert, notificationModal, statusBar]);
 
   return (
-    <div className={[classes["new-timer"], success ? classes.success : undefined].join(" ")}>
+    <div
+      className={[
+        classes["new-timer"],
+        success ? classes.success : undefined,
+      ].join(" ")}
+    >
       <h2>Create New Event Timer</h2>
       <form name="new-timer" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
