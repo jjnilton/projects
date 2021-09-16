@@ -18,7 +18,6 @@ const NewTimer = () => {
     let validName = false;
     if (name.trim().length > 0 && name.trim().length < 50) {
       validName = true;
-      console.log("name is valid");
     } else {
       setNameError(true);
     }

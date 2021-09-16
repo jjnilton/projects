@@ -49,6 +49,7 @@ const ActiveTimers = () => {
         );
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timers]);
 
   // update timers each 1s
@@ -74,6 +75,7 @@ const ActiveTimers = () => {
     return () => {
       clearInterval(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTimers]);
 
   const handleClearExpiredTimers = () => {
@@ -87,7 +89,7 @@ const ActiveTimers = () => {
   return (
     <div className={classes.timers}>
       <div className={classes.active}>
-        <h2>Active Timers</h2>
+        <h2>Active Event Timers</h2>
         {activeTimers?.length === 0 ? (
           <p>Go ahead an add a timer for your event!</p>
         ) : (
@@ -95,9 +97,9 @@ const ActiveTimers = () => {
         )}
       </div>
       <div className={classes.expired}>
-        <h2>Expired Timers</h2>
+        <h2>Expired Event Timers</h2>
         {expiredTimers.length === 0 ? (
-          <p>Expired timers will appear here.</p>
+          <p>Expired event timers will appear here.</p>
         ) : (
           <ul className={!visible ? classes.disappear : undefined}>
             {expiredTimers}
