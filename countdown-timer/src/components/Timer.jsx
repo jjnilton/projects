@@ -74,7 +74,7 @@ const Timer = (props) => {
   };
 
   return (
-    <li className={!visible && classes.disappear}>
+    <li className={!visible ? classes.disappear : undefined}>
       <div className={classes.event}>
         <div className={classes.info}>
           <div className={classes.name}>{props.name}</div>
