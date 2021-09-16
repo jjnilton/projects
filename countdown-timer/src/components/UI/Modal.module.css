@@ -17,7 +17,7 @@
   top: 25%;
   left: 50%;
   margin: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25%);
   max-width: 600px;
   min-width: 300px;
   padding: 20px;
