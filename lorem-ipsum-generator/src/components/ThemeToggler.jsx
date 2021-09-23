@@ -13,7 +13,7 @@ const StyledThemeToggler = styled.div`
     color: ${(props) => (props.darkTheme ? "black" : "white")};
     background: ${(props) => (props.darkTheme ? "white" : "black")};
     border-radius: 3px;
-    padding: 0 3px;
+    padding: 0 5px;
   }
 `;
 
