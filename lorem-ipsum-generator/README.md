@@ -2,6 +2,8 @@
 
 ![Lorem Ipsum Generator](screenshot.png)
 
+[Live](https://jjnilton.github.io/projects/lorem-ipsum-generator/build/)
+
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 This app should generate passages of lorem ipsum text suitable for use as placeholder copy in web pages, graphics, and more.
 
