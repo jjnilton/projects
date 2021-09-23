@@ -29,7 +29,7 @@ const Header = (props) => {
   return (
     <StyledHeader darkTheme={props.darkTheme}>
       <h1>
-        Lorem{" "}
+        <div>Lorem</div>
         <div>
           <div>Ipsum</div>
           <div>GENERATOR</div>

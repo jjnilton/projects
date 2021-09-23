@@ -1,5 +1,7 @@
 # Lorem Ipsum Generator
 
+![Lorem Ipsum Generator](screenshot.png)
+
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 This app should generate passages of lorem ipsum text suitable for use as placeholder copy in web pages, graphics, and more.
 

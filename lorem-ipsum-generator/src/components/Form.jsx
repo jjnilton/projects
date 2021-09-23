@@ -20,6 +20,8 @@ const StyledForm = styled.div`
       white-space: nowrap;
     }
     & input[type="number"] {
+      height: 50px;
+      font-size: 1em;
       width: 100%;
       padding: 10px;
       border: 2px solid ${(props) => (props.darkTheme ? "white" : "black")};
@@ -43,12 +45,10 @@ const StyledForm = styled.div`
   & > form div:nth-child(2) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 26px;
+    align-self: end;
+    height: 50px;
     border: 2px solid ${(props) => (props.darkTheme ? "white" : "black")};
     border-radius: 3px;
-    @media (max-width: 500px) {
-      margin-top: 0;
-    }
   }
 
   & input[type="radio"] {
@@ -56,6 +56,7 @@ const StyledForm = styled.div`
   }
 
   & input[type="radio"] + label {
+    font-size: 1em;
     background-color: ${(props) => (props.darkTheme ? "black" : "white")};
     color: ${(props) => (props.darkTheme ? "white" : "black")};
     height: 100%;
@@ -73,6 +74,7 @@ const StyledForm = styled.div`
   & input[type="radio"]:not(:checked) + label:first-of-type,
   input[type="radio"]:not(:checked) + label:last-of-type {
     border-radius: 3px;
+    transition: none;
   }
 
   & input[type="radio"]:checked + label {
@@ -111,7 +113,7 @@ const Form = (props) => {
 
   return (
     <StyledForm darkTheme={props.darkTheme}>
-      <form action="" ref={formRef}>
+      <form ref={formRef}>
         <div>
           <label htmlFor="quantity">
             Enter the number of the{" "}

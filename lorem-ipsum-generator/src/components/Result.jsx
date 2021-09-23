@@ -14,6 +14,7 @@ const animation = (props) => css`
 `;
 
 const StyledResult = styled.div`
+  min-height: 50px;
   background-color: ${(props) => (props.darkTheme ? "#111" : "#eee")};
   color: ${(props) => (props.darkTheme ? "white" : "black")};
   border: 2px solid ${(props) => (props.darkTheme ? "white" : "black")};
@@ -27,9 +28,7 @@ const StyledResult = styled.div`
     justify-self: right;
     margin: 5px;
     font-size: ${(props) =>
-      props.clipboardButtonText === "⎘" ? "1.5em" : "1em"};
-    font-weight: ${(props) =>
-      props.clipboardButtonText === "⎘" ? "bold" : "normal"};
+      props.clipboardButtonText === "⎘" ? "1.5em" : "1.1em"};
     padding: ${(props) =>
       props.clipboardButtonText === "⎘" ? "0 5px" : "5px 5px"};
     background-color: ${(props) => (props.darkTheme ? "#eee" : "#111")};
@@ -48,6 +47,7 @@ const StyledResult = styled.div`
   }
   & > div {
     grid-column: 1 / -1;
+    align-self: center;
     -webkit-user-select: ${(props) => props.result.length > 0 && "all"};
     user-select: ${(props) => props.result.length > 0 && "all"};
     :focus {
