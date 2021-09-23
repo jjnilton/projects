@@ -103,6 +103,7 @@ const NewTimer = () => {
           onFocus={handleInputFocus}
           tabIndex={alert || notificationModal ? "-1" : "0"}
           ref={nameRef}
+          autoComplete="off"
         />
         {nameError && (
           <div
@@ -132,6 +133,7 @@ const NewTimer = () => {
             type="time"
             onFocus={handleInputFocus}
             tabIndex={alert || notificationModal ? "-1" : "0"}
+            step="60"
           />
         </div>
         {dateError && (

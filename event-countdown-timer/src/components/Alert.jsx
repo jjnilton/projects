@@ -9,7 +9,7 @@ import TimerContext from "../store/timer-context";
 import Modal from "./UI/Modal";
 import classes from "./Alert.module.css";
 
-const audio = new Audio("/beep-06.mp3");
+const audio = new Audio("beep-06.mp3");
 
 const Alert = () => {
   const { hideAlert, lastEvent } = useContext(TimerContext);
