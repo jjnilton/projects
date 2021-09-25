@@ -94,6 +94,7 @@ function App() {
 
   useEffect(() => {
     fetchStatus();
+  // eslint-disable-next-line
   }, []);
 
   let components = [];
@@ -124,7 +125,7 @@ function App() {
           <Loading></Loading>
         )}
         <footer>
-          <a href="">Source</a>
+          <a href="https://">Source</a>
         </footer>
       </div>
     </>

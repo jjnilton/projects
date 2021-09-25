@@ -1,12 +1,27 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const highlight = keyframes`
+  0% {
+    color: var(--color-dark)
+  }
+  50%, 75% {
+    color: var(--color-bright)
+  }
+  100% {
+    color: var(--color);
+  }
+
+`;
 
 const StyledHeader = styled.header`
   display: grid;
   padding: 10px;
   grid-template-columns: max-content max-content max-content;
   justify-content: center;
-  background: ${(props) => 
-    props.status === "All Systems Operational" ? "linear-gradient(to bottom, #093809, #000)" : "linear-gradient(to bottom, #690000, #000)"};
+  background: ${(props) =>
+    props.status === "All Systems Operational"
+      ? "linear-gradient(to bottom, #093809, #000)"
+      : "linear-gradient(to bottom, #690000, #000)"};
   color: white;
   text-align: center;
   & h1,
@@ -14,14 +29,15 @@ const StyledHeader = styled.header`
     margin: 0;
   }
   & h2 {
+    --color: ${(props) =>
+      props.status === "All Systems Operational" ? "#009700" : "#970000"};
+    --color-dark: ${(props) =>
+      props.status === "All Systems Operational" ? "#004d00" : "#4b0000"};
+    --color-bright: ${(props) =>
+      props.status === "All Systems Operational" ? "#00cf00" : "#ce0000"};
     grid-column: 1 / -1;
-    color: ${props => {
-      if (props.status === "All Systems Operational") {
-        return "#009700"
-      } else {
-        return "#970000"
-      }
-    }}
+    color: var(--color);
+    animation: ${highlight} 1s;
   }
   & svg {
     background-color: white;
