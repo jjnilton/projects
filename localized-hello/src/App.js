@@ -19,7 +19,7 @@ function App() {
         {!loggedIn && !loggedOut && <Login></Login>}
         {!loggedIn && loggedOut && <LoggedOut username={username}></LoggedOut>}
       </div>
-      <footer><a href="https://">Source</a></footer>
+      <footer><a href="https://github.com/jjnilton/projects/tree/main/localized-hello">Source</a></footer>
     </>
   );
 }
