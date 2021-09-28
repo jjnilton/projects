@@ -2,7 +2,7 @@
 
 ![GitHub Status](screenshot.png)
 
-[Link](https://github.com/jjnilton/projects/tree/main/github-status)
+[Live](https://jjnilton.github.io/projects/github-status/build)
 
 Retrieve the current GitHub site status from the [GitHub Status](https://www.githubstatus.com/) web site. 
 
