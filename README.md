@@ -11,4 +11,4 @@ Projects to practice development.
 | [Dollar to Cents](dollars-to-cents)                | Convert dollars to cents units                          | React                            | [View](https://jjnilton.github.io/projects/dollars-to-cents/build)        |
 | [Event Countdown Timer](event-countdown-timer)     | Manage event countdown timers                           | React (Styled Components)        | [View](https://jjnilton.github.io/projects/event-countdown-timer/build)   |
 | [Lorem Ipsum Generator](lorem-ipsum-generator)     | Generates a lorem ipsum text                            | React (Styled Components)        | [View](https://jjnilton.github.io/projects/lorem-ipsum-generator/build)   |
-| [GitHub Status](github-status)                     | Displays the status of GitHub services                  | React, Redux (Styled Components) | [View](https://jjnilton.github.io/projects/github-status/build)   |
+| [GitHub Status](github-status)                     | Displays the status of GitHub services                  | React, Redux (Styled Components) | [View](https://jjnilton.github.io/projects/github-status/build)           |
