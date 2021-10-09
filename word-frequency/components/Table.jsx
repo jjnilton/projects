@@ -1,7 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-const StyledTable = styled.div``;
+const StyledTable = styled.div`
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+  th {
+    width: 300px;
+    cursor: pointer;
+  }
+`;
 
 export const Table = (props) => {
   const [occurrences, setOccurrences] = useState([]);
@@ -9,6 +19,8 @@ export const Table = (props) => {
     type: "occur",
     order: "desc",
   });
+  const filterRef = useRef();
+  const [filteredOccurrences, setFilteredOccurrences] = useState([]);
 
   const sortOccurrences = (array, type, order) => {
     const sorted = [...array];
@@ -37,6 +49,12 @@ export const Table = (props) => {
     );
   }, [props.data]);
 
+  useEffect(() => {
+    setFilteredOccurrences(
+      sortOccurrences(occurrences, sort.type, sort.order)
+    );
+  }, [occurrences])
+
   const sortByOccurrence = () => {
     let sorted = occurrences;
 
@@ -59,11 +77,19 @@ export const Table = (props) => {
     setOccurrences(sorted);
   };
 
-  const elements = occurrences.map((item, index) => {
+  const handleFilter = () => {
+    const query = filterRef.current.value;
+    const regex = new RegExp(`^${query}`, "g");
+    const filtered = occurrences.filter((item) => item[0].match(regex));
+    setFilteredOccurrences(filtered);
+  };
+
+  const tableRows = filteredOccurrences.map((item, index) => {
     return (
-      <li key={index}>
-        {item[0]}: {item[1]}
-      </li>
+      <tr key={index}>
+        <td>{item[0]}</td>
+        <td>{item[1]}</td>
+      </tr>
     );
   });
 
@@ -72,13 +98,21 @@ export const Table = (props) => {
       <div>
         Sorting by {sort.type} {sort.order}
       </div>
-      <button onClick={sortByOccurrence}>
-        By occurrence {sort.type === "occur" && sort.order}
-      </button>
-      <button onClick={sortAlphabetically}>
-        By word {sort.type === "alpha" && sort.order}
-      </button>
-      <ul>{elements}</ul>
+      <label htmlFor="filter">Filter</label>
+      <input ref={filterRef} type="text" onChange={handleFilter} />
+      <table>
+        <thead>
+          <tr>
+            <th onClick={sortAlphabetically}>
+              Word {sort.type === "alpha" && sort.order}
+            </th>
+            <th onClick={sortByOccurrence}>
+              No. of Occurrences {sort.type === "occur" && sort.order}
+            </th>
+          </tr>
+        </thead>
+        <tbody>{tableRows}</tbody>
+      </table>
     </StyledTable>
   );
 };
