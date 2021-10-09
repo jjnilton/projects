@@ -2,7 +2,7 @@
 
 ![Cause Effect](screencast.gif)
 
-[Live](https://jjnilton.github.io/projects/cause-effect)
+[Live](https://jjnilton.github.io/projects/cause-effect/dist)
 
 Patterns are integral to software engineering and represent potentially
 reusable components in program logic. However, patterns aren't used only
