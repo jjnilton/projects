@@ -10,6 +10,8 @@ export default function handler(req, res) {
     ascending: req.query.ascending || "false",
   };
 
+  const keyword = req.query.keyword;
+
   const sortedOccurrences = (input, type, ascending) => {
     console.log(type, ascending);
     let sorted = input;
@@ -35,5 +37,11 @@ export default function handler(req, res) {
 
   const output = sortedOccurrences(req.query.text, sort.type, sort.ascending);
 
-  res.status(200).json({ data: output });
+  const filteredOutput = Object.fromEntries(
+    Object.entries(output).filter((item) => {
+      return item[0].includes(keyword);
+    })
+  );
+
+  res.status(200).json({ data: keyword ? filteredOutput : output });
 }
