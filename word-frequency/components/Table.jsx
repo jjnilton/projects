@@ -19,6 +19,9 @@ const StyledTable = styled.div`
     color: white;
     white-space: nowrap;
   }
+  tbody > tr > td {
+    word-break: break-all;
+  }
   tr:nth-child(odd) {
     background-color: #eee;
   }
