@@ -2,10 +2,15 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import "../public/css/fontello.css";
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  *, *::after, *::before {
+    box-sizing: inherit;
+  }
   body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     background-color: #eee;
     font-family: sans-serif;
   }

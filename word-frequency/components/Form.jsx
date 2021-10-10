@@ -4,9 +4,10 @@ const StyledForm = styled.form`
   textarea {
     font-family: sans-serif;
     resize: none;
-    padding: 10px;
+    /* padding: 10px; */
     border: 2px solid slateblue;
     border-radius: 5px;
+    width: 100%;
   }
   button {
     margin-top: 10px;
