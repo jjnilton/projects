@@ -2,16 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const StyledTable = styled.div`
-  table,
+  table {
+    border-collapse: collapse;
+    min-width: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+  }
   th,
   td {
-    border: 1px solid black;
+    border-bottom: 2px solid white;
+    padding: 5px;
   }
   th {
-    width: 300px;
     cursor: pointer;
+    background-color: slateblue;
+    color: white;
   }
-  grid-column: 2 / 3 ;
+  tr:nth-child(odd) {
+    background-color: #eee;
+  }
 `;
 
 export const Table = (props) => {
@@ -51,10 +60,8 @@ export const Table = (props) => {
   }, [props.data]);
 
   useEffect(() => {
-    setFilteredOccurrences(
-      sortOccurrences(occurrences, sort.type, sort.order)
-    );
-  }, [occurrences])
+    setFilteredOccurrences(sortOccurrences(occurrences, sort.type, sort.order));
+  }, [occurrences]);
 
   const sortByOccurrence = () => {
     let sorted = occurrences;
@@ -101,7 +108,7 @@ export const Table = (props) => {
       </div>
       <label htmlFor="filter">Filter</label>
       <input ref={filterRef} type="text" onChange={handleFilter} />
-      <table>
+      <table cellSpacing="0" cellPadding="0">
         <thead>
           <tr>
             <th onClick={sortAlphabetically}>

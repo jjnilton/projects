@@ -33,6 +33,7 @@ const Home = () => {
     <StyledHome>
       <Form data={data} handleDataUpdate={handleDataUpdate}></Form>
       <div id="result">
+        <div>Result</div>
         <Chart data={data}></Chart>
         <Table data={data}></Table>
       </div>
