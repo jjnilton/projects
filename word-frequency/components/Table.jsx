@@ -21,6 +21,12 @@ const StyledTable = styled.div`
   tr:nth-child(odd) {
     background-color: #eee;
   }
+  th:first-of-type {
+    background-color: ${(props) => props.sort.type === "alpha" && "red"};
+  }
+  th:last-of-type {
+    background-color: ${(props) => props.sort.type === "occur" && "red"};
+  }
 `;
 
 export const Table = (props) => {
@@ -102,20 +108,31 @@ export const Table = (props) => {
   });
 
   return (
-    <StyledTable>
+    <StyledTable sort={sort}>
       <div>
         Sorting by {sort.type} {sort.order}
       </div>
       <label htmlFor="filter">Filter</label>
       <input ref={filterRef} type="text" onChange={handleFilter} />
+      <i class="icon-search"></i>
       <table cellSpacing="0" cellPadding="0">
         <thead>
           <tr>
             <th onClick={sortAlphabetically}>
-              Word {sort.type === "alpha" && sort.order}
+              Word
+              {sort.type === "alpha" && sort.order === "desc" ? (
+                <i class="icon-sort-name-down"></i>
+              ) : (
+                <i class="icon-sort-name-up"></i>
+              )}
             </th>
             <th onClick={sortByOccurrence}>
-              No. of Occurrences {sort.type === "occur" && sort.order}
+              No. of Occurrences
+              {sort.type === "occur" && sort.order === "desc" ? (
+                <i class="icon-sort-number-down"></i>
+              ) : (
+                <i class="icon-sort-number-up"></i>
+              )}
             </th>
           </tr>
         </thead>
