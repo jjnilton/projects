@@ -67,7 +67,7 @@ export const Table = (props) => {
   }, [props.data]);
 
   useEffect(() => {
-    setFilteredOccurrences(sortOccurrences(occurrences, sort.type, sort.order));
+    setFilteredOccurrences(sortOccurrences(Object.entries(props.data), sort.type, sort.order));
   }, [occurrences]);
 
   const sortByOccurrence = () => {
@@ -115,24 +115,24 @@ export const Table = (props) => {
       </div>
       <label htmlFor="filter">Filter</label>
       <input ref={filterRef} type="text" onChange={handleFilter} />
-      <i class="icon-search"></i>
+      <i className="icon-search"></i>
       <table cellSpacing="0" cellPadding="0">
         <thead>
           <tr>
             <th onClick={sortAlphabetically}>
               Word
               {sort.type === "alpha" && sort.order === "desc" ? (
-                <i class="icon-sort-name-down"></i>
+                <i className="icon-sort-name-down"></i>
               ) : (
-                <i class="icon-sort-name-up"></i>
+                <i className="icon-sort-name-up"></i>
               )}
             </th>
             <th onClick={sortByOccurrence}>
               No. of Occurrences
               {sort.type === "occur" && sort.order === "desc" ? (
-                <i class="icon-sort-number-down"></i>
+                <i className="icon-sort-number-down"></i>
               ) : (
-                <i class="icon-sort-number-up"></i>
+                <i className="icon-sort-number-up"></i>
               )}
             </th>
           </tr>
