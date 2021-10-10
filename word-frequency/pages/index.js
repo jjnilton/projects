@@ -3,6 +3,7 @@ import { Pie } from "react-chartjs-2";
 import { useState } from "react";
 import { Table } from "../components/Table";
 import { Chart } from "../components/Chart";
+import calculateOccurrences from "../utils/calculateOccurrences";
 
 const Title = styled.h1`
   font-size: 50px;
@@ -11,30 +12,28 @@ const Title = styled.h1`
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [flag, setFlag] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const text = formData.get("text").trim();
-    const words = text.split(" ");
+    const text = formData.get("text")
+    const occurrences = calculateOccurrences(text)
 
-    console.log(words);
-
-    const occurrences = words.reduce((acc, curr) => {
-      return (acc[curr] = acc[curr] + 1 || 1), acc;
-    }, {});
-
-    setData(occurrences)
-    setFlag(true);
+    setData(occurrences);
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label htmlFor="text">Text</label>
-        <textarea name="text" id="text" cols="30" rows="10" defaultValue="Four Four Four Four One Two Two Three Three Three"></textarea>
+        <textarea
+          name="text"
+          id="text"
+          cols="30"
+          rows="10"
+          defaultValue="Four Four Four Four One Two Two Three Three Three"
+        ></textarea>
         <button>Calculate</button>
       </form>
       <div>Result: </div>
