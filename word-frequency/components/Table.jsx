@@ -17,6 +17,7 @@ const StyledTable = styled.div`
     cursor: pointer;
     background-color: slateblue;
     color: white;
+    white-space: nowrap;
   }
   tr:nth-child(odd) {
     background-color: #eee;

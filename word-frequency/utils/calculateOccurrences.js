@@ -1,9 +1,12 @@
 const calculateOccurrences = (text) => {
-  const cleanedText = text.trim().replace(/[,.!?]/g, "");
-  const words = cleanedText.split(" ")
+  let cleanedText = text.trim();
+  cleanedText = cleanedText.replace(/\n/g, " ");
+  cleanedText = cleanedText.replace(/[,.!?]/g, "");
+  const words = cleanedText.split(" ");
   const occurrences = words.reduce((acc, curr) => {
-    return (acc[curr] = acc[curr] + 1 || 1), acc;
+    return curr && (acc[curr] = acc[curr] + 1 || 1), acc;
   }, {});
+
   return occurrences;
 };
 

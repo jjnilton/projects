@@ -12,9 +12,6 @@ const StyledHome = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 20px;
-  form {
-    display: grid;
-  }
   #result {
     padding: 10px;
     background-color: white;
