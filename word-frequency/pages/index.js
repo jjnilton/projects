@@ -1,45 +1,42 @@
 import styled from "styled-components";
-import { Pie } from "react-chartjs-2";
 import { useState } from "react";
 import { Table } from "../components/Table";
 import { Chart } from "../components/Chart";
-import calculateOccurrences from "../utils/calculateOccurrences";
+import Form from "../components/Form"
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
+
+const StyledHome = styled.div`
+  display: grid;
+  max-width: 600px;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+  form {
+    display: grid;
+  }
+  #result {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+  }
 `;
 
 const Home = () => {
   const [data, setData] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const text = formData.get("text")
-    const occurrences = calculateOccurrences(text)
-
-    setData(occurrences);
-  };
+  const handleDataUpdate = (data) => {
+    setData(data)
+  }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="text">Text</label>
-        <textarea
-          name="text"
-          id="text"
-          cols="30"
-          rows="10"
-          defaultValue="Four Four Four Four One Two Two Three Three Three"
-        ></textarea>
-        <button>Calculate</button>
-      </form>
-      <div>Result: </div>
-      <Table data={data}></Table>
-      <Chart data={data}></Chart>
-    </>
+    <StyledHome>
+      <Form data={data} handleDataUpdate={handleDataUpdate}></Form>
+      <div id="result">
+        <Chart data={data}></Chart>
+        <Table data={data}></Table>
+      </div>
+    </StyledHome>
   );
 };
 

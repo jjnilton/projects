@@ -11,6 +11,7 @@ const StyledTable = styled.div`
     width: 300px;
     cursor: pointer;
   }
+  grid-column: 2 / 3 ;
 `;
 
 export const Table = (props) => {

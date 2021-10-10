@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Pie } from "react-chartjs-2";
 
-const StyledChart = styled.div``;
+const StyledChart = styled.div`
+`;
 
 export const Chart = (props) => {
   const data = props.data;
@@ -34,5 +35,18 @@ export const Chart = (props) => {
       },
     ],
   };
-  return <Pie data={chartData}></Pie>;
+
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
+  return (
+    <StyledChart>
+      <Pie data={chartData} options={options}></Pie>
+    </StyledChart>
+  );
 };
