@@ -67,29 +67,31 @@ export const Table = (props) => {
   }, [props.data]);
 
   useEffect(() => {
-    setFilteredOccurrences(sortOccurrences(Object.entries(props.data), sort.type, sort.order));
+    setFilteredOccurrences(
+      sortOccurrences(Object.entries(props.data), sort.type, sort.order)
+    );
   }, [occurrences]);
 
   const sortByOccurrence = () => {
-    let sorted = occurrences;
+    let sorted = filteredOccurrences;
 
     if (sort.type === "occur" && sort.order === "desc") {
       sorted = sortOccurrences(sorted, "occur", "asc");
     } else {
       sorted = sortOccurrences(sorted, "occur", "desc");
     }
-    setOccurrences(sorted);
+    setFilteredOccurrences(sorted);
   };
 
   const sortAlphabetically = () => {
-    let sorted = occurrences;
+    let sorted = filteredOccurrences;
 
     if (sort.type === "alpha" && sort.order === "desc") {
       sorted = sortOccurrences(sorted, "alpha", "asc");
     } else {
       sorted = sortOccurrences(sorted, "alpha", "desc");
     }
-    setOccurrences(sorted);
+    setFilteredOccurrences(sorted);
   };
 
   const handleFilter = () => {
