@@ -23,10 +23,20 @@ const StyledTable = styled.div`
     background-color: #eee;
   }
   th:first-of-type {
-    background-color: ${(props) => props.sort.type === "alpha" && "red"};
+    background-color: ${(props) => props.sort.type === "alpha" && "#3d2bb6"};
   }
   th:last-of-type {
-    background-color: ${(props) => props.sort.type === "occur" && "red"};
+    background-color: ${(props) => props.sort.type === "occur" && "#3d2bb6"};
+  }
+  #filter {
+    width: 100%;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    padding: 10px 0;
+    align-items: center;
+    & > input {
+      margin: 0 5px;
+    }
   }
 `;
 
@@ -115,10 +125,16 @@ export const Table = (props) => {
       <div>
         Sorting by {sort.type} {sort.order}
       </div>
-      <label htmlFor="filter">Filter</label>
-      <input ref={filterRef} type="text" onChange={handleFilter} />
-      <i className="icon-search"></i>
-      <table cellSpacing="0" cellPadding="0">
+      <div id="filter">
+        <label htmlFor="filter"><i className="icon-search"></i></label>
+        <input
+          ref={filterRef}
+          type="text"
+          onChange={handleFilter}
+          placeholder="Filter results"
+        />
+      </div>
+      <table>
         <thead>
           <tr>
             <th onClick={sortAlphabetically}>
