@@ -177,7 +177,7 @@ export const Table = (props) => {
               )}
             </th>
             <th onClick={sortByOccurrence}>
-              No. of Occurrences
+              Occurrences
               {sort.type === "occur" && sort.order === "desc" ? (
                 <i className="icon-sort-number-down"></i>
               ) : (

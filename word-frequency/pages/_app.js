@@ -14,6 +14,13 @@ const GlobalStyle = createGlobalStyle`
     background-color: #eee;
     font-family: sans-serif;
   }
+
+  /* #__next {
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    height: 100vh;
+    min-width: 300px;
+  } */
 `;
 
 const theme = {

@@ -6,8 +6,8 @@ const StyledHeader = styled.header`
   background-color: slateblue;
   color: white;
   & > div {
-    padding: 10px;
-    max-width: 600px;
+    padding: 20px;
+    max-width: 700px;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -17,6 +17,7 @@ const StyledHeader = styled.header`
   h1 {
     & > a {
       color: white;
+      text-decoration: none;
     }
   }
   ul {

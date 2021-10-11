@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import calculateOccurrences from "../utils/calculateOccurrences";
 const StyledForm = styled.form`
+  display: grid;
+  grid-template-rows: repeat(3, max-content);
   textarea {
     font-family: sans-serif;
-    resize: none;
-    /* padding: 10px; */
+    resize: vertical;
     border: 2px solid slateblue;
     border-radius: 5px;
     width: 100%;
+    height: 50vh;
   }
   button {
     margin-top: 10px;
@@ -22,6 +24,9 @@ const StyledForm = styled.form`
   button:active {
     transform: translateY(5px);
     box-shadow: none;
+  }
+  label > h2 {
+    color: slateblue;
   }
 `;
 
@@ -39,12 +44,10 @@ const Form = (props) => {
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="text">Enter the text in the field</label>
+        <label htmlFor="text"><h2>Your Text</h2></label>
         <textarea
           name="text"
           id="text"
-          cols="30"
-          rows="30"
           defaultValue="Four Four Four Four One Two Two Three Three Three Five Five Five Five Five Six Six Six Six Six Six"
         ></textarea>
         <button>Calculate</button>

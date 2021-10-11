@@ -2,9 +2,10 @@ import styled from "styled-components";
 import Header from "../components/Header";
 
 const StyledAPIUsage = styled.main`
-  max-width: 600px;
+  max-width: 700px;
   margin: 20px auto;
-
+  min-width: 300px;
+  padding: 0 30px;
   article {
     padding: 20px;
     background-color: white;
