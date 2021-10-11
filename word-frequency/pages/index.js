@@ -13,7 +13,6 @@ const StyledHome = styled.div`
   gap: 10px;
   margin-top: 20px;
   #result {
-    /* padding: 10px; */
     background-color: white;
     border-radius: 10px;
   }

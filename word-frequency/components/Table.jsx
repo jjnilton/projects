@@ -19,6 +19,7 @@ const StyledTable = styled.div`
     background-color: slateblue;
     color: white;
     white-space: nowrap;
+    user-select: none;
   }
   tbody > tr > td {
     word-break: break-all;
@@ -43,7 +44,7 @@ const StyledTable = styled.div`
     padding: 10px 0;
     align-items: center;
     & > input {
-      margin: 0 5px;
+      margin-left: 5px;
       border: 2px solid slateblue;
       border-radius: 5px;
       height: 2em;
@@ -60,6 +61,7 @@ export const Table = (props) => {
   const filterRef = useRef();
   const [filteredOccurrences, setFilteredOccurrences] = useState([]);
   const [filterMatch, setFilterMatch] = useState();
+  const caseSensibilityRef = useRef();
 
   const sortOccurrences = (array, type, order) => {
     const sorted = [...array];
@@ -118,7 +120,7 @@ export const Table = (props) => {
 
   const handleFilter = () => {
     const query = filterRef.current.value;
-    const regex = new RegExp(`^${query}`, "g");
+    const regex = new RegExp(`^${query}`, caseSensibilityRef.current.checked ? "g" : "gi");
     const filtered = occurrences.filter((item) => {
       return item[0].match(regex);
     });
@@ -150,6 +152,11 @@ export const Table = (props) => {
           type="text"
           onChange={handleFilter}
           placeholder="Filter results"
+        />
+        <label htmlFor="case-sensitive">Case sensitive</label>
+        <input
+          ref={caseSensibilityRef}
+          type="checkbox"
         />
       </div>
       <table>

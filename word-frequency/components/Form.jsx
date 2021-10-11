@@ -37,17 +37,19 @@ const Form = (props) => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <label htmlFor="text">Enter the text in the field</label>
-      <textarea
-        name="text"
-        id="text"
-        cols="30"
-        rows="30"
-        defaultValue="Four Four Four Four One Two Two Three Three Three Five Five Five Five Five Six Six Six Six Six Six"
-      ></textarea>
-      <button>Calculate</button>
-    </StyledForm>
+    <>
+      <StyledForm onSubmit={handleSubmit}>
+        <label htmlFor="text">Enter the text in the field</label>
+        <textarea
+          name="text"
+          id="text"
+          cols="30"
+          rows="30"
+          defaultValue="Four Four Four Four One Two Two Three Three Three Five Five Five Five Five Six Six Six Six Six Six"
+        ></textarea>
+        <button>Calculate</button>
+      </StyledForm>
+    </>
   );
 };
 
