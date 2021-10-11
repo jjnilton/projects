@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const StyledHeader = styled.header`
   background-color: slateblue;
@@ -11,6 +13,11 @@ const StyledHeader = styled.header`
     margin: 0 auto;
     align-items: center;
     flex-wrap: wrap;
+  }
+  h1 {
+    & > a {
+      color: white;
+    }
   }
   ul {
     display: flex;
@@ -28,13 +35,23 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <StyledHeader>
       <div>
-        <h1>Word Frequency App</h1>
+        <h1>
+          <Link href="/">Word Frequency App</Link>
+        </h1>
         <nav>
           <ul>
-            <li><a href="">API</a></li>
+            <li>
+              {router.pathname === "/" ? (
+                <Link href="/api-usage">API</Link>
+              ) : (
+                <Link href="/">Back to App</Link>
+              )}
+            </li>
           </ul>
         </nav>
       </div>

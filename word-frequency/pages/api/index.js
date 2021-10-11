@@ -1,4 +1,3 @@
 export default function handler(req, res) {
-  console.log(req)
-  res.status(200).json({ error: 'missing text', usage: '/api/:text' })
+  res.status(200).json({ error: 'missing text', usage: '/api/:text', more_info: `https://${req.headers.host}/api-usage` })
 }
