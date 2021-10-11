@@ -39,8 +39,8 @@ const StyledTable = styled.div`
   }
   #filter {
     width: 100%;
-    display: grid;
-    grid-template-columns: max-content 1fr;
+    display: flex;
+    /* grid-template-columns: max-content 1fr; */
     padding: 10px 0;
     align-items: center;
     & > input {
@@ -48,6 +48,11 @@ const StyledTable = styled.div`
       border: 2px solid slateblue;
       border-radius: 5px;
       height: 2em;
+    }
+    & > label[for="case"] {
+      font-size: 0.6em;
+      margin-left: 5px;
+      text-align: center;
     }
   }
 `;
@@ -120,16 +125,20 @@ export const Table = (props) => {
 
   const handleFilter = () => {
     const query = filterRef.current.value;
-    const regex = new RegExp(`^${query}`, caseSensibilityRef.current.checked ? "g" : "gi");
+    const regex = new RegExp(
+      `^${query}`,
+      caseSensibilityRef.current.checked ? "g" : "gi"
+    );
     const filtered = occurrences.filter((item) => {
       return item[0].match(regex);
     });
     setFilteredOccurrences(filtered);
-    setFilterMatch(filterRef.current.value);
+    setFilterMatch(filterRef.current.value); // s
   };
 
   const tableRows = filteredOccurrences.map((item, index) => {
-    const word = item[0].replace(filterMatch, `<mark>${filterMatch}</mark>`);
+    const regex = new RegExp(`^(${filterMatch})`, "gi")
+    const word = item[0].replace(regex, `<mark>${'$1'}</mark>`);
     return (
       <tr key={index}>
         <td dangerouslySetInnerHTML={{ __html: word }}></td>
@@ -153,11 +162,8 @@ export const Table = (props) => {
           onChange={handleFilter}
           placeholder="Filter results"
         />
-        <label htmlFor="case-sensitive">Case sensitive</label>
-        <input
-          ref={caseSensibilityRef}
-          type="checkbox"
-        />
+        <label htmlFor="case">Case sensitive</label>
+        <input id="case" name="case" ref={caseSensibilityRef} type="checkbox" onChange={handleFilter} />
       </div>
       <table>
         <thead>
