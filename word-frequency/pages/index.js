@@ -9,8 +9,8 @@ const StyledHome = styled.div`
   display: grid;
   max-width: 600px;
   margin: 0 auto;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* gap: 10px; */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
   margin-top: 20px;
   #result {
     /* padding: 10px; */

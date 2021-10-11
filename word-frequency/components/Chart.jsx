@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Pie } from "react-chartjs-2";
 
 const StyledChart = styled.div`
+  padding: 10px;
 `;
 
 export const Chart = (props) => {

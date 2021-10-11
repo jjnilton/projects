@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const StyledTable = styled.div`
+  padding: 10px;
   table {
     border-collapse: collapse;
-    min-width: 300px;
+    width: 100%;
     overflow: hidden;
     border-radius: 5px;
   }
@@ -21,6 +22,10 @@ const StyledTable = styled.div`
   }
   tbody > tr > td {
     word-break: break-all;
+    & mark {
+      background-color: #3d2bb6;
+      color: white;
+    }
   }
   tr:nth-child(odd) {
     background-color: #eee;
@@ -39,6 +44,9 @@ const StyledTable = styled.div`
     align-items: center;
     & > input {
       margin: 0 5px;
+      border: 2px solid slateblue;
+      border-radius: 5px;
+      height: 2em;
     }
   }
 `;
@@ -51,6 +59,7 @@ export const Table = (props) => {
   });
   const filterRef = useRef();
   const [filteredOccurrences, setFilteredOccurrences] = useState([]);
+  const [filterMatch, setFilterMatch] = useState();
 
   const sortOccurrences = (array, type, order) => {
     const sorted = [...array];
@@ -110,14 +119,18 @@ export const Table = (props) => {
   const handleFilter = () => {
     const query = filterRef.current.value;
     const regex = new RegExp(`^${query}`, "g");
-    const filtered = occurrences.filter((item) => item[0].match(regex));
+    const filtered = occurrences.filter((item) => {
+      return item[0].match(regex);
+    });
     setFilteredOccurrences(filtered);
+    setFilterMatch(filterRef.current.value);
   };
 
   const tableRows = filteredOccurrences.map((item, index) => {
+    const word = item[0].replace(filterMatch, `<mark>${filterMatch}</mark>`);
     return (
       <tr key={index}>
-        <td>{item[0]}</td>
+        <td dangerouslySetInnerHTML={{ __html: word }}></td>
         <td>{item[1]}</td>
       </tr>
     );
@@ -129,7 +142,9 @@ export const Table = (props) => {
         Sorting by {sort.type} {sort.order}
       </div>
       <div id="filter">
-        <label htmlFor="filter"><i className="icon-search"></i></label>
+        <label htmlFor="filter">
+          <i className="icon-search"></i>
+        </label>
         <input
           ref={filterRef}
           type="text"
