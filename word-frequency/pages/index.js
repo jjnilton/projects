@@ -10,7 +10,7 @@ const StyledHome = styled.main`
   display: grid;
   margin-bottom: 20px;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 380px));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 370px));
   gap: 20px;
   padding: 0 20px;
   #result {

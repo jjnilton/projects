@@ -14,17 +14,22 @@ const StyledForm = styled.form`
   }
   button {
     margin-top: 10px;
-    background-color: slateblue;
+    background: linear-gradient(slateblue, #4f468b);
     color: white;
     border: none;
     padding: 10px;
     box-shadow: 0px 5px 0 #241e47;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
   }
   button:active {
     transform: translateY(5px);
     box-shadow: none;
+  }
+  button:hover {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    filter: brightness(1.1);
   }
   label > h2 {
     color: slateblue;

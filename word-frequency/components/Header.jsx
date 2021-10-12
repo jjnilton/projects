@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const StyledHeader = styled.header`
-  background-color: slateblue;
+  background: linear-gradient(slateblue, #4f468b);
   color: white;
   & > div {
     max-width: 800px;
@@ -33,6 +33,9 @@ const StyledHeader = styled.header`
         color: white;
       }
     }
+  }
+  a:hover {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   }
 `;
 

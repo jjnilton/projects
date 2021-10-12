@@ -12,10 +12,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: #eee;
     font-family: sans-serif;
+    background: #eee;
   }
-
+  
   #__next {
     display: grid;
     grid-template-rows: max-content 1fr;
@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: "#0070f3",
+    primary: "red",
   },
 };
 

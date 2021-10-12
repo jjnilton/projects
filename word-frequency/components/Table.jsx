@@ -55,6 +55,9 @@ const StyledTable = styled.div`
       text-align: center;
     }
   }
+  .icon-search {
+    color: slateblue;
+  }
 `;
 
 const Table = (props) => {
