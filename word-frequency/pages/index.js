@@ -5,7 +5,6 @@ import { Chart } from "../components/Chart";
 import Form from "../components/Form";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Head from "next/head";
 
 const StyledHome = styled.main`
   display: grid;
@@ -45,11 +44,6 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <title>Word Frequency App</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="css/fontello.css" />
-      </Head>
       <Header></Header>
       <StyledHome>
         <Form data={data} handleDataUpdate={handleDataUpdate}></Form>

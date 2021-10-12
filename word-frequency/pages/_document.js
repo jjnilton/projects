@@ -1,5 +1,6 @@
 import Document from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import Head from "next/head";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -18,6 +19,14 @@ export default class MyDocument extends Document {
         ...initialProps,
         styles: (
           <>
+            <Head>
+              <title>Word Frequency App</title>
+              <meta
+                name="viewport"
+                content="initial-scale=1.0, width=device-width"
+              />
+              <link rel="stylesheet" href="css/fontello.css" />
+            </Head>
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
