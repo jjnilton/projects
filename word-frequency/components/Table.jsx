@@ -40,14 +40,14 @@ const StyledTable = styled.div`
   #filter {
     width: 100%;
     display: flex;
-    /* grid-template-columns: max-content 1fr; */
     padding: 10px 0;
     align-items: center;
-    & > input {
+    & > input[type="text"] {
       margin-left: 5px;
       border: 2px solid slateblue;
       border-radius: 5px;
       height: 2em;
+      width: 100%;
     }
     & > label[for="case"] {
       font-size: 0.6em;

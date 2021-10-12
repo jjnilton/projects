@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const StyledAPIUsage = styled.main`
-  max-width: 700px;
-  margin: 20px auto;
-  min-width: 300px;
-  padding: 0 30px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0 20px;
   article {
     padding: 20px;
     background-color: white;
@@ -28,6 +28,9 @@ const StyledAPIUsage = styled.main`
     border-radius: 5px;
     color: black;
     border: 1px solid slateblue;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
   }
 
   table {
@@ -50,10 +53,6 @@ const StyledAPIUsage = styled.main`
   }
   tbody > tr > td {
     word-break: break-all;
-    & mark {
-      background-color: #3d2bb6;
-      color: white;
-    }
   }
   tr:nth-child(odd) {
     background-color: #eee;
@@ -65,8 +64,8 @@ const APIUsage = () => {
     <>
       <Header></Header>
       <StyledAPIUsage>
+        <h2>API Usage</h2>
         <article>
-          <h2>API Usage</h2>
           <p>Basic usage</p>
           <pre>GET /api/:text</pre>
           <h3>Example</h3>
@@ -114,6 +113,7 @@ const APIUsage = () => {
           </pre>
         </article>
       </StyledAPIUsage>
+      <Footer></Footer>
     </>
   );
 };

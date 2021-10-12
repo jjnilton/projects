@@ -6,8 +6,8 @@ const StyledHeader = styled.header`
   background-color: slateblue;
   color: white;
   & > div {
+    max-width: 800px;
     padding: 20px;
-    max-width: 700px;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -18,6 +18,7 @@ const StyledHeader = styled.header`
     & > a {
       color: white;
       text-decoration: none;
+      /* white-space: nowrap; */
     }
   }
   ul {

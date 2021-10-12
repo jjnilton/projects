@@ -4,12 +4,14 @@ import { Table } from "../components/Table";
 import { Chart } from "../components/Chart";
 import Form from "../components/Form";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Head from "next/head";
 
 const StyledHome = styled.main`
   display: grid;
-  max-width: 700px;
-  margin: 0 auto;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-bottom: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 380px));
   gap: 20px;
   padding: 0 20px;
   #result {
@@ -41,10 +43,12 @@ const Home = () => {
     setData(data);
   };
 
-  console.log(data);
-
   return (
     <>
+      <Head>
+        <title>Word Frequency App</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Header></Header>
       <StyledHome>
         <Form data={data} handleDataUpdate={handleDataUpdate}></Form>
@@ -68,6 +72,7 @@ const Home = () => {
           </div>
         </div>
       </StyledHome>
+      <Footer></Footer>
     </>
   );
 };
