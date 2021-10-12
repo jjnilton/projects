@@ -4,6 +4,7 @@ const StyledForm = styled.form`
   display: grid;
   grid-template-rows: repeat(3, max-content);
   textarea {
+    padding: 10px;
     font-family: sans-serif;
     resize: vertical;
     border: 2px solid slateblue;
@@ -36,19 +37,23 @@ const Form = (props) => {
 
     const formData = new FormData(event.target);
     const text = formData.get("text");
-    const occurrences = calculateOccurrences(text);
 
-    props.handleDataUpdate(occurrences);
+    if (text.trim().length > 0) {
+      const occurrences = calculateOccurrences(text);
+      props.handleDataUpdate(occurrences);
+    }
   };
 
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="text"><h2>Your Text</h2></label>
+        <label htmlFor="text">
+          <h2>Your Text</h2>
+        </label>
         <textarea
           name="text"
           id="text"
-          defaultValue="Four Four Four Four One Two Two Three Three Three Five Five Five Five Five Six Six Six Six Six Six"
+          placeholder="Enter your text here"
         ></textarea>
         <button>Calculate</button>
       </StyledForm>
