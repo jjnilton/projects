@@ -53,7 +53,7 @@ const Form = (props) => {
         <textarea
           name="text"
           id="text"
-          placeholder="Enter your text here"
+          placeholder="Enter a text to calculate the its word frequency"
         ></textarea>
         <button>Calculate</button>
       </StyledForm>

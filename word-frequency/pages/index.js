@@ -48,6 +48,7 @@ const Home = () => {
       <Head>
         <title>Word Frequency App</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {/* <link rel="stylesheet" href="css/fontello.css" /> */}
       </Head>
       <Header></Header>
       <StyledHome>
@@ -78,3 +79,4 @@ const Home = () => {
 };
 
 export default Home;
+
