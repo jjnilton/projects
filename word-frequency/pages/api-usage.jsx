@@ -6,7 +6,11 @@ const StyledAPIUsage = styled.main`
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0 20px;
+  width: 100%;
+  max-width: 800px;
   article {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
