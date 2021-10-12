@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import "../public/css/fontello.css";
+import Head from "next/head";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -32,6 +33,14 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
+      <Head>
+              <title>Word Frequency App</title>
+              <meta
+                name="viewport"
+                content="initial-scale=1.0, width=device-width"
+              />
+              <link rel="stylesheet" href="css/fontello.css" />
+            </Head>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
