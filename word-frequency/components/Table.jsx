@@ -57,7 +57,7 @@ const StyledTable = styled.div`
   }
 `;
 
-export const Table = (props) => {
+const Table = (props) => {
   const [occurrences, setOccurrences] = useState([]);
   const [sort, setSort] = useState({
     type: "occur",
@@ -149,9 +149,6 @@ export const Table = (props) => {
 
   return (
     <StyledTable sort={sort}>
-      <div>
-        Sorting by {sort.type} {sort.order}
-      </div>
       <div id="filter">
         <label htmlFor="filter">
           <i className="icon-search"></i>
@@ -191,3 +188,5 @@ export const Table = (props) => {
     </StyledTable>
   );
 };
+
+export default Table;

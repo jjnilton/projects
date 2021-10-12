@@ -5,7 +5,7 @@ const StyledChart = styled.div`
   padding: 10px;
 `;
 
-export const Chart = (props) => {
+const Chart = (props) => {
   const data = props.data;
 
   const labels = Object.keys(data);
@@ -51,3 +51,5 @@ export const Chart = (props) => {
     </StyledChart>
   );
 };
+
+export default Chart;
