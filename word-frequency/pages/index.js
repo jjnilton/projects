@@ -59,7 +59,7 @@ const Home = () => {
               <>
                 <ol>
                   <li>Enter a text</li>
-                  <li>Press the Analyze button</li>
+                  <li>Press the <strong>Calculate</strong> button</li>
                   <li>See the results</li>
                 </ol>
               </>
