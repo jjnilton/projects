@@ -1,8 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
 import calculateOccurrences from "../utils/calculateOccurrences";
 const StyledForm = styled.form`
   display: grid;
-  grid-template-rows: repeat(3, max-content);
+  grid-template-rows: repeat(4, max-content);
   textarea {
     padding: 10px;
     font-family: sans-serif;
@@ -11,9 +12,9 @@ const StyledForm = styled.form`
     border-radius: 5px;
     width: 100%;
     height: 50vh;
+    margin-bottom: 10px;
   }
   button {
-    margin-top: 10px;
     background: linear-gradient(slateblue, #4f468b);
     color: white;
     border: none;
@@ -36,7 +37,17 @@ const StyledForm = styled.form`
   }
 `;
 
+const ErrorMessage = styled.div`
+  background-color: pink;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: darkred;
+`;
+
 const Form = (props) => {
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -46,7 +57,14 @@ const Form = (props) => {
     if (text.trim().length > 0) {
       const occurrences = calculateOccurrences(text);
       props.handleDataUpdate(occurrences);
+      setShowErrorMessage(false);
+    } else {
+      setShowErrorMessage(true);
     }
+  };
+
+  const handleFocus = () => {
+    setShowErrorMessage(false);
   };
 
   return (
@@ -59,7 +77,11 @@ const Form = (props) => {
           name="text"
           id="text"
           placeholder="Enter a text to calculate the its word frequency"
+          onFocus={handleFocus}
         ></textarea>
+        {showErrorMessage && (
+          <ErrorMessage>Input cannot be empty.</ErrorMessage>
+        )}
         <button>Calculate</button>
       </StyledForm>
     </>
