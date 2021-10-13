@@ -1,5 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import "../public/css/fontello.css";
+// import "../public/css/fontello.css";
 
 const GlobalStyle = createGlobalStyle`
   html {
