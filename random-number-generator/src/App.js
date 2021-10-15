@@ -62,7 +62,8 @@ const Main = styled.main`
       background-color: #0050fd;
       border: none;
       border-radius: 5px;
-
+      cursor: pointer;
+      transition: transform .2s;
       &:hover {
         transform: scale(1.05);
       }
