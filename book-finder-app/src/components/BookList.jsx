@@ -6,12 +6,14 @@ const StyledBookList = styled.ul`
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 `;
 
 const BookList = () => {
-  const { bookList, isLoading, triggered } = useSelector((state) => state.books);
+  const { bookList, isLoading, triggered } = useSelector(
+    (state) => state.books
+  );
 
   const bookListItems = bookList.map((item) => {
     return (
@@ -22,9 +24,8 @@ const BookList = () => {
         year={item.first_publish_year}
         coverId={item.cover_edition_key}
         bookId={item.key}
-        subject={item.subject}
-      >
-      </Book>
+        subject={item.subject || []}
+      ></Book>
     );
   });
 
@@ -32,10 +33,10 @@ const BookList = () => {
     <>
       {isLoading ? (
         <div>Loading...</div>
-      ) :
+      ) : (
         <StyledBookList>{bookListItems}</StyledBookList>
-      }
-      {(!isLoading && triggered && !bookList.length) && <div>Not found.</div>}
+      )}
+      {!isLoading && triggered && !bookList.length && <div>Not found.</div>}
     </>
   );
 };
