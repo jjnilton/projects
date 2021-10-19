@@ -21,14 +21,17 @@ const StyledBook = styled.li`
   }
   & a {
     text-decoration: none;
-    background-color: black;
+    background-color: #3da73d;
     color: white;
     padding: 5px;
     margin: 20px;
     display: block;
-    box-shadow: 0 5px 5px black;
+    box-shadow: 0 5px 5px #aaa;
     border-radius: 5px;
-    /* border: 1px solid #333; */
+    border: 1px solid #689068;
+    &:hover {
+      background-color: #39c839;
+    }
   }
   & span {
     font-size: 0.75em;
@@ -41,7 +44,9 @@ const Book = (props) => {
   const bookYear = props.year;
   const bookId = props.bookId;
   const bookSubject = props.subject;
-  const imgSrc = props.coverId ? `https://covers.openlibrary.org/b/olid/${props.coverId}-M.jpg` : 'https://fakeimg.pl/160x240/?text=No Cover';
+  const imgSrc = props.coverId
+    ? `https://covers.openlibrary.org/b/olid/${props.coverId}-M.jpg`
+    : "https://fakeimg.pl/160x240/?text=No Cover";
   const imgAlt = `${props.title} book cover`;
 
   return (
