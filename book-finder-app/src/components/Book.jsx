@@ -41,7 +41,7 @@ const Book = (props) => {
   const bookYear = props.year;
   const bookId = props.bookId;
   const bookSubject = props.subject;
-  const imgSrc = `https://covers.openlibrary.org/b/olid/${props.coverId}-M.jpg`;
+  const imgSrc = props.coverId ? `https://covers.openlibrary.org/b/olid/${props.coverId}-M.jpg` : 'https://fakeimg.pl/160x240/?text=No Cover';
   const imgAlt = `${props.title} book cover`;
 
   return (
