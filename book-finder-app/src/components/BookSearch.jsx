@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
-
 
 const StyledBookSearch = styled.section``;
 
 const BookSearch = () => {
+  const booksState = useSelector(state => state.books)
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +22,6 @@ const BookSearch = () => {
         encodeURI(`https://openlibrary.org/search.json?${urlParams}`)
       );
       const data = await response.json();
-      console.log(data);
       dispatch(updateBooks({ bookList: data.docs, isLoading: false }));
     };
 
