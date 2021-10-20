@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Book from "./Book";
+import Loading from "./Loading";
 
 const StyledBookList = styled.ul`
   padding: 0;
@@ -32,7 +33,7 @@ const BookList = () => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <Loading></Loading>
       ) : (
         <StyledBookList>{bookListItems}</StyledBookList>
       )}
