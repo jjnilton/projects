@@ -1,6 +1,4 @@
-// import logo from './logo.svg';
 import Main from "./components/Main";
-import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`

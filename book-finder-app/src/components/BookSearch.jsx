@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { ReactComponent as OpenLibraryLogo } from "../openlibrary-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const StyledBookSearch = styled.section`
   margin-bottom: 20px;
@@ -17,6 +19,8 @@ const StyledBookSearch = styled.section`
     }
     & > div {
       display: flex;
+      border-radius: 5px;
+      background-color: ${(props) => (props.isLoading ? "#e3e3e3" : "white")};
       & span {
         font-size: 2em;
         transform: rotate(-80deg);
@@ -38,13 +42,15 @@ const StyledBookSearch = styled.section`
       outline: none;
       border-color: #ddd;
     }
+    &:disabled {
+      background-color: #e3e3e3;
+    }
   }
   & button {
     background-color: #2c65ce;
     color: white;
-    border-width: 1px 1px 1px 0;
-    border-color: gray;
-    border-style: solid;
+    border: none;
+    font-size: 1em;
     border-radius: 0 5px 5px 0;
     width: 200px;
     cursor: pointer;
@@ -54,6 +60,11 @@ const StyledBookSearch = styled.section`
     &:focus {
       outline: 2px solid gray;
       border: 1px solid #eee;
+    }
+    &:disabled {
+      background-color: #687994;
+      color: #aaa;
+      cursor: no-drop;
     }
   }
   & > div {
@@ -74,40 +85,57 @@ const StyledBookSearch = styled.section`
 
 const BookSearch = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.books);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
     const query = formData.get("query");
 
     const paramsObject = { q: query };
     const urlParams = new URLSearchParams(paramsObject);
 
+    // prevent making a new request while there's one in progress
+    if (isLoading) {
+      return;
+    }
     const fetchResult = async () => {
       dispatch(updateBooks({ bookList: [], isLoading: true }));
-      const response = await fetch(
-        encodeURI(`https://openlibrary.org/search.json?${urlParams}`)
-      );
-      const data = await response.json();
-      console.log(data);
-      dispatch(updateBooks({ bookList: data.docs, isLoading: false }));
+      try {
+        const response = await fetch(
+          encodeURI(`https://openlibrary.org/search.json?${urlParams}`)
+        );
+        const data = await response.json();
+        console.log(data);
+        dispatch(updateBooks({ bookList: data.docs, isLoading: false }));
+      } catch (err) {
+        dispatch(updateBooks({ bookList: [], isLoading: false }));
+      }
     };
 
     fetchResult();
   };
 
+  console.log("render");
+
   return (
-    <StyledBookSearch>
+    <StyledBookSearch isLoading={isLoading}>
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <span>⌕</span>
-          <input type="text" id="query" name="query" placeholder="Search..." />
+          <input
+            type="text"
+            id="query"
+            name="query"
+            placeholder="Search..."
+            disabled={isLoading}
+          />
         </div>
-        <button>Search</button>
+        <button disabled={isLoading}>Search</button>
       </form>
       <div>
         <span>Powered by</span>
-        <a href="https://openlibrary.org/" target="_blank">
+        <a href="https://openlibrary.org/" target="_blank" rel="noreferrer">
           <OpenLibraryLogo></OpenLibraryLogo>
         </a>
       </div>

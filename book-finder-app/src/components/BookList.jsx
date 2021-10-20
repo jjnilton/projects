@@ -64,6 +64,7 @@ const BookList = () => {
 
   useEffect(() => {
     setVisibleBookItems(bookListItems.slice(0, 3));
+    // eslint-disable-next-line
   }, [bookList]);
 
   const handleLoadMore = () => {
