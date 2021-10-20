@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
 
 const StyledBookSearch = styled.section`
-
   form {
     display: grid;
     grid-template-columns: 1fr max-content;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
   }
   & input {
     width: 100%;
@@ -17,6 +19,10 @@ const StyledBookSearch = styled.section`
     border-style: solid;
     border-radius: 5px 0 0 5px;
     padding: 10px;
+    &:focus {
+      outline: none;
+      border-color: #ddd;
+    }
   }
   & button {
     background-color: gray;
@@ -30,8 +36,11 @@ const StyledBookSearch = styled.section`
     &:hover {
       background-color: #aaa;
     }
+    &:focus {
+      outline: 2px solid gray;
+      border: 1px solid #eee;
+    }
   }
-
 `;
 
 const BookSearch = () => {
