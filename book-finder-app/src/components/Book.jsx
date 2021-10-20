@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledButton } from "./Button";
 
 const StyledBook = styled.li`
   list-style-type: none;
@@ -38,6 +39,14 @@ const StyledBook = styled.li`
   }
 `;
 
+const MoreInfoButton = (props) => {
+  return (
+    <StyledButton as="a" href={props.url}>
+        More info
+    </StyledButton>
+  );
+};
+
 const Book = (props) => {
   const bookTitle = props.title;
   const bookAuthors = props.authors;
@@ -59,9 +68,7 @@ const Book = (props) => {
       <img src={imgSrc} alt={imgAlt} />
       <div>{bookSubject[0]}</div>
       <div>
-        <a href={`https://openlibrary.org/${bookId}`} target="_blank">
-          More info
-        </a>
+        <MoreInfoButton url={`https://openlibrary.org/${bookId}`}></MoreInfoButton>
       </div>
     </StyledBook>
   );

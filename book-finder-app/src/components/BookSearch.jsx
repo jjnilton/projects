@@ -15,6 +15,16 @@ const StyledBookSearch = styled.section`
     &:focus-within {
       box-shadow: 0 0 10px #aaa;
     }
+    & > div {
+      display: flex;
+      & span {
+        font-size: 2em;
+        transform: rotate(-80deg);
+        margin: 0 10px;
+        color: gray;
+        user-select: none;
+      }
+    }
   }
   & input {
     width: 100%;
@@ -30,7 +40,7 @@ const StyledBookSearch = styled.section`
     }
   }
   & button {
-    background-color: gray;
+    background-color: #2c65ce;
     color: white;
     border-width: 1px 1px 1px 0;
     border-color: gray;
@@ -39,7 +49,7 @@ const StyledBookSearch = styled.section`
     width: 200px;
     cursor: pointer;
     &:hover {
-      background-color: #aaa;
+      background-color: #1a56fa;
     }
     &:focus {
       outline: 2px solid gray;
@@ -59,15 +69,6 @@ const StyledBookSearch = styled.section`
   }
   svg {
     width: 120px;
-  }
-  .input-wrapper {
-    display: flex;
-    & span {
-      font-size: 2em;
-      transform: rotate(-80deg);
-      margin: 0 10px;
-      color: gray;
-    }
   }
 `;
 

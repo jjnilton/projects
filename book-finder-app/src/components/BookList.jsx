@@ -2,6 +2,13 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Book from "./Book";
 import Loading from "./Loading";
+import { useState } from "react";
+import { useEffect } from "react";
+import { StyledButton } from "./Button";
+
+const StyledBookListWrapper = styled.article`
+  display: grid;
+`;
 
 const StyledBookList = styled.ul`
   padding: 0;
@@ -11,7 +18,32 @@ const StyledBookList = styled.ul`
   gap: 20px;
 `;
 
+const StyledLoadMoreButton = styled(StyledButton)`
+  cursor: pointer;
+  background-color: blue;
+  margin: 0;
+  &:hover {
+    background-color: lightblue;
+  }
+  &:disabled {
+    background-color: gray;
+    color: white;
+  }
+`;
+
+const LoadMoreButton = (props) => {
+  return (
+    <StyledLoadMoreButton
+      onClick={props.handleLoadMore}
+      disabled={props.disabled}
+    >
+      Load more
+    </StyledLoadMoreButton>
+  );
+};
+
 const BookList = () => {
+  const [visibleBookItems, setVisibleBookItems] = useState([]);
   const { bookList, isLoading, triggered } = useSelector(
     (state) => state.books
   );
@@ -30,15 +62,35 @@ const BookList = () => {
     );
   });
 
+  useEffect(() => {
+    setVisibleBookItems(bookListItems.slice(0, 3));
+  }, [bookList]);
+
+  const handleLoadMore = () => {
+    setVisibleBookItems(bookListItems.slice(0, visibleBookItems.length + 3));
+  };
+
+  const disabled = visibleBookItems >= bookListItems;
+
   return (
-    <>
+    <StyledBookListWrapper>
       {isLoading ? (
         <Loading></Loading>
       ) : (
-        <StyledBookList>{bookListItems}</StyledBookList>
+        <>
+          {triggered && (
+            <>
+              <StyledBookList>{visibleBookItems}</StyledBookList>
+              <LoadMoreButton
+                handleLoadMore={handleLoadMore}
+                disabled={disabled}
+              ></LoadMoreButton>
+            </>
+          )}
+        </>
       )}
       {!isLoading && triggered && !bookList.length && <div>Not found.</div>}
-    </>
+    </StyledBookListWrapper>
   );
 };
 
