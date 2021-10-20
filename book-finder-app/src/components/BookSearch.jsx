@@ -2,10 +2,39 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
 
-const StyledBookSearch = styled.section``;
+const StyledBookSearch = styled.section`
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+  }
+  & input {
+    width: 100%;
+    height: 2em;
+    font-size: 1.2em;
+    border-width: 1px 0 1px 1px;
+    border-color: gray;
+    border-style: solid;
+    border-radius: 5px 0 0 5px;
+    padding: 10px;
+  }
+  & button {
+    background-color: gray;
+    color: white;
+    border-width: 1px 1px 1px 0;
+    border-color: gray;
+    border-style: solid;
+    border-radius: 0 5px 5px 0;
+    width: 200px;
+    cursor: pointer;
+    &:hover {
+      background-color: #aaa;
+    }
+  }
+
+`;
 
 const BookSearch = () => {
-  const booksState = useSelector((state) => state.books);
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,8 +61,8 @@ const BookSearch = () => {
   return (
     <StyledBookSearch>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="query">Search</label>
-        <input type="text" id="query" name="query" />
+        {/* <label htmlFor="query">Search</label> */}
+        <input type="text" id="query" name="query" placeholder="Search" />
         <button>Search</button>
       </form>
     </StyledBookSearch>
