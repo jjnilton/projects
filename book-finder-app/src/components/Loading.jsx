@@ -18,8 +18,8 @@ const StyledLoading = styled.div`
     left: 37px;
     width: 6px;
     height: 18px;
-    border-radius: 20%;
     background: black;
+    border-radius: 20px;
   }
   div:nth-child(1) {
     transform: rotate(0deg);
