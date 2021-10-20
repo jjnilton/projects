@@ -1,14 +1,17 @@
 import styled from "styled-components";
+// import openlibraryLogo from '../openlibrary-logo.svg'
+import { ReactComponent as OpenLibraryLogo } from "../openlibrary-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
 
 const StyledBookSearch = styled.section`
+  margin-bottom: 20px;
+  display: grid;
   form {
     display: grid;
     grid-template-columns: 1fr max-content;
     box-shadow: 0 0 10px #ccc;
     border-radius: 5px;
-    margin-bottom: 20px;
   }
   & input {
     width: 100%;
@@ -40,6 +43,20 @@ const StyledBookSearch = styled.section`
       outline: 2px solid gray;
       border: 1px solid #eee;
     }
+  }
+  & > div {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    margin: 10px 0px;
+    justify-self: right;
+    & span {
+      margin-right: 5px;
+      color: #111;
+    }
+  }
+  svg {
+    width: 120px;
   }
 `;
 
@@ -74,6 +91,12 @@ const BookSearch = () => {
         <input type="text" id="query" name="query" placeholder="Search" />
         <button>Search</button>
       </form>
+      <div>
+        <span>Powered by</span>
+        <a href="https://openlibrary.org/" target="_blank">
+          <OpenLibraryLogo></OpenLibraryLogo>
+        </a>
+      </div>
     </StyledBookSearch>
   );
 };
