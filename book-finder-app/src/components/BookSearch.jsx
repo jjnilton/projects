@@ -12,7 +12,7 @@ const StyledBookSearch = styled.section`
   }
   & input {
     width: 100%;
-    height: 2em;
+    height: 2.5em;
     font-size: 1.2em;
     border-width: 1px 0 1px 1px;
     border-color: gray;
