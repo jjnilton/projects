@@ -12,16 +12,18 @@ const StyledBookSearch = styled.section`
     grid-template-columns: 1fr max-content;
     box-shadow: 0 0 10px #ccc;
     border-radius: 5px;
+    &:focus-within {
+      box-shadow: 0 0 10px #aaa;
+    }
   }
   & input {
     width: 100%;
     height: 2.5em;
     font-size: 1.2em;
-    border-width: 1px 0 1px 1px;
-    border-color: gray;
-    border-style: solid;
+    border: none;
     border-radius: 5px 0 0 5px;
-    padding: 10px;
+    padding: 5px;
+    padding-left: 5px;
     &:focus {
       outline: none;
       border-color: #ddd;
@@ -58,6 +60,15 @@ const StyledBookSearch = styled.section`
   svg {
     width: 120px;
   }
+  .input-wrapper {
+    display: flex;
+    & span {
+      font-size: 2em;
+      transform: rotate(-80deg);
+      margin: 0 10px;
+      color: gray;
+    }
+  }
 `;
 
 const BookSearch = () => {
@@ -87,8 +98,10 @@ const BookSearch = () => {
   return (
     <StyledBookSearch>
       <form onSubmit={handleSubmit}>
-        {/* <label htmlFor="query">Search</label> */}
-        <input type="text" id="query" name="query" placeholder="Search" />
+        <div className="input-wrapper">
+          <span>⌕</span>
+          <input type="text" id="query" name="query" placeholder="Search..." />
+        </div>
         <button>Search</button>
       </form>
       <div>
