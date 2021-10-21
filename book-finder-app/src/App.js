@@ -2,11 +2,14 @@ import { createGlobalStyle } from "styled-components";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import BackToTop from "./components/BackToTop";
+import { useEffect, useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     min-height: 100%;
+    scroll-behavior: smooth;
   }
 
   *, *::before, *::after {
@@ -39,11 +42,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [y, setY] = useState(0);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setY(window.scrollY)
+    }
+  }, [])
+
   return (
     <>
       <GlobalStyle></GlobalStyle>
       <Header></Header>
       <Main></Main>
+      <BackToTop y={y}></BackToTop>
       <Footer></Footer>
     </>
   );
