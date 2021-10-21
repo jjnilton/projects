@@ -2,13 +2,16 @@ import styled from "styled-components";
 import openBookImage from "../open-book.png";
 
 const StyledHeader = styled.header`
-  color: #333;
-  display: grid;
-  grid-template-columns: max-content max-content;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px;
-  padding-top: 20px;
+  a {
+    color: #333;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    padding-top: 20px;
+    text-decoration: none;
+  }
   img {
     width: 50px;
     filter: contrast(0.1) sepia(1) hue-rotate(150deg) saturate(1.5);
@@ -26,8 +29,10 @@ const StyledHeader = styled.header`
 const Header = () => {
   return (
     <StyledHeader>
-      <img src={openBookImage} alt="Book Finer App Logo"></img>
-      <h1>Book Finder App</h1>
+      <a href="https://">
+        <img src={openBookImage} alt="Book Finer App Logo"></img>
+        <h1>Book Finder App</h1>
+      </a>
     </StyledHeader>
   );
 };

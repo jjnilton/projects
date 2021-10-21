@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const StyledBackToTop = styled.button`
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 3vh;
+  right: 3vw;
   width: 72px;
   font-size: 1em;
   background-color: rgb(81, 137, 190, 0.75);
