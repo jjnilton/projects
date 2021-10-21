@@ -4,7 +4,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import BackToTop from "./components/BackToTop";
 import { useEffect, useState } from "react";
-import bg from './bg.jpg'
 
 const GlobalStyle = createGlobalStyle`
   html {
