@@ -39,7 +39,7 @@ const StyledLoadMoreButton = styled(StyledButton)`
     border: #aaa;
   }
   a {
-    color: #3779f5
+    color: #3779f5;
   }
 `;
 
@@ -56,6 +56,7 @@ const LoadMoreButton = (props) => {
 
 const Results = styled.section`
   padding: 10px 0px;
+  color: #333;
 `;
 
 const BookList = () => {
@@ -103,12 +104,26 @@ const BookList = () => {
                 handleLoadMore={handleLoadMore}
                 disabled={disabled}
               ></LoadMoreButton>
-              {(disabled && numFound > bookListItems.length) && <p style={{textAlign: "center"}}>See all the {numFound} results on <a href="https://openLibrary.org" target="_blank" rel="noopener">OpenLibrary.org</a></p>}
+              {disabled && numFound > bookListItems.length && (
+                <p style={{ textAlign: "center" }}>
+                  See all the {numFound} results on{" "}
+                  {/*eslint-disable-next-line */}
+                  <a
+                    href="https://openLibrary.org"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    OpenLibrary.org
+                  </a>
+                </p>
+              )}
             </>
           )}
         </>
       )}
-      {!isLoading && triggered && !bookList.length && <div id="no-results">No results.</div>}
+      {!isLoading && triggered && !bookList.length && (
+        <div id="no-results">No results.</div>
+      )}
     </StyledBookListWrapper>
   );
 };

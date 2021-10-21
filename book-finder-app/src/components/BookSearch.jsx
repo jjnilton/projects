@@ -1,10 +1,7 @@
 import styled from "styled-components";
-// import openlibraryLogo from '../openlibrary-logo.svg'
 import { ReactComponent as OpenLibraryLogo } from "../openlibrary-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const StyledBookSearch = styled.section`
   margin-bottom: 20px;
@@ -110,7 +107,13 @@ const BookSearch = () => {
         );
         const data = await response.json();
         console.log(data);
-        dispatch(updateBooks({ bookList: data.docs, isLoading: false, numFound: data.numFound }));
+        dispatch(
+          updateBooks({
+            bookList: data.docs,
+            isLoading: false,
+            numFound: data.numFound,
+          })
+        );
       } catch (err) {
         dispatch(updateBooks({ bookList: [], isLoading: false, numFound: 0 }));
       }
@@ -138,10 +141,10 @@ const BookSearch = () => {
         </div>
         <button disabled={isLoading}>Search</button>
       </form>
-        <a href="https://openlibrary.org/" target="_blank" rel="noreferrer">
-          <span>Powered by</span>
-          <OpenLibraryLogo></OpenLibraryLogo>
-        </a>
+      <a href="https://openlibrary.org/" target="_blank" rel="noreferrer">
+        <span>Powered by</span>
+        <OpenLibraryLogo></OpenLibraryLogo>
+      </a>
     </StyledBookSearch>
   );
 };

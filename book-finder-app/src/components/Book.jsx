@@ -20,6 +20,9 @@ const StyledBook = styled.li`
   justify-items: center;
   background-color: white;
   box-shadow: 0 0 10px #aaa;
+  &:hover {
+    box-shadow: 0 0 10px #555;
+  }
   & h3 {
     margin-bottom: 0;
   }
@@ -75,7 +78,7 @@ const Book = (props) => {
       </div>
       <span>{bookYear}</span>
       <div>{bookAuthors?.join(", ")}</div>
-      <img src={imgSrc} alt={imgAlt}/>
+      <img src={imgSrc} alt={imgAlt} />
       <div>{bookSubject[0]}</div>
       <div>
         <MoreInfoButton

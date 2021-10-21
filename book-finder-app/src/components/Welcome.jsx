@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledWelcome = styled.div`
   font-size: 1.5em;
@@ -11,7 +11,7 @@ const Welcome = () => {
     <StyledWelcome>
       Welcome to Book Finder App! Enter a text above to, well, find a book.
     </StyledWelcome>
-  )
-}
+  );
+};
 
 export default Welcome;

@@ -12,13 +12,13 @@ const StyledHeader = styled.header`
   img {
     width: 50px;
     filter: contrast(0.1) sepia(1) hue-rotate(150deg);
-    margin-right: 5px;
+    margin-right: 10px;
   }
 
   h1 {
     color: #555;
     @media (max-width: 320px) {
-      font-size: 1.7em;
+      font-size: 2em;
     }
   }
 `;
@@ -26,7 +26,7 @@ const StyledHeader = styled.header`
 const Header = () => {
   return (
     <StyledHeader>
-      <img src={openBookImage}></img>
+      <img src={openBookImage} alt="Book Finer App Logo"></img>
       <h1>Book Finder App</h1>
     </StyledHeader>
   );

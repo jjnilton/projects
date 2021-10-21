@@ -32,7 +32,7 @@ const Footer = () => {
           Flaticon
         </a>
       </div>
-      <a href="#">{"</>"} Source</a>
+      <a href="https://">{"</>"} Source</a>
     </StyledFooter>
   );
 };
