@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as OpenLibraryLogo } from "../openlibrary-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooks } from "../store";
+import { useEffect, useRef } from "react";
 
 const StyledBookSearch = styled.section`
   margin-bottom: 20px;
@@ -86,6 +87,11 @@ const StyledBookSearch = styled.section`
 const BookSearch = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.books);
+  const searchRef = useRef();
+
+  useEffect(() => {
+    searchRef.current.focus();
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -127,6 +133,7 @@ const BookSearch = () => {
         <div>
           <span>⌕</span>
           <input
+            ref={searchRef}
             type="text"
             id="query"
             name="query"
