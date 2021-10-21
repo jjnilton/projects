@@ -21,7 +21,7 @@ const StyledBook = styled.li`
   background-color: white;
   box-shadow: 0 0 10px #aaa;
   &:hover {
-    box-shadow: 0 0 10px #555;
+    box-shadow: 0 0 10px #888;
   }
   & h3 {
     margin-bottom: 0;
@@ -33,20 +33,6 @@ const StyledBook = styled.li`
   }
   & div {
     text-align: center;
-  }
-  & a {
-    text-decoration: none;
-    background-color: #3da73d;
-    color: white;
-    padding: 5px;
-    margin: 20px;
-    display: block;
-    box-shadow: 0 5px 5px #aaa;
-    border-radius: 5px;
-    border: 1px solid #689068;
-    &:hover {
-      background-color: #39c839;
-    }
   }
   & span {
     font-size: 0.75em;
