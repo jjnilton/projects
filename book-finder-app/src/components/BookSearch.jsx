@@ -109,9 +109,9 @@ const BookSearch = () => {
         );
         const data = await response.json();
         console.log(data);
-        dispatch(updateBooks({ bookList: data.docs, isLoading: false }));
+        dispatch(updateBooks({ bookList: data.docs, isLoading: false, numFound: data.numFound }));
       } catch (err) {
-        dispatch(updateBooks({ bookList: [], isLoading: false }));
+        dispatch(updateBooks({ bookList: [], isLoading: false, numFound: 0 }));
       }
     };
 

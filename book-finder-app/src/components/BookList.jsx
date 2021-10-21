@@ -35,6 +35,11 @@ const StyledLoadMoreButton = styled(StyledButton)`
     cursor: no-drop;
     background-color: gray;
     color: white;
+    box-shadow: none;
+    border: #aaa;
+  }
+  a {
+    color: #3779f5
   }
 `;
 
@@ -55,7 +60,7 @@ const Results = styled.section`
 
 const BookList = () => {
   const [visibleBookItems, setVisibleBookItems] = useState([]);
-  const { bookList, isLoading, triggered } = useSelector(
+  const { bookList, isLoading, triggered, numFound } = useSelector(
     (state) => state.books
   );
 
@@ -74,12 +79,12 @@ const BookList = () => {
   });
 
   useEffect(() => {
-    setVisibleBookItems(bookListItems.slice(0, 10));
+    setVisibleBookItems(bookListItems.slice(0, 9));
     // eslint-disable-next-line
   }, [bookList]);
 
   const handleLoadMore = () => {
-    setVisibleBookItems(bookListItems.slice(0, visibleBookItems.length + 10));
+    setVisibleBookItems(bookListItems.slice(0, visibleBookItems.length + 9));
   };
 
   const disabled = visibleBookItems >= bookListItems;
@@ -92,12 +97,13 @@ const BookList = () => {
         <>
           {triggered && bookListItems.length > 0 && (
             <>
-              <Results>Results: {bookListItems.length}</Results>
+              <Results>{bookListItems.length} results</Results>
               <StyledBookList>{visibleBookItems}</StyledBookList>
               <LoadMoreButton
                 handleLoadMore={handleLoadMore}
                 disabled={disabled}
               ></LoadMoreButton>
+              {(disabled && numFound > bookListItems.length) && <p style={{textAlign: "center"}}>See all the {numFound} results on <a href="https://openLibrary.org" target="_blank" rel="noopener">OpenLibrary.org</a></p>}
             </>
           )}
         </>

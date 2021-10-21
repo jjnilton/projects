@@ -19,7 +19,7 @@ const StyledLoading = styled.div`
     left: 37px;
     width: 6px;
     height: 18px;
-    background: black;
+    background: #2c65ce;
     border-radius: 20px;
   }
   div:nth-child(1) {

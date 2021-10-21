@@ -75,7 +75,7 @@ const Book = (props) => {
       </div>
       <span>{bookYear}</span>
       <div>{bookAuthors?.join(", ")}</div>
-      <img src={imgSrc} alt={imgAlt} />
+      <img src={imgSrc} alt={imgAlt}/>
       <div>{bookSubject[0]}</div>
       <div>
         <MoreInfoButton

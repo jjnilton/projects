@@ -6,13 +6,14 @@ const booksSlice = createSlice({
     bookList: [],
     isLoading: false,
     triggered: false,
+    numFound: 0,
   },
   reducers: {
     updateBooks: (state, action) => {
       state.bookList = action.payload.bookList;
       state.isLoading = action.payload.isLoading;
       state.triggered = true;
-
+      state.numFound = action.payload.numFound;
     }
   }
 })
