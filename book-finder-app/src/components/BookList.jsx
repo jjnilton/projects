@@ -111,7 +111,7 @@ const BookList = () => {
               ></LoadMoreButton>
               {disabled && numFound > bookListItems.length && (
                 <p style={{ textAlign: "center" }}>
-                  See all the {numFound} results on{" "}
+                  See all the {numFound - bookListItems.length} remaining results on{" "}
                   {/*eslint-disable-next-line */}
                   <a
                     href="https://openLibrary.org"
