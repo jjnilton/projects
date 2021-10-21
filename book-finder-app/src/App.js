@@ -6,6 +6,7 @@ import Header from "./components/Header";
 const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
+    min-height: 100%;
   }
 
   *, *::before, *::after {
@@ -20,6 +21,8 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #e8dbaa;
+    background: linear-gradient(#e8dbaa, white);
+    height: 100%;
   }
 
   code {
@@ -30,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   #root {
     display: grid;
     grid-template-rows: max-content 1fr;
-    height: 100vh;
+    min-height: 100vh;
   }
 
 `;

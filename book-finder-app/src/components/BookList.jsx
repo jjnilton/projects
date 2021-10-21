@@ -54,10 +54,15 @@ const LoadMoreButton = (props) => {
   );
 };
 
-const Results = styled.section`
+const ResultsCount = styled.section`
   padding: 10px 0px;
   color: #333;
 `;
+
+const NoResults = styled.div`
+  font-size: 1.2em;
+`;
+
 
 const BookList = () => {
   const [visibleBookItems, setVisibleBookItems] = useState([]);
@@ -98,7 +103,7 @@ const BookList = () => {
         <>
           {triggered && bookListItems.length > 0 && (
             <>
-              <Results>{bookListItems.length} results</Results>
+              <ResultsCount>{bookListItems.length} results</ResultsCount>
               <StyledBookList>{visibleBookItems}</StyledBookList>
               <LoadMoreButton
                 handleLoadMore={handleLoadMore}
@@ -122,7 +127,7 @@ const BookList = () => {
         </>
       )}
       {!isLoading && triggered && !bookList.length && (
-        <div id="no-results">No results.</div>
+        <NoResults>No results.</NoResults>
       )}
     </StyledBookListWrapper>
   );

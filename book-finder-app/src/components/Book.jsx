@@ -29,6 +29,7 @@ const StyledBook = styled.li`
   img {
     margin: 10px;
     align-self: center;
+    border-radius: 5px;
   }
   & div {
     text-align: center;

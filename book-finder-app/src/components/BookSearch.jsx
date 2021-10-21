@@ -59,8 +59,8 @@ const StyledBookSearch = styled.section`
       border: 1px solid #eee;
     }
     &:disabled {
-      background-color: #687994;
-      color: #aaa;
+      background-color: #809fb1;
+      color: #ccc;
       cursor: no-drop;
     }
   }
@@ -106,7 +106,6 @@ const BookSearch = () => {
           encodeURI(`https://openlibrary.org/search.json?${urlParams}`)
         );
         const data = await response.json();
-        console.log(data);
         dispatch(
           updateBooks({
             bookList: data.docs,
@@ -121,8 +120,6 @@ const BookSearch = () => {
 
     fetchResult();
   };
-
-  console.log("render");
 
   return (
     <StyledBookSearch isLoading={isLoading}>

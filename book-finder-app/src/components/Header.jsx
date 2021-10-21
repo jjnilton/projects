@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
   padding-top: 20px;
   img {
     width: 50px;
-    filter: contrast(0.1) sepia(1) hue-rotate(150deg);
+    filter: contrast(0.1) sepia(1) hue-rotate(150deg) saturate(1.5);
     margin-right: 10px;
   }
 

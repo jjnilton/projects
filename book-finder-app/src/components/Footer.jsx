@@ -14,13 +14,16 @@ const StyledFooter = styled.footer`
     color: #555;
     font-size: 0.75em;
   }
+  div:last-of-type {
+    margin-bottom: 5px;
+  }
 `;
 
 const Footer = () => {
   return (
     <StyledFooter>
       <div>
-        Data from <a href="https://openlibrary.org">OpenLibrary</a> Web API
+        Data from <a href="https://openlibrary.org">OpenLibrary</a>
       </div>
       <div>
         Icon made by{" "}
