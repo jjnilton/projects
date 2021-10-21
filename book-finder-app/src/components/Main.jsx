@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import BookList from "./BookList";
 import BookSearch from "./BookSearch";
+import Welcome from "./Welcome";
 
 const StyledMain = styled.main`
   padding: 20px;
@@ -11,10 +13,11 @@ const StyledMain = styled.main`
 `;
 
 const Main = () => {
+  const { triggered } = useSelector((state) => state.books);
   return (
     <StyledMain>
       <BookSearch></BookSearch>
-      <BookList></BookList>
+      {!triggered ? <Welcome></Welcome> : <BookList></BookList>}
     </StyledMain>
   );
 };

@@ -47,7 +47,7 @@ const StyledBookSearch = styled.section`
     }
   }
   & button {
-    background-color: #2c65ce;
+    background-color: #518abe;
     color: white;
     border: none;
     font-size: 1em;
@@ -55,7 +55,7 @@ const StyledBookSearch = styled.section`
     width: 100px;
     cursor: pointer;
     &:hover {
-      background-color: #1a56fa;
+      background-color: #64a7e6;
     }
     &:focus {
       outline: 2px solid gray;
@@ -123,7 +123,7 @@ const BookSearch = () => {
   return (
     <StyledBookSearch isLoading={isLoading}>
       <form onSubmit={handleSubmit}>
-        <div className="input-wrapper">
+        <div>
           <span>⌕</span>
           <input
             type="text"
@@ -131,6 +131,8 @@ const BookSearch = () => {
             name="query"
             placeholder="Search..."
             disabled={isLoading}
+            minLength="2"
+            required
           />
         </div>
         <button disabled={isLoading}>Search</button>

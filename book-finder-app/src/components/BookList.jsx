@@ -108,7 +108,7 @@ const BookList = () => {
           )}
         </>
       )}
-      {!isLoading && triggered && !bookList.length && <div>No results.</div>}
+      {!isLoading && triggered && !bookList.length && <div id="no-results">No results.</div>}
     </StyledBookListWrapper>
   );
 };

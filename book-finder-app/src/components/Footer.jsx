@@ -5,13 +5,7 @@ const StyledFooter = styled.footer`
   padding: 10px;
   a {
     text-decoration: none;
-    color: #2c65ce;
-    &:hover {
-      background-color: white;
-      border-radius: 5px;
-      padding: 3px 10px;
-      transition: background-color .2s;
-    }
+    color: #518abe;
   }
 `;
 
