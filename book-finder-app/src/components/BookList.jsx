@@ -14,8 +14,9 @@ const StyledBookList = styled.ul`
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+  justify-content: center;
 `;
 
 const StyledLoadMoreButton = styled(StyledButton)`
@@ -73,12 +74,12 @@ const BookList = () => {
   });
 
   useEffect(() => {
-    setVisibleBookItems(bookListItems.slice(0, 3));
+    setVisibleBookItems(bookListItems.slice(0, 10));
     // eslint-disable-next-line
   }, [bookList]);
 
   const handleLoadMore = () => {
-    setVisibleBookItems(bookListItems.slice(0, visibleBookItems.length + 3));
+    setVisibleBookItems(bookListItems.slice(0, visibleBookItems.length + 10));
   };
 
   const disabled = visibleBookItems >= bookListItems;

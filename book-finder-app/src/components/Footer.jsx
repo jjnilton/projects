@@ -18,7 +18,7 @@ const StyledFooter = styled.footer`
 const Footer = () => {
   return (
     <StyledFooter>
-      <a href="#">{'<\/>'} Source</a>
+      <a href="#">{'</>'} Source</a>
     </StyledFooter>
   )
 }
