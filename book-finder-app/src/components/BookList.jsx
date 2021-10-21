@@ -20,12 +20,18 @@ const StyledBookList = styled.ul`
 
 const StyledLoadMoreButton = styled(StyledButton)`
   cursor: pointer;
-  background-color: blue;
+  width: 200px;
+  justify-self: center;
+  background-color: #2c65ce;
   margin: 0;
+  padding: 10px;
+  font-size: 1em;
+  margin: 20px 0;
   &:hover {
-    background-color: lightblue;
+    background-color: #3779f5;
   }
   &:disabled {
+    cursor: no-drop;
     background-color: gray;
     color: white;
   }
@@ -37,10 +43,14 @@ const LoadMoreButton = (props) => {
       onClick={props.handleLoadMore}
       disabled={props.disabled}
     >
-      Load more
+      {props.disabled ? "No more results" : "Load more"}
     </StyledLoadMoreButton>
   );
 };
+
+const Results = styled.section`
+  padding: 10px 5px;
+`;
 
 const BookList = () => {
   const [visibleBookItems, setVisibleBookItems] = useState([]);
@@ -79,8 +89,9 @@ const BookList = () => {
         <Loading></Loading>
       ) : (
         <>
-          {triggered && (
+          {triggered && bookListItems.length > 0 && (
             <>
+              <Results>Results: {bookListItems.length}</Results>
               <StyledBookList>{visibleBookItems}</StyledBookList>
               <LoadMoreButton
                 handleLoadMore={handleLoadMore}
@@ -90,7 +101,7 @@ const BookList = () => {
           )}
         </>
       )}
-      {!isLoading && triggered && !bookList.length && <div>Not found.</div>}
+      {!isLoading && triggered && !bookList.length && <div>No results.</div>}
     </StyledBookListWrapper>
   );
 };

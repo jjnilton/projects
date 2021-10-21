@@ -52,7 +52,7 @@ const StyledBookSearch = styled.section`
     border: none;
     font-size: 1em;
     border-radius: 0 5px 5px 0;
-    width: 200px;
+    width: 100px;
     cursor: pointer;
     &:hover {
       background-color: #1a56fa;
@@ -67,15 +67,17 @@ const StyledBookSearch = styled.section`
       cursor: no-drop;
     }
   }
-  & > div {
+  & > a {
+    text-decoration: none;
     display: grid;
     grid-template-columns: max-content max-content;
     align-items: center;
     margin: 10px 0px;
     justify-self: right;
+    user-select: none;
     & span {
       margin-right: 5px;
-      color: #111;
+      color: #20282f;
     }
   }
   svg {
@@ -133,12 +135,10 @@ const BookSearch = () => {
         </div>
         <button disabled={isLoading}>Search</button>
       </form>
-      <div>
-        <span>Powered by</span>
         <a href="https://openlibrary.org/" target="_blank" rel="noreferrer">
+          <span>Powered by</span>
           <OpenLibraryLogo></OpenLibraryLogo>
         </a>
-      </div>
     </StyledBookSearch>
   );
 };

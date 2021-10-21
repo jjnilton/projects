@@ -1,7 +1,19 @@
 import styled from "styled-components";
 import { StyledButton } from "./Button";
+import { keyframes } from "styled-components";
+
+const animation = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+
+`;
 
 const StyledBook = styled.li`
+  animation: ${animation} 1s;
   list-style-type: none;
   display: grid;
   border: 1px solid #ddd;
@@ -41,8 +53,8 @@ const StyledBook = styled.li`
 
 const MoreInfoButton = (props) => {
   return (
-    <StyledButton as="a" href={props.url}>
-        More info
+    <StyledButton as="a" href={props.url} target="_blank" rel="noreferrer">
+      More info
     </StyledButton>
   );
 };
@@ -68,7 +80,9 @@ const Book = (props) => {
       <img src={imgSrc} alt={imgAlt} />
       <div>{bookSubject[0]}</div>
       <div>
-        <MoreInfoButton url={`https://openlibrary.org/${bookId}`}></MoreInfoButton>
+        <MoreInfoButton
+          url={`https://openlibrary.org/${bookId}`}
+        ></MoreInfoButton>
       </div>
     </StyledBook>
   );

@@ -16,8 +16,8 @@ const StyledButton = styled.button`
 `;
 
 const Button = () => {
-  return <StyledButton></StyledButton>
-}
+  return <StyledButton></StyledButton>;
+};
 
 export { StyledButton };
 export default Button;

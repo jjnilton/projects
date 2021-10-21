@@ -6,6 +6,7 @@ const StyledLoading = styled.div`
   position: relative;
   width: 80px;
   height: 80px;
+  margin: 0 auto;
   div {
     transform-origin: 40px 40px;
     animation: lds-spinner 1.2s linear infinite;
