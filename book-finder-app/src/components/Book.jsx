@@ -9,19 +9,17 @@ const animation = keyframes`
   to {
     opacity: 1;
   }
-
 `;
 
 const StyledBook = styled.li`
   animation: ${animation} 1s;
   list-style-type: none;
   display: grid;
-  border: 1px solid #ddd;
   border-radius: 5px;
   grid-template-rows: max-content max-content max-content 1fr 50px;
   justify-items: center;
   background-color: white;
-  box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #aaa;
   & h3 {
     margin-bottom: 0;
   }
