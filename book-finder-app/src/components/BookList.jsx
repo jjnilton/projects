@@ -55,7 +55,7 @@ const LoadMoreButton = (props) => {
 };
 
 const Results = styled.section`
-  padding: 10px 5px;
+  padding: 10px 0px;
 `;
 
 const BookList = () => {

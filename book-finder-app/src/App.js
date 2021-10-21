@@ -1,6 +1,7 @@
-import Main from "./components/Main";
 import { createGlobalStyle } from "styled-components";
+import Main from "./components/Main";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -13,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: -apple-system, BlinkMacSystemFont, 'Calibri', 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -28,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
   #root {
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows: max-content 1fr;
     height: 100vh;
   }
 
@@ -38,6 +39,7 @@ function App() {
   return (
     <>
       <GlobalStyle></GlobalStyle>
+      <Header></Header>
       <Main></Main>
       <Footer></Footer>
     </>

@@ -78,10 +78,11 @@ const StyledBookSearch = styled.section`
     & span {
       margin-right: 5px;
       color: #20282f;
+      font-size: 0.8em;
     }
   }
   svg {
-    width: 120px;
+    width: 80px;
   }
 `;
 

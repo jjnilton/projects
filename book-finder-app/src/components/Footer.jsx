@@ -1,20 +1,40 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledFooter = styled.footer`
   text-align: center;
   padding: 10px;
   a {
     text-decoration: none;
-    color: #518abe;
+    color: #225b91;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  div {
+    color: #555;
+    font-size: 0.75em;
   }
 `;
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <a href="#">{'</>'} Source</a>
+      <div>
+        Data from <a href="https://openlibrary.org">OpenLibrary</a> Web API
+      </div>
+      <div>
+        Icon made by{" "}
+        <a href="https://www.freepik.com" title="Freepik" rel="noreferrer">
+          Freepik
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon" rel="noreferrer">
+          Flaticon
+        </a>
+      </div>
+      <a href="#">{"</>"} Source</a>
     </StyledFooter>
-  )
-}
+  );
+};
 
 export default Footer;
