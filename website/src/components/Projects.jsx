@@ -4,7 +4,16 @@ const StyledProjects = styled.article``;
 
 const projects_data = [
   {
-    name: "Project Name",
+    name: "Word Frequency App & API",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+    tags: ["Next.js", "Styled Components", "Chart.js", "Node.js"],
+    source: "https://source",
+    live: "https://live",
+    image: "https://fakeimg.pl/320x180/",
+  },
+  {
+    name: "Lorem Ipsum Generator",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
     tags: ["React", "Styled Components"],
@@ -13,28 +22,19 @@ const projects_data = [
     image: "https://fakeimg.pl/320x180/",
   },
   {
-    name: "Project Name",
+    name: "Book Finder App",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
-    tags: ["React", "Styled Components"],
+    tags: ["React", "Redux", "Styled Components"],
     source: "https://source",
     live: "https://live",
     image: "https://fakeimg.pl/320x180/",
   },
   {
-    name: "Project Name",
+    name: "Product Landing Page",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
-    tags: ["React", "Styled Components"],
-    source: "https://source",
-    live: "https://live",
-    image: "https://fakeimg.pl/320x180/",
-  },
-  {
-    name: "Project Name",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
-    tags: ["React", "Styled Components"],
+    tags: ["HTML5", "CSS3", "Vanilla JavaScript"],
     source: "https://source",
     live: "https://live",
     image: "https://fakeimg.pl/320x180/",
@@ -46,7 +46,8 @@ const StyledProjectList = styled.ul`
   margin: 0;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 334px));
+  justify-content: center;
 `;
 
 const ProjectList = () => {
@@ -63,6 +64,14 @@ const StyledProjectItem = styled.li`
   border: 2px solid black;
   display: grid;
   gap: 10px;
+
+  img {
+    border: 2px solid black;
+    justify-self: center;
+    min-width: 200px;
+    max-width: 320px;
+    width: 100%;
+  }
 
   div.links {
     display: grid;
@@ -97,6 +106,7 @@ const StyledTags = styled.ul`
     padding: 2px;
     margin: 0;
     border: 2px solid black;
+    font-size: 0.8em;
   }
 `;
 
@@ -118,7 +128,7 @@ const ProjectItem = (props) => {
       <div>{props.project.description}</div>
       <Tags tags={props.project.tags}></Tags>
       <div className="links">
-        <a href={props.project.source}>{'</>'} Source</a>
+        <a href={props.project.source}>{"</>"} Source</a>
         <a href={props.project.live}>Live</a>
       </div>
     </StyledProjectItem>

@@ -1,7 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledHeader = styled.header`
-
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: max-content 1fr;
   ul {
     padding: 0;
     margin: 0;
@@ -17,12 +20,25 @@ const StyledHeader = styled.header`
     border: 2px solid black;
   }
 
+  div.logo {
+    display: grid;
+    font-family: monospace;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    font-weight: bold;
+  }
 `;
 
 const Header = () => {
   return (
     <StyledHeader>
-      <div>Logo</div>
+      <div className="logo">
+        <div>J</div>
+        <div>N</div>
+        <div>R</div>
+        <div>J</div>
+      </div>
+      {/* to replace with nav */}
       <ul>
         <li>Home</li>
         <li>Projects</li>
@@ -30,7 +46,7 @@ const Header = () => {
         <li>Contact</li>
       </ul>
     </StyledHeader>
-  )
-}
+  );
+};
 
 export default Header;
