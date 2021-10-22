@@ -5,6 +5,7 @@ const StyledHeader = styled.header`
   margin: 0 auto;
   display: grid;
   grid-template-columns: max-content 1fr;
+  column-gap: 64px;
   ul {
     padding: 0;
     margin: 0;

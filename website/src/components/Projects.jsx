@@ -64,6 +64,7 @@ const StyledProjectItem = styled.li`
   border: 2px solid black;
   display: grid;
   gap: 10px;
+  grid-template-rows: max-content max-content max-content 1fr max-content;
 
   img {
     border: 2px solid black;
@@ -96,11 +97,10 @@ const StyledProjectItem = styled.li`
 const StyledTags = styled.ul`
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
+  display: flex;
   gap: 5px;
-
+  flex-wrap: wrap;
+  align-items: baseline;
   li {
     list-style-type: none;
     padding: 2px;
