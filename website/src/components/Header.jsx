@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import Context from "../store/context";
 import Settings from "./Settings";
+
+const menuOption = {
+  home: { en: "Home", pt: "Início" },
+  projects: { en: "Projects", pt: "Projetos" },
+  about: { en: "About", pt: "Sobre" },
+  contact: { en: "Contact", pt: "Contato" },
+};
 
 const StyledHeader = styled.header`
   max-width: 700px;
@@ -60,13 +68,14 @@ const StyledNav = styled.nav`
 `;
 
 const Nav = (props) => {
+  const { lang } = useContext(Context);
   return (
     <StyledNav $visibility={props.visibility}>
       <ul>
-        <li>Home</li>
-        <li>Projects</li>
-        <li>About/Resume</li>
-        <li>Contact</li>
+        <li>{menuOption.home[lang]}</li>
+        <li>{menuOption.projects[lang]}</li>
+        <li>{menuOption.about[lang]}</li>
+        <li>{menuOption.contact[lang]}</li>
       </ul>
       <Settings></Settings>
     </StyledNav>

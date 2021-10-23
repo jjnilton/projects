@@ -7,13 +7,18 @@ const StyledHello = styled.section`
   text-align: center;
 `;
 
+const content = {
+  en: "Hello, I'm jnrj, and this is my website?",
+  pt: "Olá, eu sou o jnrj e este é o meu website?"
+}
+
 const Hello = () => {
   const { lang } = useContext(Context);
 
   console.log('from context', lang)
 
   return (
-    <StyledHello>Hello, I'm jnrj and this is my website?</StyledHello>
+    <StyledHello>{content[lang]}</StyledHello>
   )
 }
 

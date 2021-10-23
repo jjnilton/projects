@@ -1,4 +1,15 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import Context from "../store/context";
+
+const content = {
+  contact: { en: 'Contact', pt: 'Contato'},
+  name: {en: 'Name', pt: 'Nome'},
+  email: {en: 'Email', pt: 'Email'},
+  subject: {en: 'Subject', pt: 'Assunto'},
+  message: {en: 'Message', pt: 'Mensagem'},
+  send: {en: 'Send', pt: 'Enviar'}
+}
 
 const StyledContact = styled.section`
   form {
@@ -35,19 +46,20 @@ const StyledContact = styled.section`
 `;
 
 const Contact = () => {
+  const { lang } = useContext(Context);
   return (
     <StyledContact>
-      <h2>Contact</h2>
+      <h2>{content.contact[lang]}</h2>
       <form action="">
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">{content.name[lang]}</label>
         <input id="name" name="name" type="text" />
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor="email">{content.email[lang]}</label>
         <input id="email" email="email" type="text" />
-        <label htmlFor="subject">Subject</label>
+        <label htmlFor="subject">{content.subject[lang]}</label>
         <input id="subject" name="subject" type="text" />
-        <label htmlFor="message">Message</label>
+        <label htmlFor="message">{content.message[lang]}</label>
         <textarea id="message" name="message" type="text" rows="5" />
-        <button>Send</button>
+        <button>{content.send[lang]}</button>
       </form>
     </StyledContact>
   );

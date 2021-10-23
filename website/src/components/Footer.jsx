@@ -1,4 +1,10 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import Context from "../store/context";
+
+const content = {
+  source: { en: 'Source', pt: 'Código Fonte'}
+}
 
 const StyledFooter = styled.footer`
   margin: 0 auto;
@@ -12,10 +18,11 @@ const StyledFooter = styled.footer`
 `;
 
 const Footer = () => {
+  const {lang} = useContext(Context);
   return (
     <StyledFooter>
       <div>
-        <a href="https://">Source</a>
+        <a href="https://">{content.source[lang]}</a>
       </div>
     </StyledFooter>
   );

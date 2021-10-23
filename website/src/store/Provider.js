@@ -2,10 +2,15 @@ import { useState } from "react";
 import Context from "./context";
 
 const Provider = (props) => {
-  const [lang, setLang] = useState();
+  const [lang, setLang] = useState('en');
+
+  const setLanguange = (language) => {
+    setLang(language)
+  }
 
   const context = {
-    lang: 'en',
+    lang: lang,
+    setLanguage: setLanguange
   }
 
   return (

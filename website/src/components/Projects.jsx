@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import Context from "../store/context";
 
 const StyledProjects = styled.article``;
 
@@ -136,9 +138,10 @@ const ProjectItem = (props) => {
 };
 
 const Projects = () => {
+  const {lang} = useContext(Context)
   return (
     <StyledProjects>
-      <h2>Projects</h2>
+      <h2>{lang === 'en'? 'Projects' : 'Projetos'}</h2>
       <ProjectList></ProjectList>
     </StyledProjects>
   );
