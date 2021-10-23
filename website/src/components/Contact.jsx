@@ -33,6 +33,8 @@ const StyledContact = styled.section`
     textarea {
       font-family: sans-serif;
       height: unset;
+      resize: vertical;
+      min-height: 100px;
     }
 
     button {
@@ -58,7 +60,7 @@ const Contact = () => {
         <label htmlFor="subject">{content.subject[lang]}</label>
         <input id="subject" name="subject" type="text" />
         <label htmlFor="message">{content.message[lang]}</label>
-        <textarea id="message" name="message" type="text" rows="5" />
+        <textarea id="message" name="message" type="text" rows="5"  />
         <button>{content.send[lang]}</button>
       </form>
     </StyledContact>

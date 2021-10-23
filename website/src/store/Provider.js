@@ -3,14 +3,21 @@ import Context from "./context";
 
 const Provider = (props) => {
   const [lang, setLang] = useState('en');
+  const [theme, setTheme] = useState('light');
 
-  const setLanguange = (language) => {
+  const handleLanguageChange = (language) => {
     setLang(language)
+  }
+
+  const handleThemeChange = (themeName) => {
+    setTheme(themeName)
   }
 
   const context = {
     lang: lang,
-    setLanguage: setLanguange
+    theme,
+    setLanguage: handleLanguageChange,
+    setTheme: handleThemeChange
   }
 
   return (
