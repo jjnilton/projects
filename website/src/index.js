@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createGlobalStyle } from "styled-components";
+import Provider from "./store/Provider";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -12,6 +13,12 @@ const GlobalStyle = createGlobalStyle`
 
   *, *::after, *::before {
     box-sizing: inherit;
+  }
+
+  *::selection {
+    background-color: black;
+    color: white;
+
   }
 
   body {
@@ -37,8 +44,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle></GlobalStyle>
-    <App />
+    <Provider>
+      <GlobalStyle></GlobalStyle>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

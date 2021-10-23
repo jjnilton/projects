@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Settings from "./Settings";
 
 const StyledHeader = styled.header`
   max-width: 700px;
@@ -8,6 +9,11 @@ const StyledHeader = styled.header`
   grid-template-columns: max-content max-content;
   grid-template-rows: max-content max-content;
   justify-content: space-between;
+
+  div.logo {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
 
   /* div.logo {
     display: grid;
@@ -46,7 +52,7 @@ const StyledNav = styled.nav`
   @media (max-width: 560px) {
     grid-column: 1 / -1;
 
-    display: ${(props) => !props.visibility && "none"};
+    display: ${(props) => !props.$visibility && "none"};
     ul {
       grid-template-columns: unset;
     }
@@ -55,21 +61,24 @@ const StyledNav = styled.nav`
 
 const Nav = (props) => {
   return (
-    <StyledNav visibility={props.visibility}>
+    <StyledNav $visibility={props.visibility}>
       <ul>
         <li>Home</li>
         <li>Projects</li>
         <li>About/Resume</li>
         <li>Contact</li>
       </ul>
+      <Settings></Settings>
     </StyledNav>
   );
 };
 
 const StyledHamburgerMenu = styled.button`
   border: 2px solid black;
+  background-color: white;
   padding: 5px;
   width: 100px;
+  cursor: pointer;
   @media (min-width: 560px) {
     display: none;
   }
@@ -94,7 +103,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <div className="logo">Logo</div>
+      <div className="logo">jnrj</div>
       {/* to replace with nav */}
       <HamburgerMenu toggleNavVisibility={handleNavVisibility}></HamburgerMenu>
       <Nav visibility={visibility}></Nav>

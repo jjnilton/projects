@@ -83,10 +83,12 @@ const StyledProjectItem = styled.li`
     display: block;
     padding: 5px;
     text-decoration: none;
+    text-align: center;
   }
   a:first-child {
     background-color: black;
     color: white;
+    /* font-family: monospace; */
   }
   a:last-child {
     color: black;
@@ -111,10 +113,8 @@ const StyledTags = styled.ul`
 `;
 
 const Tags = (props) => {
-  console.log(props.tags);
-
-  const tagListItems = props.tags.map((tag) => {
-    return <li>{tag}</li>;
+  const tagListItems = props.tags.map((tag, index) => {
+    return <li key={index}>{tag}</li>;
   });
 
   return <StyledTags>{tagListItems}</StyledTags>;
