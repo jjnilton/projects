@@ -8,8 +8,8 @@ const content = {
     pt: "Ola, eu sou o NOME e"
   },
   secondHalf: {
-    en: "This is my website",
-    pt: "Este é o meu website"
+    en: "this is my website",
+    pt: "este é o meu website"
   }
 };
 

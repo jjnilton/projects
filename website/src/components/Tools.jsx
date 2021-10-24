@@ -74,7 +74,7 @@ const StyledTools = styled.section`
         transition: filter 500ms;
         margin: 0 auto;
         display: block;
-        &:hover {
+        &:hover:not(img[alt="Next.js"]) {
           filter: unset;
         }
       }

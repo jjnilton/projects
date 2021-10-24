@@ -22,9 +22,9 @@ const StyledSettings = styled.section`
       border: none;
       background-color: none;
       font-size: 1.2em;
-      background-color: black;
-      color: white;
-      border: 2px solid black;
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primary};
+      /* border: 2px solid ${({ theme }) => theme.colors.primary}; */
       cursor: pointer;
     }
   }
