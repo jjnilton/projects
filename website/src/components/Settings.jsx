@@ -3,16 +3,14 @@ import styled from "styled-components";
 import Context from "../store/context";
 
 const StyledSettings = styled.section`
-  background-color: white;
-  /* color: black;
-  border: 2px solid black; */
   margin: 5px 0;
   display: grid;
-  /* justify-items: right; */
+  justify-content: right;
   grid-template-columns: max-content max-content;
   gap: 5px;
 
   div.theme-switcher {
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
     label {
       color: ${({ theme }) => theme.colors.primary};
       font-size: 2em;
@@ -33,7 +31,7 @@ const StyledSettings = styled.section`
 
   div.language-switcher {
     display: grid;
-    border: 2px solid black;
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
     width: 100px;
     position: relative;
     cursor: pointer;
@@ -41,6 +39,9 @@ const StyledSettings = styled.section`
       display: grid;
       grid-template-columns: 1fr 1fr;
       justify-items: center;
+      align-items: center;
+      background-color: white;
+      color: black;
     }
 
     div.thing-that-move {
@@ -54,11 +55,11 @@ const StyledSettings = styled.section`
       height: 100%;
       width: 50px;
       transition: transform 1s;
-      transform: ${(props) => props.lang === "en" && "translateX(48px)"};
+      transform: ${(props) => props.lang === "en" && "translateX(46px)"};
     }
   }
 
-  div.theme-toggler {
+  /* div.theme-toggler {
     background-color: gray;
     color: white;
     display: grid;
@@ -87,7 +88,7 @@ const StyledSettings = styled.section`
     input {
       display: none;
     }
-  }
+  } */
 `;
 
 const Settings = () => {
@@ -132,7 +133,7 @@ const Settings = () => {
       </div> */}
       <div className="theme-switcher">
         <button onClick={toggleTheme}>
-          {theme === "dark" ? "🌛︎" : "🌞︎"}
+          {theme === "light" ? "🌛︎" : "🌞︎"}
         </button>
       </div>
       {/* <div className="theme-toggler">

@@ -3,13 +3,13 @@ import styled from "styled-components";
 import Context from "../store/context";
 
 const content = {
-  contact: { en: 'Contact', pt: 'Contato'},
-  name: {en: 'Name', pt: 'Nome'},
-  email: {en: 'Email', pt: 'Email'},
-  subject: {en: 'Subject', pt: 'Assunto'},
-  message: {en: 'Message', pt: 'Mensagem'},
-  send: {en: 'Send', pt: 'Enviar'}
-}
+  contact: { en: "Contact", pt: "Contato" },
+  name: { en: "Name", pt: "Nome" },
+  email: { en: "Email", pt: "Email" },
+  subject: { en: "Subject", pt: "Assunto" },
+  message: { en: "Message", pt: "Mensagem" },
+  send: { en: "Send", pt: "Enviar" },
+};
 
 const StyledContact = styled.section`
   form {
@@ -52,6 +52,10 @@ const Contact = () => {
   return (
     <StyledContact>
       <h2>{content.contact[lang]}</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
+        tenetur.
+      </p>
       <form action="">
         <label htmlFor="name">{content.name[lang]}</label>
         <input id="name" name="name" type="text" />
@@ -60,7 +64,7 @@ const Contact = () => {
         <label htmlFor="subject">{content.subject[lang]}</label>
         <input id="subject" name="subject" type="text" />
         <label htmlFor="message">{content.message[lang]}</label>
-        <textarea id="message" name="message" type="text" rows="5"  />
+        <textarea id="message" name="message" type="text" rows="5" />
         <button>{content.send[lang]}</button>
       </form>
     </StyledContact>

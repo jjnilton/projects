@@ -6,19 +6,13 @@ import { createGlobalStyle } from "styled-components";
 import Provider from "./store/Provider";
 
 const GlobalStyle = createGlobalStyle`
-
   html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
 
   *, *::after, *::before {
     box-sizing: inherit;
-  }
-
-  *::selection {
-    background-color: black;
-    color: white;
-
   }
 
   body {
@@ -34,10 +28,6 @@ const GlobalStyle = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
-  }
-
-  #root {
-    padding: 10px;
   }
 
 `;

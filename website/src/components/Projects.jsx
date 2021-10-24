@@ -9,7 +9,7 @@ const projects_data = [
     name: "Word Frequency App & API",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
-    tags: ["Next.js", "Styled Components", "Chart.js", "Node.js"],
+    tags: ["Next.js", "Styled Components", "Chart.js"],
     source: "https://source",
     live: "https://live",
     image: "https://fakeimg.pl/320x180/",
@@ -48,7 +48,7 @@ const StyledProjectList = styled.ul`
   margin: 0;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 334px));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   justify-content: center;
 `;
 
@@ -61,15 +61,15 @@ const ProjectList = () => {
 
 const StyledProjectItem = styled.li`
   margin: 0;
-  padding: 5px;
+  padding: 10px;
   list-style-type: none;
-  border: 2px solid black;
+  border: 2px solid ${({theme}) => theme.colors.secondary};
   display: grid;
   gap: 10px;
   grid-template-rows: max-content max-content max-content 1fr max-content;
 
   img {
-    border: 2px solid black;
+    border: 2px solid ${({theme}) => theme.colors.secondary};
     justify-self: center;
     min-width: 200px;
     max-width: 320px;
@@ -88,13 +88,13 @@ const StyledProjectItem = styled.li`
     text-align: center;
   }
   a:first-child {
-    background-color: black;
-    color: white;
+    background-color: ${({theme}) => theme.colors.secondary};
+    color: ${({theme}) => theme.colors.primary};
     /* font-family: monospace; */
   }
   a:last-child {
-    color: black;
-    border: 2px solid black;
+    color: ${({theme}) => theme.colors.secondary};
+    border: 2px solid ${({theme}) => theme.colors.secondary};
   }
 `;
 
