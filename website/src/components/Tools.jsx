@@ -98,7 +98,7 @@ const Tools = () => {
   return (
     <>
       <StyledTools>
-        <h2>Tools</h2>
+        <h3>Tools</h3>
         <ul>{toolsItems}</ul>
       </StyledTools>
     </>

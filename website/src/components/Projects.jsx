@@ -63,13 +63,13 @@ const StyledProjectItem = styled.li`
   margin: 0;
   padding: 10px;
   list-style-type: none;
-  border: 2px solid ${({theme}) => theme.colors.secondary};
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
   display: grid;
   gap: 10px;
   grid-template-rows: max-content max-content max-content 1fr max-content;
 
   img {
-    border: 2px solid ${({theme}) => theme.colors.secondary};
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
     justify-self: center;
     min-width: 200px;
     max-width: 320px;
@@ -88,13 +88,13 @@ const StyledProjectItem = styled.li`
     text-align: center;
   }
   a:first-child {
-    background-color: ${({theme}) => theme.colors.secondary};
-    color: ${({theme}) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
     /* font-family: monospace; */
   }
   a:last-child {
-    color: ${({theme}) => theme.colors.secondary};
-    border: 2px solid ${({theme}) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.secondary};
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
   }
 `;
 
@@ -138,10 +138,10 @@ const ProjectItem = (props) => {
 };
 
 const Projects = () => {
-  const {lang} = useContext(Context)
+  const { lang } = useContext(Context);
   return (
     <StyledProjects>
-      <h2>{lang === 'en'? 'Projects' : 'Projetos'}</h2>
+      <h2>{lang === "en" ? "Projects" : "Projetos"}</h2>
       <ProjectList></ProjectList>
     </StyledProjects>
   );

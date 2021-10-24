@@ -38,9 +38,9 @@ const About = () => {
         </ul>
       </section> */}
       <p>
-        I'm a frontend web developer, and systems analyst based on City - XX,
-        Country. I'm currently focused in developing with
-        JavaScript, more specifically React.js and its ecosystem.
+        I'm a web developer, and systems analyst based on City - XX, Country.
+        I'm currently focused on building web applications with JavaScript, more
+        specifically React.js and its ecosystem.
       </p>
       <p>When I'm not programming, you can find me [doing other stuff].</p>
       <h3>Setup</h3>

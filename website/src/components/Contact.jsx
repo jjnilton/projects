@@ -3,12 +3,23 @@ import styled from "styled-components";
 import Context from "../store/context";
 
 const content = {
-  contact: { en: "Contact", pt: "Contato" },
-  name: { en: "Name", pt: "Nome" },
-  email: { en: "Email", pt: "Email" },
-  subject: { en: "Subject", pt: "Assunto" },
-  message: { en: "Message", pt: "Mensagem" },
-  send: { en: "Send", pt: "Enviar" },
+  section : {
+    title: { en: "Contact", pt: "Contato" },
+  },
+  label : {
+    name: { en: "Name", pt: "Nome" },
+    email: { en: "Email", pt: "E-mail" },
+    subject: { en: "Subject", pt: "Assunto" },
+    message: { en: "Message", pt: "Mensagem" },
+    send: { en: "Send", pt: "Enviar" },
+  },
+  placeholder : {
+    name: {en: "Your name", pt: "Seu nome"},
+    email: {en: "Your email", pt: "Seu e-mail"},
+    subject: {en: "The subject", pt: "O assunto"},
+    message: {en: "Your message", pt: "Sua mensagem"}
+  }
+
 };
 
 const StyledContact = styled.section`
@@ -51,21 +62,21 @@ const Contact = () => {
   const { lang } = useContext(Context);
   return (
     <StyledContact>
-      <h2>{content.contact[lang]}</h2>
+      <h2>{content.section.title[lang]}</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
         tenetur.
       </p>
       <form action="">
-        <label htmlFor="name">{content.name[lang]}</label>
-        <input id="name" name="name" type="text" />
-        <label htmlFor="email">{content.email[lang]}</label>
-        <input id="email" email="email" type="text" />
-        <label htmlFor="subject">{content.subject[lang]}</label>
-        <input id="subject" name="subject" type="text" />
-        <label htmlFor="message">{content.message[lang]}</label>
-        <textarea id="message" name="message" type="text" rows="5" />
-        <button>{content.send[lang]}</button>
+        <label htmlFor="name">{content.label.name[lang]}</label>
+        <input id="name" name="name" type="text" placeholder={content.placeholder.name[lang]} />
+        <label htmlFor="email">{content.label.email[lang]}</label>
+        <input id="email" email="email" type="text" placeholder={content.placeholder.email[lang]} />
+        <label htmlFor="subject">{content.label.subject[lang]}</label>
+        <input id="subject" name="subject" type="text" placeholder={content.placeholder.subject[lang]}/>
+        <label htmlFor="message">{content.label.message[lang]}</label>
+        <textarea id="message" name="message" type="text" rows="5" placeholder={content.placeholder.message[lang]}/>
+        <button>{content.label.send[lang]}</button>
       </form>
     </StyledContact>
   );
