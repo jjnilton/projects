@@ -1,6 +1,11 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import Context from "../store/context";
+import WordFrequencyAppScreenshot from "../screenshots/word-frequency-app.png";
+import LoremIpsumGeneratorDarkScreenshot from "../screenshots/lorem-ipsum-generator-dark.png";
+import LoremIpsumGeneratorLightScreenshot from "../screenshots/lorem-ipsum-generator-light.png";
+import BookFinderAppScreenshot from "../screenshots/book-finder-app.png";
+import EventCountdownTimerScreenshot from "../screenshots/event-countdown-timer.png";
 
 const StyledProjects = styled.article``;
 
@@ -12,9 +17,9 @@ const projects_data = [
       pt: "Uma aplicação web e API que verifica a frequência das palavras em um texto, e exibe os dados em uma tabela e em um gráfico.",
     },
     tags: ["Next.js", "Styled Components", "Chart.js"],
-    source: "https://source",
-    live: "https://live",
-    image: "https://fakeimg.pl/320x180/",
+    source: "https://github.com/jjnilton/projects/blob/main/word-frequency",
+    live: "https://word-frequency-app.vercel.app/",
+    image: WordFrequencyAppScreenshot,
   },
   {
     name: "Lorem Ipsum Generator",
@@ -22,10 +27,14 @@ const projects_data = [
       en: "A web app that generates a Lorem Ipsum placeholder text, based on the quantity of characters, words, or paragraphs specified.",
       pt: "Uma aplicação web que gera um texto de Lorem Ipsum, baseado na quantidade de caracteres, palavras ou parágrafos.",
     },
-    tags: ["React", "Styled Components"],
-    source: "https://source",
-    live: "https://live",
-    image: "https://fakeimg.pl/320x180/",
+    tags: ["React", "Styled Components", "Clipboard API"],
+    source:
+      "https://github.com/jjnilton/projects/blob/main/lorem-ipsum-generator",
+    live: "https://jjnilton.github.io/projects/lorem-ipsum-generator/build",
+    image: {
+      light: LoremIpsumGeneratorLightScreenshot,
+      dark: LoremIpsumGeneratorDarkScreenshot,
+    },
   },
   {
     name: "Book Finder App",
@@ -36,18 +45,19 @@ const projects_data = [
     tags: ["React", "Redux", "Styled Components"],
     source: "https://source",
     live: "https://live",
-    image: "https://fakeimg.pl/320x180/",
+    image: BookFinderAppScreenshot,
   },
   {
-    name: "Product Landing Page",
+    name: "Event Countdown Timer",
     description: {
-      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
-      pt: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+      en: "A web app that allows creating multiple countdown timers, and notifies the user when the date is reached.",
+      pt: "Uma aplicação web que permite criar múltiplos timers, e notifica o usuário quando a data é alcançada.",
     },
-    tags: ["HTML5", "CSS3", "Vanilla JavaScript"],
-    source: "https://source",
-    live: "https://live",
-    image: "https://fakeimg.pl/320x180/",
+    tags: ["React", "Styled Components", "Web APIs"],
+    source:
+      "https://github.com/jjnilton/projects/blob/main/event-countdown-timer",
+    live: "https://jjnilton.github.io/projects/event-countdown-timer/build",
+    image: EventCountdownTimerScreenshot,
   },
 ];
 
@@ -84,6 +94,10 @@ const StyledProjectItem = styled.li`
     width: 100%;
   }
 
+  h3 {
+    margin: 0;
+  }
+
   div.links {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -94,15 +108,26 @@ const StyledProjectItem = styled.li`
     padding: 5px;
     text-decoration: none;
     text-align: center;
+    transition: background-color .2s, color .2s, border-color .2s;
   }
   a:first-child {
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
     /* font-family: monospace; */
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.secondary};
+      border: 2px solid ${({ theme }) => theme.colors.secondary};
+    }
   }
   a:last-child {
     color: ${({ theme }) => theme.colors.secondary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
 `;
 
@@ -115,9 +140,9 @@ const StyledTags = styled.ul`
   align-items: flex-end;
   li {
     list-style-type: none;
-    padding: 2px;
+    padding: 2px 4px;
     margin: 0;
-    border: 2px solid ${({theme}) => theme.colors.secondary};
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
     font-size: 0.8em;
   }
 `;
@@ -131,10 +156,17 @@ const Tags = (props) => {
 };
 
 const ProjectItem = (props) => {
-  const { lang } = useContext(Context);
+  const { lang, theme } = useContext(Context);
   return (
     <StyledProjectItem>
-      <img src={props.project.image} alt={`${props.project.name} screenshot`} />
+      <img
+        src={
+          theme === "light"
+            ? props.project.image.light || props.project.image
+            : props.project.image.dark || props.project.image
+        }
+        alt={`${props.project.name} screenshot`}
+      />
       <h3>{props.project.name}</h3>
       <div>{props.project.description[lang]}</div>
       <Tags tags={props.project.tags}></Tags>
@@ -146,11 +178,23 @@ const ProjectItem = (props) => {
   );
 };
 
+const content = {
+  title: {
+    en: "Projects",
+    pt: "Projetos",
+  },
+  subtitle: {
+    en: "The latest projects I worked on",
+    pt: "Os últimos projetos que trabalhei",
+  },
+};
+
 const Projects = () => {
   const { lang } = useContext(Context);
   return (
     <StyledProjects>
-      <h2>{lang === "en" ? "Projects" : "Projetos"}</h2>
+      <h2>{content.title[lang]}</h2>
+      {/* <p>{content.subtitle[lang]}</p> */}
       <ProjectList></ProjectList>
     </StyledProjects>
   );

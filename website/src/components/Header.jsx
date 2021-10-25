@@ -49,6 +49,11 @@ const StyledNav = styled.nav`
     cursor: pointer;
     background-color: ${({theme}) => theme.colors.primary};
     color: ${({theme}) => theme.colors.secondary};
+    transition: background-color .2s, color .2s;
+    &:hover {
+      background-color: ${({theme}) => theme.colors.secondary};
+      color: ${({theme}) => theme.colors.primary};
+    }
   }
 
   @media (max-width: 560px) {

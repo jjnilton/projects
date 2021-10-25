@@ -43,6 +43,9 @@ function App() {
   let currentTheme = theme === "light" ? light : dark;
 
   useEffect(() => {
+
+    console.log(window.navigator.languages)
+
     if (window?.matchMedia("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
     } else {

@@ -20,7 +20,7 @@ const content = {
     email: { en: "Your email", pt: "Seu e-mail" },
     subject: { en: "The subject", pt: "O assunto" },
     message: { en: "Your message", pt: "Sua mensagem" },
-  }
+  },
 };
 
 const StyledContact = styled.section`
@@ -29,6 +29,11 @@ const StyledContact = styled.section`
       color: unset;
       font-weight: bold;
       text-decoration: unset;
+      transition: background-color 0.2s, color 0.2s;
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.secondary};
+        color: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
   form {
@@ -37,20 +42,24 @@ const StyledContact = styled.section`
     label {
       font-weight: bold;
     }
+    label:not(label[for="subject"])::after {
+      content: "*";
+    }
 
     input,
     textarea {
-      caret-color: ${({theme}) => theme.colors.secondary};
-      border: 2px solid ${({theme}) => theme.colors.secondary};
-      background-color: ${({theme}) => theme.colors.primary};
+      caret-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.secondary};
+      border: 2px solid ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ theme }) => theme.colors.primary};
       font-size: 1em;
       height: 2em;
       padding: 5px;
       &:focus {
-        outline: 1px solid gray;
+        outline: 1px solid ${({ theme }) => theme.colors.secondary};
       }
       &::placeholder {
-        color: ${({theme}) => theme.colors.secondary};
+        color: ${({ theme }) => theme.colors.secondary};
       }
     }
 
@@ -62,8 +71,8 @@ const StyledContact = styled.section`
     }
 
     button {
-      background-color: ${({theme}) => theme.colors.secondary};
-      color: ${({theme}) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primary};
       padding: 5px;
       border: none;
       font-size: 1em;
@@ -76,12 +85,12 @@ const Paragraph = (props) => {
   const p =
     props.lang === "en" ? (
       <p>
-        Have anything to say? Reach me through my email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or
-        use the form below.
+        You can reach me through my email:{" "}
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or use the form below.
       </p>
     ) : (
       <p>
-        Tem algo dizer? Entre em contato através do meu e-mail:{" "}
+        Entre em contato através do meu e-mail:{" "}
         <a href={`mailto:${EMAIL}`}>{EMAIL}</a> ou pelo formulário abaixo.
       </p>
     );
@@ -91,24 +100,52 @@ const Paragraph = (props) => {
 
 const Contact = () => {
   const { lang } = useContext(Context);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const name = formData.get("name");
+    // const email = formData.get("email");
+    const message = formData.get("message");
+
+    const sendMessage = async () => {
+      const response = await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ name, message }),
+      });
+      console.log(await response);
+      console.log(await response.json());
+    };
+
+    sendMessage();
+  };
+
   return (
     <StyledContact>
       <h2>{content.section.title[lang]}</h2>
       <Paragraph lang={lang}></Paragraph>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name">{content.label.name[lang]}</label>
         <input
           id="name"
           name="name"
           type="text"
           placeholder={content.placeholder.name[lang]}
+          required
         />
         <label htmlFor="email">{content.label.email[lang]}</label>
         <input
           id="email"
-          email="email"
+          name="email"
           type="text"
           placeholder={content.placeholder.email[lang]}
+          required
         />
         <label htmlFor="subject">{content.label.subject[lang]}</label>
         <input
@@ -124,6 +161,7 @@ const Contact = () => {
           type="text"
           rows="5"
           placeholder={content.placeholder.message[lang]}
+          required
         />
         <button>{content.label.send[lang]}</button>
       </form>

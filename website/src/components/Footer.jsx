@@ -38,8 +38,8 @@ const Footer = () => {
       </blockquote>
       <div>
         <ul>
-          <li><a href="">GitHub</a></li>
-          <li><a href="">LinkedIn</a></li>
+          <li><a href="https://">GitHub</a></li>
+          <li><a href="https://">LinkedIn</a></li>
         </ul>
       </div>
       <div>
