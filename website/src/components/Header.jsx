@@ -80,8 +80,11 @@ const Nav = (props) => {
 };
 
 const StyledHamburgerMenu = styled.button`
-  border: 2px solid black;
-  background-color: white;
+  border: none;
+  background-color: ${({theme}) => theme.colors.secondary};
+  color: ${({theme}) => theme.colors.primary};
+  font-size: 1em;
+  font-family: inherit;
   padding: 5px;
   width: 96px;
   cursor: pointer;

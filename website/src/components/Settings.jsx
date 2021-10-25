@@ -3,11 +3,11 @@ import styled from "styled-components";
 import Context from "../store/context";
 
 const StyledSettings = styled.section`
-  margin: 5px 0;
+  margin: 10px 0;
   display: grid;
   justify-content: right;
   grid-template-columns: max-content max-content max-content;
-  gap: 5px;
+  gap: 10px;
 
   div.theme-switcher {
     border: 2px solid ${({ theme }) => theme.colors.secondary};
