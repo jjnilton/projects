@@ -45,15 +45,17 @@ const StyledNav = styled.nav`
     margin: 0;
     padding: 5px;
     list-style-type: none;
-    border: 2px solid ${({theme}) => theme.colors.secondary};
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
     text-align: center;
     cursor: pointer;
-    background-color: ${({theme}) => theme.colors.primary};
-    color: ${({theme}) => theme.colors.secondary};
-    transition: background-color .2s, color .2s;
-    &:hover {
-      background-color: ${({theme}) => theme.colors.secondary};
-      color: ${({theme}) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.secondary};
+    transition: background-color 0.2s, color 0.2s;
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.secondary};
+        color: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
 
@@ -81,9 +83,9 @@ const Nav = (props) => {
 };
 
 const StyledHamburgerMenu = styled.button`
-  border: 2px solid ${({theme}) => theme.colors.secondary};
-  background-color: ${({theme}) => theme.colors.primary};
-  color: ${({theme}) => theme.colors.secondary};
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 1em;
   font-family: inherit;
   padding: 5px;
@@ -116,7 +118,10 @@ const Header = () => {
     <StyledHeader>
       <div className="logo">jnrj</div>
       {/* to replace with nav */}
-      <HamburgerMenu toggleNavVisibility={handleNavVisibility} visibility={visibility}></HamburgerMenu>
+      <HamburgerMenu
+        toggleNavVisibility={handleNavVisibility}
+        visibility={visibility}
+      ></HamburgerMenu>
       <Nav visibility={visibility}></Nav>
     </StyledHeader>
   );

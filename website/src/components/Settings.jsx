@@ -26,10 +26,13 @@ const StyledSettings = styled.section`
       color: ${({ theme }) => theme.colors.secondary};
       /* border: 2px solid ${({ theme }) => theme.colors.primary}; */
       cursor: pointer;
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.secondary};
-        color: ${({ theme }) => theme.colors.primary};
+      @media (hover: hover) {
+        &:hover {
+          background-color: ${({ theme }) => theme.colors.secondary};
+          color: ${({ theme }) => theme.colors.primary};
+        }
       }
+
       @media (max-width: 560px) {
         width: 48px;
       }
