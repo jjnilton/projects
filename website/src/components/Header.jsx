@@ -81,9 +81,9 @@ const Nav = (props) => {
 };
 
 const StyledHamburgerMenu = styled.button`
-  border: none;
-  background-color: ${({theme}) => theme.colors.secondary};
-  color: ${({theme}) => theme.colors.primary};
+  border: 2px solid ${({theme}) => theme.colors.secondary};
+  background-color: ${({theme}) => theme.colors.primary};
+  color: ${({theme}) => theme.colors.secondary};
   font-size: 1em;
   font-family: inherit;
   padding: 5px;
@@ -116,7 +116,7 @@ const Header = () => {
     <StyledHeader>
       <div className="logo">jnrj</div>
       {/* to replace with nav */}
-      <HamburgerMenu toggleNavVisibility={handleNavVisibility}></HamburgerMenu>
+      <HamburgerMenu toggleNavVisibility={handleNavVisibility} visibility={visibility}></HamburgerMenu>
       <Nav visibility={visibility}></Nav>
     </StyledHeader>
   );

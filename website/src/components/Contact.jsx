@@ -73,10 +73,18 @@ const StyledContact = styled.section`
     button {
       background-color: ${({ theme }) => theme.colors.secondary};
       color: ${({ theme }) => theme.colors.primary};
+      border: 2px solid ${({ theme }) => theme.colors.secondary};
       padding: 5px;
-      border: none;
       font-size: 1em;
       cursor: pointer;
+      transition: background-color .2s, color .2s, border-color .2s;
+      @media (hover: hover) {
+        &:hover {
+          background-color: ${({ theme }) => theme.colors.primary};
+          color: ${({ theme }) => theme.colors.secondary};
+          border: 2px solid ${({ theme }) => theme.colors.secondary};
+        }
+      }
     }
   }
 `;
