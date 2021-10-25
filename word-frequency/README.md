@@ -18,7 +18,7 @@ along with its frequency.
       box must allow the entry of large blocks of text.
 - [x] User can click the button to analyze the word frequency in
       the text that has been input.
-- [ ] User can see an error message if the text input box is empty.
+- [x] User can see an error message if the text input box is empty.
 - [x] User can see the word frequency table populated when the button is clicked. Each row in the table contains a word and the number of times
       it occurs in the input text.
 - [x] User can see the word frequency table ordered in descending sequence

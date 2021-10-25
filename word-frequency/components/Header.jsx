@@ -13,12 +13,20 @@ const StyledHeader = styled.header`
     margin: 0 auto;
     align-items: center;
     flex-wrap: wrap;
+    & > div {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+  img {
+    filter: invert();
+    width: 64px;
   }
   h1 {
     & > a {
       color: white;
       text-decoration: none;
-      /* white-space: nowrap; */
     }
   }
   ul {
@@ -45,9 +53,12 @@ const Header = () => {
   return (
     <StyledHeader>
       <div>
-        <h1>
-          <Link href="/">Word Frequency App</Link>
-        </h1>
+        <div>
+          <img src="/logo.svg" alt="Word Frequency App Logo" />
+          <h1>
+            <Link href="/">Word Frequency App</Link>
+          </h1>
+        </div>
         <nav>
           <ul>
             <li>
