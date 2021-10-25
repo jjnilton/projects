@@ -98,8 +98,8 @@ const Tools = () => {
   const toolsItems = content.tools.map((item) => {
     return (
       <li key={item.name}>
-        <div>{item.name}</div>
         <img src={item.image} alt={item.name} />
+        <div>{item.name}</div>
         <p>{item.description[lang]}</p>
       </li>
     );

@@ -48,6 +48,8 @@ const StyledAbout = styled.section`
       }
     }
   }
+
+
 `;
 
 const Setup = (props) => {
@@ -57,7 +59,7 @@ const Setup = (props) => {
   let website = (
     <li>
       This website is hosted on <a href="https://">GitHub Pages</a>, and uses
-      the React.js library.
+      the <a href="https://">React.js</a> library.
     </li>
   );
   let editor = (
@@ -95,7 +97,7 @@ const Setup = (props) => {
     website = (
       <li>
         Este website é hospedado na <a href="https://">GitHub Pages</a>, e usa a
-        biblioteca React.js.
+        biblioteca <a href="https://">React.js</a>.
       </li>
     );
     editor = (
