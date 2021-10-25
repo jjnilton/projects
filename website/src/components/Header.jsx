@@ -20,6 +20,7 @@ const StyledHeader = styled.header`
   div.logo {
     font-weight: bold;
     font-size: 1.5em;
+    line-height: 1em;
   }
 
   div.logo {
