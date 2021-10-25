@@ -7,8 +7,10 @@ const StyledProjects = styled.article``;
 const projects_data = [
   {
     name: "Word Frequency App & API",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+    description: {
+      en: "A web app and API that checks the frequency of words in a text, and displays the data in a table and a chart.",
+      pt: "Uma aplicação web e API que verifica a frequência das palavras em um texto, e exibe os dados em uma tabela e em um gráfico.",
+    },
     tags: ["Next.js", "Styled Components", "Chart.js"],
     source: "https://source",
     live: "https://live",
@@ -16,8 +18,10 @@ const projects_data = [
   },
   {
     name: "Lorem Ipsum Generator",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+    description: {
+      en: "A web app that generates a Lorem Ipsum placeholder text, based on the quantity of characters, words, or paragraphs specified.",
+      pt: "Uma aplicação web que gera um texto de Lorem Ipsum, baseado na quantidade de caracteres, palavras ou parágrafos.",
+    },
     tags: ["React", "Styled Components"],
     source: "https://source",
     live: "https://live",
@@ -25,8 +29,10 @@ const projects_data = [
   },
   {
     name: "Book Finder App",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+    description: {
+      en: "A web app that allows to search books using the OpenLibrary.org API, and displays the results in a grid layout.",
+      pt: "Uma aplicação web que permite pesquisar livros usando a API da OpenLibrary.org, e exibe os resultados num grid.",
+    },
     tags: ["React", "Redux", "Styled Components"],
     source: "https://source",
     live: "https://live",
@@ -34,8 +40,10 @@ const projects_data = [
   },
   {
     name: "Product Landing Page",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+    description: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+      pt: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iste.",
+    },
     tags: ["HTML5", "CSS3", "Vanilla JavaScript"],
     source: "https://source",
     live: "https://live",
@@ -104,7 +112,7 @@ const StyledTags = styled.ul`
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-end;
   li {
     list-style-type: none;
     padding: 2px;
@@ -123,11 +131,12 @@ const Tags = (props) => {
 };
 
 const ProjectItem = (props) => {
+  const { lang } = useContext(Context);
   return (
     <StyledProjectItem>
       <img src={props.project.image} alt={`${props.project.name} screenshot`} />
       <h3>{props.project.name}</h3>
-      <div>{props.project.description}</div>
+      <div>{props.project.description[lang]}</div>
       <Tags tags={props.project.tags}></Tags>
       <div className="links">
         <a href={props.project.source}>{"</>"} Source</a>

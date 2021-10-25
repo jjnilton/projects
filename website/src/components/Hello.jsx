@@ -5,7 +5,7 @@ import Context from "../store/context";
 const content = {
   firstHalf: {
     en: "Hello, I'm NAME, and",
-    pt: "Ola, eu sou o NOME e"
+    pt: "Olá, eu sou o NOME e"
   },
   secondHalf: {
     en: "this is my website",

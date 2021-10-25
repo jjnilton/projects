@@ -1,4 +1,23 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import Context from "../store/context";
+
+const content = {
+  section : {
+    title: {
+      en: "About",
+      pt: "Sobre"
+    }
+  },
+  presentation: {
+    en: "I'm a web developer, and systems analyst based on City - XX, Country. I'm currently focused on building web applications with JavaScript, more specifically with React.js and its ecosystem.",
+    pt: "Eu sou um desenvolvedor frontend e analistas de sistemas de Cidade - XX, País. Atualmente eu estou focado em construir aplicações web com JavaScript, mais especificamente com React.js e seu ecossistema."
+  },
+  extra_presentation: {
+    en: "When I'm not programming, you can find me [doing other stuff].",
+    pt: "Quando eu não estou programando, você pode me encontrar [fazendo outras coisas]."
+  }
+};
 
 const StyledAbout = styled.section`
   a {
@@ -26,9 +45,10 @@ const StyledAbout = styled.section`
 `;
 
 const About = () => {
+  const {lang} = useContext(Context);
   return (
     <StyledAbout>
-      <h2>About</h2>
+      <h2>{content.section.title[lang]}</h2>
       {/* <section className="summary">
         <img src="https://fakeimg.pl/250x250" alt="" />
         <ul>
@@ -38,11 +58,9 @@ const About = () => {
         </ul>
       </section> */}
       <p>
-        I'm a web developer, and systems analyst based on City - XX, Country.
-        I'm currently focused on building web applications with JavaScript, more
-        specifically React.js and its ecosystem.
+        {content.presentation[lang]}
       </p>
-      <p>When I'm not programming, you can find me [doing other stuff].</p>
+      <p>{content.extra_presentation[lang]}</p>
       <h3>Setup</h3>
       <ul>
         <li>

@@ -6,7 +6,7 @@ const StyledSettings = styled.section`
   margin: 5px 0;
   display: grid;
   justify-content: right;
-  grid-template-columns: max-content max-content;
+  grid-template-columns: max-content max-content max-content;
   gap: 5px;
 
   div.theme-switcher {
@@ -22,8 +22,8 @@ const StyledSettings = styled.section`
       border: none;
       background-color: none;
       font-size: 1.2em;
-      background-color: ${({ theme }) => theme.colors.secondary};
-      color: ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.secondary};
       /* border: 2px solid ${({ theme }) => theme.colors.primary}; */
       cursor: pointer;
     }
@@ -35,73 +35,98 @@ const StyledSettings = styled.section`
     width: 100px;
     position: relative;
     cursor: pointer;
+    align-items: center;
+    background-color: ${({ theme }) => theme.colors.secondary};
     div.lang {
       display: grid;
       grid-template-columns: 1fr 1fr;
       justify-items: center;
       align-items: center;
-      background-color: white;
-      color: black;
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primary};
     }
 
     div.thing-that-move {
       display: grid;
       align-items: center;
-      background-color: black;
-      font-size: 0.75em;
+      background-color: ${({ theme }) => theme.colors.primary};
+      font-size: 0.65em;
       text-align: center;
-      color: white;
+      color: ${({ theme }) => theme.colors.secondary};
+      /* border: 1px solid ${({ theme }) => theme.colors.secondary}; */
       position: absolute;
       height: 100%;
       width: 50px;
+      line-height: 0.9em;
       transition: transform 1s;
       transform: ${(props) => props.lang === "en" && "translateX(46px)"};
     }
   }
 
-  /* div.theme-toggler {
-    background-color: gray;
-    color: white;
+  div.lang-switcher {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
-    padding: 5px 3px;
-    gap: 5px;
-    label {
-      font-size: 0.75em;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    /* border: 2px solid black; */
+    gap: 2px;
+    & div {
+      padding: 0 5px;
+      height: 100%;
+      display: grid;
+      align-items: center;
+      cursor: pointer;
     }
-    label[for="light"] {
-      background-color: white;
-      color: black;
-      border: 2px solid black;
-      width: 32px;
-      height: 32px;
-      display: inline-block;
+    /* refactor this */
+    div:first-child {
+      background-color: ${(props) =>
+        props.lang === "en"
+          ? ({ theme }) => theme.colors.primary
+          : ({ theme }) => theme.colors.primary};
+      color: ${(props) =>
+        props.lang === "en"
+          ? ({ theme }) => theme.colors.secondary
+          : ({ theme }) => theme.colors.secondary};
+      border: 2px solid
+        ${(props) =>
+          props.lang === "en"
+            ? ({ theme }) => theme.colors.primary
+            : ({ theme }) => theme.colors.secondary};
+      font-weight: ${(props) => props.lang === "en" && "bold"};
     }
-    label[for="dark"] {
-      background-color: black;
-      border: 2px solid white;
-      width: 32px;
-      height: 32px;
-      display: inline-block;
+    div:last-child {
+      background-color: ${(props) =>
+        props.lang === "pt"
+          ? ({ theme }) => theme.colors.primary
+          : ({ theme }) => theme.colors.primary};
+      color: ${(props) =>
+        props.lang === "pt"
+          ? ({ theme }) => theme.colors.secondary
+          : ({ theme }) => theme.colors.secondary};
+      border: 2px solid
+        ${(props) =>
+          props.lang === "pt"
+            ? ({ theme }) => theme.colors.primary
+            : ({ theme }) => theme.colors.secondary};
+      font-weight: ${(props) => props.lang === "pt" && "bold"};
     }
-    input {
-      display: none;
-    }
-  } */
+  }
 `;
 
 const Settings = () => {
   const { setLanguage, setTheme, theme, lang } = useContext(Context);
 
   const handleLangChange = () => {
-    // console.log(event.target.innerText);
-    // setLanguage(event.target.innerText);
     // move this logic to provider
     if (lang === "en") {
       setLanguage("pt");
     } else {
       setLanguage("en");
+    }
+  };
+
+  const handleLangChange2 = (event) => {
+    if (event.target.innerText !== lang) {
+      setLanguage(event.target.innerText);
     }
   };
 
@@ -118,44 +143,24 @@ const Settings = () => {
 
   return (
     <StyledSettings lang={lang}>
+      <div className="lang-switcher">
+        <div onClick={handleLangChange2}>en</div>
+        <div onClick={handleLangChange2}>pt</div>
+      </div>
       <div className="language-switcher" onClick={handleLangChange}>
         <div className="lang">
           <div>en</div>
           <div>pt</div>
         </div>
-        <div className="thing-that-move">lang</div>
-        {/* <div onClick={handleLangChange}>pt</div> */}
+        <div className="thing-that-move">
+          {lang === "en" ? "switch language" : "mudar idioma"}
+        </div>
       </div>
-      {/* <div>
-        <span onClick={handleThemeChange}>light</span>
-        <span> | </span>
-        <span onClick={handleThemeChange}>dark</span>
-      </div> */}
       <div className="theme-switcher">
         <button onClick={toggleTheme}>
           {theme === "light" ? "🌛︎" : "🌞︎"}
         </button>
       </div>
-      {/* <div className="theme-toggler">
-        <label htmlFor="light">light</label>
-        <input
-          type="radio"
-          name="theme"
-          id="light"
-          value="light"
-          aria-label="Switch to light theme"
-          onChange={alternateHandleThemeChange}
-        />
-        <label htmlFor="dark">dark</label>
-        <input
-          type="radio"
-          name="theme"
-          id="dark"
-          value="dark"
-          aria-label="Switch to dark theme"
-          onChange={alternateHandleThemeChange}
-        />
-      </div> */}
     </StyledSettings>
   );
 };

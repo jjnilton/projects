@@ -4,7 +4,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Main from "./components/Main";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Context from "./store/context";
 
 const GlobalStyle = createGlobalStyle`
@@ -39,8 +39,24 @@ const dark = {
 };
 
 function App() {
-  const { theme } = useContext(Context);
-  const currentTheme = theme === "light" ? light : dark;
+  const { theme, setTheme } = useContext(Context);
+  let currentTheme = theme === "light" ? light : dark;
+
+  useEffect(() => {
+    if (window?.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        setTheme(event.matches ? "dark" : "light");
+      });
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={currentTheme}>

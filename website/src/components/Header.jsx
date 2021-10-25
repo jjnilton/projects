@@ -65,8 +65,8 @@ const Nav = (props) => {
   return (
     <StyledNav $visibility={props.visibility}>
       <ul>
-        <li>{menuOption.projects[lang]}</li>
         <li>{menuOption.about[lang]}</li>
+        <li>{menuOption.projects[lang]}</li>
         <li>{menuOption.contact[lang]}</li>
       </ul>
       <Settings></Settings>
