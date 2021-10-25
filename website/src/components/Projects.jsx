@@ -117,7 +117,7 @@ const StyledTags = styled.ul`
     list-style-type: none;
     padding: 2px;
     margin: 0;
-    border: 2px solid black;
+    border: 2px solid ${({theme}) => theme.colors.secondary};
     font-size: 0.8em;
   }
 `;

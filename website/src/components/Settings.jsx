@@ -74,7 +74,6 @@ const StyledSettings = styled.section`
       height: 100%;
       display: grid;
       align-items: center;
-      cursor: pointer;
     }
     /* refactor this */
     div:first-child {
@@ -92,6 +91,7 @@ const StyledSettings = styled.section`
             ? ({ theme }) => theme.colors.primary
             : ({ theme }) => theme.colors.secondary};
       font-weight: ${(props) => props.lang === "en" && "bold"};
+      cursor: ${props => props.lang === 'pt' && 'pointer'};
     }
     div:last-child {
       background-color: ${(props) =>
@@ -108,6 +108,7 @@ const StyledSettings = styled.section`
             ? ({ theme }) => theme.colors.primary
             : ({ theme }) => theme.colors.secondary};
       font-weight: ${(props) => props.lang === "pt" && "bold"};
+      cursor: ${props => props.lang === 'en' && 'pointer'};
     }
   }
 `;

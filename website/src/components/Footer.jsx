@@ -15,6 +15,17 @@ const StyledFooter = styled.footer`
   a {
     color: ${({ theme }) => theme.colors.secondary};
   }
+  ul {
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 10px;
+    justify-content: center;
+    & > li {
+      list-style-type: none;
+    }
+  }
 `;
 
 const Footer = () => {
@@ -25,6 +36,12 @@ const Footer = () => {
         <p>"Open source is a commitment not a convenience."</p>
         <cite>Paul Cormier</cite>
       </blockquote>
+      <div>
+        <ul>
+          <li><a href="">GitHub</a></li>
+          <li><a href="">LinkedIn</a></li>
+        </ul>
+      </div>
       <div>
         <a href="https://">{content.source[lang]}</a>
       </div>
