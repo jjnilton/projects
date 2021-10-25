@@ -40,12 +40,17 @@ const StyledContact = styled.section`
 
     input,
     textarea {
-      border: 2px solid black;
+      caret-color: ${({theme}) => theme.colors.secondary};
+      border: 2px solid ${({theme}) => theme.colors.secondary};
+      background-color: ${({theme}) => theme.colors.primary};
       font-size: 1em;
       height: 2em;
       padding: 5px;
       &:focus {
         outline: 1px solid gray;
+      }
+      &::placeholder {
+        color: ${({theme}) => theme.colors.secondary};
       }
     }
 
