@@ -8,17 +8,15 @@ const StyledSettings = styled.section`
   justify-content: right;
   grid-template-columns: max-content max-content max-content;
   gap: 10px;
+  height: 48px;
 
   div.theme-switcher {
     border: 2px solid ${({ theme }) => theme.colors.secondary};
-    label {
-      color: ${({ theme }) => theme.colors.primary};
-      font-size: 2em;
-    }
-    input {
-      display: none;
-    }
+    display: grid;
+    align-items: center;
     button {
+      width: 48px;
+      height: 100%;
       border: none;
       background-color: none;
       font-size: 1.2em;
@@ -36,7 +34,7 @@ const StyledSettings = styled.section`
   div.language-switcher {
     display: grid;
     border: 2px solid ${({ theme }) => theme.colors.secondary};
-    width: 100px;
+    width: 128px;
     position: relative;
     cursor: pointer;
     align-items: center;
@@ -54,16 +52,16 @@ const StyledSettings = styled.section`
       display: grid;
       align-items: center;
       background-color: ${({ theme }) => theme.colors.primary};
-      font-size: 0.65em;
+      font-size: 0.75em;
       text-align: center;
       color: ${({ theme }) => theme.colors.secondary};
       /* border: 1px solid ${({ theme }) => theme.colors.secondary}; */
       position: absolute;
       height: 100%;
-      width: 50px;
-      line-height: 0.9em;
+      width: 64px;
+      line-height: 1.25em;
       transition: transform 1s;
-      transform: ${(props) => props.lang === "en" && "translateX(46px)"};
+      transform: ${(props) => props.lang === "en" && "translateX(60px)"};
     }
   }
 
@@ -78,6 +76,8 @@ const StyledSettings = styled.section`
       height: 100%;
       display: grid;
       align-items: center;
+      justify-items: center;
+      width: 48px;
     }
     /* refactor this */
     div:first-child {
@@ -95,7 +95,7 @@ const StyledSettings = styled.section`
             ? ({ theme }) => theme.colors.primary
             : ({ theme }) => theme.colors.secondary};
       font-weight: ${(props) => props.lang === "en" && "bold"};
-      cursor: ${props => props.lang === 'pt' && 'pointer'};
+      cursor: ${(props) => props.lang === "pt" && "pointer"};
     }
     div:last-child {
       background-color: ${(props) =>
@@ -112,7 +112,7 @@ const StyledSettings = styled.section`
             ? ({ theme }) => theme.colors.primary
             : ({ theme }) => theme.colors.secondary};
       font-weight: ${(props) => props.lang === "pt" && "bold"};
-      cursor: ${props => props.lang === 'en' && 'pointer'};
+      cursor: ${(props) => props.lang === "en" && "pointer"};
     }
   }
 `;
