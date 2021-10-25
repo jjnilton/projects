@@ -8,14 +8,16 @@ const StyledSettings = styled.section`
   justify-content: right;
   grid-template-columns: max-content max-content max-content;
   gap: 10px;
-  height: 48px;
+
+  @media (max-width: 560px) {
+    height: 48px;
+  }
 
   div.theme-switcher {
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     display: grid;
     align-items: center;
     button {
-      width: 48px;
       height: 100%;
       border: none;
       background-color: none;
@@ -27,6 +29,9 @@ const StyledSettings = styled.section`
       &:hover {
         background-color: ${({ theme }) => theme.colors.secondary};
         color: ${({ theme }) => theme.colors.primary};
+      }
+      @media (max-width: 560px) {
+        width: 48px;
       }
     }
   }
@@ -52,16 +57,20 @@ const StyledSettings = styled.section`
       display: grid;
       align-items: center;
       background-color: ${({ theme }) => theme.colors.primary};
-      font-size: 0.75em;
+      font-size: 0.7em;
       text-align: center;
       color: ${({ theme }) => theme.colors.secondary};
       /* border: 1px solid ${({ theme }) => theme.colors.secondary}; */
       position: absolute;
       height: 100%;
       width: 64px;
-      line-height: 1.25em;
+      line-height: 0.9em;
       transition: transform 1s;
       transform: ${(props) => props.lang === "en" && "translateX(60px)"};
+      @media (max-width: 560px) {
+        font-size: 0.75em;
+        line-height: 1.25em;
+      }
     }
   }
 
