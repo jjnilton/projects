@@ -13,21 +13,23 @@ const StyledHeader = styled.header`
     margin: 0 auto;
     align-items: center;
     flex-wrap: wrap;
-    & > div {
+    & > div > a {
+      text-decoration: none;
       display: flex;
       gap: 10px;
       align-items: center;
+      &:hover {
+        filter: drop-shadow(0 0 2px #bbb);
+      }
     }
   }
   img {
     filter: invert();
-    width: 64px;
+    width: 32px;
   }
   h1 {
-    & > a {
-      color: white;
-      text-decoration: none;
-    }
+    color: white;
+    text-decoration: none;
   }
   ul {
     display: flex;
@@ -42,9 +44,6 @@ const StyledHeader = styled.header`
       }
     }
   }
-  a:hover {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  }
 `;
 
 const Header = () => {
@@ -54,10 +53,12 @@ const Header = () => {
     <StyledHeader>
       <div>
         <div>
-          <img src="/logo.svg" alt="Word Frequency App Logo" />
-          <h1>
-            <Link href="/">Word Frequency App</Link>
-          </h1>
+          <Link href="/">
+            <a>
+              <img src="/logo.svg" alt="Word Frequency App Logo" />
+              <h1>Word Frequency App</h1>
+            </a>
+          </Link>
         </div>
         <nav>
           <ul>
