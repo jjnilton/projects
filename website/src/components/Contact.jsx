@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Context from "../store/context";
 
@@ -57,13 +57,13 @@ const StyledContact = styled.section`
     }
   }
   /* refactor in a component */
-  &> div {
+  & > div {
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     margin: 10px 0;
     padding: 10px;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
-    animation: ${appear} .5s forwards;
+    animation: ${appear} 0.5s forwards;
   }
   form {
     display: grid;
@@ -149,6 +149,10 @@ const Contact = () => {
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const handleInputFocus = () => {
+    setFormSent(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -191,6 +195,7 @@ const Contact = () => {
           type="text"
           placeholder={content.placeholder.name[lang]}
           required
+          onFocus={handleInputFocus}
         />
         <label htmlFor="email">{content.label.email[lang]}</label>
         <input
@@ -199,6 +204,7 @@ const Contact = () => {
           type="text"
           placeholder={content.placeholder.email[lang]}
           required
+          onFocus={handleInputFocus}
         />
         <label htmlFor="subject">{content.label.subject[lang]}</label>
         <input
@@ -206,6 +212,7 @@ const Contact = () => {
           name="subject"
           type="text"
           placeholder={content.placeholder.subject[lang]}
+          onFocus={handleInputFocus}
         />
         <label htmlFor="message">{content.label.message[lang]}</label>
         <textarea
@@ -215,6 +222,7 @@ const Contact = () => {
           rows="5"
           placeholder={content.placeholder.message[lang]}
           required
+          onFocus={handleInputFocus}
         />
         <input type="hidden" name="form-name" value="contact" />
         <button>
