@@ -31,11 +31,47 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>jnrj's website</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <form name="contact" data-netlify="true" hidden>
+      <label for="name">Name</label
+      ><input
+        id="name"
+        name="name"
+        type="text"
+        placeholder="Your name"
+        required=""
+      /><label for="email">Email</label
+      ><input
+        id="email"
+        name="email"
+        type="text"
+        placeholder="Your email"
+        required=""
+      /><label for="subject">Subject</label
+      ><input
+        id="subject"
+        name="subject"
+        type="text"
+        placeholder="The subject"
+      /><label for="message">Message</label
+      ><textarea
+        id="message"
+        name="message"
+        type="text"
+        rows="5"
+        placeholder="Your message"
+        required=""
+        spellcheck="true"
+        lang="pt"
+      ></textarea
+      >
+      <input type="hidden" name="contact" value="contact" />
+      <button><span>Send</span></button>
+    </form>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

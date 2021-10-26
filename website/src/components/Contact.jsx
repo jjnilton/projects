@@ -60,7 +60,7 @@ const StyledContact = styled.section`
       }
       &::placeholder {
         color: ${({ theme }) => theme.colors.secondary};
-        opacity: .5;
+        opacity: 0.5;
       }
     }
 
@@ -119,19 +119,15 @@ const Contact = () => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-
-    const name = formData.get("name");
-    // const email = formData.get("email");
-    const message = formData.get("message");
+    console.log(new URLSearchParams(formData).toString());
 
     const sendMessage = async () => {
-      const response = await fetch("", {
+      const response = await fetch("/", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({ name, message }),
+        body: new URLSearchParams(formData).toString(),
       });
       console.log(await response);
       console.log(await response.json());
@@ -144,7 +140,7 @@ const Contact = () => {
     <StyledContact id="contact">
       <h2>{content.section.title[lang]}</h2>
       <Paragraph lang={lang}></Paragraph>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-netlify="true">
         <label htmlFor="name">{content.label.name[lang]}</label>
         <input
           id="name"
