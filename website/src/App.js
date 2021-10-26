@@ -28,6 +28,7 @@ const light = {
     secondary: "black",
   },
   filter: "grayscale(1) contrast(2) brightness(0)",
+  icon: "'\\e815'"
 };
 
 const dark = {
@@ -36,6 +37,7 @@ const dark = {
     secondary: "white",
   },
   filter: "grayscale(1) contrast(1) brightness(0) invert()",
+  icon: "'\\e811'"
 };
 
 function App() {

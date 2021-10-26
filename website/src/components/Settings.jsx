@@ -26,6 +26,10 @@ const StyledSettings = styled.section`
       color: ${({ theme }) => theme.colors.secondary};
       /* border: 2px solid ${({ theme }) => theme.colors.primary}; */
       cursor: pointer;
+      & > span::before {
+        content: ${({theme}) => theme.icon};
+        font-family: "fontello";
+      }
       @media (hover: hover) {
         &:hover {
           background-color: ${({ theme }) => theme.colors.secondary};
@@ -67,12 +71,13 @@ const StyledSettings = styled.section`
       position: absolute;
       height: 100%;
       width: 64px;
-      line-height: 0.9em;
+      line-height: 1em;
       transition: transform 1s;
       transform: ${(props) => props.lang === "en" && "translateX(60px)"};
       @media (max-width: 560px) {
         font-size: 0.75em;
-        line-height: 1.25em;
+        line-height: 1em;
+        word-spacing: 64px;
       }
     }
   }
@@ -170,12 +175,16 @@ const Settings = () => {
           <div>pt</div>
         </div>
         <div className="thing-that-move">
-          {lang === "en" ? "switch language" : "mudar idioma"}
+          {lang === "en" ? (
+            <span>switch to portuguese</span>
+          ) : (
+            <span>mudar para inglês</span>
+          )}
         </div>
       </div>
       <div className="theme-switcher">
         <button onClick={toggleTheme}>
-          {theme === "light" ? "🌛︎" : "🌞︎"}
+            <span></span>
         </button>
       </div>
     </StyledSettings>
