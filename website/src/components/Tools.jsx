@@ -22,40 +22,40 @@ const content = {
       name: "React.js",
       image: ReactLogo,
       description: {
-        en: "What I'm currently using to create user interfaces, and constantly learning.",
-        pt: "O que eu estou usando atualmente para criar interfaces de usuário, e aprendendo constantemente.",
+        en: "What I'm currently using to create user interfaces",
+        pt: "O que uso atualmente para criar interfaces de usuário",
       },
     },
     {
       name: "Next.js",
       image: NextLogo,
       description: {
-        en: "The framework that helps me when I need a full-stack solution that expands on React.js.",
-        pt: "O framework que me ajuda quando eu preciso de uma solução full-stack, expandindo o React.js.",
+        en: "The framework I use when I need a full-stack solution",
+        pt: "O framework que uso quando como solução full-stack",
       },
     },
     {
       name: "Redux.js",
       image: ReduxLogo,
       description: {
-        en: "The state management library that helps me when the Context API is not enough.",
-        pt: "A biblioteca de gerenciamento de estado que me ajuda quando a API de Contexto do React não é suficiente.",
+        en: "A library that makes state managament really easy",
+        pt: "Uma biblioteca que facilita o gerenciamento de estados",
       },
     },
     {
       name: "Styled Components",
       image: StyledComponentsLogo,
       description: {
-        en: "A library that makes it easier writing CSS in JS.",
-        pt: "Uma biblioteca que facilita a escrita de CSS em JS.",
+        en: "A library that makes it easier writing CSS in JS",
+        pt: "Uma biblioteca que facilita a escrita de CSS em JS",
       },
     },
     {
       name: "Node.js",
       image: NodeLogo,
       description: {
-        en: "For when I need to use JavaScript on the server-side.",
-        pt: "Para quando eu preciso usar o JavaScript no lado do servidor..",
+        en: "For when I need to use JavaScript on the server-side",
+        pt: "Para quando eu preciso usar o JavaScript no lado do servidor",
       },
     },
     {
