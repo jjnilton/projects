@@ -14,7 +14,7 @@ const projects_data = [
     name: "Word Frequency App & API",
     description: {
       en: "A web app and API that checks the frequency of words in a text, and displays the data in a table and a chart.",
-      pt: "Uma aplicação web e API que verifica a frequência das palavras em um texto, e exibe os dados em uma tabela e em um gráfico.",
+      pt: "Uma aplicação web e API que verifica a frequência de palavras em um texto, e exibe os dados em uma tabela e em um gráfico.",
     },
     tags: ["Next.js", "Styled Components", "Chart.js"],
     source: "https://github.com/jjnilton/projects/blob/main/word-frequency",
@@ -83,13 +83,13 @@ const StyledProjectItem = styled.li`
   list-style-type: none;
   border: 2px solid ${({ theme }) => theme.colors.secondary};
   display: grid;
-  gap: 10px;
+  gap: 16px;
   grid-template-rows: max-content max-content max-content 1fr max-content;
 
   img {
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     justify-self: center;
-    min-width: 200px;
+    min-width: 100%;
     max-width: 320px;
     width: 100%;
   }
@@ -103,6 +103,7 @@ const StyledProjectItem = styled.li`
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
+
   a {
     display: block;
     padding: 5px;
@@ -145,7 +146,7 @@ const StyledTags = styled.ul`
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: baseline;
   li {
     list-style-type: none;
     padding: 2px 4px;
