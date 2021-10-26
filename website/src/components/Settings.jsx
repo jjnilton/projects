@@ -18,24 +18,18 @@ const StyledSettings = styled.section`
     button {
       width: 32px;
       border: 2px solid ${({ theme }) => theme.colors.secondary};
-      display: grid;
-      align-items: center;
       border-radius: 0;
       height: 100%;
-      /* font-size: 1em; */
       background-color: ${({ theme }) => theme.colors.primary};
       color: ${({ theme }) => theme.colors.secondary};
-      /* border: 2px solid ${({ theme }) => theme.colors.primary}; */
       cursor: pointer;
-      align-items: center;
-      & > span {
-        display: block;
-      }
+      display: grid;
+      place-items: center;
+      place-content: center;
       & > span::before {
-        display: grid;
         content: ${({ theme }) => theme.icon};
         font-family: "fontello";
-        height: 100%;
+
       }
       @media (hover: hover) {
         &:hover {
