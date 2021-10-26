@@ -20,11 +20,11 @@ const StyledHeader = styled.header`
   div.logo {
     font-weight: bold;
     font-size: 1.5em;
-    /* line-height: 1em; */
-  }
-
-  div.logo {
-    grid-row: 1 / 1;
+    grid-row: 1/1;
+    & > a {
+      color: unset;
+      text-decoration: none;
+    }
   }
 
   @media (max-width: 560px) {
@@ -42,6 +42,10 @@ const StyledNav = styled.nav`
   }
 
   li {
+    & > a {
+      text-decoration: none;
+      color: ${({ theme }) => theme.colors.secondary};
+    }
     margin: 0;
     padding: 5px;
     list-style-type: none;
@@ -49,12 +53,13 @@ const StyledNav = styled.nav`
     text-align: center;
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.secondary};
     transition: background-color 0.2s, color 0.2s;
     @media (hover: hover) {
       &:hover {
         background-color: ${({ theme }) => theme.colors.secondary};
-        color: ${({ theme }) => theme.colors.primary};
+        & > a {
+          color: ${({ theme }) => theme.colors.primary};
+        }
       }
     }
   }
@@ -73,9 +78,9 @@ const Nav = (props) => {
   return (
     <StyledNav $visibility={props.visibility}>
       <ul>
-        <li>{menuOption.about[lang]}</li>
-        <li>{menuOption.projects[lang]}</li>
-        <li>{menuOption.contact[lang]}</li>
+        <li><a href="#about">{menuOption.about[lang]}</a></li>
+        <li><a href="#projects">{menuOption.projects[lang]}</a></li>
+        <li><a href="#contact">{menuOption.contact[lang]}</a></li>
       </ul>
       <Settings></Settings>
     </StyledNav>
@@ -116,7 +121,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <div className="logo">jnrj</div>
+      <div className="logo"><a href="http://localhost:3000">jnrj</a></div>
       {/* to replace with nav */}
       <HamburgerMenu
         toggleNavVisibility={handleNavVisibility}

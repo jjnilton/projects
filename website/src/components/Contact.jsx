@@ -135,7 +135,7 @@ const Contact = () => {
   };
 
   return (
-    <StyledContact>
+    <StyledContact id="contact">
       <h2>{content.section.title[lang]}</h2>
       <Paragraph lang={lang}></Paragraph>
       <form onSubmit={handleSubmit}>

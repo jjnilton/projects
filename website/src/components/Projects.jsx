@@ -192,7 +192,7 @@ const content = {
 const Projects = () => {
   const { lang } = useContext(Context);
   return (
-    <StyledProjects>
+    <StyledProjects id="projects">
       <h2>{content.title[lang]}</h2>
       {/* <p>{content.subtitle[lang]}</p> */}
       <ProjectList></ProjectList>

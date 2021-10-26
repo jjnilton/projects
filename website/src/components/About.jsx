@@ -153,7 +153,7 @@ const Setup = (props) => {
 const About = () => {
   const { lang } = useContext(Context);
   return (
-    <StyledAbout>
+    <StyledAbout id="about">
       <h2>{content.section.title[lang]}</h2>
       {/* <section className="summary">
         <img src="https://fakeimg.pl/250x250" alt="" />
