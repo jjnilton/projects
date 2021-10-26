@@ -1,10 +1,20 @@
-import { useContext } from "react";
-import styled from "styled-components";
+import { useContext, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import Context from "../store/context";
 
-const EMAIL = "username@address.com";
+const appear = keyframes`
+  from {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
 
 const content = {
+  email: "username@address.com",
   section: {
     title: { en: "Contact", pt: "Contato" },
   },
@@ -21,6 +31,16 @@ const content = {
     subject: { en: "The subject", pt: "O assunto" },
     message: { en: "Your message", pt: "Sua mensagem" },
   },
+  form_submit_result: {
+    success: {
+      en: "Message sent successfully.",
+      pt: "Mensagem enviada com sucesso.",
+    },
+    failure: {
+      en: "Sorry, the message couldn't be sent. Try submitting again in a few moments or send an email directly.",
+      pt: "Desculpe, não foi possível enviar a mensagem. Tente enviar novamente em alguns instantes ou envie diretamente por e-mail.",
+    },
+  },
 };
 
 const StyledContact = styled.section`
@@ -35,6 +55,15 @@ const StyledContact = styled.section`
         color: ${({ theme }) => theme.colors.primary};
       }
     }
+  }
+  /* refactor in a component */
+  &> div {
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
+    margin: 10px 0;
+    padding: 10px;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+    animation: ${appear} .5s forwards;
   }
   form {
     display: grid;
@@ -100,12 +129,14 @@ const Paragraph = (props) => {
     props.lang === "en" ? (
       <p>
         You can reach me through my email:{" "}
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or use the form below.
+        <a href={`mailto:${content.email}`}>{content.email}</a> or use the form
+        below.
       </p>
     ) : (
       <p>
         Entre em contato através do meu e-mail:{" "}
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a> ou pelo formulário abaixo.
+        <a href={`mailto:${content.email}`}>{content.email}</a> ou pelo
+        formulário abaixo.
       </p>
     );
 
@@ -114,14 +145,17 @@ const Paragraph = (props) => {
 
 const Contact = () => {
   const { lang } = useContext(Context);
+  const [formSent, setFormSent] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    console.log(new URLSearchParams(formData).toString());
 
     const sendMessage = async () => {
+      setLoading(true);
       const response = await fetch("/", {
         method: "POST",
         headers: {
@@ -129,8 +163,17 @@ const Contact = () => {
         },
         body: new URLSearchParams(formData).toString(),
       });
-      console.log(await response);
-      // console.log(await response.json());
+      setFormSent(true);
+      if (response.ok) {
+        console.log("yay");
+        setLoading(false);
+        setSuccess(true);
+        event.target.reset();
+      } else {
+        console.log("not yay");
+        setLoading(false);
+        setSuccess(false);
+      }
     };
 
     sendMessage();
@@ -178,6 +221,12 @@ const Contact = () => {
           <span>{content.label.send[lang]}</span>
         </button>
       </form>
+      {loading && <div>Sending...</div>}
+      {formSent && success ? (
+        <div>{content.form_submit_result.success[lang]}</div>
+      ) : formSent && !success ? (
+        <div>{content.form_submit_result.failure[lang]}</div>
+      ) : undefined}
     </StyledContact>
   );
 };
