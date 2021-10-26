@@ -130,7 +130,7 @@ const Contact = () => {
         body: new URLSearchParams(formData).toString(),
       });
       console.log(await response);
-      console.log(await response.json());
+      // console.log(await response.json());
     };
 
     sendMessage();
@@ -173,6 +173,7 @@ const Contact = () => {
           placeholder={content.placeholder.message[lang]}
           required
         />
+        <input type="hidden" name="form-name" value="contact" />
         <button>
           <span>{content.label.send[lang]}</span>
         </button>
