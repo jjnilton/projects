@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useContext, useEffect } from "react";
 import Context from "./store/context";
+import './fontello/css/fontello.css';
 
 const GlobalStyle = createGlobalStyle`
 
