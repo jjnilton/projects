@@ -20,6 +20,14 @@ const GlobalStyle = createGlobalStyle`
     transition: background-color .5s, color .5s;
     padding: 10px;
   }
+
+  div:not(#root) {
+    border-radius: 5px;
+  }
+  li, section, article, button, a, img, input, textarea {
+    border-radius: 5px;
+  }
+
 `;
 
 const light = {

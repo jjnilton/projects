@@ -18,7 +18,6 @@ const StyledSettings = styled.section`
     button {
       width: 32px;
       border: 2px solid ${({ theme }) => theme.colors.secondary};
-      border-radius: 0;
       height: 100%;
       background-color: ${({ theme }) => theme.colors.primary};
       color: ${({ theme }) => theme.colors.secondary};
@@ -29,7 +28,6 @@ const StyledSettings = styled.section`
       & > span::before {
         content: ${({ theme }) => theme.icon};
         font-family: "fontello";
-
       }
       @media (hover: hover) {
         &:hover {
