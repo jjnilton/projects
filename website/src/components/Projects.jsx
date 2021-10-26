@@ -43,8 +43,8 @@ const projects_data = [
       pt: "Uma aplicação web que permite pesquisar livros usando a API da OpenLibrary.org, e exibe os resultados num grid.",
     },
     tags: ["React", "Redux", "Styled Components"],
-    source: "https://source",
-    live: "https://live",
+    source: "https://github.com/jjnilton/projects/blob/main/book-finder-app",
+    live: "https://jjnilton.github.io/projects/book-finder-app/build",
     image: BookFinderAppScreenshot,
   },
   {
