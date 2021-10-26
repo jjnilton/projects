@@ -24,6 +24,11 @@ const StyledHeader = styled.header`
     & > a {
       color: unset;
       text-decoration: none;
+      &::before {
+        font-family: 'fontello';
+        content: '\f120';
+        margin-right: 5px;
+      }
     }
   }
 

@@ -8,27 +8,34 @@ const StyledSettings = styled.section`
   justify-content: right;
   grid-template-columns: max-content max-content;
   gap: 10px;
+  height: 32px;
 
   @media (max-width: 560px) {
     height: 48px;
   }
 
   div.theme-switcher {
-    border: 2px solid ${({ theme }) => theme.colors.secondary};
-    display: grid;
-    align-items: center;
     button {
+      width: 32px;
+      border: 2px solid ${({ theme }) => theme.colors.secondary};
+      display: grid;
+      align-items: center;
+      border-radius: 0;
       height: 100%;
-      border: none;
-      background-color: none;
-      font-size: 1.2em;
+      /* font-size: 1em; */
       background-color: ${({ theme }) => theme.colors.primary};
       color: ${({ theme }) => theme.colors.secondary};
       /* border: 2px solid ${({ theme }) => theme.colors.primary}; */
       cursor: pointer;
+      align-items: center;
+      & > span {
+        display: block;
+      }
       & > span::before {
-        content: ${({theme}) => theme.icon};
+        display: grid;
+        content: ${({ theme }) => theme.icon};
         font-family: "fontello";
+        height: 100%;
       }
       @media (hover: hover) {
         &:hover {
@@ -46,14 +53,15 @@ const StyledSettings = styled.section`
   div.language-switcher {
     display: grid;
     border: 2px solid ${({ theme }) => theme.colors.secondary};
-    width: 128px;
+    width: 96px;
     position: relative;
     cursor: pointer;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.secondary};
     div.lang {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 0.3fr 0.3fr;
+      justify-content: space-between;
       justify-items: center;
       align-items: center;
       background-color: ${({ theme }) => theme.colors.secondary};
@@ -73,7 +81,7 @@ const StyledSettings = styled.section`
       width: 64px;
       line-height: 1em;
       transition: transform 1s;
-      transform: ${(props) => props.lang === "en" && "translateX(60px)"};
+      transform: ${(props) => props.lang === "en" && "translateX(28px)"};
       @media (max-width: 560px) {
         font-size: 0.75em;
         line-height: 1em;
@@ -101,35 +109,35 @@ const StyledSettings = styled.section`
 
     div:first-child {
       background-color: ${(props) =>
-        props.lang === "en"
-          ? ({ theme }) => theme.colors.primary
-          : ({ theme }) => theme.colors.primary};
+    props.lang === "en"
+      ? ({ theme }) => theme.colors.primary
+      : ({ theme }) => theme.colors.primary};
       color: ${(props) =>
-        props.lang === "en"
-          ? ({ theme }) => theme.colors.secondary
-          : ({ theme }) => theme.colors.secondary};
+    props.lang === "en"
+      ? ({ theme }) => theme.colors.secondary
+      : ({ theme }) => theme.colors.secondary};
       border: 2px solid
         ${(props) =>
-          props.lang === "en"
-            ? ({ theme }) => theme.colors.primary
-            : ({ theme }) => theme.colors.secondary};
+    props.lang === "en"
+      ? ({ theme }) => theme.colors.primary
+      : ({ theme }) => theme.colors.secondary};
       font-weight: ${(props) => props.lang === "en" && "bold"};
       cursor: ${(props) => props.lang === "pt" && "pointer"};
     }
     div:last-child {
       background-color: ${(props) =>
-        props.lang === "pt"
-          ? ({ theme }) => theme.colors.primary
-          : ({ theme }) => theme.colors.primary};
+    props.lang === "pt"
+      ? ({ theme }) => theme.colors.primary
+      : ({ theme }) => theme.colors.primary};
       color: ${(props) =>
-        props.lang === "pt"
-          ? ({ theme }) => theme.colors.secondary
-          : ({ theme }) => theme.colors.secondary};
+    props.lang === "pt"
+      ? ({ theme }) => theme.colors.secondary
+      : ({ theme }) => theme.colors.secondary};
       border: 2px solid
         ${(props) =>
-          props.lang === "pt"
-            ? ({ theme }) => theme.colors.primary
-            : ({ theme }) => theme.colors.secondary};
+    props.lang === "pt"
+      ? ({ theme }) => theme.colors.primary
+      : ({ theme }) => theme.colors.secondary};
       font-weight: ${(props) => props.lang === "pt" && "bold"};
       cursor: ${(props) => props.lang === "en" && "pointer"};
     }
@@ -149,11 +157,11 @@ const Settings = () => {
     }
   };
 
-  const handleLangChange2 = (event) => {
-    if (event.target.innerText !== lang) {
-      setLanguage(event.target.innerText);
-    }
-  };
+  // const handleLangChange2 = (event) => {
+  //   if (event.target.innerText !== lang) {
+  //     setLanguage(event.target.innerText);
+  //   }
+  // };
 
   // console.log(navigator.languages)
   // ☽ 🌛︎ 🌕︎ 🌑︎ 🜚 ☉ 🌞︎ ☼ 💡
@@ -187,7 +195,11 @@ const Settings = () => {
       </div>
       <div className="theme-switcher">
         <button onClick={toggleTheme}>
-            <span></span>
+          <span
+            title={
+              theme === "dark" ? "Active light theme" : "Active dark theme"
+            }
+          ></span>
         </button>
       </div>
     </StyledSettings>

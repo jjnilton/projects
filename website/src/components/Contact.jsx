@@ -60,6 +60,7 @@ const StyledContact = styled.section`
       }
       &::placeholder {
         color: ${({ theme }) => theme.colors.secondary};
+        opacity: .5;
       }
     }
 
@@ -77,10 +78,10 @@ const StyledContact = styled.section`
       padding: 5px;
       font-size: 1em;
       cursor: pointer;
-      transition: background-color .2s, color .2s, border-color .2s;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
       & > span::before {
-        content: '\f1d8';
-        font-family: 'fontello';
+        content: "\f1d8";
+        font-family: "fontello";
         margin-right: 5px;
       }
       @media (hover: hover) {
@@ -176,7 +177,9 @@ const Contact = () => {
           placeholder={content.placeholder.message[lang]}
           required
         />
-        <button><span>{content.label.send[lang]}</span></button>
+        <button>
+          <span>{content.label.send[lang]}</span>
+        </button>
       </form>
     </StyledContact>
   );
