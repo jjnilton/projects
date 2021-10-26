@@ -115,6 +115,14 @@ const StyledProjectItem = styled.li`
     color: ${({ theme }) => theme.colors.primary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     /* font-family: monospace; */
+    & > span {
+      font-family: 'Fira Mono', monospace;
+    }
+    & > span::before {
+      content: '\f121';
+      font-family: 'fontello';
+      margin-right: 5px;
+    }
     &:hover {
       background-color: ${({ theme }) => theme.colors.primary};
       color: ${({ theme }) => theme.colors.secondary};
@@ -171,8 +179,8 @@ const ProjectItem = (props) => {
       <div>{props.project.description[lang]}</div>
       <Tags tags={props.project.tags}></Tags>
       <div className="links">
-        <a href={props.project.source}>{"</>"} Source</a>
-        <a href={props.project.live}>Live</a>
+        <a href={props.project.source}><span>Source</span></a>
+        <a href={props.project.live}><span>Live</span></a>
       </div>
     </StyledProjectItem>
   );

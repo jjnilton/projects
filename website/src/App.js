@@ -6,10 +6,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useContext, useEffect } from "react";
 import Context from "./store/context";
-import './fontello/css/fontello.css';
+import "./fontello/css/fontello.css";
 
 const GlobalStyle = createGlobalStyle`
-
   *::selection {
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
@@ -44,8 +43,7 @@ function App() {
   let currentTheme = theme === "light" ? light : dark;
 
   useEffect(() => {
-
-    console.log(window.navigator.languages)
+    console.log(window.navigator.languages);
 
     if (window?.matchMedia("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
