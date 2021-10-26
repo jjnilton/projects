@@ -6,7 +6,7 @@ const StyledSettings = styled.section`
   margin: 10px 0;
   display: grid;
   justify-content: right;
-  grid-template-columns: max-content max-content max-content;
+  grid-template-columns: max-content max-content;
   gap: 10px;
 
   @media (max-width: 560px) {
@@ -82,11 +82,13 @@ const StyledSettings = styled.section`
     }
   }
 
+  /* refactor this */
+  /*
   div.lang-switcher {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    /* border: 2px solid black; */
+
     gap: 2px;
     & div {
       padding: 0 5px;
@@ -96,7 +98,7 @@ const StyledSettings = styled.section`
       justify-items: center;
       width: 48px;
     }
-    /* refactor this */
+
     div:first-child {
       background-color: ${(props) =>
         props.lang === "en"
@@ -132,6 +134,7 @@ const StyledSettings = styled.section`
       cursor: ${(props) => props.lang === "en" && "pointer"};
     }
   }
+  */
 `;
 
 const Settings = () => {
@@ -165,10 +168,10 @@ const Settings = () => {
 
   return (
     <StyledSettings lang={lang}>
-      <div className="lang-switcher">
+      {/* <div className="lang-switcher">
         <div onClick={handleLangChange2}>en</div>
         <div onClick={handleLangChange2}>pt</div>
-      </div>
+      </div> */}
       <div className="language-switcher" onClick={handleLangChange}>
         <div className="lang">
           <div>en</div>
