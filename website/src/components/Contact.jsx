@@ -179,6 +179,7 @@ const Contact = () => {
           },
           body: new URLSearchParams(formData).toString(),
         });
+        console.log(response);
         setFormSent(true);
         if (response.ok) {
           setLoading(false);
