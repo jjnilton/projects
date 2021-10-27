@@ -184,7 +184,6 @@ const Contact = () => {
             body: new URLSearchParams(formData).toString(),
           }
         );
-        console.log(response);
         setFormSent(true);
         if (response.ok) {
           setLoading(false);
@@ -195,8 +194,6 @@ const Contact = () => {
           setSuccess(false);
         }
       } catch (err) {
-        console.log(err);
-        console.log("erro");
         setLoading(false);
         setFormSent(true);
         setSuccess(false);
