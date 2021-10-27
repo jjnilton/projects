@@ -13,8 +13,8 @@ const projects_data = [
   {
     name: "Word Frequency App & API",
     description: {
-      en: "A web app and API that checks the frequency of words in a text, and displays the data in a table and a chart.",
-      pt: "Uma aplicação web e API que verifica a frequência de palavras em um texto, e exibe os dados em uma tabela e em um gráfico.",
+      en: "A web app/API that checks the frequency of words in a text, and then displays the data in a table and a chart.",
+      pt: "Uma aplicação web/API que verifica a frequência de palavras em um texto, e exibe os dados em uma tabela e em um gráfico.",
     },
     tags: ["Next.js", "Styled Components", "Chart.js"],
     source: "https://github.com/jjnilton/projects/blob/main/word-frequency",
@@ -24,7 +24,7 @@ const projects_data = [
   {
     name: "Lorem Ipsum Generator",
     description: {
-      en: "A web app that generates a Lorem Ipsum placeholder text, based on the quantity of characters, words, or paragraphs specified.",
+      en: "A web app that generates a Lorem Ipsum placeholder text based on the number of characters, words, or paragraphs.",
       pt: "Uma aplicação web que gera um texto de Lorem Ipsum, baseado na quantidade de caracteres, palavras ou parágrafos.",
     },
     tags: ["React", "Styled Components", "Clipboard API"],
@@ -39,8 +39,8 @@ const projects_data = [
   {
     name: "Book Finder App",
     description: {
-      en: "A web app that allows to search books using the OpenLibrary.org API, and displays the results in a grid layout.",
-      pt: "Uma aplicação web que permite pesquisar livros usando a API da OpenLibrary.org, e exibe os resultados num grid.",
+      en: "A web app to search books and view their information, fetching the data from the OpenLibrary.org API.",
+      pt: "Uma aplicação web para pesquisar livros e ver suas informações, obtendo os dados da API da OpenLibrary.org.",
     },
     tags: ["React", "Redux", "Styled Components"],
     source: "https://github.com/jjnilton/projects/blob/main/book-finder-app",
@@ -50,8 +50,8 @@ const projects_data = [
   {
     name: "Event Countdown Timer",
     description: {
-      en: "A web app that allows creating multiple countdown timers, and notifies the user when the date is reached.",
-      pt: "Uma aplicação web que permite criar múltiplos timers, e notifica o usuário quando a data é alcançada.",
+      en: "A web app that allows creating multiple countdown timers and notifies the user when the time is up.",
+      pt: "Uma aplicação web que permite criar múltiplos timers, e notifica o usuário quando chega a hora.",
     },
     tags: ["React", "Styled Components", "Web APIs"],
     source:
@@ -98,7 +98,13 @@ const StyledProjectItem = styled.li`
     margin: 0;
   }
 
-  div.links {
+  p {
+    text-align: justify;
+    hyphens: auto;
+    margin: 0;
+  }
+
+  div:last-of-type {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -115,7 +121,6 @@ const StyledProjectItem = styled.li`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
-    /* font-family: monospace; */
     & > span {
       font-family: 'Fira Mono', monospace;
     }
@@ -177,9 +182,9 @@ const ProjectItem = (props) => {
         alt={`${props.project.name} screenshot`}
       />
       <h3>{props.project.name}</h3>
-      <div>{props.project.description[lang]}</div>
+      <p>{props.project.description[lang]}</p>
       <Tags tags={props.project.tags}></Tags>
-      <div className="links">
+      <div>
         <a href={props.project.source}><span>Source</span></a>
         <a href={props.project.live}><span>Live</span></a>
       </div>

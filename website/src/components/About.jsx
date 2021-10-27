@@ -10,18 +10,126 @@ const content = {
     },
   },
   presentation: {
-    en: "I'm a web developer, based in City - XX, Country. I'm currently focused on building web applications with JavaScript, more specifically with React.js and its ecosystem.",
-    pt: "Eu sou um desenvolvedor web, de Cidade - XX, País. Atualmente eu estou focado em construir aplicações web com JavaScript, mais especificamente com React.js e seu ecossistema.",
+    en: "I'm a web developer based in Feira de Santana – BA, Brazil. I'm currently focused on developing applications with JavaScript, using React.js and its ecosystem.",
+    pt: "Eu sou um desenvolvedor web de Feira de Santana – BA, Brasil. Atualmente eu estou focado em desenvolver aplicações com JavaScript, usando o React.js e seu ecossistema.",
   },
   extra_presentation: {
-    en: "When I'm not programming, you can find me [doing other stuff].",
-    pt: "Quando eu não estou programando, você pode me encontrar [fazendo outras coisas].",
+    en: "When I'm not programming, you can find me listening to some rock 'n' roll music, reading a fantasy or sci-fi books, or playing video game.",
+    pt: "Quando eu não estou programando, você pode me encontrar ouvindo rock 'n' roll, lendo livros de fantasia ou ficção científica ou jogando video game.",
   },
   setup: {
     title: {
-      en: "Setup",
-      pt: "Setup?",
+      en: "Tools",
+      pt: "Ferramentas",
     },
+  },
+};
+
+const links = {
+  hosting: <a href="https://netlify.com/">Netlify</a>,
+  stack: <a href="https://reactjs.org/">React.js</a>,
+  editor: {
+    primary: <a href="https://code.visualstudio.com/">Visual Studio Code</a>,
+    secondary: <a href="https://www.vim.org/">Vim</a>,
+  },
+  terminal: {
+    emulator: <a href="https://github.com/Microsoft/Terminal">Terminal</a>,
+    shells: {
+      primary: (
+        <a href="https://github.com/PowerShell/PowerShell">PowerShell</a>
+      ),
+      secondary: <a href="https://www.gnu.org/software/bash/">Bash</a>,
+    },
+  },
+  communication: {
+    primary: <a href="https://matrix.org/">Matrix</a>,
+    secondary: <a href="https://ircv3.net/">IRC</a>,
+  },
+  browser: <a href="https://firefox.com/">Firefox</a>,
+  other: {
+    primary: <a href="https://www.gnu.org/software/emacs/">Emacs</a>,
+    secondary: <a href="https://orgmode.org/">Org Mode</a>,
+  },
+};
+
+const setupItems = {
+  hosting: {
+    en: (
+      <>
+        This website is hosted on {links.hosting}, and uses the {links.stack}{" "}
+        library.
+      </>
+    ),
+    pt: (
+      <>
+        Este website é hospedado na {links.hosting}, e usa a biblioteca{" "}
+        {links.stack}.
+      </>
+    ),
+  },
+  editor: {
+    en: (
+      <>
+        Editor: I write code mostly with {links.editor.primary}, but sometimes
+        with {links.editor.secondary} too.
+      </>
+    ),
+    pt: (
+      <>
+        Editor: Eu escrevo códigos com o {links.editor.primary}, mas às vezes com
+        o {links.editor.secondary} também.
+      </>
+    ),
+  },
+  terminal: {
+    en: (
+      <>
+        Terminal: {links.terminal.emulator} with {links.terminal.shells.primary}
+        , or {links.terminal.shells.secondary}.
+      </>
+    ),
+    pt: (
+      <>
+        Terminal: {links.terminal.emulator} com {links.terminal.shells.primary},
+        ou {links.terminal.shells.secondary}.
+      </>
+    ),
+  },
+  communications: {
+    en: (
+      <>
+        Communication: You can find me on {links.communication.primary} and{" "}
+        {links.communication.secondary}.
+      </>
+    ),
+    pt: (
+      <>
+        Comunicação: Você pode me na{" "}
+        <a href={links.communication.primary}>Matrix</a> ou no{" "}
+        <a href={links.communication.secondary}>IRC</a>.{" "}
+      </>
+    ),
+  },
+  browser: {
+    en: <>Browser: I currently use {links.browser} as my default browser.</>,
+    pt: (
+      <>
+        Navegador: Atualmente eu uso o {links.browser} como meu navegador
+        padrão.
+      </>
+    ),
+  },
+  other: {
+    en: (
+      <>
+        Everything else: {links.other.primary} and {links.other.primary}.
+      </>
+    ),
+    pt: (
+      <>
+        Todo o resto: {links.other.primary} e {links.other.secondary}.
+      </>
+    ),
   },
 };
 
@@ -36,8 +144,13 @@ const StyledAbout = styled.section`
       color: ${({ theme }) => theme.colors.primary};
     }
   }
+  p {
+    text-align: justify;
+    /* text-align: center; */
+    /* hyphens: auto; */
+  }
 
-  section.summary {
+  /* section.summary {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
@@ -47,111 +160,16 @@ const StyledAbout = styled.section`
         list-style-type: none;
       }
     }
-  }
-
-
+  } */
 `;
-
-const Setup = (props) => {
-  const lang = props.lang;
-
-  // to refactor
-  let website = (
-    <li>
-      This website is hosted on <a href="https://">GitHub Pages</a>, and uses
-      the <a href="https://">React.js</a> library.
-    </li>
-  );
-  let editor = (
-    <li>
-      Editor: I write code mostly with <a href="https://">Visual Studio Code</a>
-      , but sometimes with <a href="https://">Vim</a> too.
-    </li>
-  );
-  let terminal = (
-    <li>
-      Terminal: <a href="https://">Windows Terminal</a> with{" "}
-      <a href="https://">PowerShell</a>, or <a href="https://">Bash</a>.
-    </li>
-  );
-  let communication = (
-    <li>
-      Communication: You can find me on <a href="https://">Matrix</a> and{" "}
-      <a href="https://">IRC</a>.
-    </li>
-  );
-  let browser = (
-    <li>
-      Browser: I currently use <a href="https://">Firefox</a> as my default
-      browser.
-    </li>
-  );
-  let everythingElse = (
-    <li>
-      Everything else: <a href="https://">Emacs</a> and{" "}
-      <a href="https://">Org Mode</a>.
-    </li>
-  );
-
-  if (lang === "pt") {
-    website = (
-      <li>
-        Este website é hospedado na <a href="https://">GitHub Pages</a>, e usa a
-        biblioteca <a href="https://">React.js</a>.
-      </li>
-    );
-    editor = (
-      <li>
-        Editor: Eu escrevo códigos com o{" "}
-        <a href="https://">Visual Studio Code</a>, mas às vezes com o{" "}
-        <a href="https://">Vim</a> também.
-      </li>
-    );
-    terminal = (
-      <li>
-        Terminal: <a href="https://">Windows Terminal</a> com{" "}
-        <a href="https://">PowerShell</a>, ou <a href="https://">Bash</a>.
-      </li>
-    );
-    communication = (
-      <li>
-        Communication: Você pode me na <a href="https://">Matrix</a> ou no{" "}
-        <a href="https://">IRC</a>.
-      </li>
-    );
-    browser = (
-      <li>
-        Navegador: Atualmente eu uso o <a href="https://">Firefox</a> como meu
-        navegador padrão.
-      </li>
-    );
-    everythingElse = (
-      <li>
-        Todo o resto: <a href="https://">Emacs</a> e{" "}
-        <a href="https://">Org Mode</a>.
-      </li>
-    );
-  }
-
-  const listItems = [
-    website,
-    editor,
-    terminal,
-    communication,
-    browser,
-    everythingElse,
-  ].map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>);
-
-  return (
-    <>
-      <h3>{content.setup.title[lang]}</h3>
-      <ul>{listItems}</ul>
-    </>
-  );
-};
 
 const About = () => {
   const { lang } = useContext(Context);
+
+  const setupListItems = Object.values(setupItems).map((item, index) => {
+    return <li key={index}>{item[lang]}</li>;
+  });
+
   return (
     <StyledAbout id="about">
       <h2>{content.section.title[lang]}</h2>
@@ -165,7 +183,9 @@ const About = () => {
       </section> */}
       <p>{content.presentation[lang]}</p>
       <p>{content.extra_presentation[lang]}</p>
-      <Setup lang={lang}></Setup>
+      {/* refactor setup in a component */}
+      <h3>{content.setup.title[lang]}</h3>
+      <ul>{setupListItems}</ul>
     </StyledAbout>
   );
 };

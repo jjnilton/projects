@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Context from "../store/context";
 
@@ -14,7 +14,10 @@ const appear = keyframes`
 `;
 
 const content = {
-  email: "username@address.com",
+  email: {
+    en: "hi@jnrj.me",
+    pt: "oi@jnrj.me",
+  },
   section: {
     title: { en: "Contact", pt: "Contato" },
   },
@@ -64,6 +67,10 @@ const StyledContact = styled.section`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
     animation: ${appear} 0.5s forwards;
+    &::selection {
+      background-color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
   form {
     display: grid;
@@ -129,14 +136,18 @@ const Paragraph = (props) => {
     props.lang === "en" ? (
       <p>
         You can reach me through my email:{" "}
-        <a href={`mailto:${content.email}`}>{content.email}</a> or use the form
-        below.
+        <a href={`mailto:${content.email[props.lang]}`}>
+          {content.email[props.lang]}
+        </a>{" "}
+        or use the form below.
       </p>
     ) : (
       <p>
         Entre em contato através do meu e-mail:{" "}
-        <a href={`mailto:${content.email}`}>{content.email}</a> ou pelo
-        formulário abaixo.
+        <a href={`mailto:${content.email[props.lang]}`}>
+          {content.email[props.lang]}
+        </a>{" "}
+        ou pelo formulário abaixo.
       </p>
     );
 
@@ -169,12 +180,10 @@ const Contact = () => {
       });
       setFormSent(true);
       if (response.ok) {
-        console.log("yay");
         setLoading(false);
         setSuccess(true);
         event.target.reset();
       } else {
-        console.log("not yay");
         setLoading(false);
         setSuccess(false);
       }

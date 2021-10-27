@@ -15,8 +15,8 @@ const slideUp = keyframes`
 
 const content = {
   firstHalf: {
-    en: "Hello, I'm NAME, and",
-    pt: "Olá, eu sou o NOME e",
+    en: "Hello, I'm JJ, and",
+    pt: "Olá, eu sou o JJ e",
   },
   secondHalf: {
     en: "this is my website.",
@@ -29,14 +29,15 @@ const StyledHello = styled.section`
   text-align: center;
   color: ${({ theme }) => theme.colors.secondary};
   animation: ${slideUp} 2s;
-  h1:first-child {
-    font-size: 1em;
+  h1 {
+    display: grid;
+  }
+  h1 > span:first-child {
+    font-size: .75em;
     margin-bottom: 0;
   }
-  h1:last-child {
+  h1 > span:last-child {
     margin-top: 0;
-    /* border-bottom: 10px solid ${({ theme }) => theme.colors.secondary}; */
-    display: inline-block;
   }
 `;
 
@@ -45,8 +46,7 @@ const Hello = () => {
 
   return (
     <StyledHello>
-      <h1>{content.firstHalf[lang]}</h1>
-      <h1>{content.secondHalf[lang]}</h1>
+      <h1><span>{content.firstHalf[lang]}</span><span>{content.secondHalf[lang]}</span></h1>
     </StyledHello>
   );
 };

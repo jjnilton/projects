@@ -1,9 +1,14 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import styled from "styled-components";
-import Context from "../store/context";
+// import Context from "../store/context";
 
 const content = {
   source: { en: "Source", pt: "Código Fonte" },
+  links: {
+    github: "https://github.com/jjnilton",
+    linkedin: "https://linkedin.com/in/jnrj",
+    source: "https://github.com/jjnilton/website",
+  },
 };
 
 const StyledFooter = styled.footer`
@@ -11,7 +16,7 @@ const StyledFooter = styled.footer`
   max-width: 700px;
   text-align: center;
   font-size: 0.8em;
-  padding: 10px;
+  padding: 24px 0;
   span::before {
     content: "\f121";
     font-family: "fontello";
@@ -22,10 +27,11 @@ const StyledFooter = styled.footer`
   }
   ul {
     padding: 0;
+    margin: 16px;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: max-content;
-    gap: 10px;
+    gap: 16px;
     justify-content: center;
     & > li {
       list-style-type: none;
@@ -41,33 +47,47 @@ const StyledFooter = styled.footer`
       margin-right: 5px;
     }
   }
+  figure {
+    display: grid;
+    margin: 24px auto;
+    max-width: 386px;
+    & > blockquote {
+      margin: 0;
+    }
+  }
+  figcaption {
+    filter: brightness(0.75);
+    text-align: right;
+  }
 `;
 
 const Footer = () => {
-  const { lang } = useContext(Context);
+  // const { lang } = useContext(Context);
   return (
     <StyledFooter>
-      <blockquote>
-        <p>"Open source is a commitment not a convenience."</p>
-        <cite>Paul Cormier</cite>
-      </blockquote>
+      <figure>
+        <blockquote>
+          <p>
+            "There are far, far better things ahead than any we leave behind."
+          </p>
+        </blockquote>
+        <figcaption>—C.S. Lewis</figcaption>
+      </figure>
       <div>
         <ul>
           <li>
-            <a href="https://">GitHub</a>
+            <a href={content.links.github}>GitHub</a>
           </li>
           <li>
-            <a href="https://">LinkedIn</a>
+            <a href={content.links.linkedin}>LinkedIn</a>
           </li>
         </ul>
       </div>
-      <div>
+      {/* <div>
         <span>
-          <a href="https://">
-            {content.source[lang]}
-          </a>
+          <a href={content.links.source}>{content.source[lang]}</a>
         </span>
-      </div>
+      </div> */}
     </StyledFooter>
   );
 };

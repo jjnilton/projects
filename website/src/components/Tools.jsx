@@ -9,13 +9,13 @@ import GitLogo from "../logos/git.svg";
 import NodeLogo from "../logos/nodejs.svg";
 
 const content = {
-  title : {
-    en: "Tools",
-    pt: "Ferramentas"
+  title: {
+    en: "And more tools...",
+    pt: "E mais ferramentas...",
   },
   intertitle: {
     en: "The tools I've been using to develop web applications",
-    pt: "As ferramentas que venho usando para desenvolver aplicações web"
+    pt: "As ferramentas que venho usando para desenvolver aplicações web",
   },
   tools: [
     {
@@ -62,8 +62,8 @@ const content = {
       name: "Git",
       image: GitLogo,
       description: {
-        en: "The system that I use for version control.",
-        pt: "O sistema que uso para controle de versão.",
+        en: "The system that I use for version control in my projects",
+        pt: "O sistema que uso para controle de versão nos meus projetos",
       },
     },
   ],
@@ -108,7 +108,7 @@ const Tools = () => {
   return (
     <>
       <StyledTools>
-        <h3>{content.title[lang]}</h3>
+        <h4>{content.title[lang]}</h4>
         {/* <p>{content.intertitle[lang]}</p> */}
         <ul>{toolsItems}</ul>
       </StyledTools>

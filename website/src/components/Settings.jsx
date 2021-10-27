@@ -28,6 +28,7 @@ const StyledSettings = styled.section`
       & > span::before {
         content: ${({ theme }) => theme.icon};
         font-family: "fontello";
+        font-size: 1.5em;
       }
       @media (hover: hover) {
         &:hover {
@@ -75,7 +76,7 @@ const StyledSettings = styled.section`
       transition: transform 1s;
       transform: ${(props) => props.lang === "en" && "translateX(28px)"};
       @media (max-width: 560px) {
-        font-size: 0.75em;
+        font-size: 0.7em;
         line-height: 1em;
         word-spacing: 64px;
       }
