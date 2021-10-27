@@ -100,7 +100,7 @@ const StyledProjectItem = styled.li`
 
   p {
     text-align: justify;
-    hyphens: auto;
+    /* hyphens: auto; */
     margin: 0;
   }
 

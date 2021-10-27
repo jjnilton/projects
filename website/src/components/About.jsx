@@ -147,7 +147,9 @@ const StyledAbout = styled.section`
   p {
     text-align: justify;
     /* text-align: center; */
-    /* hyphens: auto; */
+    @media (max-width: 560px) {
+      /* hyphens: auto; */
+    }
   }
 
   /* section.summary {
