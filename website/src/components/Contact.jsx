@@ -173,7 +173,7 @@ const Contact = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          window.location.includes("netlify")
+          window.location.host.includes("netlify")
             ? "/"
             : "https://jnrj.me/api/contact",
           {
