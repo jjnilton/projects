@@ -171,7 +171,7 @@ const Contact = () => {
 
     const sendMessage = async () => {
       setLoading(true);
-      const response = await fetch("https://jnrj-website.netlify.app/", {
+      const response = await fetch("https://jnrj.me/formtest", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
