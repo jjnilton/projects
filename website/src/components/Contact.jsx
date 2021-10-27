@@ -172,13 +172,18 @@ const Contact = () => {
     const sendMessage = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://jnrj.me/formtest", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams(formData).toString(),
-        });
+        const response = await fetch(
+          window.location.includes("netlify")
+            ? "/"
+            : "https://jnrj.me/api/contact",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams(formData).toString(),
+          }
+        );
         console.log(response);
         setFormSent(true);
         if (response.ok) {
@@ -191,6 +196,10 @@ const Contact = () => {
         }
       } catch (err) {
         console.log(err);
+        console.log("erro");
+        setLoading(false);
+        setFormSent(true);
+        setSuccess(false);
       }
     };
 
@@ -243,10 +252,10 @@ const Contact = () => {
           <span>{content.label.send[lang]}</span>
         </button>
       </form>
-      {loading && <div>Sending...</div>}
-      {formSent && success ? (
+      {loading && <p>Sending...</p>}
+      {!loading && formSent && success ? (
         <div>{content.form_submit_result.success[lang]}</div>
-      ) : formSent && !success ? (
+      ) : !loading && formSent && !success ? (
         <div>{content.form_submit_result.failure[lang]}</div>
       ) : undefined}
     </StyledContact>
