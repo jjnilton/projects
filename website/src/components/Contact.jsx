@@ -171,21 +171,25 @@ const Contact = () => {
 
     const sendMessage = async () => {
       setLoading(true);
-      const response = await fetch("https://jnrj.me/formtest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(formData).toString(),
-      });
-      setFormSent(true);
-      if (response.ok) {
-        setLoading(false);
-        setSuccess(true);
-        event.target.reset();
-      } else {
-        setLoading(false);
-        setSuccess(false);
+      try {
+        const response = await fetch("https://jnrj.me/formtest", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(formData).toString(),
+        });
+        setFormSent(true);
+        if (response.ok) {
+          setLoading(false);
+          setSuccess(true);
+          event.target.reset();
+        } else {
+          setLoading(false);
+          setSuccess(false);
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
 
