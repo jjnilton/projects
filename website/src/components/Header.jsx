@@ -17,7 +17,7 @@ const StyledHeader = styled.header`
   grid-template-rows: max-content max-content;
   justify-content: space-between;
 
-  div.logo {
+  & > div:first-of-type {
     font-weight: bold;
     font-size: 1.5em;
     grid-row: 1/1;
@@ -126,7 +126,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <div className="logo"><a href="http://localhost:3000">jnrj</a></div>
+      <div><a href={window.location.origin + window.location.pathname}>jnrj</a></div>
       {/* to replace with nav */}
       <HamburgerMenu
         toggleNavVisibility={handleNavVisibility}
