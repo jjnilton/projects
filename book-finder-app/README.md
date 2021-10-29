@@ -2,6 +2,8 @@
 
 ![Book Finder App](screenshot.png)
 
+[Live](https://jjnilton.github.io/projects/book-finder-app/dist)
+
 ## Description
 
 An application that will allow users to search for books by entering a query (Title, Author, etc), and displays the resulting books in a list on the page with all the corresponding data.
