@@ -15,3 +15,4 @@ Projects to practice development.
 | [Localized Hello](localized-hello)                 | Show a Welcome message and geo-ip info based on user's IP     | React, Redux, Styled Components | [View](https://jjnilton.github.io/projects/localized-hello/build)         |
 | [Contact Form](contact-form)                       | Contact form with input validation and form submission to API | Vue.js, Vue Test Utils          | [View](https://jjnilton.github.io/projects/contact-form/dist)             |
 | [Word Frequency](word-frequency)                   | App and API endpoint to show the word frequency of a text     | Next.js, Styled Components      | [View](https://word-frequency-app.vercel.app/)                            |
+| [Book Finder App](book-finder-app)                 | Let you search for books using the OpenLibrary.org API        | React, Redux, Styled Components | [View](https://jjnilton.github.io/projects/book-finder-app/dist)          |
