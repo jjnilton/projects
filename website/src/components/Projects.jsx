@@ -122,7 +122,7 @@ const StyledProjectItem = styled.li`
     color: ${({ theme }) => theme.colors.primary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     & > span {
-      font-family: 'Fira Mono', monospace;
+      font-family: ui-monospace, 'Fira Mono', monospace;
     }
     & > span::before {
       content: '\f121';

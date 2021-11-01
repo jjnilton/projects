@@ -238,7 +238,6 @@ const Contact = () => {
         <textarea
           id="message"
           name="message"
-          type="text"
           rows="5"
           placeholder={content.placeholder.message[lang]}
           required
