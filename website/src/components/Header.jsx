@@ -50,9 +50,11 @@ const StyledNav = styled.nav`
     & > a {
       text-decoration: none;
       color: ${({ theme }) => theme.colors.secondary};
+      display: block;
+      padding: 5px;
+
     }
     margin: 0;
-    padding: 5px;
     list-style-type: none;
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     text-align: center;
