@@ -10,12 +10,12 @@ const content = {
     },
   },
   presentation: {
-    en: "I'm a web developer based in Feira de Santana – BA, Brazil. I'm currently focused on developing applications with JavaScript, using React.js and its ecosystem.",
-    pt: "Eu sou um desenvolvedor web de Feira de Santana – BA, Brasil. Atualmente eu estou focado em desenvolver aplicações com JavaScript, usando o React.js e seu ecossistema.",
+    en: <>I'm a web developer based in <a href="https://goo.gl/maps/9qZntbPiMqWdf1ph8">Feira de Santana – BA, Brazil</a>. I'm currently focused on developing applications with JavaScript, using React.js and its ecosystem.</>,
+    pt: <>Eu sou um desenvolvedor web de <a href="https://goo.gl/maps/9qZntbPiMqWdf1ph8">Feira de Santana – BA, Brazil</a>. Atualmente eu estou focado em desenvolver aplicações com JavaScript, usando o React.js e seu ecossistema.</>,
   },
   extra_presentation: {
-    en: "When I'm not programming, you can find me listening to some music, reading fantasy or sci-fi stories, or playing video games.",
-    pt: "Quando eu não estou programando, você pode me encontrar ouvindo música, lendo histórias de fantasia ou ficção científica ou jogando video games.",
+    en: "When I'm not programming, you can find me listening to some music, reading sci-fi or fantasy stories, or playing video games.",
+    pt: "Quando eu não estou programando, você pode me encontrar ouvindo música, lendo histórias de ficção cientifica ou fantasia, ou jogando video games.",
   },
   setup: {
     title: {
@@ -134,6 +134,14 @@ const setupItems = {
 };
 
 const StyledAbout = styled.section`
+  h2 {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+    border-radius: 5px;
+    display: inline-block;
+    padding: 3px 6px;
+    /* border-bottom: 5px solid white; */
+  }
   a {
     color: ${({ theme }) => theme.colors.secondary};
     font-weight: bold;
@@ -146,6 +154,7 @@ const StyledAbout = styled.section`
     }
   }
   p {
+    margin-top: 0;
     text-align: justify;
     /* text-align: center; */
     @media (max-width: 560px) {

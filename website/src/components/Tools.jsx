@@ -46,8 +46,8 @@ const content = {
       name: "Styled Components",
       image: StyledComponentsLogo,
       description: {
-        en: "A library that makes it easier writing CSS in JS",
-        pt: "Uma biblioteca que facilita a escrita de CSS em JS",
+        en: "A library that makes it easier writing CSS in JavaScript",
+        pt: "Uma biblioteca que facilita a escrita de CSS em JavaScript",
       },
     },
     {

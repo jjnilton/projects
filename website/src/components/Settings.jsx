@@ -16,6 +16,7 @@ const StyledSettings = styled.section`
 
   div.theme-switcher {
     button {
+      box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
       width: 32px;
       border: 2px solid ${({ theme }) => theme.colors.secondary};
       height: 100%;
@@ -45,6 +46,7 @@ const StyledSettings = styled.section`
 
   div.language-switcher {
     display: grid;
+    box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     width: 96px;
     position: relative;

@@ -7,7 +7,15 @@ import LoremIpsumGeneratorLightScreenshot from "../screenshots/lorem-ipsum-gener
 import BookFinderAppScreenshot from "../screenshots/book-finder-app.png";
 import EventCountdownTimerScreenshot from "../screenshots/event-countdown-timer.png";
 
-const StyledProjects = styled.article``;
+const StyledProjects = styled.article`
+  h2 {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+    border-radius: 5px;
+    display: inline-block;
+    padding: 3px 6px;
+  }
+`;
 
 const projects_data = [
   {
@@ -85,7 +93,12 @@ const StyledProjectItem = styled.li`
   display: grid;
   gap: 16px;
   grid-template-rows: max-content max-content max-content 1fr max-content;
-
+  transition: transform .2s;
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
   img {
     border: 2px solid ${({ theme }) => theme.colors.secondary};
     justify-self: center;
@@ -115,18 +128,19 @@ const StyledProjectItem = styled.li`
     padding: 5px;
     text-decoration: none;
     text-align: center;
-    transition: background-color .2s, color .2s, border-color .2s;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   }
   a:first-child {
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
+    box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
     & > span {
-      font-family: ui-monospace, 'Fira Mono', monospace;
+      font-family: ui-monospace, "Fira Mono", monospace;
     }
     & > span::before {
-      content: '\f121';
-      font-family: 'fontello';
+      content: "\f121";
+      font-family: "fontello";
       margin-right: 5px;
     }
     &:hover {
@@ -138,6 +152,7 @@ const StyledProjectItem = styled.li`
   a:last-child {
     color: ${({ theme }) => theme.colors.secondary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
+    box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
     &:hover {
       background-color: ${({ theme }) => theme.colors.secondary};
       color: ${({ theme }) => theme.colors.primary};
@@ -185,8 +200,12 @@ const ProjectItem = (props) => {
       <p>{props.project.description[lang]}</p>
       <Tags tags={props.project.tags}></Tags>
       <div>
-        <a href={props.project.source}><span>Source</span></a>
-        <a href={props.project.live}><span>Live</span></a>
+        <a href={props.project.source}>
+          <span>Source</span>
+        </a>
+        <a href={props.project.live}>
+          <span>Live</span>
+        </a>
       </div>
     </StyledProjectItem>
   );

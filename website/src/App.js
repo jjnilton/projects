@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
     transition: background-color .5s, color .5s;
-    padding: 10px;
+    padding: 20px;
   }
 
   div:not(#root) {
@@ -34,6 +34,7 @@ const light = {
   colors: {
     primary: "white",
     secondary: "black",
+    tertiary: '#ccc'
   },
   filter: "grayscale(1) contrast(2) brightness(0)",
   icon: "'\\e815'",
@@ -43,6 +44,7 @@ const dark = {
   colors: {
     primary: "black",
     secondary: "white",
+    tertiary: "#444"
   },
   filter: "grayscale(1) contrast(1) brightness(0) invert()",
   icon: "'\\e811'",

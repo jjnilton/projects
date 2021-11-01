@@ -25,8 +25,8 @@ const StyledHeader = styled.header`
       color: unset;
       text-decoration: none;
       &::before {
-        font-family: 'fontello';
-        content: '\f120';
+        font-family: "fontello";
+        content: "\f120";
         margin-right: 5px;
       }
     }
@@ -47,12 +47,12 @@ const StyledNav = styled.nav`
   }
 
   li {
+    box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
     & > a {
       text-decoration: none;
       color: ${({ theme }) => theme.colors.secondary};
       display: block;
       padding: 5px;
-
     }
     margin: 0;
     list-style-type: none;
@@ -85,9 +85,15 @@ const Nav = (props) => {
   return (
     <StyledNav $visibility={props.visibility}>
       <ul>
-        <li><a href="#about">{menuOption.about[lang]}</a></li>
-        <li><a href="#projects">{menuOption.projects[lang]}</a></li>
-        <li><a href="#contact">{menuOption.contact[lang]}</a></li>
+        <li>
+          <a href="#about">{menuOption.about[lang]}</a>
+        </li>
+        <li>
+          <a href="#projects">{menuOption.projects[lang]}</a>
+        </li>
+        <li>
+          <a href="#contact">{menuOption.contact[lang]}</a>
+        </li>
       </ul>
       <Settings></Settings>
     </StyledNav>
@@ -95,6 +101,7 @@ const Nav = (props) => {
 };
 
 const StyledHamburgerMenu = styled.button`
+  box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
   border: 2px solid ${({ theme }) => theme.colors.secondary};
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.secondary};
@@ -106,6 +113,10 @@ const StyledHamburgerMenu = styled.button`
   margin-left: auto;
   @media (min-width: 560px) {
     display: none;
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -128,7 +139,9 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <div><a href={window.location.origin + window.location.pathname}>jnrj</a></div>
+      <div>
+        <a href={window.location.origin + window.location.pathname}>jnrj</a>
+      </div>
       {/* to replace with nav */}
       <HamburgerMenu
         toggleNavVisibility={handleNavVisibility}

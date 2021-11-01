@@ -47,12 +47,21 @@ const content = {
 };
 
 const StyledContact = styled.section`
+  h2 {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+    border-radius: 5px;
+    display: inline-block;
+    padding: 3px 6px;
+  }
   p {
+    margin-top: 0;
     & > a {
       color: unset;
       font-weight: bold;
       text-decoration: unset;
       transition: background-color 0.2s, color 0.2s;
+      padding: 0 1px;
       &:hover {
         background-color: ${({ theme }) => theme.colors.secondary};
         color: ${({ theme }) => theme.colors.primary};
@@ -115,6 +124,7 @@ const StyledContact = styled.section`
       font-size: 1em;
       cursor: pointer;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+      box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
       & > span::before {
         content: "\f1d8";
         font-family: "fontello";
