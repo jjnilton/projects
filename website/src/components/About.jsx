@@ -14,8 +14,8 @@ const content = {
     pt: "Eu sou um desenvolvedor web de Feira de Santana – BA, Brasil. Atualmente eu estou focado em desenvolver aplicações com JavaScript, usando o React.js e seu ecossistema.",
   },
   extra_presentation: {
-    en: "When I'm not programming, you can find me listening to some rock 'n' roll music, reading a fantasy or sci-fi books, or playing video game.",
-    pt: "Quando eu não estou programando, você pode me encontrar ouvindo rock 'n' roll, lendo livros de fantasia ou ficção científica ou jogando video game.",
+    en: "When I'm not programming, you can find me listening to some music, reading fantasy or sci-fi stories, or playing video games.",
+    pt: "Quando eu não estou programando, você pode me encontrar ouvindo música, lendo histórias de fantasia ou ficção científica ou jogando video games.",
   },
   setup: {
     title: {
