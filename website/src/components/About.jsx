@@ -138,6 +138,7 @@ const StyledAbout = styled.section`
     color: ${({ theme }) => theme.colors.secondary};
     font-weight: bold;
     text-decoration: none;
+    padding: 0 1px;
     &:hover {
       transition: background-color 0.2s, color 0.2s;
       background-color: ${({ theme }) => theme.colors.secondary};
