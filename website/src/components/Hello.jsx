@@ -15,8 +15,8 @@ const slideUp = keyframes`
 
 const content = {
   firstHalf: {
-    en: "Hello, I'm JJ, and",
-    pt: "Olá, eu sou o JJ e",
+    en: "Hello, I'm José, and",
+    pt: "Olá, eu sou o José e",
   },
   secondHalf: {
     en: "this is my website.",
