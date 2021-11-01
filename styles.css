@@ -420,14 +420,6 @@ header > div.header-wrapper > div.menu-button {
     row-gap: 4vmin;
   }
 
-  header > div.header-wrapper > div.logo {
-    /* background-color: red; */
-  }
-  header > div.header-wrapper > div.logo > div.logo-text {
-    /* background-color: red; */
-    /* opacity: 1; */
-  }
-
   header > div.header-bg {
     background: url(images/banner.png);
     background-size: cover;
@@ -497,8 +489,8 @@ header > div.header-wrapper > div.menu-button {
     max-width: 1000px;
     margin: 0 auto;
     padding-top: 3.75em;
-    padding-left: .5em;
-    padding-right: .5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
   }
 
   .schedule {
