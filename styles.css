@@ -396,8 +396,8 @@ header > div.header-wrapper > div.menu-button {
 
   header:not(.scrolled) div.menu-button.active {
     background-color: white;
-    color: black;
-    mix-blend-mode: screen;
+    color: rgba(64, 79, 109, 1);
+    /* mix-blend-mode: screen; */
   }
 
   header.scrolled div.menu-button.active {
