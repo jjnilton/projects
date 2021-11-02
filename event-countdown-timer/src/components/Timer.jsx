@@ -79,7 +79,7 @@ const Timer = (props) => {
         <div className={classes.info}>
           <div className={classes.name}>{props.name}</div>
           <div className={classes.date}>
-            {new Date(props.dateTime).toLocaleString(undefined, {
+            {new Date(...props.dateTime).toLocaleString(undefined, {
               month: "short",
               year: "numeric",
               day: "2-digit",

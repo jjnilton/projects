@@ -32,16 +32,17 @@ const NewTimer = () => {
       time = "00:00";
     }
 
-    const dateTime = `${date} ${time}`.trim();
-    
-    
+    // const dateTime = `${date} ${time}`.trim();
+    const dateArray = date.split("-");
+    const timeArray = time.split(":");
+    const dateTimeArray = dateArray.concat(timeArray);
 
     let validDate = false;
 
-    if (!isNaN(new Date(dateTime)) && new Date(dateTime) > new Date()) {
+    if (!isNaN(new Date(...dateTimeArray)) && new Date(...dateTimeArray) > new Date()) {
       const found = timers.find((timer) => {
         return (
-          new Date(timer.dateTime).getTime() === new Date(dateTime).getTime()
+          new Date(timer.dateTime).getTime() === new Date(...dateTimeArray).getTime()
         );
       });
       if (!!found) {
@@ -54,7 +55,7 @@ const NewTimer = () => {
     }
 
     if (validName && validDate) {
-      addTimer({ name, dateTime });
+      addTimer({ name, dateTime: dateTimeArray });
       event.target.reset();
       nameRef.current.focus();
       setSuccess(true);

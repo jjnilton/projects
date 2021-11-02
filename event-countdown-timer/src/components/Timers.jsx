@@ -8,12 +8,15 @@ const ActiveTimers = () => {
   const [activeTimers, setActiveTimers] = useState();
   const [visible, setVisible] = useState(true);
 
+  // console.log(timers)
+
   const getTimeLeft = (timerDate) => {
-    return Math.floor((new Date(timerDate) - new Date()) / 1000);
+    console.log(timerDate)
+    return Math.floor((new Date(...timerDate) - new Date()) / 1000);
   };
 
   const activeTimersArray = [...timers]
-    .sort((a, b) => (new Date(a.dateTime) < new Date(b.dateTime) ? -1 : 1))
+    .sort((a, b) => (new Date(...a.dateTime) < new Date(...b.dateTime) ? -1 : 1))
     .filter((timer) => getTimeLeft(timer.dateTime) > 0);
 
   const expiredTimersArray = timers.filter(
@@ -25,7 +28,7 @@ const ActiveTimers = () => {
       <li key={timer.id}>
         <div className={classes.name}>{timer.name}</div>
         <div className={classes.date}>
-          {new Date(timer.dateTime).toLocaleString(undefined, {
+          {new Date(...timer.dateTime).toLocaleString(undefined, {
             dateStyle: "long",
             timeStyle: "short",
           })}

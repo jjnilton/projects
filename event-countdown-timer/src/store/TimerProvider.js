@@ -39,7 +39,7 @@ const TimerProvider = (props) => {
   const handleClearExpiredTimers = () => {
     setTimers((prevTimers) => {
       const updatedTimers = prevTimers.filter(
-        (timer) => new Date(timer.dateTime) > new Date()
+        (timer) => new Date(...timer.dateTime) > new Date()
       );
       localStorage.setItem("timers", JSON.stringify(updatedTimers));
       return updatedTimers;
