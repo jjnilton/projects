@@ -67,7 +67,13 @@ const TimerProvider = (props) => {
   };
 
   const showStatusBar = () => {
-    setStatusBar(true)
+    try {
+      if (Notification) {
+        setStatusBar(true)
+      }
+    } catch (err) {
+      setStatusBar(false)
+    }
   }
 
   const hideStatusBar = () => {
@@ -79,13 +85,24 @@ const TimerProvider = (props) => {
       setTimers(JSON.parse(localStorage.getItem("timers")));
     }
 
-    if (Notification.permission === "default") {
-      setNotificationModal(true);
+    try {
+      if (Notification.permission === "default") {
+        setNotificationModal(true);
+      }
+    } catch(err) {
+      console.log(err)
+      setNotificationEnabled(false)
     }
 
-    if (Notification.permission === "granted") {
-      setNotificationEnabled(true);
+    try {
+      if (Notification.permission === "granted") {
+        setNotificationEnabled(true);
+      }
+    } catch(err) {
+      console.log(err)
+      setNotificationEnabled(false)
     }
+
 
     setIsLoaded(true);
 

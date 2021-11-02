@@ -8,8 +8,14 @@ import Timers from "./components/Timers";
 import TimerContext from "./store/timer-context";
 
 function App() {
-  const { notificationModal, alert, notificationEnabled, isLoaded, showStatusBar, statusBar } =
-    useContext(TimerContext);
+  const {
+    notificationModal,
+    alert,
+    notificationEnabled,
+    isLoaded,
+    showStatusBar,
+    statusBar,
+  } = useContext(TimerContext);
 
   // attempt to prevent rendering an empty element
   useEffect(() => {
@@ -25,15 +31,11 @@ function App() {
       showStatusBar();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [notificationEnabled, notificationModal, isLoaded])
+  }, [notificationEnabled, notificationModal, isLoaded]);
 
   return (
     <>
-      {statusBar ? (
-        <NotificationStatus></NotificationStatus>
-      ) : (
-        ""
-      )}
+      {statusBar ? <NotificationStatus></NotificationStatus> : ""}
       <main className={classes.app}>
         {notificationModal && <NotificationRequest></NotificationRequest>}
         {alert && <Alert></Alert>}

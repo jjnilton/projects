@@ -33,6 +33,8 @@ const NewTimer = () => {
     }
 
     const dateTime = `${date} ${time}`.trim();
+    
+    
 
     let validDate = false;
 
@@ -80,7 +82,12 @@ const NewTimer = () => {
   useEffect(() => {
     if (!alert && !notificationModal) {
       setTimeout(() => {
-        nameRef.current.focus();
+        try {
+          nameRef.current.focus();
+        } catch (err) {
+          console.log(err)
+        }
+        
       }, 1);
     }
   }, [alert, notificationModal, statusBar]);
