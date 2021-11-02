@@ -14,7 +14,8 @@ const StyledSettings = styled.section`
     height: 48px;
   }
 
-  div.theme-switcher {
+  /* theme switcher */
+  & > div:last-child {
     button {
       box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
       width: 32px;
@@ -44,7 +45,8 @@ const StyledSettings = styled.section`
     }
   }
 
-  div.language-switcher {
+  /* languague switcher */
+  & > div:first-child {
     display: grid;
     box-shadow: 3px 3px 0 ${({ theme }) => theme.colors.tertiary};
     border: 2px solid ${({ theme }) => theme.colors.secondary};
@@ -53,7 +55,7 @@ const StyledSettings = styled.section`
     cursor: pointer;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.secondary};
-    div.lang {
+    & > div:first-child {
       display: grid;
       grid-template-columns: 0.3fr 0.3fr;
       justify-content: space-between;
@@ -63,14 +65,14 @@ const StyledSettings = styled.section`
       color: ${({ theme }) => theme.colors.primary};
     }
 
-    div.thing-that-move {
+    & > div:last-child {
       display: grid;
       align-items: center;
       background-color: ${({ theme }) => theme.colors.primary};
       font-size: 0.7em;
       text-align: center;
       color: ${({ theme }) => theme.colors.secondary};
-      /* border: 1px solid ${({ theme }) => theme.colors.secondary}; */
+      border: 1px solid black;
       position: absolute;
       height: 100%;
       width: 64px;
@@ -175,12 +177,12 @@ const Settings = () => {
         <div onClick={handleLangChange2}>en</div>
         <div onClick={handleLangChange2}>pt</div>
       </div> */}
-      <div className="language-switcher" onClick={handleLangChange}>
+      <div onClick={handleLangChange}>
         <div className="lang">
           <div>en</div>
           <div>pt</div>
         </div>
-        <div className="thing-that-move">
+        <div>
           {lang === "en" ? (
             <span>switch to portuguese</span>
           ) : (
@@ -188,7 +190,7 @@ const Settings = () => {
           )}
         </div>
       </div>
-      <div className="theme-switcher">
+      <div>
         <button onClick={toggleTheme}>
           <span
             title={
