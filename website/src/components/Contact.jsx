@@ -145,15 +145,15 @@ const Paragraph = (props) => {
   const p =
     props.lang === "en" ? (
       <p>
-        You can reach me through my email:{" "}
+        You can reach me through the email {" "}
         <a href={`mailto:${content.email[props.lang]}`}>
           {content.email[props.lang]}
         </a>{" "}
-        or use the form below.
+        or the form below.
       </p>
     ) : (
       <p>
-        Entre em contato através do meu e-mail:{" "}
+        Você pode entrar em contato através do e-mail {" "}
         <a href={`mailto:${content.email[props.lang]}`}>
           {content.email[props.lang]}
         </a>{" "}
