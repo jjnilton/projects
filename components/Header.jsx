@@ -5,21 +5,41 @@ import Title from "./Title";
 const StyledHeader = styled.header`
   position: sticky;
   top: 0;
-  background-color: black;
+  background-color: #2d2d2d;
+  height: 100px;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: height 1s;
+  @media (max-width: 900px) {
+    height: 50px;
+    padding: 0 10%;
+  }
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const Header = (props) => {
+  const handleHome = (event) => {
+    event.preventDefault();
+    if (props.postVisibility) {
+      props.handlePostVisibility(false);
+    }
+
+    if (props.featuredPostVisibility) {
+      props.handleFeaturedPostVisibility(false);
+      props.handleHomeVisibility(true);
+    }
+  };
+
   return (
     <StyledHeader>
-      <Title></Title>
+      <Title handleHome={handleHome}></Title>
       <Navigation
         handlePostVisibility={props.handlePostVisibility}
-        postVisibility={props.postVisibility}
         featuredPostVisibility={props.featuredPostVisibility}
-        handleFeaturedPostVisibility={props.handleFeaturedPostVisibility}
         toggleContact={props.toggleContact}
-        handleHomeVisibility={props.handleHomeVisibility}
+        handleHome={handleHome}
       ></Navigation>
     </StyledHeader>
   );
