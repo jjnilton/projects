@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import DOMPurify from "dompurify";
-import React, { useState } from "react";
+import React from "react";
 
 const StyledPostItem = styled.article``;
 

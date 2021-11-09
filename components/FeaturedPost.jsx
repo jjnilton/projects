@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Header from "./Header";
 import PostView from "./PostView";
-import { useEffect } from "react";
 
 const animation = keyframes`
   from {

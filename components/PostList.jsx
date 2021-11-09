@@ -20,7 +20,6 @@ const PostList = (props) => {
         `https://stormy-shelf-93141.herokuapp.com/articles?_page=${currentPage}`
       );
       const data = await response.json();
-      // console.log(data);
       setData(data);
       setIsLoading(false);
     };
