@@ -181,8 +181,8 @@ const StyledFeaturedPostItem = styled.article`
     @media (max-width: 1900px) {
       width: 24px;
       height: 24px;
-      left: 416px;
-      top: 406px;
+      left: 356px;
+      top: 0px;
       cursor: pointer;
     }
 

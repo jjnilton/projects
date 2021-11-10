@@ -177,7 +177,12 @@ const PostItem = (props) => {
   return (
     <StyledPostItem onClick={handleClick}>
       <div>
-        <img src={props.item.imageUrl} alt={props.item.title} />
+        <img
+          src={props.item.imageUrl}
+          alt={DOMPurify.sanitize(props.item.title, {
+            ALLOWED_TAGS: ["p"],
+          })}
+        />
       </div>
       <div>
         <div>

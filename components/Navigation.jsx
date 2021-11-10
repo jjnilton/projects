@@ -4,7 +4,7 @@ const StyledNavigation = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
-  gap: 10px;
+  gap: 20px;
   & > li {
     list-style-type: none;
     font-size: 16px;
@@ -12,33 +12,37 @@ const StyledNavigation = styled.ul`
   }
   & > li:nth-child(1) {
     cursor: ${(props) => props.postVisibility && "pointer"};
-    @media (min-width: 960px) {
-      position: absolute;
-      left: 65.89%;
-      right: 29.48%;
-      top: 31%;
-      bottom: 38%;
-      font-family: "Rubik";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 38px;
+    position: absolute;
+    left: 65.89%;
+    right: 29.48%;
+    top: 31%;
+    bottom: 38%;
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    @media (max-width: 960px) {
+      position: static;
+      font-size: 16px;
     }
   }
 
   & > li:nth-child(2) {
     cursor: pointer;
-    @media (min-width: 960px) {
-      position: absolute;
-      left: 76.67%;
-      right: 16.61%;
-      top: 31%;
-      bottom: 38%;
-      font-family: Rubik;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 38px;
+    position: absolute;
+    left: 76.67%;
+    right: 16.61%;
+    top: 31%;
+    bottom: 38%;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    @media (max-width: 960px) {
+      position: static;
+      font-size: 16px;
     }
   }
 `;

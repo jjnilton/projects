@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Header from "./Header";
 import PostView from "./PostView";
@@ -19,9 +20,16 @@ const StyledFeaturedPost = styled.div`
   height: 100%;
   animation: ${animation} 1s;
   z-index: 1;
+  background: linear-gradient(90deg, #f1a10a 0%, #342303 100%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: auto;
 `;
 
 const FeaturedPost = (props) => {
+  useEffect(() => {
+    setTimeout(() => {}, 1000);
+  }, []);
+
   return (
     <StyledFeaturedPost>
       <Header
