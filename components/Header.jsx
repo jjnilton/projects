@@ -41,6 +41,7 @@ const Header = (props) => {
         featuredPostVisibility={props.featuredPostVisibility}
         toggleContact={props.toggleContact}
         handleHome={handleHome}
+        postVisibility={props.postVisibility}
       ></Navigation>
     </StyledHeader>
   );

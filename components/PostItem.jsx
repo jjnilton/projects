@@ -6,6 +6,11 @@ import Image from "next/image";
 
 const StyledPostItem = styled.article`
   min-height: 320px;
+  background-color: white;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  cursor: pointer;
   @media (max-width: 960px) {
     min-height: unset;
   }
@@ -22,16 +27,11 @@ const StyledPostItem = styled.article`
   p {
     margin: 0;
   }
-  background-color: white;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: 1fr 2fr;
 
   & > div:last-child {
     position: relative;
     @media (max-width: 960px) {
       display: grid;
-      justify-content: center;
       align-items: center;
     }
 
@@ -43,14 +43,14 @@ const StyledPostItem = styled.article`
       top: 35px;
       @media (max-width: 960px) {
         position: static;
-        margin: 10px;
+        margin: 20px;
         display: grid;
         row-gap: 10px;
       }
 
       @media (max-width: 560px) {
-        row-gap: 5px;
-        margin: 5px;
+        row-gap: 0px;
+        margin: 10px;
       }
     }
   }
@@ -76,10 +76,10 @@ const StyledPostItem = styled.article`
     white-space: nowrap;
     @media (max-width: 960px) {
       position: static;
+      max-width: unset;
     }
 
     @media (max-width: 760px) {
-      position: static;
       font-size: 18px;
     }
   }
@@ -146,17 +146,16 @@ const StyledPostItem = styled.article`
     @media (max-width: 760px) {
       font-size: 16px;
       line-height: 24px;
+      max-height: 67px;
     }
 
     @media (max-width: 560px) {
       display: none;
     }
   }
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   button {
-    position: absolute;
+    position: relative;
     width: 24px;
     height: 24px;
     left: 576px;
@@ -172,18 +171,7 @@ const StyledPostItem = styled.article`
 
 const PostItem = (props) => {
   const handleClick = () => {
-    if (props.featured) {
-      props.homeRef.current.style.transform = "translateX(-100%)";
-      props.homeRef.current.style.transition = "transform 1s";
-      props.handleFeaturedPostVisibility(true);
-      props.handlePostVisibility(false, props.item);
-      setTimeout(() => {
-        props.handleHomeVisibility(false);
-        props.handlePostVisibility(true, props.item);
-      }, 1000);
-    } else {
-      props.handlePostVisibility(true, props.item);
-    }
+    props.handlePostVisibility(true, props.item);
   };
 
   return (
@@ -196,15 +184,18 @@ const PostItem = (props) => {
           <h3>{props.item.author}</h3>
           <h2
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.title),
+              __html: DOMPurify.sanitize(props.item.title, {
+                ALLOWED_TAGS: ["p"],
+              }),
             }}
           ></h2>
           <h4
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.article),
+              __html: DOMPurify.sanitize(props.item.article, {
+                ALLOWED_TAGS: ["p"],
+              }),
             }}
           ></h4>
-          {/* <h1>{props.featured.toString()}</h1> */}
         </div>
         <button onClick={handleClick}>
           <Image

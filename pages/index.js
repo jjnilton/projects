@@ -16,8 +16,8 @@ export default function Home() {
   const [postData, setPostData] = useState({});
   const [contactModalVisibility, setContactModalVisibility] = useState(false);
   const [featuredPostVisibility, setFeaturedPostVisibility] = useState(false);
-  const homeRef = useRef();
   const [homeVisibility, setHomeVisibility] = useState(true);
+  const homeRef = useRef();
 
   const handlePostVisibility = (status, data = postData) => {
     setPostVisibility(status);

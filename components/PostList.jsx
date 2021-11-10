@@ -10,6 +10,7 @@ const StyledPostList = styled.article`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, minmax(900px, 960px));
+
   @media (max-width: 1900px) {
     grid-template-columns: 960px;
   }
@@ -21,12 +22,13 @@ const StyledPostList = styled.article`
     row-gap: 30px;
   }
 
-  &> article:nth-child(3n):not(:nth-child(6n)) + article, article:nth-child(3n):not(:nth-child(6n)) + article + article {
+  & > article:nth-child(3n):not(:nth-child(6n)) + article,
+  article:nth-child(3n):not(:nth-child(6n)) + article + article {
     grid-template-columns: 2fr 1fr;
-    &> div:first-child {
+    & > div:first-child {
       order: 1;
     }
-    &> div:last-child {
+    & > div:last-child {
       order: -1;
     }
   }

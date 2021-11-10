@@ -7,18 +7,18 @@ const StyledNavigation = styled.ul`
   gap: 10px;
   & > li {
     list-style-type: none;
-    cursor: pointer;
     font-size: 16px;
     transition: font-size 1s;
   }
   & > li:nth-child(1) {
+    cursor: ${(props) => props.postVisibility && "pointer"};
     @media (min-width: 960px) {
       position: absolute;
       left: 65.89%;
       right: 29.48%;
       top: 31%;
       bottom: 38%;
-      font-family: Rubik;
+      font-family: "Rubik";
       font-style: normal;
       font-weight: 500;
       font-size: 32px;
@@ -27,6 +27,7 @@ const StyledNavigation = styled.ul`
   }
 
   & > li:nth-child(2) {
+    cursor: pointer;
     @media (min-width: 960px) {
       position: absolute;
       left: 76.67%;
@@ -48,7 +49,7 @@ const Navigation = (props) => {
   };
 
   return (
-    <StyledNavigation>
+    <StyledNavigation postVisibility={props.postVisibility}>
       <li onClick={props.handleHome}>Posts</li>
       <li onClick={handleContact}>Contact</li>
     </StyledNavigation>

@@ -12,8 +12,9 @@ const StyledFeaturedPostItem = styled.article`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr 1fr;
+  cursor: pointer;
 
-  @media (max-width: 1280px) {
+  @media (max-width: 1900px) {
     min-height: unset;
   }
 
@@ -28,6 +29,10 @@ const StyledFeaturedPostItem = styled.article`
   img {
     width: 100%;
     height: 100%;
+    @media (max-width: 760px) {
+      height: 50vmin;
+      object-fit: cover;
+    }
   }
 
   h1,
@@ -46,7 +51,7 @@ const StyledFeaturedPostItem = styled.article`
 
   & > div:last-child {
     position: relative;
-    @media (max-width: 1280px) {
+    @media (max-width: 1900px) {
       display: grid;
       justify-content: center;
       align-items: center;
@@ -57,16 +62,19 @@ const StyledFeaturedPostItem = styled.article`
       height: 315px;
       left: 80px;
       top: 163px;
-      @media (max-width: 1280px) {
+
+      @media (max-width: 1900px) {
         position: static;
         height: unset;
         width: unset;
         width: 360px;
+        display: grid;
+        row-gap: 10px;
       }
 
       @media (max-width: 760px) {
         width: unset;
-        margin: 10px;
+        margin: 20px;
       }
     }
   }
@@ -92,9 +100,13 @@ const StyledFeaturedPostItem = styled.article`
 
     white-space: nowrap;
 
-    @media (max-width: 1280px) {
+    @media (max-width: 1900px) {
       position: static;
       height: unset;
+    }
+
+    @media (max-width: 560px) {
+      font-size: 20px;
     }
   }
 
@@ -116,8 +128,14 @@ const StyledFeaturedPostItem = styled.article`
     color: #f1a10a;
     overflow: hidden;
     text-overflow: clip;
-    @media (max-width: 1280px) {
+    @media (max-width: 1900px) {
       position: static;
+    }
+
+    @media (max-width: 560px) {
+      font-size: 24px;
+      line-height: 32px;
+      height: unset;
     }
   }
 
@@ -140,15 +158,18 @@ const StyledFeaturedPostItem = styled.article`
 
     overflow: hidden;
     text-overflow: ellipsis;
-    @media (max-width: 1280px) {
+
+    @media (max-width: 1900px) {
       position: static;
     }
+
+    @media (max-width: 560px) {
+      display: none;
+    }
   }
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   button {
-    position: absolute;
+    position: relative;
     width: 24px;
     height: 24px;
     left: 576px;
@@ -156,6 +177,15 @@ const StyledFeaturedPostItem = styled.article`
     background-color: unset;
     border: none;
     cursor: pointer;
+
+    @media (max-width: 1900px) {
+      width: 24px;
+      height: 24px;
+      left: 416px;
+      top: 406px;
+      cursor: pointer;
+    }
+
     @media (max-width: 960px) {
       display: none;
     }
@@ -164,18 +194,14 @@ const StyledFeaturedPostItem = styled.article`
 
 const FeaturedPostItem = (props) => {
   const handleClick = () => {
-    if (props.featured) {
-      props.homeRef.current.style.transform = "translateX(-100%)";
-      props.homeRef.current.style.transition = "transform 1s";
-      props.handleFeaturedPostVisibility(true);
-      props.handlePostVisibility(false, props.item);
-      setTimeout(() => {
-        props.handleHomeVisibility(false);
-        props.handlePostVisibility(true, props.item);
-      }, 1000);
-    } else {
+    props.homeRef.current.style.transform = "translateX(-100%)";
+    props.homeRef.current.style.transition = "transform 1s";
+    props.handleFeaturedPostVisibility(true);
+    props.handlePostVisibility(false, props.item);
+    setTimeout(() => {
+      props.handleHomeVisibility(false);
       props.handlePostVisibility(true, props.item);
-    }
+    }, 1000);
   };
 
   return (
@@ -188,12 +214,16 @@ const FeaturedPostItem = (props) => {
           <h3>{props.item.author}</h3>
           <h2
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.title),
+              __html: DOMPurify.sanitize(props.item.title, {
+                ALLOWED_TAGS: ["p"],
+              }),
             }}
           ></h2>
           <h4
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.article),
+              __html: DOMPurify.sanitize(props.item.article, {
+                ALLOWED_TAGS: ["p"],
+              }),
             }}
           ></h4>
         </div>
