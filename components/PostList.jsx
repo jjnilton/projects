@@ -2,9 +2,40 @@ import styled from "styled-components";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 
-const StyledPostList = styled.article``;
+const StyledPostList = styled.article`
+  margin-top: 60px;
+  row-gap: 60px;
+  background: linear-gradient(90deg, #f1a10a 0%, #342303 100%);
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, minmax(900px, 960px));
+  @media (max-width: 1900px) {
+    grid-template-columns: 960px;
+  }
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 560px) {
+    margin-top: 30px;
+    row-gap: 30px;
+  }
+
+  &> article:nth-child(3n):not(:nth-child(6n)) + article, article:nth-child(3n):not(:nth-child(6n)) + article + article {
+    grid-template-columns: 2fr 1fr;
+    &> div:first-child {
+      order: 1;
+    }
+    &> div:last-child {
+      order: -1;
+    }
+  }
+`;
 
 const PostItem = dynamic(() => import("./PostItem"), { ssr: false });
+const FeaturedPostItem = dynamic(() => import("./FeaturedPostItem"), {
+  ssr: false,
+});
 
 const PostList = (props) => {
   const [data, setData] = useState();
@@ -59,6 +90,21 @@ const PostList = (props) => {
   }, [bottom]);
 
   const postListItems = data?.map((item, index) => {
+    if ((index + 1) % 3 === 0) {
+      return (
+        <FeaturedPostItem
+          key={item.id}
+          item={item}
+          handlePostVisibility={props.handlePostVisibility}
+          featured={(index + 1) % 3 === 0}
+          homeRef={props.homeRef}
+          toggleContact={props.toggleContact}
+          featuredPostVisibility={props.featuredPostVisibility}
+          handleFeaturedPostVisibility={props.handleFeaturedPostVisibility}
+          handleHomeVisibility={props.handleHomeVisibility}
+        ></FeaturedPostItem>
+      );
+    }
     return (
       <PostItem
         key={item.id}
@@ -75,10 +121,12 @@ const PostList = (props) => {
   });
 
   return (
-    <StyledPostList>
-      {isLoading ? <p>Loading...</p> : postListItems}
+    <>
+      <StyledPostList>
+        {isLoading ? <p>Loading...</p> : postListItems}
+      </StyledPostList>
       {noMoreData && <div>No more data to load.</div>}
-    </StyledPostList>
+    </>
   );
 };
 

@@ -2,7 +2,11 @@ import styled from "styled-components";
 import PostList from "./PostList";
 import PostView from "./PostView";
 
-const StyledMain = styled.main``;
+const StyledMain = styled.main`
+  @media (max-width: 960px) {
+    padding: 0px 10px;
+  }
+`;
 
 const Main = (props) => {
   return (

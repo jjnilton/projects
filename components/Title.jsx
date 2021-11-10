@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledTitle = styled.div`
-  @media (min-width: 900px) {
+  @media (min-width: 960px) {
     position: absolute;
     left: 16.67%;
     right: 72.81%;

@@ -12,7 +12,7 @@ const StyledNavigation = styled.ul`
     transition: font-size 1s;
   }
   & > li:nth-child(1) {
-    @media (min-width: 900px) {
+    @media (min-width: 960px) {
       position: absolute;
       left: 65.89%;
       right: 29.48%;
@@ -27,7 +27,7 @@ const StyledNavigation = styled.ul`
   }
 
   & > li:nth-child(2) {
-    @media (min-width: 900px) {
+    @media (min-width: 960px) {
       position: absolute;
       left: 76.67%;
       right: 16.61%;

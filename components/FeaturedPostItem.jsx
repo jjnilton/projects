@@ -4,10 +4,25 @@ import React from "react";
 import ReadMoreIcon from "../public/Vector.svg";
 import Image from "next/image";
 
-const StyledPostItem = styled.article`
-  min-height: 320px;
-  @media (max-width: 960px) {
+const StyledFeaturedPostItem = styled.article`
+  min-height: 640px;
+  grid-column: 1 / -1;
+  max-width: 1280px;
+  background-color: white;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 1280px) {
     min-height: unset;
+  }
+
+  @media (max-width: 960px) {
+    min-height: 320px;
+  }
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
   }
 
   img {
@@ -22,45 +37,46 @@ const StyledPostItem = styled.article`
   p {
     margin: 0;
   }
-  background-color: white;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+
+  &:nth-child(odd) {
+    @media (min-width: 1900px) {
+      margin-left: 640px;
+    }
+  }
 
   & > div:last-child {
     position: relative;
-    @media (max-width: 960px) {
+    @media (max-width: 1280px) {
       display: grid;
       justify-content: center;
       align-items: center;
     }
-
     & > div {
-      position: relative;
-      max-width: 480px;
-      max-height: 250px;
+      position: absolute;
+      width: 480px;
+      height: 315px;
       left: 80px;
-      top: 35px;
-      @media (max-width: 960px) {
+      top: 163px;
+      @media (max-width: 1280px) {
         position: static;
-        margin: 10px;
-        display: grid;
-        row-gap: 10px;
+        height: unset;
+        width: unset;
+        width: 360px;
       }
 
-      @media (max-width: 560px) {
-        row-gap: 5px;
-        margin: 5px;
+      @media (max-width: 760px) {
+        width: unset;
+        margin: 10px;
       }
     }
   }
 
   h3 {
     position: absolute;
-    max-width: 160px;
-    max-height: 35px;
+    width: 214px;
+    height: 35px;
     left: 0px;
-    top: 0px;
+    top: 24px;
 
     /* Default Text */
     font-family: Rubik;
@@ -73,23 +89,21 @@ const StyledPostItem = styled.article`
 
     /* Text Color */
     color: #2d2d2d;
-    white-space: nowrap;
-    @media (max-width: 960px) {
-      position: static;
-    }
 
-    @media (max-width: 760px) {
+    white-space: nowrap;
+
+    @media (max-width: 1280px) {
       position: static;
-      font-size: 18px;
+      height: unset;
     }
   }
 
   h2 {
     position: absolute;
-    max-width: 443px;
-    max-height: 85px;
-    left: 0px;
-    top: 42px;
+    height: calc(103px - 10px);
+    left: 0%;
+    right: 0%;
+    top: 83px;
 
     /* Card Title */
     font-family: Rubik;
@@ -101,30 +115,18 @@ const StyledPostItem = styled.article`
     /* Text Gradient */
     color: #f1a10a;
     overflow: hidden;
-    text-overflow: ellipsis;
-
-    @media (max-width: 960px) {
+    text-overflow: clip;
+    @media (max-width: 1280px) {
       position: static;
-    }
-
-    @media (max-width: 760px) {
-      font-size: 20px;
-      line-height: unset;
-    }
-
-    @media (max-width: 560px) {
-      font-size: 20px;
-      line-height: unset;
-      max-height: 50px;
     }
   }
 
   h4 {
     position: absolute;
-    max-height: 97px;
+    height: 109px;
     left: 0%;
     right: 0%;
-    top: 140px;
+    top: 196px;
 
     /* Default Text */
     font-family: Rubik;
@@ -138,18 +140,8 @@ const StyledPostItem = styled.article`
 
     overflow: hidden;
     text-overflow: ellipsis;
-
-    @media (max-width: 960px) {
+    @media (max-width: 1280px) {
       position: static;
-    }
-
-    @media (max-width: 760px) {
-      font-size: 16px;
-      line-height: 24px;
-    }
-
-    @media (max-width: 560px) {
-      display: none;
     }
   }
   overflow: hidden;
@@ -160,7 +152,7 @@ const StyledPostItem = styled.article`
     width: 24px;
     height: 24px;
     left: 576px;
-    top: 256px;
+    top: 576px;
     background-color: unset;
     border: none;
     cursor: pointer;
@@ -170,7 +162,7 @@ const StyledPostItem = styled.article`
   }
 `;
 
-const PostItem = (props) => {
+const FeaturedPostItem = (props) => {
   const handleClick = () => {
     if (props.featured) {
       props.homeRef.current.style.transform = "translateX(-100%)";
@@ -187,7 +179,7 @@ const PostItem = (props) => {
   };
 
   return (
-    <StyledPostItem onClick={handleClick}>
+    <StyledFeaturedPostItem featured={props.featured} onClick={handleClick}>
       <div>
         <img src={props.item.imageUrl} alt={props.item.title} />
       </div>
@@ -204,7 +196,6 @@ const PostItem = (props) => {
               __html: DOMPurify.sanitize(props.item.article),
             }}
           ></h4>
-          {/* <h1>{props.featured.toString()}</h1> */}
         </div>
         <button onClick={handleClick}>
           <Image
@@ -215,8 +206,8 @@ const PostItem = (props) => {
           />
         </button>
       </div>
-    </StyledPostItem>
+    </StyledFeaturedPostItem>
   );
 };
 
-export default PostItem;
+export default FeaturedPostItem;

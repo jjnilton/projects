@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Rubik';
+    background: linear-gradient(to right, #F1A10A, #342303);
   }
 `;
 
