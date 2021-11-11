@@ -112,7 +112,6 @@ const PostList = (props) => {
       };
       fetchData();
     }
-    console.log("rock bottom");
   }, [bottom]);
 
   const postListItems = data?.map((item, index) => {

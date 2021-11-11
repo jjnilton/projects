@@ -3,7 +3,7 @@ import Navigation from "./Navigation";
 import Title from "./Title";
 
 const StyledHeader = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   background-color: #2d2d2d;
@@ -19,7 +19,7 @@ const StyledHeader = styled.header`
     padding: 0 10%;
   }
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-  z-index: 9990;
+  z-index: 1;
 `;
 
 const Header = (props) => {

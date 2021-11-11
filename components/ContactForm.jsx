@@ -16,6 +16,7 @@ const StyledContactForm = styled.form`
     font-weight: normal;
     font-size: 24px;
     line-height: 34px;
+    display: block;
     margin-bottom: 4px;
 
     @media (max-width: 560px) {

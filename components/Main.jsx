@@ -3,13 +3,10 @@ import PostList from "./PostList";
 import PostView from "./PostView";
 
 const StyledMain = styled.main`
-  padding-top: 100px;
   padding-bottom: 60px;
 
   @media (max-width: 960px) {
     padding: 0px 10px;
-    padding-top: 50px;
-    padding-bottom: 60px;
   }
 `;
 

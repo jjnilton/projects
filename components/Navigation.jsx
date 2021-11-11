@@ -49,7 +49,7 @@ const StyledNavigation = styled.ul`
 
 const Navigation = (props) => {
   const handleContact = () => {
-    props.toggleContact();
+    props.toggleContact();   
   };
 
   return (
