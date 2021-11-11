@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 const StyledPostList = styled.article`
-  /* padding-top: 160px; */
   margin-top: 60px;
   row-gap: 60px;
   background: linear-gradient(90deg, #f1a10a 0%, #342303 100%);
-  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, minmax(900px, 960px));
-
   @media (max-width: 1900px) {
     grid-template-columns: 960px;
   }
@@ -35,6 +33,15 @@ const StyledPostList = styled.article`
   }
 `;
 
+const ErrorMessage = styled.div`
+  align-self: center;
+  justify-self: center;
+  grid-column: 1 / -1;
+  font-size: 2em;
+  color: white;
+  text-align: center;
+`;
+
 const PostItem = dynamic(() => import("./PostItem"), { ssr: false });
 const FeaturedPostItem = dynamic(() => import("./FeaturedPostItem"), {
   ssr: false,
@@ -43,26 +50,32 @@ const FeaturedPostItem = dynamic(() => import("./FeaturedPostItem"), {
 const PostList = (props) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [bottom, setBottom] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [noMoreData, setNoMoreData] = useState(false);
+  const [error, setError] = useState(false);
+  const [loadMoreError, setLoadMoreError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const response = await fetch(
-        `https://stormy-shelf-93141.herokuapp.com/articles?_page=${currentPage}`
-      );
-      const data = await response.json();
-      setData(data);
-      setIsLoading(false);
+      try {
+        const response = await fetch(
+          `https://stormy-shelf-93141.herokuapp.com/articles?_page=${currentPage}`
+        );
+        const data = await response.json();
+        setData(data);
+        setIsLoading(false);
+        setError(false);
+      } catch {
+        setIsLoading(false);
+        setError(true);
+      }
     };
     fetchData();
     const scrollListener = (e) => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 2
-      ) {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         setBottom(true);
       }
     };
@@ -75,21 +88,31 @@ const PostList = (props) => {
   useEffect(() => {
     if (bottom && !noMoreData) {
       const fetchData = async () => {
-        const response = await fetch(
-          `https://stormy-shelf-93141.herokuapp.com/articles?_page=${
-            currentPage + 1
-          }`
-        );
-        const data = await response.json();
-        if (data.length < 10) {
-          setNoMoreData(true);
+        setIsLoadingMore(true);
+        try {
+          const response = await fetch(
+            `https://stormy-shelf-93141.herokuapp.com/articles?_page=${
+              currentPage + 1
+            }`
+          );
+          const data = await response.json();
+          if (data.length < 10) {
+            setNoMoreData(true);
+          }
+          setData((prevData) => prevData.concat(data));
+          setBottom(false);
+          setCurrentPage((currentPage) => (currentPage += 1));
+          setIsLoadingMore(false);
+          setLoadMoreError(false);
+        } catch {
+          setLoadMoreError(true);
+          setIsLoadingMore(false);
+          setNoMoreData(false);
         }
-        setData((prevData) => prevData.concat(data));
-        setBottom(false);
-        setCurrentPage((currentPage) => (currentPage += 1));
       };
       fetchData();
     }
+    console.log("rock bottom");
   }, [bottom]);
 
   const postListItems = data?.map((item, index) => {
@@ -126,9 +149,26 @@ const PostList = (props) => {
   return (
     <>
       <StyledPostList>
-        {isLoading ? <p>Loading...</p> : postListItems}
+        {isLoading ? <Loading></Loading> : postListItems}
+        {error && (
+          <div
+            style={{
+              textAlign: "center",
+              gridColumn: "1 / -1",
+              fontSize: "2em",
+              color: "white",
+              textShadow: "0 6px 8px #000",
+            }}
+          >
+            Something went wrong...
+          </div>
+        )}
+        {!isLoadingMore && loadMoreError && (
+          <ErrorMessage>Error loading more.</ErrorMessage>
+        )}
+        {isLoadingMore && <Loading></Loading>}
       </StyledPostList>
-      {noMoreData && <div>No more data to load.</div>}
+      {noMoreData && <ErrorMessage>No more data to load.</ErrorMessage>}
     </>
   );
 };
