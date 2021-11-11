@@ -30,8 +30,9 @@ const StyledFeaturedPostItem = styled.article`
     width: 100%;
     height: 100%;
     @media (max-width: 760px) {
-      height: 50vmin;
+      height: 50vw;
       object-fit: cover;
+      min-height: 160px;
     }
   }
 
@@ -44,12 +45,28 @@ const StyledFeaturedPostItem = styled.article`
   }
 
   &:nth-child(odd) {
-    @media (min-width: 1900px) {
-      margin-left: 640px;
+    margin-left: 640px;
+    @media (max-width: 1900px) {
+      margin-left: 33.3%;
+    }
+
+    @media (max-width: 960px) {
+      margin-left: 0;
+    }
+  }
+
+  &:nth-child(even) {
+    @media (max-width: 1900px) {
+      margin-right: 33.3%;
+    }
+
+    @media (max-width: 960px) {
+      margin-right: 0;
     }
   }
 
   & > div:last-child {
+    /* Wrapper */
     position: relative;
     @media (max-width: 1900px) {
       display: grid;
@@ -57,6 +74,7 @@ const StyledFeaturedPostItem = styled.article`
       align-items: center;
     }
     & > div {
+      /* Inner */
       position: absolute;
       width: 480px;
       height: 315px;
@@ -72,6 +90,15 @@ const StyledFeaturedPostItem = styled.article`
         row-gap: 10px;
       }
 
+      @media (max-width: 1280px) {
+        position: static;
+        height: unset;
+        width: 75%;
+        display: grid;
+        row-gap: 10px;
+        justify-self: center;
+      }
+
       @media (max-width: 760px) {
         width: unset;
         margin: 20px;
@@ -80,6 +107,7 @@ const StyledFeaturedPostItem = styled.article`
   }
 
   h3 {
+    /* Author */
     position: absolute;
     width: 214px;
     height: 35px;
@@ -103,6 +131,14 @@ const StyledFeaturedPostItem = styled.article`
     @media (max-width: 1900px) {
       position: static;
       height: unset;
+      font-size: 1.5vw;
+    }
+
+    @media (max-width: 1280px) {
+    }
+
+    @media (max-width: 960px) {
+      font-size: 2.5vw;
     }
 
     @media (max-width: 560px) {
@@ -111,6 +147,7 @@ const StyledFeaturedPostItem = styled.article`
   }
 
   h2 {
+    /* Post Title */
     position: absolute;
     height: calc(103px - 10px);
     left: 0%;
@@ -130,12 +167,31 @@ const StyledFeaturedPostItem = styled.article`
     text-overflow: clip;
     @media (max-width: 1900px) {
       position: static;
+      font-size: 2vw;
+    }
+
+    @media (max-width: 1280px) {
+      line-height: 26px;
+      height: calc(103px - 20px);
+    }
+
+    @media (max-width: 960px) {
+      font-size: 3.6vw;
+      line-height: 43px;
+      height: calc(103px - 10px);
+    }
+
+    @media (max-width: 760px) {
+      font-size: 3.6vw;
+      line-height: 43px;
+      height: unset;
     }
 
     @media (max-width: 560px) {
       font-size: 24px;
       line-height: 32px;
       height: unset;
+      max-height: 64px;
     }
   }
 
@@ -161,6 +217,18 @@ const StyledFeaturedPostItem = styled.article`
 
     @media (max-width: 1900px) {
       position: static;
+      font-size: 1.25vw;
+    }
+
+    @media (max-width: 1280px) {
+      font-size: 1.5vw;
+      line-height: 24px;
+      height: calc(109px - 36px);
+    }
+
+    @media (max-width: 960px) {
+      font-size: 2.5vw;
+      line-height: 24px;
     }
 
     @media (max-width: 560px) {
@@ -179,17 +247,23 @@ const StyledFeaturedPostItem = styled.article`
     cursor: pointer;
 
     @media (max-width: 1900px) {
-      width: 24px;
-      height: 24px;
-      left: 356px;
-      top: 0px;
-      cursor: pointer;
+      position: absolute;
+      top: unset;
+      left: unset;
+      right: 5%;
+      bottom: 12%;
     }
 
     @media (max-width: 960px) {
       display: none;
     }
   }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 24px;
+  height: 24px;
 `;
 
 const FeaturedPostItem = (props) => {
@@ -228,12 +302,14 @@ const FeaturedPostItem = (props) => {
           ></h4>
         </div>
         <button onClick={handleClick}>
-          <Image
-            src={ReadMoreIcon}
-            alt="Read more"
-            layout="fill"
-            quality={100}
-          />
+          <ImageContainer>
+            <Image
+              src={ReadMoreIcon}
+              alt="Read more"
+              layout="fill"
+              quality={100}
+            />
+          </ImageContainer>
         </button>
       </div>
     </StyledFeaturedPostItem>

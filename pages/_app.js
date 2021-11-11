@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
     background: linear-gradient(to right, #F1A10A, #342303);
+    min-width: 320px;
   }
 `;
 

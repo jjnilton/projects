@@ -11,7 +11,7 @@ const StyledPostList = styled.article`
   justify-content: center;
   grid-template-columns: repeat(2, minmax(900px, 960px));
   @media (max-width: 1900px) {
-    grid-template-columns: 960px;
+    grid-template-columns: 1fr 1fr;
   }
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
@@ -58,6 +58,7 @@ const PostList = (props) => {
   const [loadMoreError, setLoadMoreError] = useState(false);
 
   useEffect(() => {
+    // document.body.style.overflow = "auto";
     const fetchData = async () => {
       setIsLoading(true);
       try {

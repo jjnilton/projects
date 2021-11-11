@@ -85,12 +85,13 @@ const StyledPostView = styled.article`
     top: calc(50% - 236px / 2);
     @media (max-width: 1900px) {
       position: static;
-      max-width: 66.6%;
+      max-width: 100%;
       margin: 0 auto;
     }
 
     @media (max-width: 960px) {
       position: static;
+      max-width: 80%;
       margin: 0 auto;
     }
     @media (max-width: 560px) {
