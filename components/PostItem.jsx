@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DOMPurify from "dompurify";
 import React from "react";
-import ReadMoreIcon from "../public/Vector.svg";
+import ReadMoreIcon from "../public/read-more.svg";
 import Image from "next/image";
 
 const StyledPostItem = styled.article`
@@ -172,6 +172,7 @@ const StyledPostItem = styled.article`
 const PostItem = (props) => {
   const handleClick = () => {
     props.handlePostVisibility(true, props.item);
+    window.scrollTo(0, 0);
   };
 
   return (

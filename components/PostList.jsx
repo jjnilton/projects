@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 
 const StyledPostList = styled.article`
+  /* padding-top: 160px; */
   margin-top: 60px;
   row-gap: 60px;
   background: linear-gradient(90deg, #f1a10a 0%, #342303 100%);
@@ -16,9 +17,9 @@ const StyledPostList = styled.article`
   }
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
+    margin-top: 30px;
   }
   @media (max-width: 560px) {
-    margin-top: 30px;
     row-gap: 30px;
   }
 

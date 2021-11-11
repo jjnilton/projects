@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DOMPurify from "dompurify";
 import React from "react";
-import ReadMoreIcon from "../public/Vector.svg";
+import ReadMoreIcon from "../public/read-more.svg";
 import Image from "next/image";
 
 const StyledFeaturedPostItem = styled.article`
@@ -196,6 +196,8 @@ const FeaturedPostItem = (props) => {
   const handleClick = () => {
     props.homeRef.current.style.transform = "translateX(-100%)";
     props.homeRef.current.style.transition = "transform 1s";
+    props.homeRef.current.children[0].style.position = "sticky";
+    props.homeRef.current.children[1].style.paddingTop = "0";
     props.handleFeaturedPostVisibility(true);
     props.handlePostVisibility(false, props.item);
     setTimeout(() => {

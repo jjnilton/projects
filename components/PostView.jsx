@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import DOMPurify from "dompurify";
+import { useEffect } from "react";
 
 const StyledPostView = styled.article`
   position: absolute;
@@ -20,15 +21,21 @@ const StyledPostView = styled.article`
     row-gap: 5vw;
   }
 
+  @media (max-width: 1280px) {
+    margin-top: 100px;
+    max-width: 90%;
+    margin-top: 8%;
+  }
+
   @media (max-width: 760px) {
     max-width: 92%;
-    margin-top: 8%;
+    margin-top: 12%;
   }
 
   @media (max-width: 560px) {
     grid-template-columns: 1fr;
     max-width: 100%;
-    margin-top: 10px;
+    margin-top: 12%;
   }
 
   & > img {
@@ -193,6 +200,7 @@ const StyledPostView = styled.article`
         font-size: 22px;
         line-height: 29px;
         margin-top: 14px;
+        width: unset;
       }
     }
   }

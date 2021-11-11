@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Header from "./Header";
 import PostView from "./PostView";
+import Main from "./Main";
 
 const animation = keyframes`
   from {
@@ -23,6 +24,10 @@ const StyledFeaturedPost = styled.div`
   background: linear-gradient(90deg, #f1a10a 0%, #342303 100%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: auto;
+
+  @media (max-width: 1280px) {
+    padding-top: 100px;
+  }
 `;
 
 const FeaturedPost = (props) => {

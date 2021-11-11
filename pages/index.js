@@ -8,7 +8,6 @@ import Modal from "../components/Modal";
 import FeaturedPost from "../components/FeaturedPost";
 
 const StyledHome = styled.div`
-  transform: translateX(0);
 `;
 
 export default function Home() {
