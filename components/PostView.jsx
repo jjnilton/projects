@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DOMPurify from "dompurify";
+import { sanitize } from "dompurify";
 
 const StyledPostView = styled.article`
   position: absolute;
@@ -266,7 +266,7 @@ const PostView = (props) => {
     <StyledPostView>
       <img
         src={props.postData.imageUrl}
-        alt={DOMPurify.sanitize(props.postData.title, {
+        alt={sanitize(props.postData.title, {
           ALLOWED_TAGS: ["p"],
         })}
       />
@@ -276,7 +276,7 @@ const PostView = (props) => {
           <div>{props.postData.author}</div>
           <h2
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.postData.title, {
+              __html: sanitize(props.postData.title, {
                 ALLOWED_TAGS: ["p"],
               }),
             }}
@@ -286,7 +286,7 @@ const PostView = (props) => {
 
       <div
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(props.postData.article, {
+          __html: sanitize(props.postData.article, {
             ALLOWED_TAGS: ["p"],
           }),
         }}

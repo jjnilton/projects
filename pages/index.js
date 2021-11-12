@@ -1,18 +1,17 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import Head from "next/head";
 import ContactForm from "../components/ContactForm";
 import Header from "../components/Header";
 import Main from "../components/Main";
 import Modal from "../components/Modal";
 import FeaturedPost from "../components/FeaturedPost";
-import NewPostForm from "../components/NewPostForm";
-import PostImage from "../public/photo.svg";
 
 const StyledHome = styled.div``;
 
 export default function Home() {
-  const [postVisibility, setPostVisibility] = useState(false);
   const [postData, setPostData] = useState({});
+  const [postVisibility, setPostVisibility] = useState(false);
   const [contactModalVisibility, setContactModalVisibility] = useState(false);
   const [newPostVisibility, setNewPostVisibility] = useState(false);
   const [featuredPostVisibility, setFeaturedPostVisibility] = useState(false);
@@ -44,6 +43,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Blog Frontend App</title>
+      </Head>
       {contactModalVisibility && (
         <Modal name="Contact" toggle={toggleContactModalVisibility}>
           <ContactForm></ContactForm>
@@ -52,39 +54,39 @@ export default function Home() {
       {featuredPostVisibility && (
         <FeaturedPost
           postData={postData}
-          toggleContact={toggleContactModalVisibility}
-          toggleNewPost={toggleNewPostVisibility}
-          handlePostVisibility={handlePostVisibility}
           postVisibility={postVisibility}
           featuredPostVisibility={featuredPostVisibility}
-          handleFeaturedPostVisibility={handleFeaturedPostVisibility}
-          handleHomeVisibility={handleHomeVisibility}
           newPostVisibility={newPostVisibility}
+          toggleContact={toggleContactModalVisibility}
           toggleNewPost={toggleNewPostVisibility}
+          toggleNewPost={toggleNewPostVisibility}
+          handlePostVisibility={handlePostVisibility}
+          handleHomeVisibility={handleHomeVisibility}
+          handleFeaturedPostVisibility={handleFeaturedPostVisibility}
         ></FeaturedPost>
       )}
       {homeVisibility && (
         <StyledHome ref={homeRef}>
           <>
             <Header
-              handlePostVisibility={handlePostVisibility}
               postVisibility={postVisibility}
+              newPostVisibility={newPostVisibility}
               toggleContact={toggleContactModalVisibility}
               toggleNewPost={toggleNewPostVisibility}
+              handlePostVisibility={handlePostVisibility}
               handleHomeVisibility={handleHomeVisibility}
               handleFeaturedPostVisibility={handleFeaturedPostVisibility}
-              newPostVisibility={newPostVisibility}
             ></Header>
             <Main
-              handlePostVisibility={handlePostVisibility}
-              postVisibility={postVisibility}
-              postData={postData}
               homeRef={homeRef}
-              toggleContact={toggleContactModalVisibility}
+              postData={postData}
+              postVisibility={postVisibility}
               featuredPostVisibility={featuredPostVisibility}
-              handleFeaturedPostVisibility={handleFeaturedPostVisibility}
-              handleHomeVisibility={handleHomeVisibility}
               newPostVisibility={newPostVisibility}
+              toggleContact={toggleContactModalVisibility}
+              handlePostVisibility={handlePostVisibility}
+              handleHomeVisibility={handleHomeVisibility}
+              handleFeaturedPostVisibility={handleFeaturedPostVisibility}
             ></Main>
           </>
         </StyledHome>

@@ -7,7 +7,7 @@ const StyledModal = styled.div`
   /* Modal */
 
   width: 810px;
-  height: 1612px;
+  height: 1113px;
   padding: 91px 123px;
   background-color: rgba(255, 255, 255, 1);
   position: absolute;
@@ -66,6 +66,10 @@ const StyledModal = styled.div`
   }
 `;
 
+const imageLoader = () => {
+  return `./close.svg`
+}
+
 const Modal = (props) => {
   const rect = document.body.getBoundingClientRect();
 
@@ -74,7 +78,7 @@ const Modal = (props) => {
       <Backdrop toggle={props.toggle}></Backdrop>
       <StyledModal rect={rect}>
         <button onClick={props.toggle}>
-          <Image src={CloseIcon}></Image>
+          <Image loader={imageLoader} src={CloseIcon}></Image>
         </button>
         {props.name && <h3>{props.name}</h3>}
         {props.children}

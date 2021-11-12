@@ -66,7 +66,7 @@ const StyledContactForm = styled.form`
     line-height: 34px;
     color: white;
     text-align: left;
-    margin-top: 72px;
+    margin-top: calc(72px - 48px);
     @media (max-width: 560px) {
       margin-top: 36px;
     }
@@ -76,6 +76,10 @@ const StyledContactForm = styled.form`
     }
   }
 `;
+
+const imageLoader = () => {
+  return `./submit-form.svg`
+}
 
 const ContactForm = () => {
   return (
@@ -97,7 +101,7 @@ const ContactForm = () => {
         <textarea id="post" type="text" placeholder="Hello..." />
       </div>
       <button>
-        <Image src={SubmitFormIcon}></Image>Submit
+        <Image loader={imageLoader} src={SubmitFormIcon}></Image>Submit
       </button>
     </StyledContactForm>
   );

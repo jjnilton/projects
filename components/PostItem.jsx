@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import DOMPurify from "dompurify";
-import React from "react";
 import ReadMoreIcon from "../public/read-more.svg";
 import Image from "next/image";
+import { sanitize } from "dompurify";
 
 const StyledPostItem = styled.article`
   min-height: 320px;
@@ -269,6 +268,10 @@ const ImageContainer = styled.div`
   height: 24px;
 `;
 
+const imageLoader = () => {
+  return `./read-more.svg`
+}
+
 const PostItem = (props) => {
   const handleClick = () => {
     props.handlePostVisibility(true, props.item);
@@ -280,7 +283,7 @@ const PostItem = (props) => {
       <div>
         <img
           src={props.item.imageUrl}
-          alt={DOMPurify.sanitize(props.item.title, {
+          alt={sanitize(props.item.title, {
             ALLOWED_TAGS: ["p"],
           })}
         />
@@ -290,14 +293,14 @@ const PostItem = (props) => {
           <h3>{props.item.author}</h3>
           <h2
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.title, {
+              __html: sanitize(props.item.title, {
                 ALLOWED_TAGS: ["p"],
               }),
             }}
           ></h2>
           <h4
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.article, {
+              __html: sanitize(props.item.article, {
                 ALLOWED_TAGS: ["p"],
               }),
             }}
@@ -306,6 +309,7 @@ const PostItem = (props) => {
         <button onClick={handleClick}>
           <ImageContainer>
             <Image
+              loader={imageLoader}
               src={ReadMoreIcon}
               alt="Read more"
               layout="fill"

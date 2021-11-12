@@ -174,11 +174,19 @@ const ImageContainer = styled.div`
   }
 `;
 
+const photoLoader = () => {
+  return `./photo.svg`
+}
+
+const pencilLoader = () => {
+  return `./pencil.svg`
+}
+
 const NewPostForm = () => {
   return (
     <StyledNewPostForm>
       <ImageContainer>
-        <Image src={Photo}></Image>
+        <Image loader={photoLoader} src={Photo}></Image>
       </ImageContainer>
       <h2>New Post</h2>
       <form>
@@ -199,7 +207,7 @@ const NewPostForm = () => {
           <textarea id="post" type="text" placeholder="Post..." />
         </div>
         <button>
-          <Image src={PencilIcon}></Image>Create Post
+          <Image loader={pencilLoader} src={PencilIcon}></Image>Create Post
         </button>
       </form>
     </StyledNewPostForm>

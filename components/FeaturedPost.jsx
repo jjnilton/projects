@@ -30,21 +30,21 @@ const FeaturedPost = (props) => {
   return (
     <StyledFeaturedPost>
       <Header
-        handlePostVisibility={props.handlePostVisibility}
         postVisibility={props.postVisibility}
         featuredPostVisibility={props.featuredPostVisibility}
-        handleFeaturedPostVisibility={props.handleFeaturedPostVisibility}
-        toggleContact={props.toggleContact}
-        handleHomeVisibility={props.handleHomeVisibility}
         newPostVisibility={props.newPostVisibility}
+        toggleContact={props.toggleContact}
         toggleNewPost={props.toggleNewPost}
+        handlePostVisibility={props.handlePostVisibility}
+        handleFeaturedPostVisibility={props.handleFeaturedPostVisibility}
+        handleHomeVisibility={props.handleHomeVisibility}
       ></Header>
       <Main
-        handlePostVisibility={props.handlePostVisibility}
-        postVisibility={true}
         postData={props.postData}
+        postVisibility={true}
         newPostVisibility={props.newPostVisibility}
         toggleNewPost={props.toggleNewPost}
+        handlePostVisibility={props.handlePostVisibility}
       ></Main>
     </StyledFeaturedPost>
   );

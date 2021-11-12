@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DOMPurify from "dompurify";
+import { sanitize } from "dompurify";
 import React from "react";
 import ReadMoreIcon from "../public/read-more.svg";
 import Image from "next/image";
@@ -261,6 +261,10 @@ const ImageContainer = styled.div`
   height: 24px;
 `;
 
+const imageLoader = () => {
+  return `./read-more.svg`
+}
+
 const FeaturedPostItem = (props) => {
   const handleClick = () => {
     props.homeRef.current.style.transform = "translateX(-100%)";
@@ -284,14 +288,14 @@ const FeaturedPostItem = (props) => {
           <h3>{props.item.author}</h3>
           <h2
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.title, {
+              __html: sanitize(props.item.title, {
                 ALLOWED_TAGS: ["p"],
               }),
             }}
           ></h2>
           <h4
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(props.item.article, {
+              __html: sanitize(props.item.article, {
                 ALLOWED_TAGS: ["p"],
               }),
             }}
@@ -300,10 +304,9 @@ const FeaturedPostItem = (props) => {
         <button onClick={handleClick}>
           <ImageContainer>
             <Image
+              loader={imageLoader}
               src={ReadMoreIcon}
               alt="Read more"
-              layout="fill"
-              quality={100}
             />
           </ImageContainer>
         </button>
