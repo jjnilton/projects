@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import DOMPurify from "dompurify";
-import { useEffect } from "react";
 
 const StyledPostView = styled.article`
   position: absolute;
@@ -9,6 +8,14 @@ const StyledPostView = styled.article`
   right: 16.67%;
   top: 200px;
   background-color: white;
+
+  &::after {
+    position: absolute;
+    content: "";
+    bottom: -10%;
+    height: 10%;
+    width: 1px;
+  }
 
   @media (max-width: 1900px) {
     position: static;
@@ -19,6 +26,7 @@ const StyledPostView = styled.article`
     margin: 0 auto;
     margin-top: 100px;
     row-gap: 5vw;
+    margin-bottom: 10%;
   }
 
   @media (max-width: 1280px) {

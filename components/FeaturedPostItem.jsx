@@ -101,7 +101,7 @@ const StyledFeaturedPostItem = styled.article`
 
       @media (max-width: 760px) {
         width: unset;
-        margin: 20px;
+        margin: 7.5%;
       }
     }
   }
@@ -121,8 +121,6 @@ const StyledFeaturedPostItem = styled.article`
     font-size: 24px;
     line-height: 34px;
 
-    /* identical to box height */
-
     /* Text Color */
     color: #2d2d2d;
 
@@ -132,9 +130,6 @@ const StyledFeaturedPostItem = styled.article`
       position: static;
       height: unset;
       font-size: 1.5vw;
-    }
-
-    @media (max-width: 1280px) {
     }
 
     @media (max-width: 960px) {
@@ -183,7 +178,7 @@ const StyledFeaturedPostItem = styled.article`
 
     @media (max-width: 760px) {
       font-size: 3.6vw;
-      line-height: 43px;
+      line-height: 30px;
       height: unset;
     }
 
@@ -269,13 +264,14 @@ const ImageContainer = styled.div`
 const FeaturedPostItem = (props) => {
   const handleClick = () => {
     props.homeRef.current.style.transform = "translateX(-100%)";
-    props.homeRef.current.style.transition = "transform 1s";
+    props.homeRef.current.style.transition = "transform .3s, filter .3s";
+    props.homeRef.current.style.filter = "brightness(0.5)";
     props.handleFeaturedPostVisibility(true);
     props.handlePostVisibility(false, props.item);
     setTimeout(() => {
       props.handleHomeVisibility(false);
       props.handlePostVisibility(true, props.item);
-    }, 1000);
+    }, 300);
   };
 
   return (

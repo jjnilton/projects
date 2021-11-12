@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
 
 const StyledPostList = styled.article`
-  margin-top: 60px;
   row-gap: 60px;
   background: linear-gradient(90deg, #f1a10a 0%, #342303 100%);
   display: grid;
@@ -15,7 +14,6 @@ const StyledPostList = styled.article`
   }
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
-    margin-top: 30px;
   }
   @media (max-width: 560px) {
     row-gap: 30px;

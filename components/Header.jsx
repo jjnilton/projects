@@ -3,7 +3,8 @@ import Navigation from "./Navigation";
 import Title from "./Title";
 
 const StyledHeader = styled.header`
-  position: sticky;
+  position: ${(props) =>
+    props.postVisibility || props.newPostVisibility ? "absolute" : "sticky"};
   top: 0;
   left: 0;
   background-color: #2d2d2d;
@@ -13,7 +14,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: height 1s;
+  transition: height 0.5s;
   @media (max-width: 960px) {
     height: 50px;
     padding: 0 10%;
@@ -29,22 +30,29 @@ const Header = (props) => {
       props.handlePostVisibility(false);
     }
 
-    if (props.featuredPostVisibility) {
+    if (props.featuredPostVisibility || props.newPostVisibility) {
       props.handleFeaturedPostVisibility(false);
       props.handleHomeVisibility(true);
     }
+
+    props.handleHomeVisibility(true);
   };
 
   return (
-    <StyledHeader>
-        <Title handleHome={handleHome}></Title>
-        <Navigation
-          handlePostVisibility={props.handlePostVisibility}
-          featuredPostVisibility={props.featuredPostVisibility}
-          toggleContact={props.toggleContact}
-          handleHome={handleHome}
-          postVisibility={props.postVisibility}
-        ></Navigation>
+    <StyledHeader
+      postVisibility={props.postVisibility}
+      newPostVisibility={props.newPostVisibility}
+    >
+      <Title handleHome={handleHome}></Title>
+      <Navigation
+        handlePostVisibility={props.handlePostVisibility}
+        featuredPostVisibility={props.featuredPostVisibility}
+        postVisibility={props.postVisibility}
+        newPostVisibility={props.newPostVisibility}
+        toggleContact={props.toggleContact}
+        toggleNewPost={props.toggleNewPost}
+        handleHome={handleHome}
+      ></Navigation>
     </StyledHeader>
   );
 };

@@ -7,17 +7,17 @@ const StyledModal = styled.div`
   /* Modal */
 
   width: 810px;
-  height: 1113px;
+  height: 1612px;
   padding: 91px 123px;
   background-color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: ${props => `calc(${props.rect.top * -1 + "px"} + 50%)`};
+  top: ${(props) => `calc(${props.rect.top * -1 + "px"} + 50%)`};
   left: 50%;
   transform: translate(-50%, -2%);
   z-index: 3;
 
   @media (max-width: 1280px) {
-    top: ${props => `calc(${props.rect.top * -1 + "px"} + 35%)`};
+    top: ${(props) => `calc(${props.rect.top * -1 + "px"} + 35%)`};
   }
 
   @media (max-width: 960px) {
@@ -27,12 +27,12 @@ const StyledModal = styled.div`
   @media (max-width: 760px) {
     height: unset;
     padding: 91px calc(123px / 2);
-    top: ${props => `calc(${props.rect.top * -1 + "px"} + 25%)`};
+    top: ${(props) => `calc(${props.rect.top * -1 + "px"} + 25%)`};
   }
 
   @media (max-width: 560px) {
     padding: 91px calc(123px / 4);
-    top: ${props => `calc(${props.rect.top * -1 + "px"} + 20%)`};
+    top: ${(props) => `calc(${props.rect.top * -1 + "px"} + 20%)`};
   }
 
   & > button {
@@ -47,6 +47,7 @@ const StyledModal = styled.div`
       right: 11px;
     }
   }
+
   & > h3 {
     text-align: center;
     /* Page Title */
