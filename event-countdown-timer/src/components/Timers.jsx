@@ -11,7 +11,7 @@ const ActiveTimers = () => {
   // console.log(timers)
 
   const getTimeLeft = (timerDate) => {
-    console.log(timerDate)
+    // console.log(timerDate)
     return Math.floor((new Date(...timerDate) - new Date()) / 1000);
   };
 
