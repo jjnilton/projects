@@ -2,11 +2,7 @@ import { useState } from "react";
 import NewToDo from "./components/NewToDo";
 import ToDoList from "./components/ToDoList";
 import "./App.css";
-
-interface ToDo {
-  id: string;
-  content: string;
-}
+import ToDo from "./models/toDo";
 
 function App() {
   const [toDos, setToDos] = useState<Array<ToDo>>([]);
@@ -15,13 +11,18 @@ function App() {
     setToDos((prevToDos) => {
       return prevToDos.concat(toDo);
     });
-    console.log('added new todo', toDo)
+  };
+
+  const removeToDo = (id: string) => {
+    setToDos((prevToDos) => {
+      return prevToDos.filter((item) => item.id !== id);
+    });
   };
 
   return (
     <div className="App">
       <NewToDo addNewToDo={addNewToDo}></NewToDo>
-      <ToDoList toDoList={toDos}></ToDoList>
+      <ToDoList toDoList={toDos} removeToDo={removeToDo}></ToDoList>
     </div>
   );
 }

@@ -1,7 +1,4 @@
-interface ToDo {
-  id: string;
-  content: string;
-}
+import ToDo from "../models/toDo";
 
 type Props = {
   addNewToDo: (toDo: ToDo) => void;
@@ -14,7 +11,7 @@ const NewToDo = ({ addNewToDo }: Props): JSX.Element => {
     const formData = new FormData(event.target as HTMLFormElement);
     const content = formData.get("content") as string;
 
-    addNewToDo({ id: new Date().getTime().toString(), content: content });
+    addNewToDo({ id: new Date().getTime().toString(), content: content, completed: false });
   };
 
   return (

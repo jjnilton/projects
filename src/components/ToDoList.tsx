@@ -1,17 +1,20 @@
 import ToDoItem from "./TodoItem";
-
-interface ToDo {
-  id: string;
-  content: string;
-}
+import ToDo from "../models/toDo";
 
 type Props = {
   toDoList: Array<ToDo>;
+  removeToDo: (toDoId: string) => void;
 };
 
-const ToDoList = ({ toDoList }: Props): JSX.Element => {
+const ToDoList = ({ toDoList, removeToDo }: Props): JSX.Element => {
   const toDoListItems = toDoList.map((item) => {
-    return <ToDoItem toDo={item}></ToDoItem>;
+    return (
+      <ToDoItem
+        key={item.id}
+        toDo={item}
+        removeToDo={removeToDo.bind(null, item.id)}
+      ></ToDoItem>
+    );
   });
 
   return <ul>{toDoListItems}</ul>;
