@@ -19,10 +19,21 @@ function App() {
     });
   };
 
+  const updateToDo = (id: string, newContent: string) => {
+    const updatedToDos = [...toDos];
+    const toDoIndex = toDos.findIndex(toDo => toDo.id === id);
+    updatedToDos[toDoIndex] = {...updatedToDos[toDoIndex], content: newContent};
+    setToDos(updatedToDos);
+  };
+
   return (
     <div className="App">
       <NewToDo addNewToDo={addNewToDo}></NewToDo>
-      <ToDoList toDoList={toDos} removeToDo={removeToDo}></ToDoList>
+      <ToDoList
+        toDoList={toDos}
+        removeToDo={removeToDo}
+        updateToDo={updateToDo}
+      ></ToDoList>
     </div>
   );
 }
