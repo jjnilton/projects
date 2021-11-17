@@ -19,10 +19,28 @@ function App() {
     });
   };
 
-  const updateToDo = (id: string, newContent: string) => {
+  const updateToDo = (id: string, newContent?: string, completed?: boolean) => {
     const updatedToDos = [...toDos];
-    const toDoIndex = toDos.findIndex(toDo => toDo.id === id);
-    updatedToDos[toDoIndex] = {...updatedToDos[toDoIndex], content: newContent};
+    const toDoIndex = toDos.findIndex((toDo) => toDo.id === id);
+
+    if (newContent && completed !== undefined) {
+      updatedToDos[toDoIndex] = {
+        ...updatedToDos[toDoIndex],
+        content: newContent,
+        completed: completed!,
+      };
+    } else if (newContent) {
+      updatedToDos[toDoIndex] = {
+        ...updatedToDos[toDoIndex],
+        content: newContent,
+      };
+    } else if (completed !== updatedToDos[toDoIndex].completed) {
+      updatedToDos[toDoIndex] = {
+        ...updatedToDos[toDoIndex],
+        completed: completed!,
+      };
+    }
+
     setToDos(updatedToDos);
   };
 

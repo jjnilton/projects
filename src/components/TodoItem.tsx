@@ -1,10 +1,14 @@
-import React, { FormEvent, MouseEventHandler, useState } from "react";
+import { FormEvent, useState } from "react";
 import ToDo from "../models/toDo";
 
 type Props = {
   toDo: ToDo;
   removeToDo: () => void;
-  updateToDo: (toDoId: string, newContent: string) => void;
+  updateToDo: (
+    toDoId: string,
+    newContent?: string,
+    completed?: boolean
+  ) => void;
 };
 
 const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
@@ -15,7 +19,7 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
     setEditable((prevState) => !prevState);
   };
 
-  const saveToDo = (event: FormEvent) => {
+  const updateToDoContent = (event: FormEvent) => {
     event.preventDefault();
     console.log(event);
     console.log("toggling savetodo");
@@ -25,14 +29,24 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
       console.log("really saving...");
       updateToDo(toDo.id, content);
     }
-    setEditable(prevState => !prevState)
+    setEditable((prevState) => !prevState);
+  };
+
+  const updateToDoStatus = () => {
+    console.log(toDo.completed);
+    updateToDo(toDo.id, undefined, !toDo.completed)
   };
 
   return (
     <li>
-      {toDo.id} {toDo.completed.toString()}
+      {toDo.id} {toDo.completed.toString()} {toDo.date}
+      <input
+        type="checkbox"
+        defaultChecked={toDo.completed}
+        onChange={updateToDoStatus}
+      />
       {editable ? (
-        <form id="edit-form" onSubmit={saveToDo}>
+        <form id="edit-form" onSubmit={updateToDoContent}>
           <input
             id="new-content"
             name="new-content"

@@ -11,7 +11,12 @@ const NewToDo = ({ addNewToDo }: Props): JSX.Element => {
     const formData = new FormData(event.target as HTMLFormElement);
     const content = formData.get("content") as string;
 
-    addNewToDo({ id: new Date().getTime().toString(), content: content, completed: false });
+    addNewToDo({
+      id: new Date().getTime().toString(),
+      content: content,
+      completed: false,
+      date: new Date().toISOString(),
+    });
   };
 
   return (
