@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import NewToDo from "./components/NewToDo";
 import ToDoList from "./components/ToDoList";
-import "./App.css";
+import "./App.scss";
 import ToDo from "./models/toDo";
 
 function App() {

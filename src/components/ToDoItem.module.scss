@@ -1,0 +1,18 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  row-gap: 1em;
+}
+
+.date {
+  grid-column: 1 / -1;
+}
+
+.todo {
+  align-self: center;
+  word-break: break-all;
+}
+
+.checkbox {
+  align-self: center;
+}

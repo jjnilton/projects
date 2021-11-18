@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import ToDoItem from "./TodoItem";
+import ToDoItem from "./ToDoItem";
 import ToDo from "../models/toDo";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ToggleButton from "@mui/material/ToggleButton";
+import classes from './ToDoList.module.scss';
+
 
 type Props = {
   toDoList: Array<ToDo>;
@@ -41,40 +45,40 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
     } else return toDoListItems;
   };
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(event.target.value);
+  const handleFilterChange = (event: React.MouseEvent<HTMLElement>) => {
+    const buttonElement = event.target as HTMLButtonElement;
+    setFilter(buttonElement.value);
   };
 
   return (
     <>
-      <div>
-        <input
-          type="radio"
-          name="filter"
-          id="all"
+      <ToggleButtonGroup
+        color="primary"
+        exclusive
+        onChange={handleFilterChange}
+        className={classes['button-group']}
+        sx={{ backgroundColor: 'background.default' }}
+      >
+        <ToggleButton
+          selected={filter === "all" ? true : false}
           value="all"
-          onChange={handleFilterChange}
-          defaultChecked
-        />
-        <label htmlFor="all">All</label>
-        <input
-          type="radio"
-          name="filter"
-          id="active"
+        >
+          All
+        </ToggleButton>
+        <ToggleButton
+          selected={filter === "active" && true}
           value="active"
-          onChange={handleFilterChange}
-        />
-        <label htmlFor="active">Active</label>
-        <input
-          type="radio"
-          name="filter"
-          id="completed"
+        >
+          Active
+        </ToggleButton>
+        <ToggleButton
+          selected={filter === "completed" && true}
           value="completed"
-          onChange={handleFilterChange}
-        />
-        <label htmlFor="completed">Completed</label>
-      </div>
-      <ul>{filterToDoListItems(toDoListItems, filter)}</ul>
+        >
+          Completed
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <ul className={classes.list}>{filterToDoListItems(toDoListItems, filter)}</ul>
     </>
   );
 };

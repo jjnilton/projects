@@ -1,5 +1,18 @@
 import { FormEvent, useState } from "react";
 import ToDo from "../models/toDo";
+import classes from "./ToDoItem.module.scss";
+
+// UI
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
 
 type Props = {
   toDo: ToDo;
@@ -15,60 +28,97 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
   const [editable, setEditable] = useState<boolean>(false);
 
   const toggleEditable = (): void => {
-    console.log("toggling editable");
     setEditable((prevState) => !prevState);
   };
 
   const updateToDoContent = (event: FormEvent) => {
     event.preventDefault();
-    console.log(event);
-    console.log("toggling savetodo");
     const formData = new FormData(event.target as HTMLFormElement);
     const content = formData.get("new-content") as string;
     if (content !== toDo.content) {
-      console.log("really saving...");
       updateToDo(toDo.id, content);
     }
     setEditable((prevState) => !prevState);
   };
 
   const updateToDoStatus = () => {
-    console.log(toDo.completed);
-    updateToDo(toDo.id, undefined, !toDo.completed)
+    updateToDo(toDo.id, undefined, !toDo.completed);
   };
 
   return (
     <li>
-      {toDo.id} {toDo.completed.toString()} {toDo.date}
-      <input
-        type="checkbox"
-        defaultChecked={toDo.completed}
-        onChange={updateToDoStatus}
-      />
-      {editable ? (
-        <form id="edit-form" onSubmit={updateToDoContent}>
-          <input
-            id="new-content"
-            name="new-content"
-            defaultValue={toDo.content}
+      <Card sx={{ backgroundColor: `${toDo.completed && "#ddd"}` }}>
+        <CardContent className={classes.content}>
+          <Typography sx={{ fontSize: 12 }} color="text.disabled">
+            {toDo.id}
+          </Typography>
+          {/* <div>{toDo.completed.toString()}</div> */}
+          <Typography
+            className={classes.date}
+            sx={{ fontSize: 14 }}
+            color="text.secondary"
+          >
+            {new Date(toDo.date).toDateString()}
+          </Typography>
+          {editable ? (
+            <form id="edit-form" onSubmit={updateToDoContent}>
+              <TextField
+                id="new-content"
+                name="new-content"
+                defaultValue={toDo.content}
+                label="Edit task"
+                fullWidth
+              />
+            </form>
+          ) : (
+            <Typography
+              className={classes.todo}
+              sx={{
+                textDecoration: toDo.completed ? "line-through" : undefined,
+                color: toDo.completed ? "text.secondary" : undefined,
+                textOverflow: 'ellipsis'
+              }}
+            >
+              {toDo.content}
+            </Typography>
+          )}
+          <Checkbox
+            className={classes.checkbox}
+            sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+            checked={toDo.completed}
+            onChange={updateToDoStatus}
           />
-        </form>
-      ) : (
-        <div>{toDo.content}</div>
-      )}
-      {editable && (
-        <button form="edit-form" type="submit">
-          Save
-        </button>
-      )}
-      {!editable && (
-        <button type="button" onClick={toggleEditable}>
-          Edit
-        </button>
-      )}
-      <button type="button" onClick={removeToDo}>
-        Delete
-      </button>
+          <CardActions>
+            {editable && (
+              <Button
+                variant="contained"
+                startIcon={<SaveIcon></SaveIcon>}
+                form="edit-form"
+                type="submit"
+              >
+                Save
+              </Button>
+            )}
+            {!editable && (
+              <Button
+                variant="contained"
+                startIcon={<EditIcon></EditIcon>}
+                onClick={toggleEditable}
+              >
+                Edit
+              </Button>
+            )}
+            <Button
+              variant="text"
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={removeToDo}
+            >
+              Delete
+            </Button>
+          </CardActions>
+        </CardContent>
+      </Card>
     </li>
   );
 };

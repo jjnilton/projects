@@ -1,4 +1,8 @@
 import ToDo from "../models/toDo";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+import classes from "./NewToDo.module.scss";
 
 type Props = {
   addNewToDo: (toDo: ToDo) => void;
@@ -20,10 +24,19 @@ const NewToDo = ({ addNewToDo }: Props): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="content">New To-Do</label>
-      <input id="content" name="content" type="text" />
-      <button>Submit</button>
+    <form onSubmit={handleSubmit} className={classes.form}>
+      <TextField
+        fullWidth
+        id="content"
+        name="content"
+        label="New To-Do"
+        type="text"
+        variant="filled"
+        required
+      />
+      <Button variant="contained" startIcon={<AddIcon></AddIcon>} type="submit">
+        Add
+      </Button>
     </form>
   );
 };
