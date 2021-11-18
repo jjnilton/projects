@@ -13,6 +13,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
   toDo: ToDo;
@@ -53,13 +54,15 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
             {toDo.id}
           </Typography>
           {/* <div>{toDo.completed.toString()}</div> */}
-          <Typography
-            className={classes.date}
-            sx={{ fontSize: 14 }}
-            color="text.secondary"
-          >
-            {new Date(toDo.date).toDateString()}
-          </Typography>
+          <Tooltip title={new Date(toDo.date).toString()}>
+            <Typography
+              className={classes.date}
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+            >
+              {new Date(toDo.date).toDateString()}
+            </Typography>
+          </Tooltip>
           {editable ? (
             <form id="edit-form" onSubmit={updateToDoContent}>
               <TextField
@@ -76,18 +79,22 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
               sx={{
                 textDecoration: toDo.completed ? "line-through" : undefined,
                 color: toDo.completed ? "text.secondary" : undefined,
-                textOverflow: 'ellipsis'
+                textOverflow: "ellipsis",
               }}
             >
               {toDo.content}
             </Typography>
           )}
-          <Checkbox
-            className={classes.checkbox}
-            sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-            checked={toDo.completed}
-            onChange={updateToDoStatus}
-          />
+          <Tooltip
+            title={`Mark as ${toDo.completed ? "incomplete" : "complete"}`}
+          >
+            <Checkbox
+              className={classes.checkbox}
+              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              checked={toDo.completed}
+              onChange={updateToDoStatus}
+            />
+          </Tooltip>
           <CardActions>
             {editable && (
               <Button

@@ -3,8 +3,8 @@ import ToDoItem from "./ToDoItem";
 import ToDo from "../models/toDo";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
-import classes from './ToDoList.module.scss';
-
+import Tooltip from "@mui/material/Tooltip";
+import classes from "./ToDoList.module.scss";
 
 type Props = {
   toDoList: Array<ToDo>;
@@ -56,29 +56,31 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
         color="primary"
         exclusive
         onChange={handleFilterChange}
-        className={classes['button-group']}
-        sx={{ backgroundColor: 'background.default' }}
+        className={classes["button-group"]}
+        sx={{ backgroundColor: "background.default" }}
       >
-        <ToggleButton
-          selected={filter === "all" ? true : false}
-          value="all"
-        >
-          All
-        </ToggleButton>
-        <ToggleButton
-          selected={filter === "active" && true}
-          value="active"
-        >
-          Active
-        </ToggleButton>
-        <ToggleButton
-          selected={filter === "completed" && true}
-          value="completed"
-        >
-          Completed
-        </ToggleButton>
+        <Tooltip title="Show all To-Dos">
+          <ToggleButton selected={filter === "all" ? true : false} value="all">
+            All
+          </ToggleButton>
+        </Tooltip>
+        <Tooltip title="Show only active To-Dos">
+          <ToggleButton selected={filter === "active" && true} value="active">
+            Active
+          </ToggleButton>
+        </Tooltip>
+        <Tooltip title="Show only completed To-Dos">
+          <ToggleButton
+            selected={filter === "completed" && true}
+            value="completed"
+          >
+            Completed
+          </ToggleButton>
+        </Tooltip>
       </ToggleButtonGroup>
-      <ul className={classes.list}>{filterToDoListItems(toDoListItems, filter)}</ul>
+      <ul className={classes.list}>
+        {filterToDoListItems(toDoListItems, filter)}
+      </ul>
     </>
   );
 };
