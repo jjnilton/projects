@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NewToDo from "./components/NewToDo";
 import ToDoList from "./components/ToDoList";
 import "./App.css";
 import ToDo from "./models/toDo";
 
 function App() {
-  const [toDos, setToDos] = useState<Array<ToDo>>([]);
+  const [toDos, setToDos] = useState<ToDo[]>([]);
+  const mountRef = useRef(false);
 
   const addNewToDo = (toDo: ToDo) => {
     setToDos((prevToDos) => {
@@ -43,6 +44,24 @@ function App() {
 
     setToDos(updatedToDos);
   };
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("toDos") &&
+      localStorage.getItem("toDos")!.length > 0
+    ) {
+      const localToDos = JSON.parse(localStorage.getItem("toDos")!);
+      setToDos(localToDos);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mountRef.current) {
+      localStorage.setItem("toDos", JSON.stringify(toDos));
+    } else {
+      mountRef.current = true;
+    }
+  }, [toDos]);
 
   return (
     <div className="App">
