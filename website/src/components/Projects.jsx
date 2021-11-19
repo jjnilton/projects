@@ -61,7 +61,7 @@ const projects_data = [
       en: "A web app that allows creating multiple countdown timers and notifies the user when the time is up.",
       pt: "Uma aplicação web que permite criar múltiplos timers, e notifica o usuário quando chega a hora.",
     },
-    tags: ["React", "Styled Components", "Web APIs"],
+    tags: ["React", "CSS Modules", "Web APIs"],
     source:
       "https://github.com/jjnilton/projects/blob/main/event-countdown-timer",
     live: "https://jjnilton.github.io/projects/event-countdown-timer/build",
