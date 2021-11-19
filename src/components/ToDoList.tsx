@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ToDoItem from "./ToDoItem";
 import ToDo from "../models/toDo";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import Tooltip from "@mui/material/Tooltip";
 import classes from "./ToDoList.module.scss";
 import ToDoListFilter from "./ToDoListFilter"
 
@@ -19,6 +16,8 @@ type Props = {
 
 const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
   const [filter, setFilter] = useState<string>("all");
+  const toDoCount: number = toDoList.length;
+  const completedCount: number = toDoList.filter(toDo => toDo.completed).length;
 
   const toDoListItems = toDoList.map((item) => {
     return (
@@ -50,9 +49,10 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
     setFilter(filter);
   };
 
+
   return (
     <>
-      <ToDoListFilter filter={filter} onSetFilter={handleFilterChange}></ToDoListFilter>
+      <ToDoListFilter filter={filter} onSetFilter={handleFilterChange} toDoCount={toDoCount} completedCount={completedCount}></ToDoListFilter>
       <ul className={classes.list}>
         {filterToDoListItems(toDoListItems, filter)}
       </ul>
