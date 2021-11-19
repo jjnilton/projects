@@ -122,7 +122,7 @@ const setupItems = {
   other: {
     en: (
       <>
-        Everything else: {links.other.primary} and {links.other.primary}.
+        Everything else: {links.other.primary} and {links.other.secondary}.
       </>
     ),
     pt: (
