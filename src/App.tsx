@@ -63,15 +63,17 @@ function App() {
     }
   }, [toDos]);
 
+  console.log('rerender main')
+
   return (
-    <div className="App">
+    <main className="App">
       <NewToDo addNewToDo={addNewToDo}></NewToDo>
       <ToDoList
         toDoList={toDos}
         removeToDo={removeToDo}
         updateToDo={updateToDo}
       ></ToDoList>
-    </div>
+    </main>
   );
 }
 

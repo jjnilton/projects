@@ -5,6 +5,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Tooltip from "@mui/material/Tooltip";
 import classes from "./ToDoList.module.scss";
+import ToDoListFilter from "./ToDoListFilter"
 
 type Props = {
   toDoList: Array<ToDo>;
@@ -45,39 +46,13 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
     } else return toDoListItems;
   };
 
-  const handleFilterChange = (event: React.MouseEvent<HTMLElement>) => {
-    const buttonElement = event.target as HTMLButtonElement;
-    setFilter(buttonElement.value);
+  const handleFilterChange = (filter: string): void => {
+    setFilter(filter);
   };
 
   return (
     <>
-      <ToggleButtonGroup
-        color="primary"
-        exclusive
-        onChange={handleFilterChange}
-        className={classes["button-group"]}
-        sx={{ backgroundColor: "background.default" }}
-      >
-        <Tooltip title="Show all To-Dos">
-          <ToggleButton selected={filter === "all" ? true : false} value="all">
-            All
-          </ToggleButton>
-        </Tooltip>
-        <Tooltip title="Show only active To-Dos">
-          <ToggleButton selected={filter === "active" && true} value="active">
-            Active
-          </ToggleButton>
-        </Tooltip>
-        <Tooltip title="Show only completed To-Dos">
-          <ToggleButton
-            selected={filter === "completed" && true}
-            value="completed"
-          >
-            Completed
-          </ToggleButton>
-        </Tooltip>
-      </ToggleButtonGroup>
+      <ToDoListFilter filter={filter} onSetFilter={handleFilterChange}></ToDoListFilter>
       <ul className={classes.list}>
         {filterToDoListItems(toDoListItems, filter)}
       </ul>

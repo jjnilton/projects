@@ -36,7 +36,7 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const content = formData.get("new-content") as string;
-    if (content !== toDo.content) {
+    if (content !== toDo.content && content.trim().length > 0) {
       updateToDo(toDo.id, content);
     }
     setEditable((prevState) => !prevState);
@@ -48,12 +48,11 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
 
   return (
     <li>
-      <Card sx={{ backgroundColor: `${toDo.completed && "#ddd"}` }}>
+      <Card>
         <CardContent className={classes.content}>
           <Typography sx={{ fontSize: 12 }} color="text.disabled">
             {toDo.id}
           </Typography>
-          {/* <div>{toDo.completed.toString()}</div> */}
           <Tooltip title={new Date(toDo.date).toString()}>
             <Typography
               className={classes.date}
@@ -71,6 +70,7 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
                 defaultValue={toDo.content}
                 label="Edit task"
                 fullWidth
+                multiline
               />
             </form>
           ) : (
@@ -79,7 +79,7 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
               sx={{
                 textDecoration: toDo.completed ? "line-through" : undefined,
                 color: toDo.completed ? "text.secondary" : undefined,
-                textOverflow: "ellipsis",
+                transition: "all .5s",
               }}
             >
               {toDo.content}
