@@ -63,7 +63,7 @@ const content = {
       image: GitLogo,
       description: {
         en: "The system that I use for version control in my projects",
-        pt: "O sistema de controle de versão que uso nos meus projetos",
+        pt: "O sistema de controle de versão usado nos meus projetos",
       },
     },
   ],
