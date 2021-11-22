@@ -62,7 +62,7 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
     if (results.length > 0) {
       return results;
     }
-    return <li>No To-Dos found.</li>;
+    return <Typography sx={{ color: 'text.primary' }}>No To-Dos found.</Typography>;
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {

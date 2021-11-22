@@ -3,10 +3,23 @@ import NewToDo from "./components/NewToDo";
 import ToDoList from "./components/ToDoList";
 import "./App.scss";
 import ToDo from "./models/toDo";
+import Header from "./components/Header";
+import { Box, createTheme, Drawer, ThemeProvider } from "@mui/material";
+import Settings from "./components/Settings";
 
 function App() {
   const [toDos, setToDos] = useState<ToDo[]>([]);
   const mountRef = useRef(false);
+  const [drawerVisibility, setDrawerVisibility] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDrawerVisibility = () => {
+    setDrawerVisibility((prevState) => !prevState);
+  };
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevState) => !prevState);
+  };
 
   const addNewToDo = (toDo: ToDo) => {
     setToDos((prevToDos) => {
@@ -63,17 +76,46 @@ function App() {
     }
   }, [toDos]);
 
-  console.log('rerender main')
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light",
+    },
+  });
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
 
   return (
-    <main className="App">
-      <NewToDo addNewToDo={addNewToDo}></NewToDo>
-      <ToDoList
-        toDoList={toDos}
-        removeToDo={removeToDo}
-        updateToDo={updateToDo}
-      ></ToDoList>
-    </main>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Drawer
+        anchor="right"
+        open={drawerVisibility}
+        onClose={toggleDrawerVisibility}
+      >
+        <Settings toggleDarkMode={toggleDarkMode} darkMode={darkMode}></Settings>
+      </Drawer>
+      <Box
+        component="div"
+        sx={{ backgroundColor: "background.default", height: "100%" }}
+      >
+        <Box
+          component="main"
+          className="App"
+          sx={{ backgroundColor: "background.default" }}
+        >
+          <Header toggleDrawerVisibility={toggleDrawerVisibility}></Header>
+          <NewToDo addNewToDo={addNewToDo}></NewToDo>
+          <ToDoList
+            toDoList={toDos}
+            removeToDo={removeToDo}
+            updateToDo={updateToDo}
+          ></ToDoList>
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 
