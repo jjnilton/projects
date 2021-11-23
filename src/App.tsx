@@ -12,6 +12,7 @@ function App() {
   const mountRef = useRef(false);
   const [drawerVisibility, setDrawerVisibility] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [safeDelete, setSafeDelete] = useState(true);
 
   const toggleDrawerVisibility = () => {
     setDrawerVisibility((prevState) => !prevState);
@@ -19,6 +20,10 @@ function App() {
 
   const toggleDarkMode = () => {
     setDarkMode((prevState) => !prevState);
+  };
+
+  const toggleSafeDelete = () => {
+    setSafeDelete((prevState) => !prevState);
   };
 
   const addNewToDo = (toDo: ToDo) => {
@@ -95,7 +100,12 @@ function App() {
         open={drawerVisibility}
         onClose={toggleDrawerVisibility}
       >
-        <Settings toggleDarkMode={toggleDarkMode} darkMode={darkMode}></Settings>
+        <Settings
+          toggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
+          toggleSafeDelete={toggleSafeDelete}
+          safeDelete={safeDelete}
+        ></Settings>
       </Drawer>
       <Box
         component="div"
@@ -112,6 +122,7 @@ function App() {
             toDoList={toDos}
             removeToDo={removeToDo}
             updateToDo={updateToDo}
+            safeDelete={safeDelete}
           ></ToDoList>
         </Box>
       </Box>

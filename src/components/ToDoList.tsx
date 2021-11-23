@@ -14,9 +14,15 @@ type Props = {
     newContent?: string,
     completed?: boolean
   ) => void;
+  safeDelete: boolean;
 };
 
-const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
+const ToDoList = ({
+  toDoList,
+  removeToDo,
+  updateToDo,
+  safeDelete,
+}: Props): JSX.Element => {
   const [filter, setFilter] = useState<string>("all");
   const toDoCount: number = toDoList.length;
   const completedCount: number = toDoList.filter(
@@ -31,6 +37,7 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
         toDo={item}
         removeToDo={removeToDo.bind(null, item.id)}
         updateToDo={updateToDo}
+        safeDelete={safeDelete}
       ></ToDoItem>
     );
   });
@@ -62,7 +69,9 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
     if (results.length > 0) {
       return results;
     }
-    return <Typography sx={{ color: 'text.primary' }}>No To-Dos found.</Typography>;
+    return (
+      <Typography sx={{ color: "text.primary" }}>No To-Dos found.</Typography>
+    );
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +103,7 @@ const ToDoList = ({ toDoList, removeToDo, updateToDo }: Props): JSX.Element => {
           padding: 1,
         }}
       >
-        <SearchIcon></SearchIcon>
+        <SearchIcon color="disabled"></SearchIcon>
         <InputBase
           placeholder="Search To-Dos"
           sx={{

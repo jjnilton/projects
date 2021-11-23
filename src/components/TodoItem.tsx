@@ -14,6 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 type Props = {
   toDo: ToDo;
@@ -23,10 +24,18 @@ type Props = {
     newContent?: string,
     completed?: boolean
   ) => void;
+  safeDelete: boolean;
 };
 
-const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
+const ToDoItem = ({
+  toDo,
+  removeToDo,
+  updateToDo,
+  safeDelete,
+}: Props): JSX.Element => {
   const [editable, setEditable] = useState<boolean>(false);
+  const [deleteConfirmationVisibility, setDeleteConfirmationVisibility] =
+    useState(false);
 
   const toggleEditable = (): void => {
     setEditable((prevState) => !prevState);
@@ -46,9 +55,33 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
     updateToDo(toDo.id, undefined, !toDo.completed);
   };
 
+  const toggleDeleteConfirmationVisibility = () => {
+    setDeleteConfirmationVisibility((prevState) => !prevState);
+  };
+
+  const handleRemove = () => {
+    if (safeDelete) {
+      setDeleteConfirmationVisibility(true);
+    } else removeToDo();
+  };
+
   return (
     <li>
-      <Card>
+      <DeleteConfirmation
+        dialogVisibility={deleteConfirmationVisibility}
+        toggleDialog={toggleDeleteConfirmationVisibility}
+        removeToDo={removeToDo}
+      ></DeleteConfirmation>
+      <Card
+        sx={{
+          backgroundColor: toDo.completed
+            ? "action.disabledBackground"
+            : undefined,
+          "&:hover": {
+            backgroundColor: "action.hover",
+          },
+        }}
+      >
         <CardContent className={classes.content}>
           <Typography sx={{ fontSize: 12 }} color="text.disabled">
             {toDo.id}
@@ -102,6 +135,7 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
                 startIcon={<SaveIcon></SaveIcon>}
                 form="edit-form"
                 type="submit"
+                color="info"
               >
                 Save
               </Button>
@@ -116,10 +150,10 @@ const ToDoItem = ({ toDo, removeToDo, updateToDo }: Props): JSX.Element => {
               </Button>
             )}
             <Button
-              variant="text"
+              variant="outlined"
               color="error"
               startIcon={<DeleteIcon />}
-              onClick={removeToDo}
+              onClick={handleRemove}
             >
               Delete
             </Button>

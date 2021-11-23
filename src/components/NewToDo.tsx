@@ -18,7 +18,8 @@ const NewToDo = ({ addNewToDo }: Props): JSX.Element => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target as HTMLFormElement);
+    const formElement = event.target as HTMLFormElement;
+    const formData = new FormData(formElement);
     const content = formData.get("content") as string;
 
     if (content.trim().length > 0) {
@@ -30,6 +31,7 @@ const NewToDo = ({ addNewToDo }: Props): JSX.Element => {
       });
 
       setSuccess(true);
+      formElement.reset();
     } else {
       console.log("error");
       setError(true);

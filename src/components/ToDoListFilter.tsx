@@ -2,7 +2,6 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Tooltip from "@mui/material/Tooltip";
 import Badge from "@mui/material/Badge";
-import { Typography } from "@mui/material";
 
 type Props = {
   filter: string;
