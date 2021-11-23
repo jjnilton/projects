@@ -96,7 +96,7 @@ const ToDoItem = ({
             </Typography>
           </Tooltip>
           {editable ? (
-            <form id="edit-form" onSubmit={updateToDoContent}>
+            <form id={`edit-form-${toDo.id}`} onSubmit={updateToDoContent}>
               <TextField
                 id="new-content"
                 name="new-content"
@@ -133,7 +133,7 @@ const ToDoItem = ({
               <Button
                 variant="contained"
                 startIcon={<SaveIcon></SaveIcon>}
-                form="edit-form"
+                form={`edit-form-${toDo.id}`}
                 type="submit"
                 color="info"
               >
@@ -151,11 +151,10 @@ const ToDoItem = ({
             )}
             <Button
               variant="outlined"
-              color="error"
               startIcon={<DeleteIcon />}
               onClick={handleRemove}
             >
-              Delete
+              <span><span>Delete</span></span>
             </Button>
           </CardActions>
         </CardContent>
