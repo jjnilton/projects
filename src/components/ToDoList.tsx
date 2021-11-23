@@ -3,8 +3,10 @@ import ToDoItem from "./ToDoItem";
 import ToDo from "../models/toDo";
 import classes from "./ToDoList.module.scss";
 import ToDoListFilter from "./ToDoListFilter";
-import { InputBase, Paper, Typography } from "@mui/material";
+import { Collapse, Fade, InputBase, Paper, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { TransitionGroup } from "react-transition-group";
+import { Box } from "@mui/material";
 
 type Props = {
   toDoList: Array<ToDo>;
@@ -29,6 +31,8 @@ const ToDoList = ({
     (toDo) => toDo.completed
   ).length;
   const [search, setSearch] = useState<string>("");
+
+  toDoList.sort((a, b) => (a.id > b.id ? -1 : 1));
 
   const toDoListItems = toDoList.map((item) => {
     return (
@@ -61,17 +65,15 @@ const ToDoList = ({
     setFilter(filter);
   };
 
-  const searchToDoListItems = (toDoListItems: JSX.Element[], query: string) => {
+  const searchToDoListItems = (
+    toDoListItems: JSX.Element[],
+    query: string
+  ): JSX.Element[] => {
     const queryRegex = new RegExp(query, "g");
     const results = toDoListItems.filter((toDoComponent) => {
       return toDoComponent.props.toDo.content.match(queryRegex);
     });
-    if (results.length > 0) {
-      return results;
-    }
-    return (
-      <Typography sx={{ color: "text.primary" }}>No To-Dos found.</Typography>
-    );
+    return results;
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,6 +108,9 @@ const ToDoList = ({
         <SearchIcon color="disabled"></SearchIcon>
         <InputBase
           placeholder="Search To-Dos"
+          aria-label="Search To-Dos"
+          title="Search To-Dos"
+          disabled={toDoListItems.length < 1}
           sx={{
             "& .MuiInputBase-input": {
               padding: 1,
@@ -118,12 +123,38 @@ const ToDoList = ({
           onChange={handleSearch}
         ></InputBase>
       </Paper>
-      <ul className={classes.list}>
-        {searchToDoListItems(
-          filterToDoListItems(toDoListItems, filter),
-          search
+      <Box>
+        <TransitionGroup component="ul" className={classes.list}>
+          {searchToDoListItems(
+            filterToDoListItems(toDoListItems, filter),
+            search
+          ).map((item) => {
+            return (
+              item.props.toDo && (
+                <Collapse key={item.key}>
+                  {
+                    <ToDoItem
+                      key={item.props.toDo.id}
+                      toDo={item.props.toDo}
+                      removeToDo={removeToDo.bind(null, item.props.toDo.id)}
+                      updateToDo={updateToDo}
+                      safeDelete={safeDelete}
+                    ></ToDoItem>
+                  }
+                </Collapse>
+              )
+            );
+          })}
+        </TransitionGroup>
+        {searchToDoListItems(filterToDoListItems(toDoListItems, filter), search)
+          .length < 1 && (
+          <Fade in={true} timeout={1000}>
+            <Typography color="text.primary">
+              {search.length > 0 ? "Sorry, no To-Dos found." : "Your To-Do list is empty, try adding a new To-Do."}
+            </Typography>
+          </Fade>
         )}
-      </ul>
+      </Box>
     </>
   );
 };

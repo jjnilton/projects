@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import ToDo from "../models/toDo";
 import classes from "./ToDoItem.module.scss";
+import Fade from "@mui/material/Fade";
 
 // UI
 import Button from "@mui/material/Button";
@@ -15,6 +16,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteConfirmation from "./DeleteConfirmation";
+import { TransitionGroup } from "react-transition-group";
 
 type Props = {
   toDo: ToDo;
@@ -72,93 +74,94 @@ const ToDoItem = ({
         toggleDialog={toggleDeleteConfirmationVisibility}
         removeToDo={removeToDo}
       ></DeleteConfirmation>
-      <Card
-        sx={{
-          backgroundColor: toDo.completed
-            ? "action.disabledBackground"
-            : undefined,
-          "&:hover": {
-            backgroundColor: "action.hover",
-          },
-        }}
-      >
-        <CardContent className={classes.content}>
-          <Typography sx={{ fontSize: 12 }} color="text.disabled">
-            {toDo.id}
-          </Typography>
-          <Tooltip title={new Date(toDo.date).toString()}>
-            <Typography
-              className={classes.date}
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-            >
-              {new Date(toDo.date).toDateString()}
+        <Card
+          sx={{
+            backgroundColor: toDo.completed
+              ? "action.disabledBackground"
+              : undefined,
+            "&:hover": {
+              backgroundColor: "action.hover",
+            },
+          }}
+        >
+          <CardContent className={classes.content}>
+            <Typography sx={{ fontSize: 12 }} color="text.disabled">
+              {toDo.id}
             </Typography>
-          </Tooltip>
-          {editable ? (
-            <form id={`edit-form-${toDo.id}`} onSubmit={updateToDoContent}>
-              <TextField
-                id="new-content"
-                name="new-content"
-                defaultValue={toDo.content}
-                label="Edit task"
-                fullWidth
-                multiline
+            <Tooltip title={new Date(toDo.date).toString()}>
+              <Typography
+                className={classes.date}
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+              >
+                {new Date(toDo.date).toDateString()}
+              </Typography>
+            </Tooltip>
+            {editable ? (
+              <form id={`edit-form-${toDo.id}`} onSubmit={updateToDoContent}>
+                <TextField
+                  id="new-content"
+                  name="new-content"
+                  defaultValue={toDo.content}
+                  label="Edit task"
+                  fullWidth
+                  multiline
+                />
+              </form>
+            ) : (
+              <Typography
+                className={classes.todo}
+                sx={{
+                  textDecoration: toDo.completed ? "line-through" : undefined,
+                  color: toDo.completed ? "text.secondary" : undefined,
+                  transition: "all .5s",
+                }}
+              >
+                {toDo.content}
+              </Typography>
+            )}
+            <Tooltip
+              title={`Mark as ${toDo.completed ? "incomplete" : "complete"}`}
+            >
+              <Checkbox
+                className={classes.checkbox}
+                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                checked={toDo.completed}
+                onChange={updateToDoStatus}
               />
-            </form>
-          ) : (
-            <Typography
-              className={classes.todo}
-              sx={{
-                textDecoration: toDo.completed ? "line-through" : undefined,
-                color: toDo.completed ? "text.secondary" : undefined,
-                transition: "all .5s",
-              }}
-            >
-              {toDo.content}
-            </Typography>
-          )}
-          <Tooltip
-            title={`Mark as ${toDo.completed ? "incomplete" : "complete"}`}
-          >
-            <Checkbox
-              className={classes.checkbox}
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-              checked={toDo.completed}
-              onChange={updateToDoStatus}
-            />
-          </Tooltip>
-          <CardActions>
-            {editable && (
+            </Tooltip>
+            <CardActions>
+              {editable && (
+                <Button
+                  variant="contained"
+                  startIcon={<SaveIcon></SaveIcon>}
+                  form={`edit-form-${toDo.id}`}
+                  type="submit"
+                  color="info"
+                >
+                  Save
+                </Button>
+              )}
+              {!editable && (
+                <Button
+                  variant="contained"
+                  startIcon={<EditIcon></EditIcon>}
+                  onClick={toggleEditable}
+                >
+                  Edit
+                </Button>
+              )}
               <Button
-                variant="contained"
-                startIcon={<SaveIcon></SaveIcon>}
-                form={`edit-form-${toDo.id}`}
-                type="submit"
-                color="info"
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                onClick={handleRemove}
+                color="error"
               >
-                Save
+                Delete
               </Button>
-            )}
-            {!editable && (
-              <Button
-                variant="contained"
-                startIcon={<EditIcon></EditIcon>}
-                onClick={toggleEditable}
-              >
-                Edit
-              </Button>
-            )}
-            <Button
-              variant="outlined"
-              startIcon={<DeleteIcon />}
-              onClick={handleRemove}
-            >
-              <span><span>Delete</span></span>
-            </Button>
-          </CardActions>
-        </CardContent>
-      </Card>
+            </CardActions>
+          </CardContent>
+        </Card>
     </li>
   );
 };
