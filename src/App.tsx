@@ -105,6 +105,7 @@ function App() {
           darkMode={darkMode}
           toggleSafeDelete={toggleSafeDelete}
           safeDelete={safeDelete}
+          toggleDrawerVisibility={toggleDrawerVisibility}
         ></Settings>
       </Drawer>
       <Box
