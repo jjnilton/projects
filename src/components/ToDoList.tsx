@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ToDoItem from "./ToDoItem";
 import ToDo from "../models/toDo";
 import classes from "./ToDoList.module.scss";
 import ToDoListFilter from "./ToDoListFilter";
-import { Collapse, Fade, InputBase, Paper, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { TransitionGroup } from "react-transition-group";
+import { CircularProgress, Collapse, Fade, Typography } from "@mui/material";
+import {
+  CSSTransition,
+  Transition,
+  TransitionGroup,
+  TransitionStatus,
+} from "react-transition-group";
 import { Box } from "@mui/material";
+import SearchToDoList from "./SearchToDoList";
 
 type Props = {
   toDoList: Array<ToDo>;
@@ -31,8 +36,29 @@ const ToDoList = ({
     (toDo) => toDo.completed
   ).length;
   const [search, setSearch] = useState<string>("");
+  const [sortOldestFirst, setSortOldestFirst] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadingVisible, setLoadingVisible] = useState(false);
 
-  toDoList.sort((a, b) => (a.id > b.id ? -1 : 1));
+  if (sortOldestFirst) {
+    toDoList.sort((a, b) => (a.id < b.id ? -1 : 1));
+  } else {
+    toDoList.sort((a, b) => (a.id > b.id ? -1 : 1));
+  }
+
+  const handleSortOldestFirst = (value: boolean) => {
+    setLoadingVisible(true);
+
+    setTimeout(() => {
+      setLoading(true);
+    }, 1);
+
+    setTimeout(() => {
+      setLoading(false);
+      setLoadingVisible(false);
+      setSortOldestFirst(value);
+    }, 1000);
+  };
 
   const toDoListItems = toDoList.map((item) => {
     return (
@@ -65,6 +91,10 @@ const ToDoList = ({
     setFilter(filter);
   };
 
+  const handleSearchQuery = (query: string) => {
+    setSearch(query);
+  };
+
   const searchToDoListItems = (
     toDoListItems: JSX.Element[],
     query: string
@@ -76,8 +106,16 @@ const ToDoList = ({
     return results;
   };
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
+  const defaultStyle = {
+    transition: `opacity 1000ms ease-in-out`,
+    opacity: 0,
+  };
+
+  const transitionStyles: { [id: string]: React.CSSProperties } = {
+    entering: { opacity: 1 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 },
   };
 
   return (
@@ -95,66 +133,87 @@ const ToDoList = ({
       >
         {filter} To-Dos
       </Typography>
-      <Paper
-        sx={{
-          width: "100%",
-          "& > div": { width: "100%" },
-          display: "grid",
-          gridTemplateColumns: "max-content 1fr",
-          alignItems: "center",
-          padding: 1,
-        }}
-      >
-        <SearchIcon color="disabled"></SearchIcon>
-        <InputBase
-          placeholder="Search To-Dos"
-          aria-label="Search To-Dos"
-          title="Search To-Dos"
-          disabled={toDoListItems.length < 1}
-          sx={{
-            "& .MuiInputBase-input": {
-              padding: 1,
-              paddingLeft: 1,
-              transition: "width 1s",
-              width: "100%",
-            },
-          }}
-          value={search}
-          onChange={handleSearch}
-        ></InputBase>
-      </Paper>
-      <Box>
-        <TransitionGroup component="ul" className={classes.list}>
-          {searchToDoListItems(
-            filterToDoListItems(toDoListItems, filter),
-            search
-          ).map((item) => {
-            return (
-              item.props.toDo && (
-                <Collapse key={item.key}>
-                  {
-                    <ToDoItem
-                      key={item.props.toDo.id}
-                      toDo={item.props.toDo}
-                      removeToDo={removeToDo.bind(null, item.props.toDo.id)}
-                      updateToDo={updateToDo}
-                      safeDelete={safeDelete}
-                    ></ToDoItem>
-                  }
-                </Collapse>
-              )
-            );
-          })}
-        </TransitionGroup>
-        {searchToDoListItems(filterToDoListItems(toDoListItems, filter), search)
-          .length < 1 && (
-          <Fade in={true} timeout={1000}>
-            <Typography color="text.primary">
-              {search.length > 0 ? "Sorry, no To-Dos found." : "Your To-Do list is empty, try adding a new To-Do."}
-            </Typography>
-          </Fade>
-        )}
+      <Box sx={{ display: "flex ", gap: 1, alignItems: "center" }}>
+        <SearchToDoList
+          toDoListItems={toDoListItems}
+          searchQuery={search}
+          setSearchQuery={handleSearchQuery}
+          sortOldestFirst={sortOldestFirst}
+          handleSortOldestFirst={handleSortOldestFirst}
+        ></SearchToDoList>
       </Box>
+      {loadingVisible && (
+        <Transition
+          in={loading}
+          timeout={1000}
+          // onEnter={() => console.log("onEnter")}
+          // onEntering={() => console.log("onEntering")}
+          // onEntered={() => console.log("onEntered")}
+          // onExit={() => console.log("onExit")}
+          // onExiting={() => console.log("onExiting")}
+          // onExited={() => console.log("onExited")}
+        >
+          {(state: TransitionStatus) => (
+            <Box
+              sx={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                margin: "auto",
+                marginTop: "33.3%",
+                ...defaultStyle,
+                ...transitionStyles[state],
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
+        </Transition>
+      )}
+      {(
+        <CSSTransition
+          in={!loading}
+          timeout={1000}
+          classNames={classes}
+        >
+          <Box>
+            <TransitionGroup component="ul" style={{ display: 'grid', gap: '10px'}}>
+              {searchToDoListItems(
+                filterToDoListItems(toDoListItems, filter),
+                search
+              ).map((item) => {
+                return (
+                  item.props.toDo && (
+                    <Collapse key={item.key} component="li">
+                      {
+                        <ToDoItem
+                          key={item.props.toDo.id}
+                          toDo={item.props.toDo}
+                          removeToDo={removeToDo.bind(null, item.props.toDo.id)}
+                          updateToDo={updateToDo}
+                          safeDelete={safeDelete}
+                        ></ToDoItem>
+                      }
+                    </Collapse>
+                  )
+                );
+              })}
+            </TransitionGroup>
+            {searchToDoListItems(
+              filterToDoListItems(toDoListItems, filter),
+              search
+            ).length < 1 && (
+              <Fade in={true} timeout={1000}>
+                <Typography color="text.primary">
+                  {search.length > 0
+                    ? "Sorry, no To-Dos found."
+                    : "Your To-Do list is empty, try adding a new To-Do."}
+                </Typography>
+              </Fade>
+            )}
+          </Box>
+        </CSSTransition>
+      )}
     </>
   );
 };

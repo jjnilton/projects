@@ -1,7 +1,6 @@
 import { FormEvent, useState } from "react";
 import ToDo from "../models/toDo";
 import classes from "./ToDoItem.module.scss";
-import Fade from "@mui/material/Fade";
 
 // UI
 import Button from "@mui/material/Button";
@@ -16,7 +15,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteConfirmation from "./DeleteConfirmation";
-import { TransitionGroup } from "react-transition-group";
+import { Box } from "@mui/material";
 
 type Props = {
   toDo: ToDo;
@@ -68,7 +67,7 @@ const ToDoItem = ({
   };
 
   return (
-    <li>
+    <Box>
       <DeleteConfirmation
         dialogVisibility={deleteConfirmationVisibility}
         toggleDialog={toggleDeleteConfirmationVisibility}
@@ -162,7 +161,7 @@ const ToDoItem = ({
             </CardActions>
           </CardContent>
         </Card>
-    </li>
+    </Box>
   );
 };
 
