@@ -23,6 +23,11 @@ const DeleteConfirmation = ({
     toggleDialog();
   };
 
+  const handleRemove = () => {
+    toggleDialog()
+    removeToDo();
+  }
+
   return (
     <Dialog onClose={handleClose} open={dialogVisibility}>
       <DialogTitle>Confirm Delete</DialogTitle>
@@ -39,7 +44,7 @@ const DeleteConfirmation = ({
           <Button
             variant="contained"
             color="error"
-            onClick={removeToDo}
+            onClick={handleRemove}
             startIcon={<DeleteIcon></DeleteIcon>}
           >
             Delete
