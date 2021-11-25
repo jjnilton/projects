@@ -179,8 +179,8 @@ function App() {
         autoHideDuration={3000}
         TransitionProps={{ onExited: handleExited }}
         onClose={(event: React.SyntheticEvent, reason: string) => {
-          if (reason === "clickaway") {
-            return;
+          if (reason !== "clickaway") {
+            handleCloseSnackbar();
           }
         }}
       >
