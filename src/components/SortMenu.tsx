@@ -1,4 +1,4 @@
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
 import SortIcon from "@mui/icons-material/Sort";
 import { useState } from "react";
 
@@ -31,9 +31,11 @@ const SortMenu = ({ handleSortOldestFirst, sortOldestFirst }: Props) => {
 
   return (
     <Box>
-      <IconButton onClick={handleOpen}>
-        <SortIcon />
-      </IconButton>
+      <Tooltip title="Sort list">
+        <IconButton onClick={handleOpen}>
+          <SortIcon />
+        </IconButton>
+      </Tooltip>
       <Menu open={menuVisible} anchorEl={anchorElement} onClose={handleClose}>
         <MenuItem selected={!sortOldestFirst} onClick={sortToNewestFirst}>
           Newest
