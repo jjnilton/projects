@@ -26,6 +26,7 @@ const SearchToDoList = ({toDoListItems, searchQuery, setSearchQuery, handleSortO
           gridTemplateColumns: "max-content 1fr max-content",
           alignItems: "center",
           padding: 1,
+          borderRadius: 100
         }}
       >
         <SearchIcon color="disabled"></SearchIcon>
