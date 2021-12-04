@@ -1,13 +1,15 @@
-import { Box, IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
-import SortIcon from "@mui/icons-material/Sort";
-import { useState } from "react";
+import {
+  Box, IconButton, Menu, MenuItem, Tooltip,
+} from '@mui/material';
+import SortIcon from '@mui/icons-material/Sort';
+import { useState } from 'react';
 
 type Props = {
   handleSortOldestFirst: (value: boolean) => void;
   sortOldestFirst: boolean;
 };
 
-const SortMenu = ({ handleSortOldestFirst, sortOldestFirst }: Props) => {
+const SortMenu = ({ handleSortOldestFirst, sortOldestFirst }: Props): JSX.Element => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const menuVisible = Boolean(anchorElement);
 

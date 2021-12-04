@@ -28,7 +28,7 @@ export interface State {
   messageInfo?: SnackbarMessage;
 }
 
-const App = () => {
+const App = (): JSX.Element => {
   const [toDos, setToDos] = useState<ToDo[]>([]);
   const mountRef = useRef(false);
   const [drawerVisibility, setDrawerVisibility] = useState(false);

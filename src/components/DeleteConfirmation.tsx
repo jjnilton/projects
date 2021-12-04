@@ -5,8 +5,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type Props = {
   dialogVisibility: boolean;
@@ -18,15 +18,15 @@ const DeleteConfirmation = ({
   dialogVisibility,
   toggleDialog,
   removeToDo,
-}: Props) => {
-  const handleClose = () => {
+}: Props): JSX.Element => {
+  const handleClose = (): void => {
     toggleDialog();
   };
 
-  const handleRemove = () => {
-    toggleDialog()
+  const handleRemove = (): void => {
+    toggleDialog();
     removeToDo();
-  }
+  };
 
   return (
     <Dialog onClose={handleClose} open={dialogVisibility}>
@@ -38,14 +38,14 @@ const DeleteConfirmation = ({
           This can't be undone.
         </DialogContentText>
         <DialogActions>
-          <Button onClick={toggleDialog} sx={{ color: "text.primary" }}>
+          <Button onClick={toggleDialog} sx={{ color: 'text.primary' }}>
             Cancel
           </Button>
           <Button
             variant="contained"
             color="error"
             onClick={handleRemove}
-            startIcon={<DeleteIcon></DeleteIcon>}
+            startIcon={<DeleteIcon />}
           >
             Delete
           </Button>

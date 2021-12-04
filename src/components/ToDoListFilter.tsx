@@ -1,7 +1,7 @@
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import Tooltip from "@mui/material/Tooltip";
-import Badge from "@mui/material/Badge";
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import Tooltip from '@mui/material/Tooltip';
+import Badge from '@mui/material/Badge';
 
 type Props = {
   filter: string;
@@ -15,7 +15,7 @@ const ToDoListFilter = ({
   onSetFilter,
   toDoCount,
   completedCount,
-}: Props) => {
+}: Props): JSX.Element => {
   const handleFilterChange = (event: React.MouseEvent<HTMLElement>) => {
     const buttonElement = event.target as HTMLButtonElement;
     onSetFilter(buttonElement.value);
@@ -26,11 +26,11 @@ const ToDoListFilter = ({
       color="primary"
       exclusive
       onChange={handleFilterChange}
-      sx={{ backgroundColor: "background.default", justifySelf: "center" }}
+      sx={{ backgroundColor: 'background.default', justifySelf: 'center' }}
     >
       <Tooltip title="Show all To-Dos">
         <ToggleButton
-          selected={filter === "all" ? true : false}
+          selected={filter === 'all'}
           value="all"
         >
           All
@@ -42,14 +42,14 @@ const ToDoListFilter = ({
               marginLeft: 2,
               marginRight: 1,
               filter:
-                filter !== "all" ? "grayscale(1) opacity(.75)" : undefined,
+                filter !== 'all' ? 'grayscale(1) opacity(.75)' : undefined,
             }}
-          ></Badge>
+          />
         </ToggleButton>
       </Tooltip>
       <Tooltip title="Show only active To-Dos">
         <ToggleButton
-          selected={filter === "active" && true}
+          selected={filter === 'active' && true}
           value="active"
         >
           Active
@@ -61,17 +61,17 @@ const ToDoListFilter = ({
               marginLeft: 2,
               marginRight: 1,
               filter:
-                filter !== "active" ? "grayscale(1) opacity(.75)" : undefined,
+                filter !== 'active' ? 'grayscale(1) opacity(.75)' : undefined,
             }}
-          ></Badge>
+          />
         </ToggleButton>
       </Tooltip>
       <Tooltip title="Show only completed To-Dos">
         <ToggleButton
-          selected={filter === "completed" && true}
+          selected={filter === 'completed' && true}
           value="completed"
         >
-            Completed
+          Completed
           <Badge
             badgeContent={completedCount}
             color="primary"
@@ -80,11 +80,11 @@ const ToDoListFilter = ({
               marginLeft: 2,
               marginRight: 1,
               filter:
-                filter !== "completed"
-                  ? "grayscale(1) opacity(.75)"
+                filter !== 'completed'
+                  ? 'grayscale(1) opacity(.75)'
                   : undefined,
             }}
-          ></Badge>
+          />
         </ToggleButton>
       </Tooltip>
     </ToggleButtonGroup>
