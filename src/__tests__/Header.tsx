@@ -1,5 +1,7 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Header from '../components/Header';
+import App from '../App';
 
 describe('renders the header and its children', () => {
   test('renders all three children elements', () => {
@@ -27,6 +29,13 @@ describe('renders the header and its children', () => {
     const settingsElement = container.querySelector('header')?.lastChild;
     expect(settingsElement).toBeInTheDocument();
     expect(settingsElement?.nodeName).toEqual('button'.toUpperCase());
-  })
+  });
+
+  test('clicking the settings button should open the settings panel', async () => {
+    const appContainer = render(<App></App>).container;
+    const settingsButtonElement = appContainer.querySelector('header')?.lastChild as Element;
+    fireEvent(settingsButtonElement, new MouseEvent('click', { bubbles: true, cancelable: true }));
+    expect(screen.getByText('Settings')).toBeInTheDocument();
+  });
 
 });
