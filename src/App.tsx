@@ -1,5 +1,7 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState,
+} from 'react';
 import {
   Alert,
   AlertColor,
@@ -185,7 +187,7 @@ const App = (): JSX.Element => {
         open={snackBarVisible}
         autoHideDuration={3000}
         TransitionProps={{ onExited: handleExited }}
-        onClose={(event: React.SyntheticEvent, reason: string) => {
+        onClose={(event, reason: string) => {
           if (reason !== 'clickaway') {
             handleCloseSnackbar();
           }
