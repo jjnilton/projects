@@ -40,7 +40,7 @@ const NewToDo = ({ addNewToDo }: Props): JSX.Element => {
         variant="filled"
         required
       />
-      <Button variant="contained" startIcon={<AddIcon />} type="submit">
+      <Button id="add" variant="contained" startIcon={<AddIcon />} type="submit">
         Add
       </Button>
     </form>
