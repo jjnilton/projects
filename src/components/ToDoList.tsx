@@ -125,9 +125,9 @@ const ToDoList = ({
         completedCount={completedCount}
       />
       <Typography
-        variant="h4"
+        variant="subtitle1"
         component="h2"
-        sx={{ color: 'text.primary', textTransform: 'capitalize' }}
+        sx={{ color: 'text.primary', textTransform: 'capitalize', paddingLeft: 1 }}
       >
         {filter}
         {' '}

@@ -97,7 +97,6 @@ const App = (): JSX.Element => {
         completed: completed!,
       };
     }
-
     setToDos(updatedToDos);
   };
 
@@ -109,6 +108,11 @@ const App = (): JSX.Element => {
       const localToDos = JSON.parse(localStorage.getItem('toDos')!);
       setToDos(localToDos);
     }
+    if (localStorage.getItem('settings')) {
+      const settings = JSON.parse(localStorage.getItem('settings')!);
+      setDarkMode(settings.darkMode);
+      setSafeDelete(settings.safeDelete);
+    }
   }, []);
 
   useEffect(() => {
@@ -118,6 +122,17 @@ const App = (): JSX.Element => {
       mountRef.current = true;
     }
   }, [toDos]);
+
+  useEffect(() => {
+    if (mountRef.current) {
+      localStorage.setItem('settings', JSON.stringify({
+        darkMode,
+        safeDelete,
+      }));
+    } else {
+      mountRef.current = true;
+    }
+  }, [darkMode, safeDelete]);
 
   const lightTheme = createTheme({
     palette: {

@@ -15,9 +15,9 @@ const Header = ({ toggleDrawerVisibility }: Props): JSX.Element => (
       gap: '.25em',
     }}
   >
-    <NoteIcon sx={{ fontSize: 56 }} color="primary" />
+    <NoteIcon sx={{ fontSize: 36 }} color="primary" />
     <Typography
-      variant="h3"
+      variant="h5"
       component="h1"
       color="primary"
       className={classes.title}
