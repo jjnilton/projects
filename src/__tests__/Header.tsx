@@ -4,10 +4,10 @@ import App from '../App';
 
 describe('renders the header and its children', () => {
   test('renders all three children elements', () => {
-    const { container } = render(<Header toggleDrawerVisibility={() => {}}></Header>);
+    const { container } = render(<Header toggleDrawerVisibility={() => {}} />);
     const headerElement = container.firstChild;
-    expect(headerElement?.childNodes.length).toEqual(3); 
-  }); 
+    expect(headerElement?.childNodes.length).toEqual(3);
+  });
 
   test('renders logo in the header', () => {
     const { container } = render(<Header toggleDrawerVisibility={() => {}} />);
@@ -24,17 +24,16 @@ describe('renders the header and its children', () => {
   });
 
   test('renders the settings button', () => {
-    const { container } = render(<Header toggleDrawerVisibility={() => {}}></Header>);
+    const { container } = render(<Header toggleDrawerVisibility={() => {}} />);
     const settingsElement = container.querySelector('header')?.lastChild;
     expect(settingsElement).toBeInTheDocument();
     expect(settingsElement?.nodeName).toEqual('button'.toUpperCase());
   });
 
   test('clicking the settings button should open the settings panel', async () => {
-    const appContainer = render(<App></App>).container;
+    const appContainer = render(<App />).container;
     const settingsButtonElement = appContainer.querySelector('header')?.lastChild as Element;
     fireEvent(settingsButtonElement, new MouseEvent('click', { bubbles: true, cancelable: true }));
     expect(screen.getByText('Settings')).toBeInTheDocument();
   });
-
 });

@@ -51,7 +51,11 @@ const SearchToDoList = ({
         value={searchQuery}
         onChange={handleSearch}
       />
-      <SortMenu handleSortOldestFirst={handleSortOldestFirst} sortOldestFirst={sortOldestFirst} />
+      <SortMenu
+        handleSortOldestFirst={handleSortOldestFirst}
+        sortOldestFirst={sortOldestFirst}
+        toDoListItems={toDoListItems}
+      />
     </Paper>
   );
 };

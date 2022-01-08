@@ -7,9 +7,14 @@ import { useState } from 'react';
 type Props = {
   handleSortOldestFirst: (value: boolean) => void;
   sortOldestFirst: boolean;
+  toDoListItems: JSX.Element[];
 };
 
-const SortMenu = ({ handleSortOldestFirst, sortOldestFirst }: Props): JSX.Element => {
+const SortMenu = ({
+  handleSortOldestFirst,
+  sortOldestFirst,
+  toDoListItems,
+}: Props): JSX.Element => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const menuVisible = Boolean(anchorElement);
 
@@ -34,9 +39,11 @@ const SortMenu = ({ handleSortOldestFirst, sortOldestFirst }: Props): JSX.Elemen
   return (
     <Box>
       <Tooltip title="Sort list">
-        <IconButton onClick={handleOpen}>
-          <SortIcon />
-        </IconButton>
+        <span>
+          <IconButton onClick={handleOpen} disabled={toDoListItems.length === 0}>
+            <SortIcon />
+          </IconButton>
+        </span>
       </Tooltip>
       <Menu open={menuVisible} anchorEl={anchorElement} onClose={handleClose}>
         <MenuItem selected={!sortOldestFirst} onClick={sortToNewestFirst}>
