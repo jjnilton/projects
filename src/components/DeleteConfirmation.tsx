@@ -47,7 +47,7 @@ const DeleteConfirmation = ({
             onClick={handleRemove}
             startIcon={<DeleteIcon />}
           >
-            Delete
+            Delete Permanently
           </Button>
         </DialogActions>
       </DialogContent>
