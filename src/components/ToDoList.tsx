@@ -195,7 +195,7 @@ const ToDoList = ({
           <Fade in timeout={1000}>
             <Typography color="text.primary" style={{ textAlign: 'center', marginTop: '1em' }}>
               {search.length > 0 || filter !== 'all'
-                ? 'Sorry, no To-Dos found.'
+                ? `Sorry, no ${filter} To-Dos found.`
                 : 'Your To-Do list is empty. Try adding a new To-Do.'}
             </Typography>
           </Fade>
