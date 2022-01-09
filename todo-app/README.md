@@ -6,7 +6,7 @@
 
 ## Description
 
-A simple To-Do list app that lets you manage to-dos, 
+A simple To-Do list app that lets you manage to-dos: add/edit/remove, sort, with options to change theme, and delete without confirmation.
 
 ## Tools
 
