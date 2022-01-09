@@ -56,7 +56,6 @@ describe('todo input and button interaction', () => {
     const modalDeleteButton = screen.findByText('Delete Permanently');
     fireEvent.click(await modalDeleteButton);
     const toDoList = container.querySelector('ul');
-    console.log(toDoList);
     expect(toDoList).toBeEmptyDOMElement;
   });
 });

@@ -23,6 +23,8 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     // note you must disable the base rule as it can report incorrect errors
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],

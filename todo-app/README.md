@@ -2,7 +2,7 @@
 
 ![To-Do](screencast.gif)
 
-[Live](https://word-frequency-app.vercel.app/)
+[Live](https://jjnilton.github.io/projects/todo-app/build)
 
 ## Description
 
