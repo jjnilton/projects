@@ -1,22 +1,19 @@
 # Product Landing Page
 
-![Screencast](screencast.mp4)
+https://user-images.githubusercontent.com/228200/140777579-a31fbf08-c64d-438b-bd21-4af8fb9c59f5.mp4
 
-[Link]()
+
+[Live](https://jjnilton.github.io/projects/product-landing-page/dist)
 
 ## Description
 
 A product landing page purely in HTML/CSS and vanilla JS.
 
-Note: This project is based on a test the goal was to "translate" a layout from a PSD file [0] to a document using web technologies. The user stories are based on the instructions.
+Note: This project is based on a test the goal was to "translate" a layout from a [PSD file](https://archive.org/details/ct-skill-test-v-3) to a document using web technologies. The user stories are based on the instructions.
 
-[PSD file](https://archive.org/details/ct-skill-test-v-3)
+PSD screenshot:
 
-PSD screenshot
-
-![PSD screenshot](psd-screenshot.png | width=100)
-
-<img src="psd-screenshot.png" width=50% height=50%></img>
+<img src="psd-screenshot.png" width=25% height=25%></img>
 
 ## Technologies & Tools
 
