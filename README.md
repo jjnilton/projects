@@ -4,7 +4,7 @@ Projects to practice development.
 
 | Name                                               | Description                                               | Technologies                        | Live                                                                      |
 | -------------------------------------------------- | --------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------- |
-| [Bin2Dec](bin2dec)                                 | Binary-to-Decimal number converter                        | React                               | [View](https://jjnilton.github.io/projects/bin2dec/build)                 |
+| [Bin2Dec](bin2dec)                                 | Binary-to-Decimal number converter                        | React, CSS                          | [View](https://jjnilton.github.io/projects/bin2dec/build)                 |
 | [Border Radius Previewer](border-radius-previewer) | Previews how CSS3 border-radius values affect an element  | React, Styled Components            | [View](https://jjnilton.github.io/projects/border-radius-previewer/build) |
 | [Cause Effect](cause-effect)                       | Displays details of an item on a list                     | HTML, CSS, JavaScript               | [View](https://jjnilton.github.io/projects/cause-effect/dist)             |
 | [Random Number Generator](random-number-generator) | Generates random number between range                     | React, Styled Components            | [View](https://jjnilton.github.io/projects/random-number-generator/build) |
@@ -16,4 +16,4 @@ Projects to practice development.
 | [Contact Form](contact-form)                       | Contact form with input validation                        | Vue.js, Vue Test Utils              | [View](https://jjnilton.github.io/projects/contact-form/dist)             |
 | [Word Frequency](word-frequency)                   | App and API endpoint to show the word frequency of a text | Next.js, Styled Components          | [View](https://word-frequency-app.vercel.app/)                            |
 | [Book Finder App](book-finder-app)                 | Lets you search for books using the OpenLibrary.org API   | React, Redux, Styled Components     | [View](https://jjnilton.github.io/projects/book-finder-app/dist)          |
-| [To-Do App](todo-app)                              | Lets you search for books using the OpenLibrary.org API   | React, TypeScript, MUI, CSS Modules | [View](https://jjnilton.github.io/projects/todo-app/build)                |
+| [To-Do App](todo-app)                              | Simple To-Do app that let's you add/edit/remove To-Dos    | React, TypeScript, MUI, CSS Modules | [View](https://jjnilton.github.io/projects/todo-app/build)                |
