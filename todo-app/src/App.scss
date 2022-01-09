@@ -1,0 +1,10 @@
+.App {
+  padding: 10px;
+  margin: 10px;
+  display: grid;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  grid-auto-rows: max-content;
+}

@@ -1,0 +1,32 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  row-gap: 1em;
+}
+
+.date {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.todo {
+  align-self: center;
+  word-break: break-all;
+}
+
+.checkbox {
+  align-self: center;
+}
+
+// .item {
+//   animation: appear 1s;
+// }
+
+// @keyframes appear {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
