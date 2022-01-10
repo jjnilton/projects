@@ -41,7 +41,7 @@ A simple To-Do list app that lets you manage to-dos: add/edit/remove, sort, with
 
 ## Build & run instructions
 
-This project is built with Create React App, so the scripts to build and run are provided:
+This project is built with Create React App, so the scripts to build and run are provided.
 
 Build with:
 
