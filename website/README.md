@@ -11,6 +11,7 @@
 - [x] Complete presentation
 - [x] Proofread
 - [x] Publish!!!
+- [ ] Fix the part about git
 - [ ] Validate against W3CValidator
 - [ ] Detect browser language
 - [ ] Check the published version in the most popular browsers
