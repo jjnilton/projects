@@ -15,7 +15,7 @@ const GameStartScreen = ({
     const resetAction = () => {
         handleInputChange('');
     }
-    
+
     const confirmAction = () => {
         if (parseInt(input) < range[0] || parseInt(input) > range[1]) {
             return;
@@ -34,25 +34,26 @@ const GameStartScreen = ({
     ];
 
     return (
-        <View>
+        <View style={styles.container}>
             <Header title="Guess My Number"></Header>
-            <View>
-                <Text>Enter a Number between {range[0]} and {range[1]}</Text>
+            <View style={styles.enterNumber}>
+                <Text style={styles.enterNumberLabel}>Enter a Number between {range[0]} and {range[1]}</Text>
                 <TextInput
+                    style={styles.enterNumberInput}
                     keyboardType="number-pad"
                     onChangeText={handleInputChange}
                     value={input}>
                 </TextInput>
+                <Actions actions={actions}></Actions>
             </View>
-            <Actions actions={actions}></Actions>
         </View>
     );
 }
 
 const Header = ({ title }: { title: string }) => {
     return (
-        <View>
-            <Text>
+        <View style={styles.header}>
+            <Text style={styles.headerText}>
                 {title}
             </Text>
         </View>
@@ -66,13 +67,16 @@ type Action = {
 
 const Actions = ({ actions }: { actions: Action[] }) => {
     return (
-        <View>
+        <View style={styles.actions}>
             {actions.map(action => {
                 return (
-                    <Button key={action.title}
+                    <View style={styles.actionButton}>
+                        <Button
+                            key={action.title}
                             title={action.title}
                             onPress={action.action}>
-                    </Button>
+                        </Button>
+                    </View>
             )}
             )}
         </View>
@@ -312,7 +316,7 @@ export default function App() {
     }
 
     return (
-        <View>
+        <View style={{ flex: 1}}>
             <StatusBar style="auto" />
             {currentScreen === 'init' &&
              <GameStartScreen
@@ -336,4 +340,52 @@ export default function App() {
     );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'black',
+        alignItems: 'center',
+        flex: 1,
+    },
+    header: {
+        borderWidth: 2,
+        borderColor: 'white',
+        margin: 15,
+        padding: 10,
+        textAlign: 'center',
+        width: '45%',
+    },
+    headerText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    enterNumber: {
+        backgroundColor: '#111',
+        borderRadius: 10,
+        padding: 10,
+        textAlign: 'center',
+        width: '90%',
+    },
+    enterNumberLabel: {
+        color: 'white',
+        fontSize: 16,
+    },
+    enterNumberInput: {
+        alignSelf: 'center',
+        borderBottomWidth: 2,
+        borderColor: 'white',
+        color: 'white',
+        fontSize: 35,
+        margin: 10,
+        textAlign: 'center',
+        width: 50,
+    },
+    actions: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 5
+    },
+    actionButton: {
+        width: '45%'
+    }
+});
