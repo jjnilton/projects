@@ -4,9 +4,11 @@ import { Button, FlatList, Modal, StyleSheet, Text, TextInput, View } from 'reac
 
 /* Screen 1 - User 1 chooses a number to be guessed by the computer */
 const GameStartScreen = ({
-    onToBeGuessedChoice
+    onToBeGuessedChoice,
+    range
 }: {
-    onToBeGuessedChoice: (input: string) => void
+    onToBeGuessedChoice: (input: string) => void,
+    range: number[]
 }) => {
     const [input, setInput] = useState<string>('');
 
@@ -15,6 +17,10 @@ const GameStartScreen = ({
     }
     
     const confirmAction = () => {
+        if (parseInt(input) < range[0] || parseInt(input) > range[1]) {
+            return;
+        }
+
         onToBeGuessedChoice(input);
     }
 
@@ -31,7 +37,7 @@ const GameStartScreen = ({
         <View>
             <Header title="Guess My Number"></Header>
             <View>
-                <Text>Enter a Number</Text>
+                <Text>Enter a Number between {range[0]} and {range[1]}</Text>
                 <TextInput
                     keyboardType="number-pad"
                     onChangeText={handleInputChange}
@@ -102,16 +108,17 @@ type AlertModalData = {
 
 /* Screen 2 - Computer attempts and user feedback  */
 const GuessHintScreen = ({
-    toBeGuessed, onGameOver, lastGuess, onLastGuess
+    toBeGuessed, onGameOver, lastGuess, onLastGuess, range
 }: {
     toBeGuessed: string,
     onGameOver: (guess: Guess) => void,
     lastGuess: Guess,
     onLastGuess: (lastGuess: Guess) => void
+    range: number[]
 }) => {
     const [guesses, setGuesses] = useState<Guess[]>([]);
-    const [floor, setFloor] = useState<number>(0);
-    const [ceil, setCeil] = useState<number>(100);
+    const [floor, setFloor] = useState<number>(range[0]);
+    const [ceil, setCeil] = useState<number>(range[1]);
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
     const [alertModalData, setAlertModalData] = useState<AlertModalData>({ title: '', content: ''});
 
@@ -276,6 +283,7 @@ export default function App() {
     const [toBeGuessed, setToBeGuessed] = useState<string>('');
     const [currentScreen, setCurrentScreen] = useState<string>('init');
     const [lastGuess, setLastGuess] = useState<Guess>(initialGuess);
+    const [range, setRange] = useState<number[]>([1, 100]);
 
     const handleToBeGuessedChoice = (toBeGuessedChoice: string): void => {
         setToBeGuessed(toBeGuessedChoice);
@@ -309,6 +317,7 @@ export default function App() {
             {currentScreen === 'init' &&
              <GameStartScreen
                  onToBeGuessedChoice={handleToBeGuessedChoice}
+                 range={range}
              ></GameStartScreen>}
             {currentScreen === 'play' &&
              <GuessHintScreen
@@ -316,6 +325,7 @@ export default function App() {
                  onGameOver={handleGameOver}
                  lastGuess={lastGuess}
                  onLastGuess={handleLastGuess}
+                 range={range}
              ></GuessHintScreen>}
             {currentScreen === 'over' &&
              <GameOverScreen
