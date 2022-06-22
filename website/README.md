@@ -57,4 +57,6 @@
 - [ ] Refactor section title style
 - [ ] Fix countdown timer project, Safari iOS is not supported
 - [ ] Fix width in the book finder app
+- [ ] Use react-icons lib or replace styled icon with svg
+- [ ] Rewrite in TS
 
