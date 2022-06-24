@@ -95,10 +95,10 @@ const AlertModal = ({
     content: string
 }) => {
     return (
-        <Modal visible={isModalVisible}>
-            <View>
-                <Text>{title}</Text>
-                <Text>{content}</Text>
+        <Modal visible={isModalVisible} transparent={true}>
+            <View style={styles.alertModalContainer}>
+                <Text style={styles.alertModalTitle}>{title}</Text>
+                <Text style={styles.alertModalContent}>{content}</Text>
                 <Button title="Ok" onPress={toggleModal}></Button>
             </View>
         </Modal>
@@ -212,13 +212,13 @@ const GuessHintScreen = ({
 
     
     return (
-        <View>
+        <View style={styles.container}>
             <Header title="Computer's Guess"></Header>
-            <View>
-                <Text>{lastGuess && lastGuess.number}</Text>
+            <View style={styles.lastGuessContainer}>
+                <Text style={styles.lastGuess}>{lastGuess && lastGuess.number}</Text>
             </View>
-            <View>
-                <Text>Higher or LoweR?</Text>
+            <View style={styles.enterNumber}>
+                <Text style={styles.enterNumberLabel}>Higher or LoweR?</Text>
                 <Actions actions={actions}></Actions>
             </View>
             <GuessList data={guesses}></GuessList>
@@ -234,7 +234,7 @@ const GuessHintScreen = ({
 
 const GuessList = ({ data }: { data: Guess[]}) => {
     return (
-        <View>
+        <View style={styles.guessListContainer}>
             <FlatList
                 data={data}
                 renderItem={({ item }: { item: Guess }) => <GuessListItem guess={item}></GuessListItem>}
@@ -252,10 +252,10 @@ type Guess = {
 
 const GuessListItem = ({ guess }: { guess: Guess }) => {
     return (
-        <View>
-            <Text>{guess.count}</Text>
-            <Text>{guess.identifier}</Text>
-            <Text>{guess.number}</Text>
+        <View style={styles.guessListItem}>
+            <Text style={styles.guessListItemText}>#{guess.count}</Text>
+            <Text style={styles.guessListItemText}>{guess.identifier}</Text>
+            <Text style={styles.guessListItemText}>{guess.number}</Text>
         </View>
     );
 }
@@ -268,13 +268,13 @@ const GameOverScreen = ({
     onResetGame: () => void
 }) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Header title="Game Over"></Header>
             <View style={styles.gameOverImageContainer}>
                 <Image style={{width: 100, height: 100}} source={require('./assets/dice.png')}></Image>
             </View>
-            <View>
-                <Text>It took {lastGuess.count} attempts to guess the number {lastGuess.number}.</Text>
+            <View style={styles.gameOverMsgContainer}>
+                <Text style={styles.gameOverMsgText}>It took <Text style={{fontWeight: 'bold'}}>{lastGuess.count}</Text> attempts to guess the number <Text style={{fontWeight: 'bold'}}>{lastGuess.number}</Text>.</Text>
             </View>
             <Button title="Start New Game" onPress={onResetGame}></Button>
         </View>
@@ -369,6 +369,7 @@ const styles = StyleSheet.create({
     enterNumberLabel: {
         color: 'white',
         fontSize: 16,
+        marginBottom: 10,
     },
     enterNumberInput: {
         alignSelf: 'center',
@@ -383,9 +384,67 @@ const styles = StyleSheet.create({
     actions: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        padding: 5
+        padding: 5,
     },
     actionButton: {
         width: '45%'
+    },
+    lastGuessContainer: {
+        borderColor: 'white',
+        borderRadius: 10,
+        borderWidth: 2,
+        marginBottom: 15,
+        paddingVertical: 15,
+        textAlign: 'center',
+        width: '90%'
+    },
+    lastGuess: {
+        color: 'white',
+        fontSize: 36
+    },
+    guessListContainer: {
+        width: '90%',
+    },
+    guessListItem: {
+        backgroundColor: '#111',
+        borderRadius: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: 10,
+        padding: 10,
+        width: '100%',
+    },
+    guessListItemText: {
+        color: 'white',
+    },
+    gameOverImageContainer: {
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        padding: 10,
+        width: '100%',
+    },
+    gameOverMsgContainer: {
+        backgroundColor: "#111",
+        borderRadius: 10,
+        marginVertical: 10,
+        padding: 15,
+    },
+    gameOverMsgText: {
+        color: 'white',
+    },
+    alertModalContainer: {
+        backgroundColor: "#222",
+        borderRadius: 10,
+        marginHorizontal: '10%',
+        marginVertical: '50%',
+        padding: 20,
+    },
+    alertModalTitle: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    alertModalContent: {
+        color: 'white',
+        marginVertical: 10,
     }
 });
