@@ -253,9 +253,9 @@ type Guess = {
 const GuessListItem = ({ guess }: { guess: Guess }) => {
     return (
         <View style={styles.guessListItem}>
-            <Text style={styles.guessListItemText}>#{guess.count}</Text>
-            <Text style={styles.guessListItemText}>{guess.identifier}</Text>
-            <Text style={styles.guessListItemText}>{guess.number}</Text>
+            <Text style={styles.guessListItemTextCount}>#{guess.count}</Text>
+            <Text style={styles.guessListItemTextId}>{guess.identifier}</Text>
+            <Text style={styles.guessListItemTextGuess}>{guess.number}</Text>
         </View>
     );
 }
@@ -403,23 +403,35 @@ const styles = StyleSheet.create({
         fontSize: 36
     },
     guessListContainer: {
+        marginTop: 10,
         width: '90%',
     },
     guessListItem: {
         backgroundColor: '#111',
         borderRadius: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginVertical: 10,
+        marginBottom: 10,
         padding: 10,
         width: '100%',
     },
-    guessListItemText: {
+    guessListItemTextCount: {
         color: 'white',
+        flexBasis: '33.3%',
+    },
+    guessListItemTextId: {
+        color: 'white',
+        flexBasis: '33.3%',
+        textAlign: 'center',
+    },
+    guessListItemTextGuess: {
+        color: 'white',
+        flexBasis: '33.3%',
+        fontWeight: 'bold',
+        textAlign: 'right',
     },
     gameOverImageContainer: {
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         padding: 10,
         width: '100%',
     },
