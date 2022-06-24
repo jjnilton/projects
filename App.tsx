@@ -183,7 +183,7 @@ const GuessHintScreen = ({
         const guess = 
             {
                 count: guesses.length ? guesses[guesses.length - 1].count + 1 : 0,
-                identifier: "Something...",
+                identifier: "Guessed",
                 number: randomNumber
             }
 
