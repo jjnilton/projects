@@ -95,6 +95,7 @@ const AlertModal = ({
 }) => {
     return (
         <Modal visible={isModalVisible} transparent={true}>
+            <View style={styles.alertModalBackdrop}></View>
             <View style={styles.alertModalContainer}>
                 <Text style={styles.alertModalTitle}>{title}</Text>
                 <Text style={styles.alertModalContent}>{content}</Text>
@@ -217,7 +218,7 @@ const GuessHintScreen = ({
                 <Text style={styles.lastGuess}>{lastGuess && lastGuess.number}</Text>
             </View>
             <View style={styles.enterNumber}>
-                <Text style={styles.enterNumberLabel}>Higher or LoweR?</Text>
+                <Text style={styles.enterNumberLabel}>Higher or Lower?</Text>
                 <Actions actions={actions}></Actions>
             </View>
             <GuessList data={guesses}></GuessList>
@@ -341,9 +342,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'black',
         alignItems: 'center',
+        backgroundColor: 'black',
         flex: 1,
+        paddingHorizontal: 25,
     },
     header: {
         borderWidth: 2,
@@ -351,7 +353,7 @@ const styles = StyleSheet.create({
         margin: 15,
         padding: 10,
         textAlign: 'center',
-        width: '45%',
+        width: '50%',
     },
     headerText: {
         color: 'white',
@@ -363,7 +365,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         textAlign: 'center',
-        width: '90%',
+        width: '100%',
     },
     enterNumberLabel: {
         color: 'white',
@@ -395,7 +397,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         paddingVertical: 15,
         textAlign: 'center',
-        width: '90%'
+        width: '100%'
     },
     lastGuess: {
         color: 'white',
@@ -403,7 +405,7 @@ const styles = StyleSheet.create({
     },
     guessListContainer: {
         marginTop: 10,
-        width: '90%',
+        width: '100%',
     },
     guessListItem: {
         backgroundColor: '#111',
@@ -442,6 +444,14 @@ const styles = StyleSheet.create({
     },
     gameOverMsgText: {
         color: 'white',
+    },
+    alertModalBackdrop: {
+        backgroundColor: 'black',
+        flex: 1,
+        height: '100%',
+        opacity: 0.75,
+        position: 'absolute',
+        width: '100%',
     },
     alertModalContainer: {
         backgroundColor: "#222",
