@@ -311,7 +311,7 @@ export default function App() {
 
     const handleResetGame = () => {
         setToBeGuessed('');
-        setCurrentScreen('start');
+        setCurrentScreen('init');
         setLastGuess(initialGuess);
     }
 
