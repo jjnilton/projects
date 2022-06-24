@@ -70,9 +70,8 @@ const Actions = ({ actions }: { actions: Action[] }) => {
         <View style={styles.actions}>
             {actions.map(action => {
                 return (
-                    <View style={styles.actionButton}>
+                    <View key={action.title} style={styles.actionButton}>
                         <Button
-                            key={action.title}
                             title={action.title}
                             onPress={action.action}>
                         </Button>
