@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, Modal, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, Image, Modal, StyleSheet, Text, TextInput, View } from 'react-native';
 
 /* Screen 1 - User 1 chooses a number to be guessed by the computer */
 const GameStartScreen = ({
@@ -270,8 +270,8 @@ const GameOverScreen = ({
     return (
         <View>
             <Header title="Game Over"></Header>
-            <View>
-                <Text>Image</Text>
+            <View style={styles.gameOverImageContainer}>
+                <Image style={{width: 100, height: 100}} source={require('./assets/dice.png')}></Image>
             </View>
             <View>
                 <Text>It took {lastGuess.count} attempts to guess the number {lastGuess.number}.</Text>
