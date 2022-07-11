@@ -317,7 +317,6 @@ export default function App() {
 
     return (
         <View style={{ flex: 1}}>
-            <StatusBar style="auto" />
             {currentScreen === 'init' &&
              <GameStartScreen
                  onToBeGuessedChoice={handleToBeGuessedChoice}
@@ -358,7 +357,8 @@ const styles = StyleSheet.create({
     headerText: {
         color: 'white',
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
     enterNumber: {
         backgroundColor: '#111',
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     actionButton: {
-        width: '45%'
+        width: '45%',
     },
     lastGuessContainer: {
         borderColor: 'white',
@@ -397,11 +397,12 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         paddingVertical: 15,
         textAlign: 'center',
-        width: '100%'
+        width: '100%',
     },
     lastGuess: {
         color: 'white',
-        fontSize: 36
+        fontSize: 36,
+        textAlign: 'center',
     },
     guessListContainer: {
         marginTop: 10,
