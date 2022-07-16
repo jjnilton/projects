@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, Modal, StyleSheet, Text, TextInput, View } from 'react-native';
 
 /* Screen 1 - User 1 chooses a number to be guessed by the computer */
@@ -11,13 +10,15 @@ const GameStartScreen = ({
     range: number[]
 }) => {
     const [input, setInput] = useState<string>('');
+    const min = range[0];
+    const max = range[1];
 
     const resetAction = () => {
         handleInputChange('');
     }
 
     const confirmAction = () => {
-        if (parseInt(input) < range[0] || parseInt(input) > range[1]) {
+        if (parseInt(input) < min || parseInt(input) > max) {
             return;
         }
 
@@ -37,7 +38,7 @@ const GameStartScreen = ({
         <View style={styles.container}>
             <Header title="Guess My Number"></Header>
             <View style={styles.enterNumber}>
-                <Text style={styles.enterNumberLabel}>Enter a Number between {range[0]} and {range[1]}</Text>
+                <Text style={styles.enterNumberLabel}>Enter a Number between {min} and {max}</Text>
                 <TextInput
                     style={styles.enterNumberInput}
                     keyboardType="number-pad"
@@ -122,14 +123,14 @@ const GuessHintScreen = ({
 }) => {
     const [guesses, setGuesses] = useState<Guess[]>([]);
     const [floor, setFloor] = useState<number>(range[0]);
-    const [ceil, setCeil] = useState<number>(range[1]);
+    const [ceil, setCeil] = useState<number>(range[1] + 1);
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
     const [alertModalData, setAlertModalData] = useState<AlertModalData>({ title: '', content: ''});
 
     const toggleModal = () => {
         setIsModalVisible(prevState => !prevState);
     }
-    
+
     const itsLess = () => {
         const guess = guesses[guesses.length - 1];
         if (guess.number < floor) {
@@ -153,7 +154,7 @@ const GuessHintScreen = ({
 
     const itsMore = () => {
         const guess = guesses[guesses.length - 1];
-        
+
         if (guess.number > ceil) {
             return;
         }
@@ -166,7 +167,7 @@ const GuessHintScreen = ({
             toggleModal();
             return;
         }
-        
+
         if (guess) {
             setFloor(guess.number);
             guesser();
@@ -179,8 +180,20 @@ const GuessHintScreen = ({
     ];
 
     const guesser = () => {
-        const randomNumber = Math.floor(Math.random() * (ceil - floor - 1) + floor + 1);
-        const guess = 
+        const randomNumber = Math.floor(Math.random() * (Math.floor(ceil) - Math.ceil(floor)) + floor);
+
+        if (guesses.some(item => item.number === randomNumber)) {
+            guesser();
+            return;
+        }
+
+        if (randomNumber > parseInt(toBeGuessed)) {
+            setCeil(randomNumber);
+        } else {
+            setFloor(randomNumber);
+        }
+
+        const guess =
             {
                 count: guesses.length ? guesses[guesses.length - 1].count + 1 : 0,
                 identifier: "Guess",
@@ -189,11 +202,7 @@ const GuessHintScreen = ({
 
         setGuesses(prevGuess => [...prevGuess, guess]);
         onLastGuess(guess);
-        if (randomNumber > parseInt(toBeGuessed)) {
-            setCeil(randomNumber);
-        } else {
-            setFloor(randomNumber);
-        }
+
     }
 
     const gameOver = (guess: Guess) => {
@@ -205,12 +214,11 @@ const GuessHintScreen = ({
     }, []);
 
     useEffect(() => {
-        if (lastGuess && lastGuess.number === parseInt(toBeGuessed)) {
+        if (lastGuess.number === parseInt(toBeGuessed)) {
             gameOver(lastGuess);
-        }        
+        }
     }, [guesses]);
 
-    
     return (
         <View style={styles.container}>
             <Header title="Computer's Guess"></Header>
@@ -297,14 +305,13 @@ export default function App() {
     const handleLastGuess = (lastGuess: Guess) => {
         setLastGuess(lastGuess);
     }
-    
+
     const handleGameOver = (guess: Guess) => {
         setLastGuess(guess);
     }
 
     useEffect(() => {
-        if (lastGuess.count > 0 &&
-            lastGuess.number === parseInt(toBeGuessed)) {
+        if (lastGuess.number === parseInt(toBeGuessed)) {
             setCurrentScreen('over');
         }
     }, [lastGuess]);
@@ -371,6 +378,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         marginBottom: 10,
+        textAlign: 'center',
     },
     enterNumberInput: {
         alignSelf: 'center',
@@ -436,6 +444,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 10,
         width: '100%',
+        borderRadius: 8,
     },
     gameOverMsgContainer: {
         backgroundColor: "#111",
