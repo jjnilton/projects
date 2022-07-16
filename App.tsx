@@ -12,6 +12,9 @@ const GameStartScreen = ({
     const [input, setInput] = useState<string>('');
     const min = range[0];
     const max = range[1];
+    const [alertModalData, setAlertModalData] = useState<AlertModalData>({
+        visible: false
+    });
 
     const resetAction = () => {
         handleInputChange('');
@@ -19,6 +22,11 @@ const GameStartScreen = ({
 
     const confirmAction = () => {
         if (parseInt(input) < min || parseInt(input) > max) {
+            setAlertModalData({
+                title: "Invalid number",
+                content: `You must enter a number between ${min} and ${max}.`,
+                visible: true
+            });
             return;
         }
 
@@ -47,6 +55,11 @@ const GameStartScreen = ({
                 </TextInput>
                 <Actions actions={actions}></Actions>
             </View>
+            {alertModalData.visible &&
+             <AlertModal visible={alertModalData.visible}
+                         title={alertModalData.title}
+                         content={alertModalData.content}
+             ></AlertModal>}
         </View>
     );
 }
@@ -84,16 +97,19 @@ const Actions = ({ actions }: { actions: Action[] }) => {
 }
 
 const AlertModal = ({
-    isModalVisible,
-    toggleModal,
-    title,
-    content
+    title = 'Alert',
+    content = 'Something went wrong...',
+    visible,
 }: {
-    isModalVisible: boolean,
-    toggleModal: () => void,
-    title: string,
-    content: string
+    title?: string,
+    content?: string,
+    visible: boolean
 }) => {
+    const [isModalVisible, setIsModalVisible] = useState(visible);
+    const toggleModal = () => {
+        setIsModalVisible(prevState => !prevState);
+    }
+
     return (
         <Modal visible={isModalVisible} transparent={true}>
             <View style={styles.alertModalBackdrop}></View>
@@ -107,8 +123,9 @@ const AlertModal = ({
 }
 
 type AlertModalData = {
-    title: string,
-    content: string
+    title?: string,
+    content?: string
+    visible: boolean,
 }
 
 /* Screen 2 - Computer attempts and user feedback  */
@@ -124,12 +141,11 @@ const GuessHintScreen = ({
     const [guesses, setGuesses] = useState<Guess[]>([]);
     const [floor, setFloor] = useState<number>(range[0]);
     const [ceil, setCeil] = useState<number>(range[1] + 1);
-    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-    const [alertModalData, setAlertModalData] = useState<AlertModalData>({ title: '', content: ''});
-
-    const toggleModal = () => {
-        setIsModalVisible(prevState => !prevState);
-    }
+    const [alertModalData, setAlertModalData] = useState<AlertModalData>(
+        {
+          visible: false
+        }
+    );
 
     const itsLess = () => {
         const guess = guesses[guesses.length - 1];
@@ -140,9 +156,9 @@ const GuessHintScreen = ({
         if (guess.number < parseInt(toBeGuessed)) {
             setAlertModalData({
                 title: "Forgot the number you chose?",
-                content: `${toBeGuessed} is not smaller than ${guess.number}`
+                content: `${toBeGuessed} is not smaller than ${guess.number}`,
+                visible: true
             });
-            toggleModal();
             return;
         }
 
@@ -162,9 +178,9 @@ const GuessHintScreen = ({
         if (guess.number > parseInt(toBeGuessed)) {
             setAlertModalData({
                 title: "Forgot the number you chose?",
-                content: `${toBeGuessed} is not bigger than ${guess.number}`
+                content: `${toBeGuessed} is not bigger than ${guess.number}`,
+                visible: true
             });
-            toggleModal();
             return;
         }
 
@@ -180,7 +196,9 @@ const GuessHintScreen = ({
     ];
 
     const guesser = () => {
-        const randomNumber = Math.floor(Math.random() * (Math.floor(ceil) - Math.ceil(floor)) + floor);
+        const randomNumber = Math.floor(
+            Math.random() * (Math.floor(ceil) - Math.ceil(floor)) + floor
+        );
 
         if (guesses.some(item => item.number === randomNumber)) {
             guesser();
@@ -202,7 +220,6 @@ const GuessHintScreen = ({
 
         setGuesses(prevGuess => [...prevGuess, guess]);
         onLastGuess(guess);
-
     }
 
     const gameOver = (guess: Guess) => {
@@ -230,11 +247,11 @@ const GuessHintScreen = ({
                 <Actions actions={actions}></Actions>
             </View>
             <GuessList data={guesses}></GuessList>
-            {isModalVisible &&
-             <AlertModal isModalVisible={isModalVisible}
-                         toggleModal={toggleModal}
-                         title={alertModalData.title}
-                         content={alertModalData.content}
+            {alertModalData.visible &&
+             <AlertModal
+                 title={alertModalData.title}
+                 content={alertModalData.content}
+                 visible={alertModalData.visible}
              ></AlertModal>}
         </View>
     );
