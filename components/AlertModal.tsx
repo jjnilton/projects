@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Button, Modal, Text, View } from 'react-native';
-import styles from '../styles/styles';
+import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 
 const AlertModal = ({
     title = 'Alert',
@@ -27,5 +26,31 @@ const AlertModal = ({
         </Modal>
     );
 }
+
+const styles = StyleSheet.create({
+    alertModalBackdrop: {
+        backgroundColor: 'black',
+        flex: 1,
+        height: '100%',
+        opacity: 0.75,
+        position: 'absolute',
+        width: '100%',
+    },
+    alertModalContainer: {
+        backgroundColor: "#222",
+        borderRadius: 10,
+        marginHorizontal: '10%',
+        marginVertical: '50%',
+        padding: 20,
+    },
+    alertModalTitle: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    alertModalContent: {
+        color: 'white',
+        marginVertical: 10,
+    }
+});
 
 export default AlertModal;

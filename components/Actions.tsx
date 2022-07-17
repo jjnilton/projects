@@ -1,5 +1,4 @@
-import { Button, View } from 'react-native';
-import styles from '../styles/styles';
+import { Button, StyleSheet, View } from 'react-native';
 import Action from '../types/Action';
 
 const Actions = ({ actions }: { actions: Action[] }) => {
@@ -17,5 +16,16 @@ const Actions = ({ actions }: { actions: Action[] }) => {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    actions: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 5,
+    },
+    actionButton: {
+        width: '45%',
+    }, 
+});
 
 export default Actions;

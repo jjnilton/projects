@@ -1,5 +1,4 @@
-import { FlatList, View } from 'react-native';
-import styles from '../styles/styles';
+import { FlatList, StyleSheet, View } from 'react-native';
 import Guess from '../types/Guess';
 import GuessListItem from './GuessListItem';
 
@@ -14,5 +13,12 @@ const GuessList = ({ data }: { data: Guess[]}) => {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    guessListContainer: {
+        marginTop: 10,
+        width: '100%',
+    },
+});
 
 export default GuessList;

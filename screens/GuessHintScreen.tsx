@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Actions from '../components/Actions';
 import AlertModal from '../components/AlertModal';
 import GuessList from '../components/GuessList';
 import Header from '../components/Header';
-import styles from '../styles/styles';
 import AlertModalData from '../types/AlertModalData';
 import Guess from '../types/Guess';
 
-/* Screen 2 - Computer attempts and user feedback  */
 const GuessHintScreen = ({
     toBeGuessed, onGameOver, lastGuess, onLastGuess, range
 }: {
@@ -122,8 +120,8 @@ const GuessHintScreen = ({
             <View style={styles.lastGuessContainer}>
                 <Text style={styles.lastGuess}>{lastGuess && lastGuess.number}</Text>
             </View>
-            <View style={styles.enterNumber}>
-                <Text style={styles.enterNumberLabel}>Higher or Lower?</Text>
+            <View style={styles.higherOrLower}>
+                <Text style={styles.higherOrLowerLabel}>Higher or Lower?</Text>
                 <Actions actions={actions}></Actions>
             </View>
             <GuessList data={guesses}></GuessList>
@@ -136,5 +134,41 @@ const GuessHintScreen = ({
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        backgroundColor: 'black',
+        flex: 1,
+        paddingHorizontal: 25,
+    },
+    lastGuessContainer: {
+        borderColor: 'white',
+        borderRadius: 10,
+        borderWidth: 2,
+        marginBottom: 15,
+        paddingVertical: 15,
+        textAlign: 'center',
+        width: '100%',
+    },
+    lastGuess: {
+        color: 'white',
+        fontSize: 36,
+        textAlign: 'center',
+    },
+    higherOrLower: {
+        backgroundColor: '#111',
+        borderRadius: 10,
+        padding: 10,
+        textAlign: 'center',
+        width: '100%',
+    },
+    higherOrLowerLabel: {
+        color: 'white',
+        fontSize: 16,
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+});
 
 export default GuessHintScreen;

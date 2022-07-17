@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+    StyleSheet,
     Text,
     TextInput,
     View
@@ -7,10 +8,8 @@ import {
 import Actions from '../components/Actions';
 import AlertModal from '../components/AlertModal';
 import Header from '../components/Header';
-import styles from '../styles/styles';
 import AlertModalData from '../types/AlertModalData';
 
-/* Screen 1 - User 1 chooses a number to be guessed by the computer */
 const GameStartScreen = ({
     onToBeGuessedChoice,
     range
@@ -74,5 +73,37 @@ const GameStartScreen = ({
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+        container: {
+        alignItems: 'center',
+        backgroundColor: 'black',
+        flex: 1,
+        paddingHorizontal: 25,
+    },
+    enterNumber: {
+        backgroundColor: '#111',
+        borderRadius: 10,
+        padding: 10,
+        textAlign: 'center',
+        width: '100%',
+    },
+    enterNumberLabel: {
+        color: 'white',
+        fontSize: 16,
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+    enterNumberInput: {
+        alignSelf: 'center',
+        borderBottomWidth: 2,
+        borderColor: 'white',
+        color: 'white',
+        fontSize: 35,
+        margin: 10,
+        textAlign: 'center',
+        width: 50,
+    },
+});
 
 export default GameStartScreen;

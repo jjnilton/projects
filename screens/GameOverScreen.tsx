@@ -1,9 +1,7 @@
-import { Button, Image, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import Header from '../components/Header';
-import styles from '../styles/styles';
 import Guess from '../types/Guess';
 
-/* Game Over Screen  */
 const GameOverScreen = ({
     lastGuess, onResetGame
 }: {
@@ -20,10 +18,16 @@ const GameOverScreen = ({
                 </Image>
             </View>
             <View style={styles.gameOverMsgContainer}>
-                <Text style={styles.gameOverMsgText}>It took
-                    <Text style={{fontWeight: 'bold'}}> {lastGuess.count} </Text>
-                    attempts to guess the number
-                    <Text style={{fontWeight: 'bold'}}> {lastGuess.number}</Text>.
+                <Text style={styles.gameOverMsgText}>
+                    <Text>It took </Text>
+                    <Text style={{fontWeight: 'bold'}}>
+                        {lastGuess.count}
+                    </Text>
+                    <Text> attempts to guess the number </Text>
+                    <Text style={{fontWeight: 'bold'}}>
+                        {lastGuess.number}
+                    </Text>
+                    <Text>.</Text>
                 </Text>
             </View>
             <Button
@@ -33,5 +37,30 @@ const GameOverScreen = ({
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        backgroundColor: 'black',
+        flex: 1,
+        paddingHorizontal: 25,
+    },
+    gameOverImageContainer: {
+        alignItems: 'center',
+        backgroundColor: 'white',
+        padding: 10,
+        width: '100%',
+        borderRadius: 8,
+    },
+    gameOverMsgContainer: {
+        backgroundColor: "#111",
+        borderRadius: 10,
+        marginVertical: 10,
+        padding: 15,
+    },
+    gameOverMsgText: {
+        color: 'white',
+    },
+});
 
 export default GameOverScreen;
