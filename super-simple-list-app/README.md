@@ -1,7 +1,7 @@
 # To-Do App
 
-![Super Simple List App](screenshot-1.png)
-![Super Simple list App](screenshot-2.png)
+| ![Super Simple List App](screenshot-1.png) | ![Super Simple list App](screenshot-2.png) |
+|--------------------------------------------|--------------------------------------------|
 
 [Live](https://jjnilton.github.io/projects/super-simple-list-app/web-build)
 
