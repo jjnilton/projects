@@ -87,7 +87,7 @@ const GuessHintScreen = ({
 
         const guess =
             {
-                count: guesses.length,
+                count: guesses.length + 1,
                 identifier: "Guess",
                 number: randomNumber
             }
