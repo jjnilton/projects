@@ -1,27 +1,21 @@
-import { useState } from 'react';
 import { Button, Modal, StyleSheet, Text, View } from 'react-native';
+import AlertModalType from '../types/AlertModalType';
 
 const AlertModal = ({
     title = 'Alert',
     content = 'Something went wrong...',
-    visible,
-}: {
-    title?: string,
-    content?: string,
-    visible: boolean
-}) => {
-    const [isModalVisible, setIsModalVisible] = useState(visible);
-    const toggleModal = () => {
-        setIsModalVisible(prevState => !prevState);
-    }
+    visible = false,
+    toggle,
+}: AlertModalType
+) => {
 
     return (
-        <Modal visible={isModalVisible} transparent={true}>
+        <Modal visible={visible} transparent={true}>
             <View style={styles.alertModalBackdrop}></View>
             <View style={styles.alertModalContainer}>
                 <Text style={styles.alertModalTitle}>{title}</Text>
                 <Text style={styles.alertModalContent}>{content}</Text>
-                <Button title="Ok" onPress={toggleModal}></Button>
+                <Button title="Ok" onPress={toggle}></Button>
             </View>
         </Modal>
     );
@@ -29,7 +23,7 @@ const AlertModal = ({
 
 const styles = StyleSheet.create({
     alertModalBackdrop: {
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         flex: 1,
         height: '100%',
         opacity: 0.75,

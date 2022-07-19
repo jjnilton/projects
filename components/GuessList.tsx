@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     guessListContainer: {
         marginTop: 10,
         width: '100%',
-    },
+        flex: 1,
+    }
 });
 
 export default GuessList;

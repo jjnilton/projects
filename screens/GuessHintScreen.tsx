@@ -4,7 +4,7 @@ import Actions from '../components/Actions';
 import AlertModal from '../components/AlertModal';
 import GuessList from '../components/GuessList';
 import Header from '../components/Header';
-import AlertModalData from '../types/AlertModalData';
+import AlertModalType from '../types/AlertModalType';
 import Guess from '../types/Guess';
 
 const GuessHintScreen = ({
@@ -19,51 +19,47 @@ const GuessHintScreen = ({
     const [guesses, setGuesses] = useState<Guess[]>([]);
     const [floor, setFloor] = useState<number>(range[0]);
     const [ceil, setCeil] = useState<number>(range[1] + 1);
-    const [alertModalData, setAlertModalData] = useState<AlertModalData>(
-        {
-          visible: false
-        }
-    );
+
+    const currentGuess = guesses[guesses.length - 1] || 0;
+    const lessOrMore = currentGuess.number < parseInt(toBeGuessed)
+                                           ? 'bigger'
+                                           : 'smaller';
+
+    const toggleModal = () => {
+        setAlertModalData(prevState => {
+            return ({
+                title: "Forgot the number you chose?",
+                content: `${toBeGuessed} is not ${lessOrMore} than ${currentGuess.number}`,
+                visible: !prevState.visible,
+                toggle: toggleModal
+            });
+        });
+    }
+
+    const [alertModalData, setAlertModalData] = useState<AlertModalType>({
+        toggle: toggleModal
+    });
 
     const itsLess = () => {
-        const guess = guesses[guesses.length - 1];
-        if (guess.number < floor) {
+        if (currentGuess.number < parseInt(toBeGuessed)) {
+            toggleModal();
             return;
         }
 
-        if (guess.number < parseInt(toBeGuessed)) {
-            setAlertModalData({
-                title: "Forgot the number you chose?",
-                content: `${toBeGuessed} is not smaller than ${guess.number}`,
-                visible: true
-            });
-            return;
-        }
-
-        if (guess) {
-            setCeil(guess.number);
+        if (currentGuess) {
+            setCeil(currentGuess.number);
             guesser();
         }
     }
 
     const itsMore = () => {
-        const guess = guesses[guesses.length - 1];
-
-        if (guess.number > ceil) {
+        if (currentGuess.number > parseInt(toBeGuessed)) {
+            toggleModal();
             return;
         }
 
-        if (guess.number > parseInt(toBeGuessed)) {
-            setAlertModalData({
-                title: "Forgot the number you chose?",
-                content: `${toBeGuessed} is not bigger than ${guess.number}`,
-                visible: true
-            });
-            return;
-        }
-
-        if (guess) {
-            setFloor(guess.number);
+        if (currentGuess) {
+            setFloor(currentGuess.number);
             guesser();
         }
     }
@@ -91,12 +87,12 @@ const GuessHintScreen = ({
 
         const guess =
             {
-                count: guesses.length ? guesses[guesses.length - 1].count + 1 : 0,
+                count: guesses.length,
                 identifier: "Guess",
                 number: randomNumber
             }
 
-        setGuesses(prevGuess => [...prevGuess, guess]);
+        setGuesses(prevGuesses => [guess, ...prevGuesses]);
         onLastGuess(guess);
     }
 
@@ -114,7 +110,7 @@ const GuessHintScreen = ({
         }
     }, [guesses]);
 
-    return (
+    return (        
         <View style={styles.container}>
             <Header title="Computer's Guess"></Header>
             <View style={styles.lastGuessContainer}>
@@ -130,6 +126,7 @@ const GuessHintScreen = ({
                  title={alertModalData.title}
                  content={alertModalData.content}
                  visible={alertModalData.visible}
+                 toggle={toggleModal}
              ></AlertModal>}
         </View>
     );

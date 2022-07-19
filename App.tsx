@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import GameStartScreen from './screens/GameStartScreen';
 import GuessHintScreen from './screens/GuessHintScreen';
 import GameOverScreen from './screens/GameOverScreen';
@@ -39,26 +39,29 @@ export default function App() {
     }
 
     return (
-        <View style={{ flex: 1}}>
-            {currentScreen === 'init' &&
-             <GameStartScreen
-                 onToBeGuessedChoice={handleToBeGuessedChoice}
-                 range={range}
-             ></GameStartScreen>}
-            {currentScreen === 'play' &&
-             <GuessHintScreen
-                 toBeGuessed={toBeGuessed}
-                 onGameOver={handleGameOver}
-                 lastGuess={lastGuess}
-                 onLastGuess={handleLastGuess}
-                 range={range}
-             ></GuessHintScreen>}
-            {currentScreen === 'over' &&
-             <GameOverScreen
-                 lastGuess={lastGuess}
-                 onResetGame={handleResetGame}
-             ></GameOverScreen>}
-        </View>
+        <>
+            <StatusBar></StatusBar>
+            <View style={{ flex: 1 }}>
+                {currentScreen === 'init' &&
+                    <GameStartScreen
+                        onToBeGuessedChoice={handleToBeGuessedChoice}
+                        range={range}
+                    ></GameStartScreen>}
+                {currentScreen === 'play' &&
+                 <GuessHintScreen
+                     toBeGuessed={toBeGuessed}
+                     onGameOver={handleGameOver}
+                     lastGuess={lastGuess}
+                     onLastGuess={handleLastGuess}
+                     range={range}
+                    ></GuessHintScreen>}
+                {currentScreen === 'over' &&
+                    <GameOverScreen
+                        lastGuess={lastGuess}
+                        onResetGame={handleResetGame}
+                    ></GameOverScreen>}
+            </View>
+        </>
     );
 }
 

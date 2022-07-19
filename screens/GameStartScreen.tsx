@@ -8,7 +8,7 @@ import {
 import Actions from '../components/Actions';
 import AlertModal from '../components/AlertModal';
 import Header from '../components/Header';
-import AlertModalData from '../types/AlertModalData';
+import AlertModalType from '../types/AlertModalType';
 
 const GameStartScreen = ({
     onToBeGuessedChoice,
@@ -20,8 +20,20 @@ const GameStartScreen = ({
     const [input, setInput] = useState<string>('');
     const min = range[0];
     const max = range[1];
-    const [alertModalData, setAlertModalData] = useState<AlertModalData>({
-        visible: false
+
+    const toggleModal = () => {
+        setAlertModalData(prevState => {
+            return ({
+                title: "Invalid number",
+                content: `You must enter a number between ${min} and ${max}.`,
+                visible: !prevState.visible,
+                toggle: toggleModal
+            });
+        });
+    }
+
+    const [alertModalData, setAlertModalData] = useState<AlertModalType>({
+        toggle: toggleModal
     });
 
     const resetAction = () => {
@@ -29,12 +41,8 @@ const GameStartScreen = ({
     }
 
     const confirmAction = () => {
-        if (parseInt(input) < min || parseInt(input) > max) {
-            setAlertModalData({
-                title: "Invalid number",
-                content: `You must enter a number between ${min} and ${max}.`,
-                visible: true
-            });
+        if (parseInt(input) < min || parseInt(input) > max || input.trim().length < 1) {
+            toggleModal();
             return;
         }
 
@@ -61,14 +69,21 @@ const GameStartScreen = ({
                     style={styles.enterNumberInput}
                     keyboardType="number-pad"
                     onChangeText={handleInputChange}
-                    value={input}>
+                    value={input}
+                    maxLength={max.toString().length}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    autoComplete="off"
+                >
                 </TextInput>
                 <Actions actions={actions}></Actions>
             </View>
             {alertModalData.visible &&
-             <AlertModal visible={alertModalData.visible}
-                         title={alertModalData.title}
-                         content={alertModalData.content}
+             <AlertModal
+                 visible={alertModalData.visible}
+                 title={alertModalData.title}
+                 content={alertModalData.content}
+                 toggle={toggleModal}
              ></AlertModal>}
         </View>
     );
