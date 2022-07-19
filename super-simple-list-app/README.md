@@ -1,6 +1,6 @@
 # To-Do App
 
-| ![Super Simple List App](screenshot-1.png) | ![Super Simple list App](screenshot-2.png) |
+| ![Super Simple List App](screenshot-1.png) | ![Super Simple List App](screenshot-2.png) |
 |--------------------------------------------|--------------------------------------------|
 
 [Live](https://jjnilton.github.io/projects/super-simple-list-app/web-build)
@@ -28,7 +28,7 @@ A super simple list app that allows adding and removing items.
 
 ## Build & run instructions
 
-This project is built with Create React App, so the scripts to build and run are provided.
+This project is built with Create Expo App, so the scripts to build and run are provided.
 
 Build with:
 
