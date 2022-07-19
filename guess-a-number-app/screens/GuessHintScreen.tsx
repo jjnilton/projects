@@ -20,7 +20,7 @@ const GuessHintScreen = ({
     const [floor, setFloor] = useState<number>(range[0]);
     const [ceil, setCeil] = useState<number>(range[1] + 1);
 
-    const currentGuess = guesses[guesses.length - 1] || 0;
+    const currentGuess = guesses[0] || floor;
     const lessOrMore = currentGuess.number < parseInt(toBeGuessed)
                                            ? 'bigger'
                                            : 'smaller';
@@ -29,7 +29,7 @@ const GuessHintScreen = ({
         setAlertModalData(prevState => {
             return ({
                 title: "Forgot the number you chose?",
-                content: `${toBeGuessed} is not ${lessOrMore} than ${currentGuess.number}`,
+                content: `${toBeGuessed} is ${lessOrMore} than ${currentGuess.number}`,
                 visible: !prevState.visible,
                 toggle: toggleModal
             });
