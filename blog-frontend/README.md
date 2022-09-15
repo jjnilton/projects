@@ -2,11 +2,13 @@
 
 ![screenshot](screenshots/main.png)
 
-[Live](https://jjnilton.github.io/cr-test/out)
+[Live](https://jjnilton.github.io/projects/blog-frontend/out)
 
 ## Description
 
 Blog frontend that displays a list of posts in a infinite scroll layout, and allow navigating to each post page.
+
+* This project was originally made as an interview test, based on a Figma prototype, and depends on third-party APIs to work properly.
 
 ## Requirements
 

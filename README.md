@@ -20,3 +20,4 @@ Projects to practice development.
 | [To-Do App](todo-app)                              | Simple To-Do app with add/edit/remove features & more      | React, TypeScript, MUI, CSS Modules | [View](https://jjnilton.github.io/projects/todo-app/build)                  |
 | [Super Simple List App](super-simple-list-app)     | Super Simple List app with add/remove features             | React Native, Expo, TypeScript      | [View](https://jjnilton.github.io/projects/super-simple-list-app/web-build) |
 | [Guess a Number App](guess-a-number-app)           | A game where the user chooses a number for the PC to guess | React Native, Expo, TypeScript      | [View](https://jjnilton.github.io/projects/guess-a-number-app/web-build)    |
+| [Blog Frontend](blog-frontend)                     | A blog frontend with multiple pages and infinite scroll    | Next.js, Styled Components          | [View](https://jjnilton.github.io/projects/blog-frontend/out)               |
