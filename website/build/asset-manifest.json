@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "./static/css/main.52d405ac.chunk.css",
+    "main.js": "./static/js/main.94dfffac.chunk.js",
+    "main.js.map": "./static/js/main.94dfffac.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.59c2b504.js",
+    "runtime-main.js.map": "./static/js/runtime-main.59c2b504.js.map",
+    "static/js/2.3f1a79d2.chunk.js": "./static/js/2.3f1a79d2.chunk.js",
+    "static/js/2.3f1a79d2.chunk.js.map": "./static/js/2.3f1a79d2.chunk.js.map",
+    "static/js/3.3a8fbf58.chunk.js": "./static/js/3.3a8fbf58.chunk.js",
+    "static/js/3.3a8fbf58.chunk.js.map": "./static/js/3.3a8fbf58.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.52d405ac.chunk.css.map": "./static/css/main.52d405ac.chunk.css.map",
+    "static/js/2.3f1a79d2.chunk.js.LICENSE.txt": "./static/js/2.3f1a79d2.chunk.js.LICENSE.txt",
+    "static/media/book-finder-app.4d271e3e.png": "./static/media/book-finder-app.4d271e3e.png",
+    "static/media/event-countdown-timer.93aaf672.png": "./static/media/event-countdown-timer.93aaf672.png",
+    "static/media/fontello.css": "./static/media/fontello.d2889412.svg",
+    "static/media/git.4c119355.svg": "./static/media/git.4c119355.svg",
+    "static/media/lorem-ipsum-generator-dark.88b0e29f.png": "./static/media/lorem-ipsum-generator-dark.88b0e29f.png",
+    "static/media/lorem-ipsum-generator-light.5fd23954.png": "./static/media/lorem-ipsum-generator-light.5fd23954.png",
+    "static/media/nextjs.726188da.svg": "./static/media/nextjs.726188da.svg",
+    "static/media/nodejs.cca10cac.svg": "./static/media/nodejs.cca10cac.svg",
+    "static/media/reactjs.e4ad4fb6.svg": "./static/media/reactjs.e4ad4fb6.svg",
+    "static/media/reduxjs.c0d97478.svg": "./static/media/reduxjs.c0d97478.svg",
+    "static/media/styled-components.8c2e7dfe.png": "./static/media/styled-components.8c2e7dfe.png",
+    "static/media/word-frequency-app.bf3fe4bd.png": "./static/media/word-frequency-app.bf3fe4bd.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.59c2b504.js",
+    "static/js/2.3f1a79d2.chunk.js",
+    "static/css/main.52d405ac.chunk.css",
+    "static/js/main.94dfffac.chunk.js"
+  ]
+}
