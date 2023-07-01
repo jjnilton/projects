@@ -1,0 +1,62 @@
+## Roadmap
+
+- [x] Add links
+- [x] Anchor nav buttons to section ids
+- [x] Round borders
+- [x] Add icons
+- [x] Add favicon
+- [x] Setup form (Netlify Form)
+- [x] Remove one of the language togglers
+- [x] Adjust margins/paddings on Project Item component
+- [x] Complete presentation
+- [x] Proofread
+- [x] Publish!!!
+- [ ] Fix the part about git
+- [ ] Validate against W3CValidator
+- [ ] Detect browser language
+- [ ] Check the published version in the most popular browsers
+- [ ] Justify text in the about section
+- [ ] Add space between list items in the setup section
+- [ ] Adjust texts in Tools components to have same length
+- [ ] Prevent hover elements on mobile `@media (hover: hover) {}`
+- [ ] Add a Back To Top component
+- [ ] Load elements only when visible in viewport (Intersect Observer)
+- [ ] Add form validation with JS
+- [ ] Add validation icons to form
+- [ ] Set nav buttons to sections with JS instead of anchoring ids
+- [ ] Open bigger project image in new tab
+- [ ] Add image previewer component
+- [ ] Add more projects button
+- [ ] Create a quote component
+- [ ] Refactor Header component
+- [ ] Refactor About component
+- [ ] Move data/content (links, translations, email, etc) to a config file
+- [ ] Create a "JavaScriptless" version
+- [ ] Make icons clickable?
+- [ ] Replace Google Fonts with local fonts
+- [ ] Replace slider toggler div with button
+- [ ] Create a better favicon with light/dark versions
+- [ ] Store theme setting?
+- [ ] Send email to confirm that email was sent?
+- [ ] Refactor Content component
+- [ ] Add an icon to success/error messages
+- [ ] Add a Netlify Forms badge
+- [ ] Change to public repository on GitHub
+- [ ] Safari theme
+- [ ] Metadata for thumbnail
+- [ ] Check reader view format
+- [ ] Show loading until DOM is loaded
+- [ ] Disable form while loading/sending
+- [ ] Fix iOS monospace font
+- [ ] Generate pre-rendered build
+- [ ] Check the favicon loading process (nginx)
+- [ ] Enable www subdomain
+- [ ] Update resume to include website
+- [ ] Add scroll padding top :D
+- [ ] Custom 404 error
+- [ ] Refactor section title style
+- [ ] Fix countdown timer project, Safari iOS is not supported
+- [ ] Fix width in the book finder app
+- [ ] Use react-icons lib or replace styled icon with svg
+- [ ] Rewrite in TS
+
